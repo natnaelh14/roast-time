@@ -33,7 +33,7 @@ const Dashboard = () => {
 
     const { data: coffeeShopsData, error } = useSWR(getUrlForCoffeeShops(latLong, limit), coffeeShopsFetcher);
     console.log("COFFEE SHOPS", coffeeShopsData);
-    const [coffeeShopsPhotos, setCoffeeShopsPhotos] = useState([])
+    const [coffeeShopsPhotos, setCoffeeShopsPhotos] = useState<Array<string>>([])
 
     useEffect(() => {
         const fetchData = async () => {

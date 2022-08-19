@@ -1,13 +1,5 @@
 import axios from "axios";
-//initialize unsplash
-
-import { createApi } from "unsplash-js";
-
-// on your node server
-const unsplashApi: any = createApi({
-    accessKey: process.env.NEXT_PUBLIC_UNSPLASH_ACCESS_KEY,
-    //...other fetch options
-});
+import { unsplashApi } from './unsplash';
 
 export const getListOfCoffeeStorePhotos = async () => {
     const photos = await unsplashApi.search.getPhotos({
