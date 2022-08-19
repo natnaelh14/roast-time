@@ -9,10 +9,10 @@ interface ItemProps {
 const Item = ({ title, image }: ItemProps) => {
     return (
         <div className="m-8">
-            <Image alt='shopping-item' src={`/${image}`} width={400} height={400} />
+            <Image alt='shopping-item' src={image} width={300} height={300} />
             <p className='text-center'>{title}</p>
-            <button type='submit' className='bg-orange py-2 px-4 m-2 rounded-lg w-full'>Add to cart</button>
-        </div>               
+            <button type='submit' className='bg-orange py-2 px-4 m-2 rounded-lg w-full'>Reserve</button>
+        </div>
     )
 }
 
