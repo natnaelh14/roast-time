@@ -33,6 +33,10 @@ a {
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
+.banner {
+  background: linear-gradient(to right bottom, rgb(173, 115, 108) 0%, rgb(115, 70, 64) 100%) 100% center no-repeat;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
