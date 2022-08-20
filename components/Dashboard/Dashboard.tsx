@@ -2,30 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Item from '../Item/Item';
 import useSWR from 'swr';
 import { coffeeShopsFetcher, getUrlForCoffeeShops, getListOfCoffeeStorePhotos } from '../../libs/coffee-shops';
-
-const items = [
-    {
-        image: "saigon-cinnamon.jpg",
-        title: "Saigon Ground Cassia Cinnamon"
-    },
-    {
-        image: "vulcan-salt.jpg",
-        title: "Vulcan's Fire Salt"
-    },
-    {
-        image: "chili-powder.jpg",
-        title: "Medium Chili Powder"
-    },
-    {
-        image: "anise-seeds.jpg",
-        title: "Ground Anise Seeds"
-    }
-];
-
-interface ItemProps {
-    title: string,
-    image: string
-}
+import Location from '../Location/Location';
 
 const Dashboard = () => {
     const latLong = "43.653833032607096%2C-79.37896808855945";
@@ -47,11 +24,14 @@ const Dashboard = () => {
     if (!coffeeShopsData || error) return null
 
     return (
-        <div className="flex flex-wrap justify-center">
-            {coffeeShopsData.map((item: any, i: number) => {
-                return <Item key={i} title={item.name} image={coffeeShopsPhotos[i]} />
-            })}
-        </div>
+        <>
+            <Location />
+            <div className="flex flex-wrap justify-center">
+                {coffeeShopsData.map((item: any, i: number) => {
+                    return <Item key={i} title={item.name} image={coffeeShopsPhotos[i]} location={item.location.formatted_address} categories={item.categories} />
+                })}
+            </div>
+        </>
     )
 }
 
