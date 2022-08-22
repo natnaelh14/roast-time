@@ -32,8 +32,8 @@ export const TextInput = <T extends FieldValues>({
           error
             ? `${name}-error`
             : description
-            ? `${name}-description`
-            : undefined
+              ? `${name}-description`
+              : undefined
         }
         className={classNames(
           "peer inline-block w-full border-0 py-0 pl-0.5 text-base shadow-border-b shadow-gray-300 transition placeholder:text-transparent hover:shadow-border-b-2 hover:shadow-blue-primary focus:shadow-border-b-2 focus:shadow-blue-primary focus:outline-none focus:ring-0 disabled:pointer-events-none disabled:text-gray-300",
@@ -46,8 +46,8 @@ export const TextInput = <T extends FieldValues>({
           isDisabled
             ? "pointer-events-none text-gray-300"
             : error
-            ? "text-error"
-            : "text-gray-secondary"
+              ? "text-error"
+              : "text-gray-500"
         )}
         htmlFor={name}
       >

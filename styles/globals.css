@@ -30,11 +30,27 @@ a {
 
 .glass {
   background: rgba(255, 255, 255, 0.2);
-  border-radius: 16px;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.form-background {
+background-repeat:no-repeat; 
+background-image:  
+  linear-gradient(to right bottom, rgb(173, 115, 108) 0%, rgb(115, 70, 64) 100%), 
+  linear-gradient(to bottom, RGB(255, 255, 255), RGB(245, 235, 224));
+background-position:
+  0 0px,
+  0 250px;
+background-size:  
+  100% 300px, 
+  100% 550px;
 }
 
 @layer components {
