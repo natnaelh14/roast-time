@@ -12,8 +12,8 @@ const SignUpForm = () => {
     };
 
     return (
-        <div className='flex items-center justify-center min-h-[800px] banner'>
-            <div className="flex w-1/2 flex-col items-center justify-between border-gray-200 border-2 px-16 py-8 rounded-lg bg-white">
+        <div className='flex items-center justify-center min-h-[800px] form-background'>
+            <div className="flex w-1/3 flex-col items-center justify-between border-gray-200 border-2 px-16 py-8 rounded-lg bg-white">
                 <div className="mb-6 text-center">
                     <h1 className="text-blue-primary text-4xl">Get started with RoastTime today.</h1>
                 </div>

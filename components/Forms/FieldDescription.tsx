@@ -16,7 +16,7 @@ export const FieldDescription = ({
             id={`${name}-description`}
             className={classNames(
                 "text-xs font-normal transition-colors",
-                isDisabled ? "text-gray-300" : "text-gray-secondary"
+                isDisabled ? "text-gray-300" : "text-gray-500"
             )}
         >
             {description}
