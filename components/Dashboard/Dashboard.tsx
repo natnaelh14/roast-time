@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Item from '../Item/Item';
 import useSWR from 'swr';
 import { coffeeShopsFetcher, getUrlForCoffeeShops, getListOfCoffeeStorePhotos } from '../../libs/coffee-shops';
-import DashboardLoading from '../Loading/DashboardLoading';
+import DashboardLoading from '../Loaders/DashboardLoading';
 
 const Dashboard = () => {
     const latLong = "43.653833032607096%2C-79.37896808855945";

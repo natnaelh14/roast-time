@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 const Footer = () => {
     return (
-        <footer className="p-4 bg-gray-100 rounded-lg shadow md:px-6 md:py-8m h-max-[100px]">
+        <footer className="p-4 bg-gray-200 rounded-lg shadow md:px-6 md:py-8m h-max-[100px]">
             <div className="sm:flex sm:items-center sm:justify-center">
                 <Link href='/'>
                     <a className="flex items-center mb-4 sm:mb-0">

@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 html,
 body {
   padding: 0;
@@ -33,10 +37,16 @@ a {
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-.banner {
-  background: linear-gradient(to right bottom, rgb(173, 115, 108) 0%, rgb(115, 70, 64) 100%) 100% center no-repeat;
-}
+@layer components {
+  .banner {
+    background: linear-gradient(to right bottom, rgb(173, 115, 108) 0%, rgb(115, 70, 64) 100%);
+    background-repeat: no-repeat;
+  }
+  .btn-primary {
+    @apply relative inline-flex min-h-[40px] min-w-[120px] items-center justify-center space-x-2 whitespace-nowrap rounded-md bg-pink-primary py-2 px-6 text-xs font-bold capitalize leading-6 text-white shadow-sm transition duration-150 ease-out hover:bg-orange-primary hover:shadow active:bg-orange-dark disabled:border-orange-light disabled:bg-orange-light;
+  }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+  .btn-secondary {
+    @apply relative inline-flex min-h-[40px] min-w-[120px] select-none items-center justify-center space-x-2 whitespace-nowrap rounded-md border border-orange-primary bg-white px-6 py-2 text-xs font-bold capitalize leading-6 text-gray-400 shadow-sm transition duration-75 ease-out hover:border-blue-300 hover:bg-orange-primary/5 hover:text-gray-400 active:border-orange-primary active:bg-orange-primary/10 active:text-gray-400 disabled:border-orange-primary disabled:bg-white disabled:text-gray-400;
+  }
+}

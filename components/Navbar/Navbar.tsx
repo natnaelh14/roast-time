@@ -4,22 +4,22 @@ import Link from 'next/link';
 
 export const Navbar = () => {
   return (
-    <nav className='flex flex-row items-center glass max-h-20 bg-gray-50'>
+    <nav className='flex flex-row items-center glass max-h-20 bg-gray-200'>
       <Image alt='roastTime logo' src='/logo.png' height={200} width={200} />
       <div className='flex flex-row right-0 absolute'>
-        <Link href='/'>
-          <h1 className='m-2 p-2 hover:underline decoration-orange-primary decoration-4 underline-offset-8 text-lg hover:cursor-pointer'>
-            Order
-          </h1>
-        </Link>
-        <Link href='/orders'>
+        <Link href='/restaurant'>
           <h1 className='m-2 p-2 hover:underline decoration-orange-primary decoration-4 underline-offset-8 text-lg hover:cursor-pointer'>
             For Businesses
           </h1>
         </Link>
-        <Link href='/login'>
+        <Link href='/signup'>
           <h1 className='m-2 p-2 hover:underline decoration-orange-primary decoration-4 underline-offset-8 text-lg hover:cursor-pointer'>
-            Login
+            Sign up
+          </h1>
+        </Link>
+        <Link href='/signin'>
+          <h1 className='m-2 p-2 hover:underline decoration-orange-primary decoration-4 underline-offset-8 text-lg hover:cursor-pointer'>
+            Sign in
           </h1>
         </Link>
         <Link href='/'>
