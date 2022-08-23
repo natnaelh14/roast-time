@@ -1,9 +1,10 @@
-import React from 'react'
+import { SignInForm, RestaurantSignUpForm } from "../components/Forms";
 
 const Restaurant = () => {
     return (
-        <div>
-            <p>This is the restaurant page</p>
+        <div className='flex flex-row items-center justify-around min-h-[800px] form-background'>
+            <RestaurantSignUpForm />
+            <SignInForm />
         </div>
     )
 }

@@ -36,13 +36,13 @@ export const TextInput = <T extends FieldValues>({
               : undefined
         }
         className={classNames(
-          "peer inline-block w-full border-0 py-0 pl-0.5 text-base shadow-border-b shadow-gray-300 transition placeholder:text-transparent hover:shadow-border-b-2 hover:shadow-blue-primary focus:shadow-border-b-2 focus:shadow-blue-primary focus:outline-none focus:ring-0 disabled:pointer-events-none disabled:text-gray-300",
+          "peer inline-block w-full border-0 py-0 pl-0.5 text-base shadow-border-b shadow-gray-300 transition placeholder:text-transparent hover:shadow-border-b-2 hover:shadow-pink-primary focus:shadow-border-b-2 focus:shadow-pink-primary focus:outline-none focus:ring-0 disabled:pointer-events-none disabled:text-gray-300",
           error && "shadow-error hover:shadow-error focus:shadow-error"
         )}
       />
       <label
         className={classNames(
-          "font-medium absolute -top-0.5 left-0.5 select-none text-xs transition-all ease-out peer-placeholder-shown:pointer-events-none peer-placeholder-shown:top-5 peer-placeholder-shown:text-sm peer-required:after:content-['_*'] peer-focus:-top-0.5 peer-focus:text-xs",
+          "font-medium absolute -top-0.5 left-0.5 select-none text-sm transition-all ease-out peer-placeholder-shown:pointer-events-none peer-placeholder-shown:top-5 peer-placeholder-shown:text-md peer-required:after:content-['_*'] peer-focus:-top-0.5 peer-focus:text-sm",
           isDisabled
             ? "pointer-events-none text-gray-300"
             : error
