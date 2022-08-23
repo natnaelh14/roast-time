@@ -28,8 +28,7 @@ export const SubmitButton = ({
                 variant === "primary"
                     ? "btn-primary"
                     : variant === "secondary"
-                        ? "btn-secondary"
-                        : variant === "tertiary" && "btn-tertiary",
+                    && "btn-secondary",
                 className
             )}
         >
