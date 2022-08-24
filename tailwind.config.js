@@ -1,3 +1,5 @@
+const { url } = require('node:inspector');
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -6,6 +8,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      backgroundImage:{
+        close: "url(/images/close.png)"
+      },
       colors: {
         gray: {
           100: "#fafafa",

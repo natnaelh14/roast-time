@@ -8,7 +8,7 @@ const people = ['RELEVANCE', 'RATING', 'DISTANCE', 'POPULARITY']
 const FilterCoffeeShops = () => {
     const [selected, setSelected] = useState(people[0])
     return (
-        <div className="absolute right-0 w-60 mr-[8%]">
+        <div className="absolute right-6 mt-4 w-60 z-10">
             <Listbox value={selected} onChange={setSelected}>
                 <div className="relative mt-1">
                     <Listbox.Button className="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
@@ -31,7 +31,7 @@ const FilterCoffeeShops = () => {
                                 <Listbox.Option
                                     key={personIdx}
                                     className={({ active }) =>
-                                        `relative cursor-default select-none py-2 pl-10 pr-4 ${active ? 'bg-amber-100 text-amber-900' : 'text-gray-900'
+                                        `relative cursor-default select-none py-2 pl-10 pr-4 ${active ? 'bg-amber-100 text-orange-dark' : 'text-gray-900'
                                         }`
                                     }
                                     value={person}
@@ -45,7 +45,7 @@ const FilterCoffeeShops = () => {
                                                 {person}
                                             </span>
                                             {selected ? (
-                                                <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-amber-600">
+                                                <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-black sm:text-sm">
                                                     <CheckIcon className="h-5 w-5" aria-hidden="true" />
                                                 </span>
                                             ) : null}

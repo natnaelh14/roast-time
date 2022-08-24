@@ -3,36 +3,36 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { sleep } from "utils/helpers";
 import { TextInput } from "./TextInput";
 
-interface RestaurantSignupFormValues {
-    firstName: string,
-    lastName: string,
-    phoneNumber: string,
-    email: string,
-    password: string,
-    restaurantName: string,
-    restaurantStreetName: string,
-    restaurantCity: string,
-    restaurantState: string,
-    restaurantZipCode: number
-}
+// interface RestaurantSignUpFormValues {
+//     firstName: string,
+//     lastName: string,
+//     phoneNumber: string,
+//     email: string,
+//     password: string,
+//     restaurantName: string,
+//     restaurantStreetName: string,
+//     restaurantCity: string,
+//     restaurantState: string,
+//     restaurantZipCode: number
+// }
 
 export const RestaurantSignUpForm = () => {
     const { control, handleSubmit, formState } = useForm({ mode: "onTouched" });
     const { isSubmitting } = formState;
-    const onSubmit: SubmitHandler<RestaurantSignupFormValues> = async (data) => {
+    const onSubmit = async () => {
         await sleep(2000);
         // console.log({ firstName, lastName, phoneNumber, email, password });
     };
     return (
-        <div className="flex w-1/3 flex-col items-center justify-between border-gray-200 border-2 px-16 py-8 rounded-lg bg-white min-w-[700px]">
+        <div className="flex w-5/6 lg:w-1/2 xl:w-2/5 flex-col items-center justify-between border-gray-200 border-2 px-16 py-8 rounded-lg bg-white">
             <div className="mb-6 text-center">
-                <h1 className="text-pink-primary text-3xl text-center">Get started with RoastTime today.</h1>
-                <p className="mt-1 text-md text-gray-secondary text-center">
+                <h1 className="text-pink-primary text-xl lg:text-3xl text-center">Get started with RoastTime today.</h1>
+                <p className="mt-1 text-sm lg:text-md text-gray-secondary text-center">
                     Fill out the form below and a member of our team will contact you shortly
                 </p>
             </div>
             <form onSubmit={handleSubmit(onSubmit)} className="w-full">
-                <div className='flex flex-row justify-around'>
+                <div className='flex flex-col md:flex-row justify-around'>
                     <div>
                         <TextInput
                             control={control}
@@ -56,14 +56,14 @@ export const RestaurantSignUpForm = () => {
                             control={control}
                             name="email"
                             label="Email"
-                            autoComplete="email"
+                            autoComplete="off"
                         />
                         <TextInput
                             control={control}
                             name="password"
                             label="Password"
                             type="password"
-                            autoComplete="current-password"
+                            autoComplete="off"
                         />
                     </div>
                     <div>
