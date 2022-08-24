@@ -11,26 +11,26 @@ export const SignInForm = () => {
         console.log("Logged in");
     };
     return (
-        <div className="flex w-1/3 flex-col items-center justify-between border-gray-200 border-2 bg-white px-16 py-8 rounded-lg">
+        <div className="flex w-5/6 md:w-2/3 lg:w-2/5 xl:w-1/3 flex-col items-center justify-between border-gray-200 border-2 bg-white px-16 py-8 rounded-lg">
             <div className="mb-6 text-center">
-                <h1 className="text-pink-primary text-3xl text-center">Go ahead, login.</h1>
-                <p className="mt-1 text-md text-gray-secondary text center">
+                <h1 className="text-pink-primary text-xl lg:text-3xl text-center">Go ahead, login.</h1>
+                <p className="mt-1 text-sm lg:text-md text-gray-secondary text center">
                     Welcome back to RoastTime
                 </p>
             </div>
             <form onSubmit={handleSubmit(onSubmit)} className="w-full" autoComplete="off">
                 <TextInput
                     control={control}
-                    name="email"
+                    name="logInEmail"
                     label="Email"
-                    autoComplete="email"
+                    autoComplete="off"
                 />
                 <TextInput
                     control={control}
-                    name="password"
+                    name="logInPassword"
                     label="Password"
                     type="password"
-                    autoComplete="current-password"
+                    autoComplete="off"
                 />
                 <div className="flex flex-col items-center mt-6">
                     <SubmitButton

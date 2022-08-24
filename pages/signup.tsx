@@ -3,27 +3,27 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { sleep } from "utils/helpers";
 import { TextInput } from "../components/Forms/TextInput";
 
-interface SignupFormValues {
-    firstName: string,
-    lastName: string,
-    phoneNumber: string,
-    email: string,
-    password: string
-}
+// interface SignupFormValues {
+//     firstName: string,
+//     lastName: string,
+//     phoneNumber: string,
+//     email: string,
+//     password: string
+// }
 
 const SignUpForm = () => {
     const { control, handleSubmit, formState } = useForm({ mode: "onTouched" });
     const { isSubmitting } = formState;
-    const onSubmit: SubmitHandler<SignupFormValues> = async (data) => {
+    const onSubmit = async () => {
         await sleep(2000);
         // console.log({ firstName, lastName, phoneNumber, email, password });
     };
 
     return (
         <div className='flex items-center justify-center min-h-[800px] form-background'>
-            <div className="flex w-2/5 flex-col items-center justify-between border-gray-200 border-2 px-16 py-8 rounded-lg bg-white">
+            <div className="flex w-5/6 lg:w-2/5 flex-col items-center justify-between border-gray-200 border-2 px-16 py-8 rounded-lg bg-white">
                 <div className="mb-6 text-center">
-                    <h1 className="text-pink-primary text-3xl">Get started with RoastTime today.</h1>
+                    <h1 className="text-pink-primary text-xl lg:text-3xl">Get started with RoastTime today.</h1>
                 </div>
                 <form onSubmit={handleSubmit(onSubmit)} className="w-full">
                     <TextInput
