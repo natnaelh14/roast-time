@@ -1,6 +1,10 @@
 import React from 'react';
 
-const HamburgerIcon = () => {
+interface HamburgerIconProps {
+    handleClick: () => void
+}
+
+const HamburgerIcon = ({ handleClick }: HamburgerIconProps) => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -9,6 +13,7 @@ const HamburgerIcon = () => {
             fill="#F78888"
             viewBox="0 0 24 24"
             stroke="currentColor"
+            onClick={handleClick}
         >
             <path
                 strokeLinecap="round"
