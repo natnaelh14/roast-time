@@ -55,7 +55,7 @@ const SignUpForm = () => {
                         name="password"
                         label="Password"
                         type="password"
-                        autoComplete="current-password"
+                        autoComplete="new-password"
                     />
                     <div className="mt-6 flex justify-center">
                         <SubmitButton
