@@ -63,7 +63,7 @@ export const RestaurantSignUpForm = () => {
                             name="password"
                             label="Password"
                             type="password"
-                            autoComplete="off"
+                            autoComplete="new-password"
                         />
                     </div>
                     <div>

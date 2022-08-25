@@ -1,6 +1,15 @@
 import axios from "axios";
 import { unsplashApi } from './unsplash';
 
+interface ResultsProperties {
+    fsq_id: string,
+    name: string,
+    categories: string[],
+    location: {
+        formatted_address: string
+    }
+}
+
 export const getListOfCoffeeStorePhotos = async () => {
     const photos = await unsplashApi.search.getPhotos({
         query: "coffee shop",
@@ -19,7 +28,17 @@ export const coffeeShopsFetcher = (url: string) => {
                 'Access-Control-Allow-Origin': '*'
             }
         })
-        .then((res: any) => res.data.results);
+        .then((res: any) => res.data.results)
+        .then((res: any) => {
+            return res.map((result: ResultsProperties, i: number) => {
+                return {
+                    id: result.fsq_id,
+                    title: result.name,
+                    location: result.location.formatted_address,
+                    categories: result.categories,
+                }
+            })
+        })
 };
 
 export const getUrlForCoffeeShops = (latLong: string, limit: number) => {

@@ -30,7 +30,7 @@ export const SignInForm = () => {
                     name="logInPassword"
                     label="Password"
                     type="password"
-                    autoComplete="off"
+                    autoComplete="current-password"
                 />
                 <div className="flex flex-col items-center mt-6">
                     <SubmitButton

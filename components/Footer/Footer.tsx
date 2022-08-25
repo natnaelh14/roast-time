@@ -15,16 +15,16 @@ const Footer = () => {
                 </div>
                 <ul className="flex flex-col items-center lg:flex-row mb-6 text-sm text-gray-500 sm:mb-0">
                     <Link href='/#'>
-                        <a className="mr-4 hover:underline underline-offset-4 decoration-pink-primary decoration-4 lg:mr-6 m-2 lg-m-0 text-sm md:text-base lg:text-lg">About</a>
+                        <a className="mr-4 hover:underline hover:text-pink-primary underline-offset-4 decoration-pink-primary decoration-4 lg:mr-6 m-2 lg-m-0 text-sm md:text-base lg:text-lg">About</a>
                     </Link>
                     <Link href="/#">
-                        <a className="mr-4 hover:underline underline-offset-4 decoration-pink-primary decoration-4 lg:mr-6 m-2 lg-m-0 text-sm md:text-base lg:text-lg">Privacy Policy</a>
+                        <a className="mr-4 hover:underline hover:text-pink-primary underline-offset-4 decoration-pink-primary decoration-4 lg:mr-6 m-2 lg-m-0 text-sm md:text-base lg:text-lg">Privacy Policy</a>
                     </Link>
                     <Link href='/#'>
-                        <a className="mr-4 hover:underline underline-offset-4 decoration-pink-primary decoration-4 lg:mr-6 m-2 lg-m-0 text-sm md:text-base lg:text-lg">Licensing</a>
+                        <a className="mr-4 hover:underline hover:text-pink-primary underline-offset-4 decoration-pink-primary decoration-4 lg:mr-6 m-2 lg-m-0 text-sm md:text-base lg:text-lg">Licensing</a>
                     </Link>
                     <Link href='/#'>
-                        <a className="hover:underline underline-offset-4 decoration-pink-primary decoration-4 m-2 lg-m-0 text-sm md:text-base lg:text-lg">Contact</a>
+                        <a className="hover:underline hover:text-pink-primary underline-offset-4 decoration-pink-primary decoration-4 m-2 lg-m-0 text-sm md:text-base lg:text-lg">Contact</a>
                     </Link>
                 </ul>
             </div>

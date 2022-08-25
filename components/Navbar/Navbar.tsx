@@ -17,17 +17,17 @@ export const Navbar = () => {
       </Link>
       <div className='flex-row right-0 absolute hidden md:flex'>
         <Link href='/signin'>
-          <a className='m-2 p-2 hover:underline decoration-pink-primary decoration-4 underline-offset-8 text-lg'>
+          <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg'>
             Sign In
           </a>
         </Link>
         <Link href='/signup'>
-          <a className='m-2 p-2 hover:underline decoration-pink-primary decoration-4 underline-offset-8 text-lg'>
+          <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg'>
             Sign Up
           </a>
         </Link>
-        <Link href='/restaurant'>
-          <a className='m-2 p-2 hover:underline decoration-pink-primary decoration-4 underline-offset-8 text-lg'>
+        <Link href='/restaurant/get-started'>
+          <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg'>
             For Businesses
           </a>
         </Link>
@@ -74,17 +74,17 @@ export const Navbar = () => {
                     className="flex flex-col space-y-6 pl-3 pt-8"
                   >
                     <Link href='/signin'>
-                      <a className='m-2 p-2 hover:underline decoration-pink-primary decoration-4 underline-offset-8 text-lg' onClick={() => setMobileNavShown(false)}>
+                      <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg' onClick={() => setMobileNavShown(false)}>
                         Sign In
                       </a>
                     </Link>
                     <Link href='/signup'>
-                      <a className='m-2 p-2 hover:underline decoration-pink-primary decoration-4 underline-offset-8 text-lg' onClick={() => setMobileNavShown(false)}>
+                      <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg' onClick={() => setMobileNavShown(false)}>
                         Sign Up
                       </a>
                     </Link>
                     <Link href='/restaurant'>
-                      <a className='m-2 p-2 hover:underline decoration-pink-primary decoration-4 underline-offset-8 text-lg' onClick={() => setMobileNavShown(false)}>
+                      <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg' onClick={() => setMobileNavShown(false)}>
                         For Businesses
                       </a>
                     </Link>

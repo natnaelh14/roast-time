@@ -1,8 +1,8 @@
-import { SignInForm, RestaurantSignUpForm } from "../components/Forms";
+import { SignInForm, RestaurantSignUpForm } from "../../components/Forms";
 import { Button } from "components/Button";
 import { useState } from "react";
 
-const Restaurant = () => {
+const GetStarted = () => {
     const [showSignInButton, setShowSignInButton] = useState(true);
     const [showSignUpButton, setShowSignUpButton] = useState(false);
     const handleButtonToggle = (buttonType: string) => {
@@ -41,4 +41,4 @@ const Restaurant = () => {
     )
 }
 
-export default Restaurant;
+export default GetStarted;
