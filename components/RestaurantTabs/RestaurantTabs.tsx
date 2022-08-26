@@ -6,7 +6,7 @@ import Reviews from 'components/Reviews/Reviews';
 const RestaurantTabs = () => {
     return (
         <Tab.Group defaultIndex={0}>
-            <div className='flex flex-col w-auto lg:w-1/2'>
+            <div className='flex flex-col w-auto lg:max-w-lg'>
                 <Tab.List>
                     <Tab
                         className={({ selected }) =>

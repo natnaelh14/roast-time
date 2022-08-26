@@ -36,8 +36,8 @@ export const Select = <T extends FieldValues>({
                 <div className="relative mt-1 h-[70px] w-full pt-5">
                     <Listbox.Button
                         className={classNames(
-                            "form-select relative inline-block w-full cursor-pointer border-0 bg-white py-0 pl-0.5 pr-10 text-left text-base shadow-border-b shadow-gray-300 transition placeholder:text-transparent hover:shadow-border-b-2 hover:shadow-blue-primary focus:shadow-border-b-2 focus:shadow-blue-primary focus:outline-none focus:ring-0",
-                            open && "shadow-border-b-2 shadow-blue-primary",
+                            "form-select relative inline-block w-full cursor-pointer border-0 bg-white py-0 pl-0.5 pr-10 text-left text-base shadow-border-b shadow-gray-300 transition placeholder:text-transparent hover:shadow-border-b-2 hover:shadow-pink-primary focus:shadow-border-b-2 focus:shadow-pink-primary focus:outline-none focus:ring-0",
+                            open && "shadow-border-b-2 shadow-pink-primary",
                             isDisabled && "pointer-events-none text-gray-300"
                         )}
                         {...props}
