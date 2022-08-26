@@ -41,16 +41,10 @@ a {
 }
 
 .form-background {
-background-repeat:no-repeat; 
-background-image:  
-  linear-gradient(to right bottom, rgb(173, 115, 108) 0%, rgb(115, 70, 64) 100%), 
-  linear-gradient(to bottom, rgb(255, 255, 255) 0%, RGB(245, 235, 224) 100%);
-background-position:
-  0 0px,
-  0 250px;
-background-size:  
-  100% 30%, 
-  100% 70%;
+  background-size: cover; 
+  background-repeat: no-repeat;
+  background-position:center center;
+  background-image: url('/images/coffee.jpg');
 }
 
 @layer components {

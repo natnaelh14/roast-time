@@ -16,7 +16,7 @@ interface CoffeeShopProps {
 }
 
 const Dashboard = () => {
-    const latLong = "43.653833032607096%2C-79.37896808855945";
+    const latLong = "38.994373%2C-77.029778";
     const limit = 10;
 
     const { data: coffeeShopsData, error } = useSWR(getUrlForCoffeeShops(latLong, limit), coffeeShopsFetcher);
