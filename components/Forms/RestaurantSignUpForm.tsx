@@ -94,7 +94,7 @@ export const RestaurantSignUpForm = () => {
                         <TextInput
                             control={control}
                             name="restaurantZipCode"
-                            label="Restaurant Zip/Postal Code"
+                            label="Restaurant ZipCode"
                             autoComplete="restaurantZipCode"
                         />
                     </div>
