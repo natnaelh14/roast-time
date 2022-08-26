@@ -83,7 +83,7 @@ export const Navbar = () => {
                         Sign Up
                       </a>
                     </Link>
-                    <Link href='/restaurant'>
+                    <Link href='/restaurant/get-started'>
                       <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg' onClick={() => setMobileNavShown(false)}>
                         For Businesses
                       </a>

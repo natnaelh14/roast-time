@@ -11,3 +11,19 @@ export interface TextInputProps<T extends FieldValues>
   /** Optional description will show below the input. Will not be shown if the field has an error */
   description?: string;
 }
+
+export interface SelectProps<T extends FieldValues>
+  extends UseControllerProps<T>,
+    Omit<ComponentPropsWithoutRef<"button">, "name" | "defaultValue"> {
+  /** Field label. This acts as the placeholder until in focus */
+  label: string;
+  /** Optional description will show below the input. Will not be shown if the field has an error */
+  description?: string;
+  /** The options to populate the select */
+  options: SelectOptionProps[];
+}
+
+export interface SelectOptionProps {
+  value: string | number;
+  label: string;
+}
