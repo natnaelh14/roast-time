@@ -1,7 +1,7 @@
 import { SubmitButton } from "../Button/SubmitButton";
 import { useForm } from "react-hook-form";
 import { sleep } from "utils/helpers";
-import { TextInput } from "../Forms/TextInput";
+import { TextInput } from "components/Forms";
 
 export const SignInForm = () => {
     const { control, handleSubmit, formState } = useForm({ mode: "onTouched" });

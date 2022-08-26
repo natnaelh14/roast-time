@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
-import Reservation from '../../components/Reservation/Reservation';
-import RestaurantTabs from '../../components/RestaurantTabs/RestaurantTabs';
+import Reservation from 'components/Reservation/Reservation';
+import RestaurantTabs from 'components/RestaurantTabs/RestaurantTabs';
 
 const Restaurants = () => {
     return (
