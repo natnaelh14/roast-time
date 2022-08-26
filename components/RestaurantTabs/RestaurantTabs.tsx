@@ -6,25 +6,25 @@ import Reviews from 'components/Reviews/Reviews';
 const RestaurantTabs = () => {
     return (
         <Tab.Group defaultIndex={0}>
-            <div className='flex flex-col w-auto lg:max-w-lg'>
+            <div className='flex flex-col lg:min-w-lg lg:max-w-lg'>
                 <Tab.List>
                     <Tab
                         className={({ selected }) =>
-                            selected ? 'p-4 m-3 border-b-2 border-pink-primary text-pink-primary' : 'p-4 m-3 text-gray-600 border-b-2 border-transparent hover:border-gray-300'
+                            selected ? 'p-4 m-3 border-b-2 border-pink-primary text-pink-primary focus:outline-hidden hover:cursor-pointer' : 'p-4 m-3 text-gray-600 border-b-2 border-transparent hover:border-gray-300 focus:outline-hidden hover:cursor-pointer'
                         }
                     >
                         Overview
                     </Tab>
                     <Tab
                         className={({ selected }) =>
-                            selected ? 'p-4 m-3 border-b-2 border-pink-primary text-pink-primary' : 'p-4 m-3 text-gray-600 border-b-2 border-transparent hover:border-gray-300'
+                            selected ? 'p-4 m-3 border-b-2 border-pink-primary text-pink-primary focus:outline-hidden hover:cursor-pointer' : 'p-4 m-3 text-gray-600 border-b-2 border-transparent hover:border-gray-300 focus:outline-hidden hover:cursor-pointer'
                         }
                     >
                         Photos
                     </Tab>
                     <Tab
                         className={({ selected }) =>
-                            selected ? 'p-4 m-3 border-b-2 border-pink-primary text-pink-primary' : 'p-4 m-3 text-gray-600 border-b-2 border-transparent hover:border-gray-300'
+                            selected ? 'p-4 m-3 border-b-2 border-pink-primary text-pink-primary focus:outline-hidden hover:cursor-pointer' : 'p-4 m-3 text-gray-600 border-b-2 border-transparent hover:border-gray-300  focus:outline-hidden hover:cursor-pointer'
                         }
                     >
                         Reviews

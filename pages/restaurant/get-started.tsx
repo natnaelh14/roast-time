@@ -19,8 +19,8 @@ const GetStarted = () => {
 
     }
     return (
-        <div className='flex flex-col items-center min-h-[800px] form-background'>
-            <div className='m-10 xl:hidden'>
+        <div className='flex flex-col items-center h-auto form-background py-20'>
+            <div className='mb-10 xl:hidden'>
                 <Button variant="tertiary" className={`mx-6 ${showSignUpButton && 'opacity-50'}`} onClick={() => handleButtonToggle('Sign In')}>Sign In</Button>
                 <Button variant="tertiary" className={`mx-6 ${showSignInButton && 'opacity-50'}`} onClick={() => handleButtonToggle('Sign Up')}>Sign Up</Button>
             </div>
@@ -32,11 +32,10 @@ const GetStarted = () => {
                     <SignInForm />
                 )}
             </div>
-            <div className='mt-20 hidden xl:flex flex-row items-center justify-around w-full'>
+            <div className='hidden xl:flex flex-row items-center justify-around w-full'>
                 <RestaurantSignUpForm />
                 <SignInForm />
             </div>
-
         </div>
     )
 }

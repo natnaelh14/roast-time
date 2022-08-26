@@ -42,7 +42,7 @@ export const TextInput = <T extends FieldValues>({
       />
       <label
         className={classNames(
-          "font-medium absolute -top-0.5 left-0.5 select-none text-sm transition-all ease-out peer-placeholder-shown:pointer-events-none peer-placeholder-shown:top-5 peer-placeholder-shown:text-md peer-required:after:content-['_*'] peer-focus:-top-0.5 peer-focus:text-sm",
+          "font-medium absolute -top-0.5 left-0.5 select-none text-xs md:text-smz transition-all ease-out peer-placeholder-shown:pointer-events-none peer-placeholder-shown:top-5 peer-placeholder-shown:text-xs md:peer-placeholder-shown:text-base peer-required:after:content-['_*'] peer-focus:-top-0.5 peer-focus:text-sm",
           isDisabled
             ? "pointer-events-none text-gray-300"
             : error
