@@ -24,7 +24,7 @@ export const RestaurantSignUpForm = () => {
         // console.log({ firstName, lastName, phoneNumber, email, password });
     };
     return (
-        <div className="flex w-5/6 lg:w-1/2 xl:w-2/5 flex-col items-center justify-between border-gray-200 border-2 px-16 py-3 md:py-8 rounded-lg bg-white">
+        <div className="flex w-5/6 lg:w-1/2 xl:w-2/5 flex-col items-center justify-between border-gray-200 border-2 px-16 py-8 rounded-lg bg-white">
             <div className="mb-6 text-center">
                 <h1 className="text-pink-primary text-xl md:text-3xl text-center">Get started with RoastTime today.</h1>
                 <p className="mt-1 text-xs md:text-base text-gray-secondary text-center">
@@ -94,7 +94,7 @@ export const RestaurantSignUpForm = () => {
                         <TextInput
                             control={control}
                             name="restaurantZipCode"
-                            label="Restaurant Zip/Postal Code"
+                            label="Restaurant Zip Code"
                             autoComplete="restaurantZipCode"
                         />
                     </div>
