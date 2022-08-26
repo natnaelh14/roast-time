@@ -14,9 +14,9 @@ interface ItemProps {
 
 const Item = ({ id, title, image, location, categories }: ItemProps) => {
     return (
-        <>
+        <div>
             <Link href={`/restaurant/${id}`}>
-                <div className="m-8 w-[250px] border border-gray-200 shadow-lg rounded hover:cursor-pointer hover:scale-105 transition ease-in-out delay-150">
+                <div className="m-8 border w-[250px] border-gray-200 shadow-lg rounded hover:cursor-pointer hover:scale-105 transition ease-in-out delay-150">
                     <Image alt='shopping-item' src={image} width={250} height={200} />
                     <div className='m-2'>
                         <p className='text-md font-extrabold'>{title}</p>
@@ -27,8 +27,7 @@ const Item = ({ id, title, image, location, categories }: ItemProps) => {
                     </div>
                 </div>
             </Link>
-        </>
-
+        </div>
     )
 }
 

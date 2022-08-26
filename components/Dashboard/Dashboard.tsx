@@ -35,7 +35,7 @@ const Dashboard = () => {
     if (!coffeeShopsData && !error) return <DashboardLoading />
 
     return (
-        <div className="flex flex-wrap justify-center">
+        <div className="flex flex-row overflow-x-scroll md:overflow-auto md:flex-wrap md:justify-center">
             {coffeeShopsData.map((item: CoffeeShopProps, i: number) => {
                 return <Item key={item.id} id={item.id} title={item.title} image={coffeeShopsPhotos[i]} location={item.location} categories={item.categories} />
             })}
