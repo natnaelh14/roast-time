@@ -2,7 +2,7 @@ import React from 'react'
 
 const SearchBar = () => {
     return (
-        <form className='w-[400px] m-6'>
+        <form className='w-fit w-[300px] md:w-[400px] m-2 md:m-6'>
             <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label>
             <div className="relative">
                 <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
