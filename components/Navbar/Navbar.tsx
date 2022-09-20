@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import HamburgerIcon from './HamburgerIcon';
 import { Dialog, Transition } from "@headlessui/react";
+import ThemeButton from 'components/Button/ThemeButton';
 
 export const Navbar = () => {
   const [mobileNavShown, setMobileNavShown] = useState(false);
@@ -31,7 +32,7 @@ export const Navbar = () => {
             For Businesses
           </a>
         </Link>
-
+        <ThemeButton />
       </div>
       {/* Hamburger Nav */}
       <Transition.Root as={Fragment} show={mobileNavShown}>
