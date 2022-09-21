@@ -1,14 +1,26 @@
 import { SubmitButton } from "../Button/SubmitButton";
-import { useForm } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { sleep } from "utils/helpers";
 import { TextInput } from "components/Forms";
+import TagManager from 'react-gtm-module';
 
+interface FormValues {
+    logInEmail: string,
+    logInPassword: string
+}
 export const SignInForm = () => {
-    const { control, handleSubmit, formState } = useForm({ mode: "onTouched" });
+    const { control, handleSubmit, formState } = useForm<FormValues>({ mode: "onTouched" });
     const { isSubmitting } = formState;
-    const onSubmit = async () => {
+    const onSubmit = async (data: FormValues) => {
         await sleep(2000);
         console.log("Logged in");
+        // eslint-disable-next-line
+        TagManager.dataLayer({
+            dataLayer: {
+                event: 'login',
+                email: data.logInEmail,
+            },
+        });
     };
     return (
         <div className="flex w-5/6 md:w-2/3 lg:w-2/5 xl:w-1/3 flex-col items-center justify-between border-gray-200 border-2 bg-white px-16 py-8 rounded-lg">
