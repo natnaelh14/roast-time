@@ -2,8 +2,15 @@ import '../styles/globals.css'
 import type { AppProps } from 'next/app';
 import Layout from 'components/Layout/Layout';
 import Script from 'next/script';
+import TagManager from 'react-gtm-module';
 
 function MyApp({ Component, pageProps }: AppProps) {
+  // eslint-disable-next-line
+  if (process.browser) {
+    TagManager.initialize({
+      gtmId: "GTM-MQ9LW45",
+    });
+  }
   return (
     <div className='m-6'>
       <Layout>

@@ -2,6 +2,7 @@ import { SubmitButton } from "../Button/SubmitButton";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { sleep } from "utils/helpers";
 import { TextInput } from "components/Forms";
+import TagManager from 'react-gtm-module';
 
 interface FormValues {
     logInEmail: string,
@@ -14,9 +15,12 @@ export const SignInForm = () => {
         await sleep(2000);
         console.log("Logged in");
         // eslint-disable-next-line
-        window.dataLayer = window.dataLayer || []; 
-        // eslint-disable-next-line
-        window.dataLayer.push("event": "login", "email": data.logInEmail)
+        TagManager.dataLayer({
+            dataLayer: {
+                event: 'login',
+                email: data.logInEmail,
+            },
+        });
     };
     return (
         <div className="flex w-5/6 md:w-2/3 lg:w-2/5 xl:w-1/3 flex-col items-center justify-between border-gray-200 border-2 bg-white px-16 py-8 rounded-lg">
