@@ -20,7 +20,7 @@ const Restaurants = () => {
                     <Image alt='shopping-item' src="https://images.unsplash.com/photo-1511081692775-05d0f180a065?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNDkxMTF8MHwxfHNlYXJjaHw3fHxjb2ZmZWUlMjBzaG9wfGVufDB8fHx8MTY2MTQ0ODA4Ng&ixlib=rb-1.2.1&q=80&w=400" width={250} height={200} />
                 </div>
             </div>
-            <div className='flex flex-col items-center lg:flex-row lg:justify-around my-5'>
+            <div className='flex flex-col lg:flex-row lg:justify-around my-5'>
                 <RestaurantTabs />
                 <Reservation />
             </div>

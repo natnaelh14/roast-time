@@ -38,3 +38,10 @@ export interface SelectOptionProps {
   value: string | number;
   label: string;
 }
+
+export interface menuItemValues {
+  id: number,
+  title: string,
+  price: number,
+  description?: string
+}

@@ -14,7 +14,7 @@ interface CoffeeShopProps {
     image: string
 }
 
-const Overview = () => {
+export const Overview = () => {
     const latLong = "38.994373%2C-77.029778";
     const limit = 10;
     const router = useRouter();
@@ -38,5 +38,3 @@ const Overview = () => {
         </>
     )
 }
-
-export default Overview
