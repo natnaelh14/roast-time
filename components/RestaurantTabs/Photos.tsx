@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-const Photos = () => {
+export const Photos = () => {
     return (
         <div className='flex flex-wrap justify-around my-5'>
             <div className='m-4'>
@@ -18,5 +18,3 @@ const Photos = () => {
         </div>
     )
 }
-
-export default Photos;
