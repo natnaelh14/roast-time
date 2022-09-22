@@ -7,13 +7,15 @@ import { SelectOptionProps } from "types";
 import { useRouter } from "next/router";
 
 interface FormValues {
-    partySize: string,
-    date: Date
+    partySize: number,
+    reserveDate: Date
 }
 
 const Reservation = () => {
     const router = useRouter();
-    const { control, handleSubmit, formState } = useForm<FormValues>({ mode: "onTouched" });
+    const { control, handleSubmit, formState } = useForm<FormValues>({
+        mode: "onTouched", defaultValues: { partySize: 1 }
+    });
     const { isSubmitting } = formState;
     const onSubmit = async (data: FormValues) => {
         await sleep(2000);
@@ -39,7 +41,9 @@ const Reservation = () => {
             <div className="mb-6 text-center">
                 <h1 className="text-pink-primary text-xl lg:text-3xl text-center">Make a reservation</h1>
             </div>
-            <form onSubmit={handleSubmit(onSubmit)} className="w-full" autoComplete="off">
+            <form
+                onSubmit={handleSubmit(onSubmit)}
+                className="w-full" autoComplete="off">
                 <Select
                     control={control}
                     label="Party Size"
@@ -49,8 +53,7 @@ const Reservation = () => {
                 <DateInput
                     control={control}
                     label="Select Date"
-                    name="date"
-                    autoComplete="off"
+                    name="reserveDate"
                 />
                 <div className="flex flex-col items-center mt-6">
                     <SubmitButton

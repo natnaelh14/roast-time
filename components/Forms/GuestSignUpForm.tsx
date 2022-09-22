@@ -29,24 +29,28 @@ export const GuestSignUpForm = () => {
                     name="firstName"
                     label="First Name"
                     autoComplete="firstName"
+                    required={true}
                 />
                 <TextInput
                     control={control}
                     name="lastName"
                     label="Last Name"
                     autoComplete="lastName"
+                    required={true}
                 />
                 <TextInput
                     control={control}
                     name="phoneNumber"
                     label="Phone Number"
                     autoComplete="phoneNumber"
+                    required={true}
                 />
                 <TextInput
                     control={control}
                     name="email"
                     label="Email"
                     autoComplete="email"
+                    required={true}
                 />
                 <TextInput
                     control={control}
@@ -54,6 +58,7 @@ export const GuestSignUpForm = () => {
                     label="Password"
                     type="password"
                     autoComplete="new-password"
+                    required={true}
                 />
                 <div className="mt-6 flex justify-center">
                     <SubmitButton

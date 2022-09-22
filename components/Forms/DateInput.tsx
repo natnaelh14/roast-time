@@ -1,5 +1,5 @@
 import { FieldValues, useController } from "react-hook-form";
-import { TextInputProps } from "types";
+import { DateInputProps } from "types";
 import { classNames } from "utils/helpers";
 import { ErrorMessage } from "./ErrorMessage";
 import { FieldDescription } from "./FieldDescription";
@@ -8,7 +8,7 @@ export const DateInput = <T extends FieldValues>({
     description,
     label,
     ...props
-}: TextInputProps<T>) => {
+}: DateInputProps<T>) => {
     const {
         field,
         fieldState: { error },
