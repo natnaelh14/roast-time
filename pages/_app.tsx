@@ -40,6 +40,8 @@ function MyApp({ Component, pageProps }: AppProps) {
               })(window,document,'script','dataLayer','GTM-MQ9LW45');`}
       </Script>
       {/* End Google Tag Manager */}
+      {/* Flowbite Datepicker */}
+      <Script src="https://unpkg.com/flowbite@1.5.3/dist/datepicker.js"></Script>
     </div>
   )
 }
