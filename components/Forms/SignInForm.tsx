@@ -14,6 +14,7 @@ export const SignInForm = () => {
     const onSubmit = async (data: FormValues) => {
         await sleep(2000);
         console.log("Logged in");
+        console.log({ data })
         // eslint-disable-next-line
         TagManager.dataLayer({
             dataLayer: {
