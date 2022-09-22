@@ -1,8 +1,14 @@
 import '../styles/globals.css'
+import { useState } from "react";
 import type { AppProps } from 'next/app';
 import Layout from 'components/Layout/Layout';
 import Script from 'next/script';
 import TagManager from 'react-gtm-module';
+import {
+  MantineProvider,
+  ColorSchemeProvider,
+  ColorScheme,
+} from "@mantine/core"; import theme from 'theme';
 
 function MyApp({ Component, pageProps }: AppProps) {
   // eslint-disable-next-line
@@ -11,11 +17,23 @@ function MyApp({ Component, pageProps }: AppProps) {
       gtmId: "GTM-MQ9LW45",
     });
   }
+
+  const [colorScheme, setColorScheme] = useState<ColorScheme>("light");
+  const toggleColorScheme = (value?: ColorScheme) =>
+    setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"));
+
   return (
     <div className='m-6'>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <ColorSchemeProvider
+        colorScheme={colorScheme}
+        toggleColorScheme={toggleColorScheme}
+      >
+        <MantineProvider theme={theme}>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </MantineProvider>
+      </ColorSchemeProvider>
       <Script
         strategy="afterInteractive"
         id='darkThemeToggle'

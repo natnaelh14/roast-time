@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import HamburgerIcon from './HamburgerIcon';
 import { Dialog, Transition } from "@headlessui/react";
-import ThemeButton from 'components/Button/ThemeButton';
+import ColorToggle from 'components/ColorToggle/ColorToggle';
 
 export const Navbar = () => {
   const [mobileNavShown, setMobileNavShown] = useState(false);
@@ -16,7 +16,7 @@ export const Navbar = () => {
           <Image alt='roastTime logo' src='/logo.png' height={200} width={200} />
         </a>
       </Link>
-      <div className='flex-row right-0 absolute hidden md:flex'>
+      <div className='flex flex-row items-center right-0 absolute hidden md:flex'>
         <Link href='/signin'>
           <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg'>
             Sign In
@@ -32,7 +32,7 @@ export const Navbar = () => {
             For Businesses
           </a>
         </Link>
-        <ThemeButton />
+        <ColorToggle />
       </div>
       {/* Hamburger Nav */}
       <Transition.Root as={Fragment} show={mobileNavShown}>

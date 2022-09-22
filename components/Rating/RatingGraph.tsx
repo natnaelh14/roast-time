@@ -1,6 +1,6 @@
 import React from 'react'
 
-const RatingGraph = () => {
+export const RatingGraph = () => {
     return (
         <div className='flex flex-col w-96 mx-10'>
             <div className="flex items-center mt-4">
@@ -41,5 +41,3 @@ const RatingGraph = () => {
         </div>
     )
 }
-
-export default RatingGraph
