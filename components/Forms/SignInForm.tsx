@@ -36,6 +36,7 @@ export const SignInForm = () => {
                     name="logInEmail"
                     label="Email"
                     autoComplete="off"
+                    required={true}
                 />
                 <TextInput
                     control={control}
@@ -43,6 +44,7 @@ export const SignInForm = () => {
                     label="Password"
                     type="password"
                     autoComplete="current-password"
+                    required={true}
                 />
                 <div className="flex flex-col items-center mt-6">
                     <SubmitButton

@@ -39,24 +39,28 @@ export const RestaurantSignUpForm = () => {
                             name="firstName"
                             label="First Name"
                             autoComplete="firstName"
+                            required={true}
                         />
                         <TextInput
                             control={control}
                             name="lastName"
                             label="Last Name"
                             autoComplete="lastName"
+                            required={true}
                         />
                         <TextInput
                             control={control}
                             name="phoneNumber"
                             label="Phone Number"
                             autoComplete="phoneNumber"
+                            required={true}
                         />
                         <TextInput
                             control={control}
                             name="email"
                             label="Email"
                             autoComplete="off"
+                            required={true}
                         />
                         <TextInput
                             control={control}
@@ -64,6 +68,7 @@ export const RestaurantSignUpForm = () => {
                             label="Password"
                             type="password"
                             autoComplete="new-password"
+                            required={true}
                         />
                     </div>
                     <div>
@@ -72,35 +77,38 @@ export const RestaurantSignUpForm = () => {
                             name="restaurantName"
                             label="Restaurant Name"
                             autoComplete="restaurantName"
+                            required={true}
                         />
                         <TextInput
                             control={control}
                             name="restaurantStreetName"
                             label="Restaurant Street Name"
                             autoComplete="restaurantStreetName"
+                            required={true}
                         />
                         <TextInput
                             control={control}
                             name="restaurantCity"
                             label="Restaurant City"
                             autoComplete="restaurantCity"
+                            required={true}
                         />
                         <TextInput
                             control={control}
                             name="restaurantState"
                             label="Restaurant State"
                             autoComplete="restaurantState"
+                            required={true}
                         />
                         <TextInput
                             control={control}
                             name="restaurantZipCode"
                             label="Restaurant Zip Code"
                             autoComplete="restaurantZipCode"
+                            required={true}
                         />
                     </div>
                 </div>
-
-
                 <div className="mt-6 flex justify-center">
                     <SubmitButton
                         text="Sign Up"
