@@ -3,25 +3,25 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { sleep } from "utils/helpers";
 import { TextInput } from "./TextInput";
 
-// interface RestaurantSignUpFormValues {
-//     firstName: string,
-//     lastName: string,
-//     phoneNumber: string,
-//     email: string,
-//     password: string,
-//     restaurantName: string,
-//     restaurantStreetName: string,
-//     restaurantCity: string,
-//     restaurantState: string,
-//     restaurantZipCode: number
-// }
+interface RestaurantSignUpFormValues {
+    firstName: string,
+    lastName: string,
+    phoneNumber: string,
+    email: string,
+    password: string,
+    restaurantName: string,
+    restaurantStreetName: string,
+    restaurantCity: string,
+    restaurantState: string,
+    restaurantZipCode: number
+}
 
 export const RestaurantSignUpForm = () => {
-    const { control, handleSubmit, formState } = useForm({ mode: "onTouched" });
+    const { control, handleSubmit, formState } = useForm<RestaurantSignUpFormValues>({ mode: "onTouched" });
     const { isSubmitting } = formState;
-    const onSubmit = async () => {
+    const onSubmit = async (data: RestaurantSignUpFormValues) => {
         await sleep(2000);
-        // console.log({ firstName, lastName, phoneNumber, email, password });
+        console.log("RestaurantSignUpFormValues", data);
     };
     return (
         <div className="flex w-5/6 lg:w-1/2 xl:w-2/5 flex-col items-center justify-between border-gray-200 border-2 px-16 py-8 rounded-lg bg-white">

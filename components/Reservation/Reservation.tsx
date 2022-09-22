@@ -1,16 +1,24 @@
 import { SubmitButton } from "../Button/SubmitButton";
-import { TextInput } from "../Forms/TextInput";
+import { DateInput } from "../Forms";
 import { sleep } from "utils/helpers";
 import { useForm } from "react-hook-form";
 import { Select } from "components/Forms/Select";
 import { SelectOptionProps } from "types";
+import { useRouter } from "next/router";
+
+interface FormValues {
+    partySize: string,
+    date: Date
+}
 
 const Reservation = () => {
-    const { control, handleSubmit, formState } = useForm({ mode: "onTouched" });
+    const router = useRouter();
+    const { control, handleSubmit, formState } = useForm<FormValues>({ mode: "onTouched" });
     const { isSubmitting } = formState;
-    const onSubmit = async () => {
+    const onSubmit = async (data: FormValues) => {
         await sleep(2000);
-        console.log("Logged in");
+        console.log("reservation", data);
+        router.push('/thank-you')
     };
 
     const people: SelectOptionProps[] = [
@@ -38,11 +46,10 @@ const Reservation = () => {
                     name="partySize"
                     options={people}
                 />
-                <TextInput
+                <DateInput
                     control={control}
-                    label="Date"
+                    label="Select Date"
                     name="date"
-                    type="text"
                     autoComplete="off"
                 />
                 <div className="flex flex-col items-center mt-6">

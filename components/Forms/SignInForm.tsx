@@ -1,5 +1,5 @@
 import { SubmitButton } from "../Button/SubmitButton";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { sleep } from "utils/helpers";
 import { TextInput } from "components/Forms";
 import TagManager from 'react-gtm-module';
