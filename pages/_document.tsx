@@ -13,7 +13,7 @@ class MyDocument extends Document {
             height="0" width="0" style={{ display: "none", visibility: "hidden" }}></iframe></noscript>
           {/* End Google Tag Manager (noscript) */}
         </Head>
-        <body>
+        <body className='dark:bg-gray-background'>
           <Main />
           <NextScript />
         </body>

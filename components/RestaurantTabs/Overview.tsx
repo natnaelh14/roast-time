@@ -25,7 +25,7 @@ export const Overview = () => {
         <>
             {findCoffeeStoreById && (
                 <div className='my-5'>
-                    <p className='text-5xl'>{findCoffeeStoreById?.title}</p>
+                    <p className='text-5xl dark:text-white'>{findCoffeeStoreById?.title}</p>
                     <div className='flex flex-row mt-2'>
                         <Rating />
                         <p className='ml-4 text-sm text-gray-500'>{findCoffeeStoreById?.categories[0]?.name}{" "}{" "}{findCoffeeStoreById?.categories[1]?.name && <span>&#8226;</span>}{" "}{findCoffeeStoreById?.categories[1]?.name && findCoffeeStoreById?.categories[1]?.name}</p>

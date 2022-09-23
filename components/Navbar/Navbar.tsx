@@ -9,7 +9,7 @@ export const Navbar = () => {
   const [mobileNavShown, setMobileNavShown] = useState(false);
 
   return (
-    <nav className='flex flex-row items-center glass max-h-20 bg-gray-200'>
+    <nav className='flex flex-row items-center glass max-h-20 bg-gray-200 dark:bg-blue-dark'>
       <HamburgerIcon handleClick={() => setMobileNavShown(true)} />
       <Link href='/'>
         <a className='mt-3' aria-label='Link to Homepage'>
@@ -18,17 +18,17 @@ export const Navbar = () => {
       </Link>
       <div className='flex flex-row items-center right-0 absolute hidden md:flex'>
         <Link href='/signin'>
-          <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg'>
+          <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg dark:text-white'>
             Sign In
           </a>
         </Link>
         <Link href='/signup'>
-          <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg'>
+          <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg dark:text-white'>
             Sign Up
           </a>
         </Link>
         <Link href='/restaurant/get-started'>
-          <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg'>
+          <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg dark:text-white'>
             For Businesses
           </a>
         </Link>

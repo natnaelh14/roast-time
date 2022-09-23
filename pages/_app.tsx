@@ -1,5 +1,5 @@
 import '../styles/globals.css'
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import type { AppProps } from 'next/app';
 import Layout from 'components/Layout/Layout';
 import Script from 'next/script';
@@ -8,7 +8,10 @@ import {
   MantineProvider,
   ColorSchemeProvider,
   ColorScheme,
-} from "@mantine/core"; import theme from 'theme';
+} from "@mantine/core";
+import theme from 'theme';
+import { setLocalStorage, getLocalStorage } from 'utils/storage';
+
 
 function MyApp({ Component, pageProps }: AppProps) {
   // eslint-disable-next-line
@@ -18,9 +21,22 @@ function MyApp({ Component, pageProps }: AppProps) {
     });
   }
 
-  const [colorScheme, setColorScheme] = useState<ColorScheme>("light");
-  const toggleColorScheme = (value?: ColorScheme) =>
-    setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"));
+  const [colorScheme, setColorScheme] = useState<ColorScheme>(() => getLocalStorage("color-theme"));
+  const toggleColorScheme = (value?: ColorScheme) => {
+    if (colorScheme === "dark") {
+      document.documentElement.classList.remove('dark');
+    } else {
+      document.documentElement.classList.add('dark');
+    }
+    setColorScheme(colorScheme === "dark" ? "light" : "dark");
+    setLocalStorage("color-theme", colorScheme)
+  }
+
+  useEffect(() => {
+    if (!colorScheme) {
+      setLocalStorage("color-theme", "light")
+    }
+  }, [colorScheme])
 
   return (
     <div className='m-6'>

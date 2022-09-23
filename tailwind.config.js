@@ -20,6 +20,10 @@ module.exports = {
           500: "#858585",
           secondary: "#616161",
           primary: "#303030",
+          background: "#202224"
+        },
+        blue: {
+          dark: "#253443"
         },
         orange: {
           primary: "#e95858",
