@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 const Footer = () => {
     return (
-        <footer className="flex justify-center flex-col p-4 bg-brown-light rounded-b-lg shadow md:px-6 md:py-8m h-[300px] w-full mt-auto">
+        <footer className="flex justify-center flex-col p-4 dark:bg-blue-dark bg-brown-light rounded-b-lg shadow md:px-6 md:py-8m h-[300px] w-full mt-auto">
             <div className="flex flex-row items-center justify-around">
                 <div className='flex justify-center h-16'>
                     <Link href='/'>

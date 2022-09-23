@@ -1,21 +1,64 @@
-import { Switch, Group, useMantineColorScheme, useMantineTheme } from '@mantine/core';
-import { IconSun, IconMoonStars } from '@tabler/icons';
+import {
+    createStyles,
+    UnstyledButton,
+    Text,
+    Center,
+    useMantineColorScheme,
+    Group,
+} from '@mantine/core';
+import { upperFirst } from '@mantine/hooks';
+import { IconMoon, IconSun } from '@tabler/icons';
+
+const useStyles = createStyles((theme) => ({
+    control: {
+        backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        borderRadius: 1000,
+        paddingLeft: theme.spacing.sm,
+        paddingRight: 4,
+        width: 136,
+        height: 36,
+    },
+
+    iconWrapper: {
+        height: 28,
+        width: 28,
+        borderRadius: 28,
+        backgroundColor: theme.colorScheme === 'dark' ? theme.colors.yellow[4] : theme.colors.dark[4],
+        color: theme.colorScheme === 'dark' ? theme.black : theme.colors.blue[2],
+    },
+
+    value: {
+        lineHeight: 1,
+    },
+}));
 
 const ColorToggle = () => {
+    const { classes } = useStyles();
     const { colorScheme, toggleColorScheme } = useMantineColorScheme();
-    const theme = useMantineTheme();
+    const Icon = colorScheme === 'dark' ? IconSun : IconMoon;
 
     return (
-        <Group position="center" my={30}>
-            <Switch
-                checked={colorScheme === 'dark'}
-                onChange={() => toggleColorScheme()}
-                size="lg"
-                onLabel={<IconSun color={theme.white} size={20} stroke={1.5} />}
-                offLabel={<IconMoonStars color={theme.colors.gray[6]} size={20} stroke={1.5} />}
-            />
+        <Group position="center" my="xl" className='mx-4'>
+            <UnstyledButton
+                aria-label="Toggle theme"
+                className={classes.control}
+                onClick={() => toggleColorScheme()}
+                title="Ctrl + J"
+            >
+                <Text size="sm" className={classes.value}>
+                    {upperFirst(colorScheme === 'light' ? 'dark' : 'light')} theme
+                </Text>
+
+                <Center className={classes.iconWrapper}>
+                    <Icon size={18} stroke={1.5} />
+                </Center>
+            </UnstyledButton>
         </Group>
     );
 }
+
 
 export default ColorToggle;
