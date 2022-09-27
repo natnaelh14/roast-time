@@ -3,23 +3,26 @@ import { useForm } from "react-hook-form";
 import { sleep } from "utils/helpers";
 import { TextInput } from "components/Forms";
 import TagManager from 'react-gtm-module';
-
+import axios from "axios";
 interface FormValues {
-    logInEmail: string,
-    logInPassword: string
+    username: string,
+    password: string
 }
+
 export const SignInForm = () => {
     const { control, handleSubmit, formState } = useForm<FormValues>({ mode: "onTouched" });
     const { isSubmitting } = formState;
     const onSubmit = async (data: FormValues) => {
         await sleep(2000);
+        axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/login`, data).then((res) => {
+            console.log({ res })
+        })
         console.log("Logged in");
-        console.log({ data })
         // eslint-disable-next-line
         TagManager.dataLayer({
             dataLayer: {
                 event: 'login',
-                email: data.logInEmail,
+                email: data.username,
             },
         });
     };
@@ -34,14 +37,14 @@ export const SignInForm = () => {
             <form onSubmit={handleSubmit(onSubmit)} className="w-full" autoComplete="off">
                 <TextInput
                     control={control}
-                    name="logInEmail"
+                    name="username"
                     label="Email"
                     autoComplete="off"
                     required={true}
                 />
                 <TextInput
                     control={control}
-                    name="logInPassword"
+                    name="password"
                     label="Password"
                     type="password"
                     autoComplete="current-password"
