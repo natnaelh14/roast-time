@@ -6,6 +6,8 @@ import TagManager from 'react-gtm-module';
 import axios from "axios";
 import { signIn } from 'next-auth/react';
 import { parseJwt } from 'utils/helpers';
+import { getSession } from 'next-auth/react';
+
 interface FormValues {
     username: string,
     password: string
@@ -16,10 +18,17 @@ export const SignInForm = () => {
     const { isSubmitting } = formState;
     const onSubmit = async (data: FormValues) => {
         await sleep(2000);
-        const res = await axios.post(`/login`, data);
+        // const { data: { accessToken } } = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/login`, data);
+        const res = await signIn('credentials', { ...data, redirect: false });
+        const result = await getSession()
+        console.log("ELSHA", result);
+        // const result = parseJwt(accessToken);
+        // const payload = {
+        //     token: accessToken,
+
+        // }
         // const res = await signIn('credentials', { ...data, redirect: false })
-        const result = parseJwt(res?.data?.accessToken);
-        console.log('result', result);
+
         console.log("Logged in");
         // eslint-disable-next-line
         TagManager.dataLayer({

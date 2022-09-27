@@ -10,5 +10,7 @@ export const parseJwt = (token: string) => {
     if (!token) throw new Error("No token found.")
     const base64Url = token.split('.')[1];
     const base64 = base64Url.replace('-', '+').replace('_', '/');
-    return JSON.parse(window.atob(base64));
+    if(typeof window !== "undefined") {
+      return JSON.parse(window.atob(base64));
+    }
 }

@@ -8,7 +8,9 @@ const Protected: NextPage = (): JSX.Element => {
     useEffect(() => {
         if (status === "unauthenticated") Router.replace('/signin');
         console.log({ data })
+
     }, [status, data]);
+    console.log("session", data)
 
     if (status === 'authenticated')
         return (
