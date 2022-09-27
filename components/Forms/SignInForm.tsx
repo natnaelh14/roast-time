@@ -4,6 +4,8 @@ import { sleep } from "utils/helpers";
 import { TextInput } from "components/Forms";
 import TagManager from 'react-gtm-module';
 import axios from "axios";
+import { signIn } from 'next-auth/react';
+import { parseJwt } from 'utils/helpers';
 interface FormValues {
     username: string,
     password: string
@@ -14,9 +16,10 @@ export const SignInForm = () => {
     const { isSubmitting } = formState;
     const onSubmit = async (data: FormValues) => {
         await sleep(2000);
-        axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/login`, data).then((res) => {
-            console.log({ res })
-        })
+        const res = await axios.post(`/login`, data);
+        // const res = await signIn('credentials', { ...data, redirect: false })
+        const result = parseJwt(res?.data?.accessToken);
+        console.log('result', result);
         console.log("Logged in");
         // eslint-disable-next-line
         TagManager.dataLayer({
