@@ -10,7 +10,7 @@ import { signOut } from 'next-auth/react';
 export const Navbar = () => {
   const [mobileNavShown, setMobileNavShown] = useState(false);
   const { status, data } = useSession();
-  console.log("DECIDED", status)
+  console.log("DECIDED", data)
   if (status === 'loading') return null
 
   return (

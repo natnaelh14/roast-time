@@ -3,9 +3,7 @@ import { useForm } from "react-hook-form";
 import { sleep } from "utils/helpers";
 import { TextInput } from "components/Forms";
 import TagManager from 'react-gtm-module';
-import axios from "axios";
 import { signIn } from 'next-auth/react';
-import { parseJwt } from 'utils/helpers';
 import { getSession } from 'next-auth/react';
 
 interface FormValues {
@@ -18,25 +16,20 @@ export const SignInForm = () => {
     const { isSubmitting } = formState;
     const onSubmit = async (data: FormValues) => {
         await sleep(2000);
-        // const { data: { accessToken } } = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/login`, data);
-        const res = await signIn('credentials', { ...data, redirect: false });
-        const result = await getSession()
-        console.log("ELSHA", result);
-        // const result = parseJwt(accessToken);
-        // const payload = {
-        //     token: accessToken,
-
-        // }
-        // const res = await signIn('credentials', { ...data, redirect: false })
-
-        console.log("Logged in");
-        // eslint-disable-next-line
-        TagManager.dataLayer({
-            dataLayer: {
-                event: 'login',
-                email: data.username,
-            },
-        });
+        try {
+            await signIn('credentials', { ...data, redirect: false });
+            const result = await getSession()
+            console.log("ELSHA", result?.accessToken);
+            // eslint-disable-next-line
+            TagManager.dataLayer({
+                dataLayer: {
+                    event: 'login',
+                    email: data.username,
+                },
+            });
+        } catch (e) {
+            console.log("ERROR", e)
+        }
     };
     return (
         <div className="flex w-5/6 md:w-2/3 lg:w-2/5 xl:w-1/3 flex-col items-center justify-between border-gray-200 border-2 bg-white px-16 py-8 rounded-lg">

@@ -1,9 +1,6 @@
-import { StringLiteral } from "@babel/types";
 import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import axios from 'axios';
-import { parseJwt } from 'utils/helpers';
-import { signIn } from "next-auth/react";
 
 const authOptions: NextAuthOptions = {
     session: {
@@ -18,36 +15,26 @@ const authOptions: NextAuthOptions = {
                     username: string;
                     password: string;
                 };
-                const res = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/login`, {username, password});
-                // const payload = parseJwt(res.data?.accessToken);
-                console.log("WORLD", res.data?.accessToken)
-                if(!res.data?.accessToken) {
-                    throw new Error('Invalid credentials.')
+                const user = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/login`, 
+                {username, password}).then((res) => res.data);
+                if(!user?.accessToken) {
+                    throw new Error()
                 }
-                const user = { token: res.data?.accessToken }
-                return user;
+                return { ...user };
             }
             })
         ],
         pages: {
-            signIn: '/signin'
+            signIn: '/signin',
+            signOut: '/'
         },
         callbacks: {
-            // async signIn({ user , account }) {
-            //     console.log("jwt", { token })
-            //     return user;
-            // },
-            session: async(session, user) => {
-                console.log("sessionData", session);
-                console.log("userDataOne", user);
-                return session;
+            session: async({ session, token }) => {
+                return { ...session, ...token };
             },
-            jwt: async(token, user) => {
-                console.log("tokenData", token);
-                console.log("userDataTwo", user);                
-                return token;
-            },
-            
+            jwt: async({ token, user }) => {             
+                return { ...user, ...token };
+            },    
         }, 
         // secret: "test",
         // jwt: {

@@ -14,7 +14,7 @@ const Protected: NextPage = (): JSX.Element => {
 
     if (status === 'authenticated')
         return (
-            <div className='flex items-center justify-center'>You are Logged In.</div>
+            <div className='min-h-[600px] flex items-center justify-center text-2xl'>You are Logged In.</div>
         )
     return <div>Loading...</div>
 }
