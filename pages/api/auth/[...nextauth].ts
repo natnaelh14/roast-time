@@ -49,11 +49,11 @@ const authOptions: NextAuthOptions = {
             },
             
         }, 
-        secret: "test",
-        jwt: {
-            secret: "test",
-            encryption: true,
-        }
+        // secret: "test",
+        // jwt: {
+        //     secret: "test",
+        //     encryption: true,
+        // }
 };
 
 export default NextAuth(authOptions);
