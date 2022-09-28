@@ -4,9 +4,13 @@ import Link from 'next/link';
 import HamburgerIcon from './HamburgerIcon';
 import { Dialog, Transition } from "@headlessui/react";
 import ColorToggle from 'components/ColorToggle/ColorToggle';
+import { useSession } from 'next-auth/react';
+import { signOut } from 'next-auth/react';
 
 export const Navbar = () => {
   const [mobileNavShown, setMobileNavShown] = useState(false);
+  const { status } = useSession();
+  if (status === 'loading') return null
 
   return (
     <nav className='flex flex-row items-center glass max-h-20 bg-gray-200 dark:bg-blue-dark'>
@@ -17,21 +21,32 @@ export const Navbar = () => {
         </a>
       </Link>
       <div className='flex flex-row items-center right-0 absolute hidden md:flex'>
-        <Link href='/signin'>
-          <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg dark:text-white'>
-            Sign In
-          </a>
-        </Link>
-        <Link href='/signup'>
-          <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg dark:text-white'>
-            Sign Up
-          </a>
-        </Link>
-        <Link href='/restaurant/get-started'>
-          <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg dark:text-white'>
-            For Businesses
-          </a>
-        </Link>
+        {(status === 'unauthenticated') && (
+          <>
+            <Link href='/signin'>
+              <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg dark:text-white'>
+                Sign In
+              </a>
+            </Link>
+            <Link href='/signup'>
+              <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg dark:text-white'>
+                Sign Up
+              </a>
+            </Link>
+            <Link href='/restaurant/get-started'>
+              <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg dark:text-white'>
+                For Businesses
+              </a>
+            </Link>
+          </>
+        )}
+        {(status === "authenticated") && (
+          <Link href='/'>
+            <a onClick={() => signOut()} className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg dark:text-white'>
+              Sign Out
+            </a>
+          </Link>
+        )}
         <ColorToggle />
       </div>
       {/* Hamburger Nav */}

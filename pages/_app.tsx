@@ -11,6 +11,7 @@ import {
 } from "@mantine/core";
 import theme from 'theme';
 import { setLocalStorage, getLocalStorage } from 'utils/storage';
+import { SessionProvider } from 'next-auth/react';
 
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -40,16 +41,18 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <div className='m-6'>
-      <ColorSchemeProvider
-        colorScheme={colorScheme}
-        toggleColorScheme={toggleColorScheme}
-      >
-        <MantineProvider theme={theme}>
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        </MantineProvider>
-      </ColorSchemeProvider>
+      <SessionProvider session={pageProps.session}>
+        <ColorSchemeProvider
+          colorScheme={colorScheme}
+          toggleColorScheme={toggleColorScheme}
+        >
+          <MantineProvider theme={theme}>
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </MantineProvider>
+        </ColorSchemeProvider>
+      </SessionProvider>
       <Script
         strategy="afterInteractive"
         id='darkThemeToggle'
