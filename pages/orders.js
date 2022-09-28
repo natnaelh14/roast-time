@@ -1,19 +1,27 @@
 
-import { getCsrfToken } from "next-auth/react"
+import { getSession } from 'next-auth/react';
 
-export async function getServerSideProps({ req }) {
-  const token = await getCsrfToken({ req })
+export async function getServerSideProps(context) {
+  const session = await getSession(context)
+
+  if (!session) {
     return {
-      props: {
-        token
-      }, // will be passed to the page component as props
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
     }
   }
 
-const Orders = ({token }) => {
-  console.log("LOBOS", JSON.stringify(token, null, 2))
+  return {
+    props: { session }
+  }
+}
+
+const Orders = ({ session }) => {
+  console.log("LOBOS", session)
   return(
-    <div></div>
+    <div className='min-h-[600px] flex items-center justify-center text-3xl'>This is an order page.</div>
   )
 }
 

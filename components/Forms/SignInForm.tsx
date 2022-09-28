@@ -19,7 +19,7 @@ export const SignInForm = () => {
         try {
             await signIn('credentials', { ...data, redirect: false });
             const result = await getSession()
-            console.log("ELSHA", result?.accessToken);
+            console.log("ACCESS TOKEN", result?.accessToken);
             // eslint-disable-next-line
             TagManager.dataLayer({
                 dataLayer: {
