@@ -10,36 +10,31 @@ const authOptions: NextAuthOptions = {
         CredentialsProvider({
             type: 'credentials',
             credentials: {},
-            async authorize (credentials, req) {
+            async authorize(credentials, req) {
                 const { email, password } = credentials as {
                     email: string;
                     password: string;
                 };
-                return await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/login`, 
-                {email, password})
-                .then((res) => {return res.data }).catch((e) => {
-                    return null
+                return await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/login`,
+                    { email, password })
+                    .then((res) => { return res.data }).catch((e) => {
+                        return null
                     }) || null
             }
-            })
-        ],
-        pages: {
-            signIn: '/signin',
-            // signOut: '/'
+        })
+    ],
+    pages: {
+        signIn: '/signin',
+        error: '/signin'
+    },
+    callbacks: {
+        session: async ({ session, token }) => {
+            return { ...session, ...token };
         },
-        callbacks: {
-            session: async({ session, token }) => {
-                return { ...session, ...token };
-            },
-            jwt: async({ token, user }) => {             
-                return { ...user, ...token };
-            },    
-        }, 
-        // secret: "test",
-        // jwt: {
-        //     secret: "test",
-        //     encryption: true,
-        // }
+        jwt: async ({ token, user }) => {
+            return { ...user, ...token };
+        },
+    },
 };
 
 export default NextAuth(authOptions);
