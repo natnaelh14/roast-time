@@ -33,11 +33,11 @@ export const Navbar = () => {
                 Sign Up
               </a>
             </Link>
-            <Link href='/restaurant/get-started'>
+            {/* <Link href='/restaurant/get-started'>
               <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg dark:text-white'>
                 For Businesses
               </a>
-            </Link>
+            </Link> */}
           </>
         )}
         {(status === "authenticated") && (
@@ -89,21 +89,32 @@ export const Navbar = () => {
                   <ul
                     className="flex flex-col space-y-6 pl-3 pt-8"
                   >
-                    <Link href='/signin'>
-                      <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg' onClick={() => setMobileNavShown(false)}>
-                        Sign In
-                      </a>
-                    </Link>
-                    <Link href='/signup'>
-                      <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg' onClick={() => setMobileNavShown(false)}>
-                        Sign Up
-                      </a>
-                    </Link>
-                    <Link href='/restaurant/get-started'>
-                      <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg' onClick={() => setMobileNavShown(false)}>
-                        For Businesses
-                      </a>
-                    </Link>
+                    {(status === 'unauthenticated') && (
+                      <>
+                        <Link href='/signin'>
+                          <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg' onClick={() => setMobileNavShown(false)}>
+                            Sign In
+                          </a>
+                        </Link>
+                        <Link href='/signup'>
+                          <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg' onClick={() => setMobileNavShown(false)}>
+                            Sign Up
+                          </a>
+                        </Link>
+                        {/* <Link href='/restaurant/get-started'>
+                          <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg' onClick={() => setMobileNavShown(false)}>
+                            For Businesses
+                          </a>
+                        </Link> */}
+                      </>
+                    )}
+                    {(status === "authenticated") && (
+                      <Link href='/'>
+                        <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg' onClick={() => { setMobileNavShown(false); signOut(); }}>
+                          Sign Out
+                        </a>
+                      </Link>
+                    )}
                   </ul>
                 </nav>
               </Transition.Child>
@@ -111,6 +122,6 @@ export const Navbar = () => {
           </div>
         </Dialog>
       </Transition.Root>
-    </nav>
+    </nav >
   );
 };
