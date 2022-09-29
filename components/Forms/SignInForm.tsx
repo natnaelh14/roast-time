@@ -4,31 +4,31 @@ import { sleep } from "utils/helpers";
 import { TextInput } from "components/Forms";
 import TagManager from 'react-gtm-module';
 import { signIn } from 'next-auth/react';
-import { getSession } from 'next-auth/react';
+import { useRouter } from "next/router";
 
 interface FormValues {
-    username: string,
+    email: string,
     password: string
 }
 
 export const SignInForm = () => {
+    const router = useRouter();
     const { control, handleSubmit, formState } = useForm<FormValues>({ mode: "onTouched" });
     const { isSubmitting } = formState;
     const onSubmit = async (data: FormValues) => {
         await sleep(2000);
-        try {
-            await signIn('credentials', { ...data, redirect: false });
-            const result = await getSession()
-            console.log("ACCESS TOKEN", result?.accessToken);
+        const res = await signIn('credentials', { ...data, redirect: false });
+        if (res?.ok) {
+            router.push('/orders')
             // eslint-disable-next-line
             TagManager.dataLayer({
                 dataLayer: {
                     event: 'login',
-                    email: data.username,
+                    email: data.email,
                 },
             });
-        } catch (e) {
-            console.log("ERROR", e)
+        } else {
+            console.error("Unable to log in")
         }
     };
     return (
@@ -42,7 +42,7 @@ export const SignInForm = () => {
             <form onSubmit={handleSubmit(onSubmit)} className="w-full" autoComplete="off">
                 <TextInput
                     control={control}
-                    name="username"
+                    name="email"
                     label="Email"
                     autoComplete="off"
                     required={true}

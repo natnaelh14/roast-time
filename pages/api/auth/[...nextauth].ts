@@ -11,22 +11,21 @@ const authOptions: NextAuthOptions = {
             type: 'credentials',
             credentials: {},
             async authorize (credentials, req) {
-                const { username, password } = credentials as {
-                    username: string;
+                const { email, password } = credentials as {
+                    email: string;
                     password: string;
                 };
-                const user = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/login`, 
-                {username, password}).then((res) => res.data);
-                if(!user?.accessToken) {
-                    throw new Error()
-                }
-                return { ...user };
+                return await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/login`, 
+                {email, password})
+                .then((res) => {return res.data }).catch((e) => {
+                    return null
+                    }) || null
             }
             })
         ],
         pages: {
             signIn: '/signin',
-            signOut: '/'
+            // signOut: '/'
         },
         callbacks: {
             session: async({ session, token }) => {

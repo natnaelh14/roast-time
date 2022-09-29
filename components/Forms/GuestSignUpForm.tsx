@@ -2,6 +2,9 @@ import { SubmitButton } from "components/Button";
 import { useForm } from "react-hook-form";
 import { sleep } from "utils/helpers";
 import { TextInput } from "components/Forms";
+import axios from 'axios';
+import { useRouter } from "next/router";
+import Swal from 'sweetalert2';
 
 interface GuestSignUpFormValues {
     firstName: string,
@@ -12,12 +15,28 @@ interface GuestSignUpFormValues {
 }
 
 export const GuestSignUpForm = () => {
+    const router = useRouter();
     const { control, handleSubmit, formState } = useForm<GuestSignUpFormValues>({ mode: "onTouched" });
     const { isSubmitting } = formState;
     const onSubmit = async (data: GuestSignUpFormValues) => {
         await sleep(2000);
-        console.log("GuestSignUpForm", data);
-    };
+        try {
+            await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/register`,
+                { email: data?.email, password: data?.password });
+            await Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Congrats! Your account has been created.',
+                color: '#F78888',
+                iconColor: '#F78888',
+                showConfirmButton: false,
+                timer: 1500
+            })
+            router.push('/signin')
+        } catch (e) {
+            console.error('unable to register user.')
+        }
+    }
     return (
         <div className="flex w-5/6 lg:w-2/5 flex-col items-center justify-between border-gray-200 border-2 px-16 py-8 rounded-lg bg-white">
             <div className="mb-6 text-center">
