@@ -35,7 +35,8 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   useEffect(() => {
     if (!colorScheme) {
-      setLocalStorage("color-theme", "light")
+      setLocalStorage("color-theme", "dark")
+      setColorScheme("dark")
     }
   }, [colorScheme])
 
@@ -53,7 +54,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           </MantineProvider>
         </ColorSchemeProvider>
       </SessionProvider>
-      <Script
+      {/* <Script
         strategy="afterInteractive"
         id='darkThemeToggle'
         dangerouslySetInnerHTML={{
@@ -65,7 +66,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             }
             `
         }}
-      />
+      /> */}
       {/* Google Tag Manager */}
       <Script
         strategy="afterInteractive"

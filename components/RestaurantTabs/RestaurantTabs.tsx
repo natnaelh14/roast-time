@@ -8,28 +8,28 @@ const RestaurantTabs = () => {
                 <Tab.List>
                     <Tab
                         className={({ selected }) =>
-                            selected ? 'p-4 m-3 border-b-2 border-pink-primary text-pink-primary focus:outline-hidden hover:cursor-pointer' : 'p-4 m-3 text-gray-600 border-b-2 border-transparent hover:border-gray-300 focus:outline-hidden hover:cursor-pointer'
+                            selected ? 'p-4 m-3 border-b-2 border-pink-primary text-pink-primary focus:outline-hidden hover:cursor-pointer' : 'p-4 m-3 text-gray-600 border-b-2 border-transparent hover:border-gray-secondary focus:outline-hidden hover:cursor-pointer'
                         }
                     >
                         Overview
                     </Tab>
                     <Tab
                         className={({ selected }) =>
-                            selected ? 'p-4 m-3 border-b-2 border-pink-primary text-pink-primary focus:outline-hidden hover:cursor-pointer' : 'p-4 m-3 text-gray-600 border-b-2 border-transparent hover:border-gray-300 focus:outline-hidden hover:cursor-pointer'
+                            selected ? 'p-4 m-3 border-b-2 border-pink-primary text-pink-primary focus:outline-hidden hover:cursor-pointer' : 'p-4 m-3 text-gray-600 border-b-2 border-transparent hover:border-gray-secondary focus:outline-hidden hover:cursor-pointer'
                         }
                     >
                         Menu
                     </Tab>
                     <Tab
                         className={({ selected }) =>
-                            selected ? 'p-4 m-3 border-b-2 border-pink-primary text-pink-primary focus:outline-hidden hover:cursor-pointer' : 'p-4 m-3 text-gray-600 border-b-2 border-transparent hover:border-gray-300 focus:outline-hidden hover:cursor-pointer'
+                            selected ? 'p-4 m-3 border-b-2 border-pink-primary text-pink-primary focus:outline-hidden hover:cursor-pointer' : 'p-4 m-3 text-gray-600 border-b-2 border-transparent hover:border-gray-secondary focus:outline-hidden hover:cursor-pointer'
                         }
                     >
                         Photos
                     </Tab>
                     <Tab
                         className={({ selected }) =>
-                            selected ? 'p-4 m-3 border-b-2 border-pink-primary text-pink-primary focus:outline-hidden hover:cursor-pointer' : 'p-4 m-3 text-gray-600 border-b-2 border-transparent hover:border-gray-300  focus:outline-hidden hover:cursor-pointer'
+                            selected ? 'p-4 m-3 border-b-2 border-pink-primary text-pink-primary focus:outline-hidden hover:cursor-pointer' : 'p-4 m-3 text-gray-600 border-b-2 border-transparent hover:border-gray-secondary focus:outline-hidden hover:cursor-pointer'
                         }
                     >
                         Reviews

@@ -5,7 +5,7 @@ import { beverageItems, breakfastItems, sideItems } from 'data';
 export const Menu = () => {
     return (
         <div className='my-4'>
-            <div className="my-2 py-4 border-t-2 border-gray-200">
+            <div className="my-2 py-4 border-t-2 border-gray-200 dark:border-gray-secondary">
                 <h4 className='text-lg dark:text-white'>Breakfast</h4>
                 <div className='flex flex-row flex-wrap justify-between'>
                     {breakfastItems.map(item => {
@@ -13,7 +13,7 @@ export const Menu = () => {
                     })}
                 </div>
             </div>
-            <div className="my-2 py-4 border-t-2 border-gray-200">
+            <div className="my-2 py-4 border-t-2 border-gray-200 dark:border-gray-secondary">
                 <h4 className='text-lg dark:text-white'>Sides</h4>
                 <div className='flex flex-row flex-wrap justify-between'>
                     {sideItems.map(item => {
@@ -21,7 +21,7 @@ export const Menu = () => {
                     })}
                 </div>
             </div>
-            <div className="my-2 py-4 border-t-2 border-gray-200">
+            <div className="my-2 py-4 border-t-2 border-gray-200 dark:border-gray-secondary">
                 <h4 className='text-lg dark:text-white'>Beverages</h4>
                 <div className='flex flex-row flex-wrap justify-between'>
                     {beverageItems.map(item => {
