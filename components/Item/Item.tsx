@@ -17,7 +17,7 @@ const Item = ({ id, title, image, location, categories }: ItemProps) => {
         <div>
             {image && (
                 <Link href={`/restaurant/${id}`}>
-                    <div className="m-8 border w-[250px] border-gray-200 shadow-lg rounded hover:cursor-pointer hover:scale-105 transition ease-in-out delay-150">
+                    <div className="m-8 border w-[250px] border-gray-200 dark:border-gray-secondary shadow-lg rounded hover:cursor-pointer hover:scale-105 transition ease-in-out delay-150">
                         <Image alt='shopping-item' src={image} width={250} height={200} />
                         <div className='m-2'>
                             <p className='text-md font-extrabold dark:text-white'>{title}</p>
