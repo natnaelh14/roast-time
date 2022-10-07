@@ -15,11 +15,12 @@ const authOptions: NextAuthOptions = {
                     email: string;
                     password: string;
                 };
-                return await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/login`,
-                    { email, password })
-                    .then((res) => { return res.data }).catch((e) => {
-                        return null
-                    }) || null
+                const user = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/login`, 
+                 {email, password}).then((res) => res.data);
+                 if(!user?.accessToken) {
+                     throw new Error()
+                 }
+                 return user?.accessToken ? { ...user } : null;
             }
         })
     ],

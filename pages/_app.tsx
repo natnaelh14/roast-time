@@ -38,7 +38,19 @@ function MyApp({ Component, pageProps }: AppProps) {
       setLocalStorage("color-theme", "dark")
       setColorScheme("dark")
     }
+    // else {
+    //   if (colorScheme === "dark") {
+    //     document.documentElement.classList.remove('dark');
+    //   } else {
+    //     document.documentElement.classList.add('dark');
+    //   }
+    // }
   }, [colorScheme])
+  // if (colorScheme === "dark") {
+  //   window.document.documentElement.classList.remove('dark');
+  // } else {
+  //   window.document.documentElement.classList.add('dark');
+  // }
 
   return (
     <div className='m-6'>

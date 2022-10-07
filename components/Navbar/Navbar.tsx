@@ -78,7 +78,7 @@ export const Navbar = () => {
                 leaveFrom="translate-x-0"
                 leaveTo="-translate-x-full"
               >
-                <nav className="pointer-events-auto fixed inset-y-0 left-0 h-screen w-64 bg-white text-2xl">
+                <nav className="pointer-events-auto fixed inset-y-0 left-0 h-screen w-64 bg-white dark:bg-blue-dark text-2xl">
                   <button
                     aria-label="close navigation"
                     className="mt-6 ml-6 h-[48px] w-[48px] bg-close bg-contain bg-no-repeat"
@@ -92,12 +92,12 @@ export const Navbar = () => {
                     {(status === 'unauthenticated') && (
                       <>
                         <Link href='/signin'>
-                          <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg' onClick={() => setMobileNavShown(false)}>
+                          <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg dark:text-white' onClick={() => setMobileNavShown(false)}>
                             Sign In
                           </a>
                         </Link>
                         <Link href='/signup'>
-                          <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg' onClick={() => setMobileNavShown(false)}>
+                          <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg dark:text-white' onClick={() => setMobileNavShown(false)}>
                             Sign Up
                           </a>
                         </Link>
