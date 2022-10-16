@@ -110,7 +110,7 @@ export const Navbar = () => {
                     )}
                     {(status === "authenticated") && (
                       <Link href='/'>
-                        <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg' onClick={() => { setMobileNavShown(false); signOut(); }}>
+                        <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg dark:text-white' onClick={() => { setMobileNavShown(false); signOut(); }}>
                           Sign Out
                         </a>
                       </Link>

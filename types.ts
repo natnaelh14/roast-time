@@ -1,5 +1,6 @@
 import { FieldValues, UseControllerProps } from "react-hook-form";
   import { ComponentPropsWithoutRef } from "react";
+import { Session } from "node:inspector";
 
 export interface TextInputProps<T extends FieldValues>
   extends UseControllerProps<T>,
@@ -44,4 +45,15 @@ export interface menuItemValues {
   title: string,
   price: number,
   description?: string
+}
+
+export interface UserSession {
+  token?: string,
+  account?: SessionAccount
+}
+
+export interface SessionAccount {
+  firstName?: string,
+  lastName?: string,
+  emailAddress?: string
 }

@@ -32,10 +32,10 @@ export const SignInForm = () => {
         }
     };
     return (
-        <div className="flex w-5/6 md:w-2/3 lg:w-2/5 xl:w-1/3 flex-col items-center justify-between border-gray-200 border-2 bg-white px-16 py-8 rounded-lg">
+        <div className="flex w-5/6 md:w-2/3 lg:w-2/5 xl:w-1/3 flex-col items-center justify-between border-gray-200 dark:border-gray-secondary border-2 bg-white dark:bg-blue-dark px-16 py-8 rounded-lg">
             <div className="mb-6 text-center">
                 <h1 className="text-pink-primary text-xl md:text-3xl text-center">Go ahead, login.</h1>
-                <p className="mt-1 text-xs md:text-base text-gray-secondary text center">
+                <p className="mt-1 text-xs md:text-base text-gray-secondary dark:text-white text center">
                     Welcome back to RoastTime
                 </p>
             </div>
