@@ -19,9 +19,9 @@ export default withIronSessionApiRoute(
             {email, password});
             req.session.user = userData;
             await req.session.save();
-            res.status(200).send(user);
+            res.status(200).send(userData);
         } catch (e) {
-
+            console.error(e.message);
         }
 
     }, sessionOptions

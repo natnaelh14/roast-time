@@ -4,13 +4,9 @@ import Link from 'next/link';
 import HamburgerIcon from './HamburgerIcon';
 import { Dialog, Transition } from "@headlessui/react";
 import ColorToggle from 'components/ColorToggle/ColorToggle';
-import { useSession } from 'next-auth/react';
-import { signOut } from 'next-auth/react';
 
 export const Navbar = () => {
   const [mobileNavShown, setMobileNavShown] = useState(false);
-  const { status } = useSession();
-  if (status === 'loading') return null
 
   return (
     <nav className='flex flex-row items-center glass max-h-20 bg-gray-200 dark:bg-blue-dark'>
@@ -21,7 +17,7 @@ export const Navbar = () => {
         </a>
       </Link>
       <div className='flex flex-row items-center right-0 absolute hidden md:flex'>
-        {(status === 'unauthenticated') && (
+        {(true) && (
           <>
             <Link href='/signin'>
               <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg dark:text-white'>
@@ -40,13 +36,13 @@ export const Navbar = () => {
             </Link> */}
           </>
         )}
-        {(status === "authenticated") && (
+        {/* {(status === "authenticated") && (
           <Link href='/'>
-            <a onClick={() => signOut()} className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg dark:text-white'>
+            <a onClick={() => {}} className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg dark:text-white'>
               Sign Out
             </a>
           </Link>
-        )}
+        )} */}
         <ColorToggle />
       </div>
       {/* Hamburger Nav */}
@@ -89,7 +85,7 @@ export const Navbar = () => {
                   <ul
                     className="flex flex-col space-y-6 pl-3 pt-8"
                   >
-                    {(status === 'unauthenticated') && (
+                    {/* {(status === 'unauthenticated') && (
                       <>
                         <Link href='/signin'>
                           <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg dark:text-white' onClick={() => setMobileNavShown(false)}>
@@ -100,21 +96,21 @@ export const Navbar = () => {
                           <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg dark:text-white' onClick={() => setMobileNavShown(false)}>
                             Sign Up
                           </a>
-                        </Link>
-                        {/* <Link href='/restaurant/get-started'>
+                        </Link> */}
+                    {/* <Link href='/restaurant/get-started'>
                           <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg' onClick={() => setMobileNavShown(false)}>
                             For Businesses
                           </a>
                         </Link> */}
-                      </>
-                    )}
-                    {(status === "authenticated") && (
+                    {/* </>
+                    )} */}
+                    {/* {(status === "authenticated") && (
                       <Link href='/'>
                         <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg dark:text-white' onClick={() => { setMobileNavShown(false); signOut(); }}>
                           Sign Out
                         </a>
                       </Link>
-                    )}
+                    )} */}
                   </ul>
                 </nav>
               </Transition.Child>

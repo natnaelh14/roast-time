@@ -3,8 +3,9 @@ import { useForm } from "react-hook-form";
 import { sleep } from "utils/helpers";
 import { TextInput } from "components/Forms";
 import TagManager from 'react-gtm-module';
-import { signIn } from 'next-auth/react';
 import { useRouter } from "next/router";
+import axios from 'axios';
+import { UserSession } from "types";
 
 interface FormValues {
     email: string,
@@ -17,17 +18,21 @@ export const SignInForm = () => {
     const { isSubmitting } = formState;
     const onSubmit = async (data: FormValues) => {
         await sleep(2000);
-        const res = await signIn('credentials', { ...data, redirect: false });
-        if (res?.ok) {
-            router.push('/orders')
-            // eslint-disable-next-line
-            TagManager.dataLayer({
-                dataLayer: {
-                    event: 'login',
-                    email: data.email,
-                },
-            });
-        } else {
+        try {
+            const { data: { accessToken } } = await axios.post<UserSession>("/api/auth/login", data)
+            if (accessToken) {
+                console.log({ accessToken })
+                router.push('/orders')
+                // eslint-disable-next-line
+                TagManager.dataLayer({
+                    dataLayer: {
+                        event: 'login',
+                        email: data.email,
+                    },
+                });
+            }
+        }
+        catch (e) {
             console.error("Unable to log in")
         }
     };

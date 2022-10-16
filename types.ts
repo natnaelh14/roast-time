@@ -48,7 +48,8 @@ export interface menuItemValues {
 }
 
 export interface UserSession {
-  token?: string,
+  isLoggedIn: boolean,
+  accessToken?: string,
   account?: SessionAccount
 }
 
@@ -56,4 +57,8 @@ export interface SessionAccount {
   firstName?: string,
   lastName?: string,
   emailAddress?: string
+}
+
+export interface ErrorResponse {
+  message: string
 }

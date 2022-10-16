@@ -1,17 +1,15 @@
 import { SignInForm } from "components/Forms";
-import { getSession } from 'next-auth/react';
 import { GetServerSideProps } from 'next';
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-    const session = await getSession(context)
-    if (session) {
-        return {
-            redirect: {
-                destination: '/',
-                permanent: false,
-            },
-        }
-    }
+    // if (session) {
+    //     return {
+    //         redirect: {
+    //             destination: '/',
+    //             permanent: false,
+    //         },
+    //     }
+    // }
     return {
         props: {}
     }
