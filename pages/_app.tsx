@@ -11,8 +11,8 @@ import {
 } from "@mantine/core";
 import theme from 'theme';
 import { setLocalStorage, getLocalStorage } from 'utils/storage';
-import { SessionProvider } from 'next-auth/react';
-
+import { SWRConfig } from "swr";
+import fetchJson from 'utils/fetchJson';
 
 function MyApp({ Component, pageProps }: AppProps) {
   // eslint-disable-next-line
@@ -54,7 +54,14 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <div className='m-6'>
-      <SessionProvider session={pageProps.session}>
+      <SWRConfig
+        value={{
+          fetcher: fetchJson,
+          onError: (err) => {
+            console.error(err);
+          },
+        }}
+      >
         <ColorSchemeProvider
           colorScheme={colorScheme}
           toggleColorScheme={toggleColorScheme}
@@ -65,7 +72,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             </Layout>
           </MantineProvider>
         </ColorSchemeProvider>
-      </SessionProvider>
+      </SWRConfig>
       {/* <Script
         strategy="afterInteractive"
         id='darkThemeToggle'

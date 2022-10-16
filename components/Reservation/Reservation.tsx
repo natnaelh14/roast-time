@@ -37,7 +37,7 @@ const Reservation = () => {
     ];
 
     return (
-        <div className="w-fit h-fit flex flex-col items-center lg:justify-between border-gray-200 border-2 shadow-lg bg-white px-16 py-8 mt-8 rounded-lg">
+        <div className="w-fit h-fit flex flex-col items-center lg:justify-between border-gray-200 dark:border-gray-secondary border-2 shadow-lg bg-white dark:bg-blue-dark px-16 py-8 mt-8 rounded-lg">
             <div className="mb-6 text-center">
                 <h1 className="text-pink-primary text-xl lg:text-3xl text-center">Make a reservation</h1>
             </div>

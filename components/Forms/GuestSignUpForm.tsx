@@ -38,7 +38,7 @@ export const GuestSignUpForm = () => {
         }
     }
     return (
-        <div className="flex w-5/6 lg:w-2/5 flex-col items-center justify-between border-gray-200 border-2 px-16 py-8 rounded-lg bg-white">
+        <div className="flex w-5/6 lg:w-2/5 flex-col items-center justify-between border-gray-200 dark:border-gray-secondary border-2 px-16 py-8 rounded-lg bg-white dark:bg-blue-dark">
             <div className="mb-6 text-center">
                 <h1 className="text-pink-primary text-xl md:text-3xl">Get started with RoastTime today.</h1>
             </div>
