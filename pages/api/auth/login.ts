@@ -17,9 +17,13 @@ export default withIronSessionApiRoute(
         try {
             const { data: userData } = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/login`, 
             {email, password});
-            req.session.user = userData;
+            const user = {
+                ...userData,
+                isLoggedIn: true
+            };
+            req.session.user = user;
             await req.session.save();
-            res.status(200).send(userData);
+            res.status(200).send(user);
         } catch (e) {
             console.error(e.message);
         }

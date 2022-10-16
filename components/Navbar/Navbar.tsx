@@ -4,20 +4,31 @@ import Link from 'next/link';
 import HamburgerIcon from './HamburgerIcon';
 import { Dialog, Transition } from "@headlessui/react";
 import ColorToggle from 'components/ColorToggle/ColorToggle';
+import useSWR from "swr";
+import axios from 'axios';
+import { UserSession } from 'types';
+import { useRouter } from "next/router";
 
 export const Navbar = () => {
+  const router = useRouter();
   const [mobileNavShown, setMobileNavShown] = useState(false);
+  const { data } = useSWR<UserSession>("/api/user");
+  const isLoggedIn = data?.isLoggedIn;
+  const handleLogout = async () => {
+    await axios.post('/api/auth/logout');
+    router.push('/')
+  };
 
   return (
     <nav className='flex flex-row items-center glass max-h-20 bg-gray-200 dark:bg-blue-dark'>
       <HamburgerIcon handleClick={() => setMobileNavShown(true)} />
-      <Link href='/'>
+      <Link href='/signin'>
         <a className='mt-3' aria-label='Link to Homepage'>
           <Image alt='roastTime logo' src='/logo.png' height={200} width={200} />
         </a>
       </Link>
       <div className='flex flex-row items-center right-0 absolute hidden md:flex'>
-        {(true) && (
+        {(!isLoggedIn) && (
           <>
             <Link href='/signin'>
               <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg dark:text-white'>
@@ -36,13 +47,13 @@ export const Navbar = () => {
             </Link> */}
           </>
         )}
-        {/* {(status === "authenticated") && (
+        {(isLoggedIn) && (
           <Link href='/'>
-            <a onClick={() => {}} className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg dark:text-white'>
+            <a onClick={() => { handleLogout() }} className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg dark:text-white'>
               Sign Out
             </a>
           </Link>
-        )} */}
+        )}
         <ColorToggle />
       </div>
       {/* Hamburger Nav */}
@@ -85,7 +96,7 @@ export const Navbar = () => {
                   <ul
                     className="flex flex-col space-y-6 pl-3 pt-8"
                   >
-                    {/* {(status === 'unauthenticated') && (
+                    {(!isLoggedIn) && (
                       <>
                         <Link href='/signin'>
                           <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg dark:text-white' onClick={() => setMobileNavShown(false)}>
@@ -96,21 +107,21 @@ export const Navbar = () => {
                           <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg dark:text-white' onClick={() => setMobileNavShown(false)}>
                             Sign Up
                           </a>
-                        </Link> */}
-                    {/* <Link href='/restaurant/get-started'>
+                        </Link>
+                        <Link href='/restaurant/get-started'>
                           <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg' onClick={() => setMobileNavShown(false)}>
                             For Businesses
                           </a>
-                        </Link> */}
-                    {/* </>
-                    )} */}
-                    {/* {(status === "authenticated") && (
+                        </Link>
+                      </>
+                    )}
+                    {(isLoggedIn) && (
                       <Link href='/'>
-                        <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg dark:text-white' onClick={() => { setMobileNavShown(false); signOut(); }}>
+                        <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg dark:text-white' onClick={() => { setMobileNavShown(false); }}>
                           Sign Out
                         </a>
                       </Link>
-                    )} */}
+                    )}
                   </ul>
                 </nav>
               </Transition.Child>
