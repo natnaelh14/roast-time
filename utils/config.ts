@@ -3,7 +3,7 @@ import { UserSession } from 'types';
 
 export const sessionOptions: IronSessionOptions = {
     cookieName: "roastTime",
-    password: process.env.SECRET_COOKIE_PASSWORD,
+    password: process.env.SECRET_COOKIE_PASSWORD ?? "",
     cookieOptions: {
         secure: process.env.NODE_ENV === "production"
     },
