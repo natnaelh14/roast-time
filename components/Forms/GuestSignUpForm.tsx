@@ -6,6 +6,7 @@ import axios from 'axios';
 import { useRouter } from "next/router";
 import Swal from 'sweetalert2';
 import { UserSession } from "types";
+import { useUserSession } from 'contexts/UserSessionContext';
 
 interface GuestSignUpFormValues {
     first_name: string,
@@ -17,23 +18,25 @@ interface GuestSignUpFormValues {
 
 export const GuestSignUpForm = () => {
     const router = useRouter();
+    const { setSession } = useUserSession();
     const { control, handleSubmit, formState } = useForm<GuestSignUpFormValues>({ mode: "onTouched" });
     const { isSubmitting } = formState;
     const onSubmit = async (data: GuestSignUpFormValues) => {
-        await sleep(2000);
         try {
             const { data: userData } = await axios.post<UserSession>("/api/auth/signup", data)
-            console.log('THANKS', userData)
-            await Swal.fire({
-                position: 'top-end',
-                icon: 'success',
-                title: 'Congrats! Your account has been created.',
-                color: '#F78888',
-                iconColor: '#F78888',
-                showConfirmButton: false,
-                timer: 1500
-            })
-            router.push('/orders')
+            if (userData?.isLoggedIn) {
+                setSession(userData)
+                await Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Congrats! Your account has been created.',
+                    color: '#F78888',
+                    iconColor: '#F78888',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                router.push('/orders');
+            }
         } catch (e) {
             console.error('unable to register user.')
         }

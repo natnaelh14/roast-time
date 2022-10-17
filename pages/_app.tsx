@@ -13,6 +13,7 @@ import theme from 'theme';
 import { setLocalStorage, getLocalStorage } from 'utils/storage';
 import { SWRConfig } from "swr";
 import fetchJson from 'utils/fetchJson';
+import { UserSessionContextProvider } from 'contexts/UserSessionContext';
 
 function MyApp({ Component, pageProps }: AppProps) {
   // eslint-disable-next-line
@@ -54,25 +55,27 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <div className='m-6'>
-      <SWRConfig
-        value={{
-          fetcher: fetchJson,
-          onError: (err) => {
-            console.error(err);
-          },
-        }}
-      >
-        <ColorSchemeProvider
-          colorScheme={colorScheme}
-          toggleColorScheme={toggleColorScheme}
+      <UserSessionContextProvider>
+        <SWRConfig
+          value={{
+            fetcher: fetchJson,
+            onError: (err) => {
+              console.error(err);
+            },
+          }}
         >
-          <MantineProvider theme={theme}>
-            <Layout>
-              <Component {...pageProps} />
-            </Layout>
-          </MantineProvider>
-        </ColorSchemeProvider>
-      </SWRConfig>
+          <ColorSchemeProvider
+            colorScheme={colorScheme}
+            toggleColorScheme={toggleColorScheme}
+          >
+            <MantineProvider theme={theme}>
+              <Layout>
+                <Component {...pageProps} />
+              </Layout>
+            </MantineProvider>
+          </ColorSchemeProvider>
+        </SWRConfig>
+      </UserSessionContextProvider>
       {/* <Script
         strategy="afterInteractive"
         id='darkThemeToggle'
