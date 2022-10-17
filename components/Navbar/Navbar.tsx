@@ -16,7 +16,7 @@ export const Navbar = () => {
   const isLoggedIn = data?.isLoggedIn;
   const handleLogout = async () => {
     await axios.post('/api/auth/logout');
-    router.push('/')
+    router.push('/signin')
   };
 
   return (

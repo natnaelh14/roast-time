@@ -5,11 +5,12 @@ import { TextInput } from "components/Forms";
 import axios from 'axios';
 import { useRouter } from "next/router";
 import Swal from 'sweetalert2';
+import { UserSession } from "types";
 
 interface GuestSignUpFormValues {
-    firstName: string,
-    lastName: string,
-    phoneNumber: string,
+    first_name: string,
+    last_name: string,
+    phone_number: string,
     email: string,
     password: string
 }
@@ -21,8 +22,8 @@ export const GuestSignUpForm = () => {
     const onSubmit = async (data: GuestSignUpFormValues) => {
         await sleep(2000);
         try {
-            await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/register`,
-                { email: data?.email, password: data?.password });
+            const { data: userData } = await axios.post<UserSession>("/api/auth/signup", data)
+            console.log('THANKS', userData)
             await Swal.fire({
                 position: 'top-end',
                 icon: 'success',
@@ -32,7 +33,7 @@ export const GuestSignUpForm = () => {
                 showConfirmButton: false,
                 timer: 1500
             })
-            router.push('/signin')
+            router.push('/orders')
         } catch (e) {
             console.error('unable to register user.')
         }
@@ -45,21 +46,21 @@ export const GuestSignUpForm = () => {
             <form onSubmit={handleSubmit(onSubmit)} className="w-full">
                 <TextInput
                     control={control}
-                    name="firstName"
+                    name="first_name"
                     label="First Name"
                     autoComplete="firstName"
                     required={true}
                 />
                 <TextInput
                     control={control}
-                    name="lastName"
+                    name="last_name"
                     label="Last Name"
                     autoComplete="lastName"
                     required={true}
                 />
                 <TextInput
                     control={control}
-                    name="phoneNumber"
+                    name="phone_number"
                     label="Phone Number"
                     autoComplete="phoneNumber"
                     required={true}
