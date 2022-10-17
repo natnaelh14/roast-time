@@ -25,7 +25,7 @@ export default withIronSessionApiRoute(
             await req.session.save();
             res.status(200).send(user);
         } catch (e) {
-            console.error(e);
+            res.status(500).json({ isLoggedIn: false })
         }
 
     }, sessionOptions

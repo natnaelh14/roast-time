@@ -1,22 +1,23 @@
+import axios from 'axios';
 import { useState, Fragment } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import HamburgerIcon from './HamburgerIcon';
 import { Dialog, Transition } from "@headlessui/react";
 import ColorToggle from 'components/ColorToggle/ColorToggle';
-import useSWR from "swr";
-import axios from 'axios';
-import { UserSession } from 'types';
 import { useRouter } from "next/router";
+import { useUserSession } from 'contexts/UserSessionContext';
+import { getSession } from 'components/api/api';
 
 export const Navbar = () => {
   const router = useRouter();
   const [mobileNavShown, setMobileNavShown] = useState(false);
-  const { data } = useSWR<UserSession>("/api/user");
-  const isLoggedIn = data?.isLoggedIn;
+  const { setSession, userSession } = useUserSession();
   const handleLogout = async () => {
     await axios.post('/api/auth/logout');
-    router.push('/signin')
+    const res = await getSession().catch((e) => console.error(e));
+    setSession(res?.data);
+    router.push('/signin');
   };
 
   return (
@@ -28,7 +29,7 @@ export const Navbar = () => {
         </a>
       </Link>
       <div className='flex flex-row items-center right-0 absolute hidden md:flex'>
-        {(!isLoggedIn) && (
+        {(!userSession?.isLoggedIn) && (
           <>
             <Link href='/signin'>
               <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg dark:text-white'>
@@ -47,8 +48,8 @@ export const Navbar = () => {
             </Link> */}
           </>
         )}
-        {(isLoggedIn) && (
-          <Link href='/'>
+        {(userSession?.isLoggedIn) && (
+          <Link href='#'>
             <a onClick={() => { handleLogout() }} className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg dark:text-white'>
               Sign Out
             </a>
@@ -96,7 +97,7 @@ export const Navbar = () => {
                   <ul
                     className="flex flex-col space-y-6 pl-3 pt-8"
                   >
-                    {(!isLoggedIn) && (
+                    {(!userSession?.isLoggedIn) && (
                       <>
                         <Link href='/signin'>
                           <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg dark:text-white' onClick={() => setMobileNavShown(false)}>
@@ -115,7 +116,7 @@ export const Navbar = () => {
                         </Link>
                       </>
                     )}
-                    {(isLoggedIn) && (
+                    {(userSession?.isLoggedIn) && (
                       <Link href='/'>
                         <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg dark:text-white' onClick={() => { setMobileNavShown(false); }}>
                           Sign Out

@@ -6,6 +6,7 @@ import TagManager from 'react-gtm-module';
 import { useRouter } from "next/router";
 import axios from 'axios';
 import { UserSession } from "types";
+import { useUserSession } from 'contexts/UserSessionContext';
 
 interface FormValues {
     email: string,
@@ -14,15 +15,14 @@ interface FormValues {
 
 export const SignInForm = () => {
     const router = useRouter();
+    const { setSession } = useUserSession();
     const { control, handleSubmit, formState } = useForm<FormValues>({ mode: "onTouched" });
     const { isSubmitting } = formState;
     const onSubmit = async (data: FormValues) => {
-        await sleep(2000);
         try {
-            const { data: { accessToken } } = await axios.post<UserSession>("/api/auth/login", data)
-            if (accessToken) {
-                console.log({ accessToken })
-                router.push('/orders')
+            const { data: userData } = await axios.post<UserSession>("/api/auth/login", data)
+            if (userData?.isLoggedIn) {
+                setSession(userData)
                 // eslint-disable-next-line
                 TagManager.dataLayer({
                     dataLayer: {
@@ -30,6 +30,7 @@ export const SignInForm = () => {
                         email: data.email,
                     },
                 });
+                router.push('/orders');
             }
         }
         catch (e) {

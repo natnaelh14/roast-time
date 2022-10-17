@@ -8,7 +8,12 @@ const userRouter = async(req: NextApiRequest, res: NextApiResponse< UserSession>
     if (user) {
         res.json({ ...user })
     } else {
-        res.json({ isLoggedIn: false })
+        const userData = {
+            isLoggedIn: false
+        };
+        req.session.user = userData;
+        await req.session.save();
+        res.status(200).send(userData);
     }
 };
 
