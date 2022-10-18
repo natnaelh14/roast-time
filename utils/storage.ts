@@ -1,6 +1,8 @@
 export const setLocalStorage = (key: string, value: string) => {
     try {
-      window.localStorage.setItem(key, JSON.stringify(value));
+      if (typeof window !== 'undefined') {
+        window.localStorage.setItem(key, JSON.stringify(value));
+      }
     } catch (e) {
       // catch possible errors:
     }
@@ -8,8 +10,10 @@ export const setLocalStorage = (key: string, value: string) => {
 
   export const getLocalStorage = (key: string) => {
     try {
-      const value = window.localStorage.getItem(key);
-      return value ? JSON.parse(value) : "";
+      if (typeof window !== 'undefined') {
+        const value = window.localStorage.getItem(key);
+        return value ? JSON.parse(value) : "";
+      }
     } catch (e) {
       // if error, return initial value
       return "";

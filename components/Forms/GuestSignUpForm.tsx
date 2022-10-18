@@ -1,6 +1,5 @@
 import { SubmitButton } from "components/Button";
 import { useForm } from "react-hook-form";
-import { sleep } from "utils/helpers";
 import { TextInput } from "components/Forms";
 import axios from 'axios';
 import { useRouter } from "next/router";
@@ -16,7 +15,7 @@ interface GuestSignUpFormValues {
     password: string
 }
 
-export const GuestSignUpForm = () => {
+export const GuestSignUpForm = ({ setLoading }: { setLoading: (val: boolean) => void }) => {
     const router = useRouter();
     const { setSession } = useUserSession();
     const { control, handleSubmit, formState } = useForm<GuestSignUpFormValues>({ mode: "onTouched" });
@@ -35,6 +34,7 @@ export const GuestSignUpForm = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
+                setLoading(true)
                 router.push('/orders');
             }
         } catch (e) {

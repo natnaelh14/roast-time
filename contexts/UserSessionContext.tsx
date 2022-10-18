@@ -2,12 +2,12 @@ import { createContext, ReactNode, useEffect, useState, useContext } from "react
 import { UserSession } from "types";
 import axios from "axios";
 
-interface UserSessionContext {
+interface UserSessionContextState {
     userSession?: UserSession
     setSession: (userSession: UserSession) => void
 }
 
-const UserSessionContext = createContext({} as UserSessionContext);
+const UserSessionContext = createContext({} as UserSessionContextState);
 
 const UserSessionContextProvider = ({ children }: { children: ReactNode }) => {
     const [userSession, setUserSession] = useState<UserSession>();
@@ -16,13 +16,13 @@ const UserSessionContextProvider = ({ children }: { children: ReactNode }) => {
             await axios.get("/api/user")
                 .then((res) => setUserSession(res.data))
                 // .then((res) => console.log("CATCH", res))
-                .catch((error) => console.log("An error occured"));
+                .catch(() => console.log("An error occurred"));
         };
         fetchData();
     }, []);
 
-    const setSession = (value: UserSession) => {
-        setUserSession(value)
+    const setSession = (val: UserSession) => {
+        setUserSession(val)
     }
 
     const value = {
