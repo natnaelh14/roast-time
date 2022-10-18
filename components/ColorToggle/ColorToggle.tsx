@@ -8,6 +8,7 @@ import {
 } from '@mantine/core';
 import { upperFirst } from '@mantine/hooks';
 import { IconMoon, IconSun } from '@tabler/icons';
+import { useColorScheme } from 'contexts/colorSchemeContext';
 
 const useStyles = createStyles((theme) => ({
     control: {
@@ -36,8 +37,9 @@ const useStyles = createStyles((theme) => ({
 }));
 
 const ColorToggle = () => {
+
+    const { colorScheme, toggleColorScheme } = useColorScheme();
     const { classes } = useStyles();
-    const { colorScheme, toggleColorScheme } = useMantineColorScheme();
     const Icon = colorScheme === 'dark' ? IconSun : IconMoon;
 
     return (
