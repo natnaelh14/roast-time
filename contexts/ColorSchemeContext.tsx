@@ -1,12 +1,12 @@
 import { createContext, ReactNode, useEffect, useState, useContext } from "react";
 import { getLocalStorage, setLocalStorage } from 'utils/storage'
 
-interface ColorSchemeContext {
+interface ColorSchemeContextState {
     colorScheme: 'dark' | 'light';
     toggleColorScheme: () => void;
 }
 
-const ColorSchemeContext = createContext({} as ColorSchemeContext);
+const ColorSchemeContext = createContext({} as ColorSchemeContextState);
 
 const ColorSchemeContextProvider = ({ children }: { children: ReactNode }) => {
     const userTheme = getLocalStorage('color-theme');
@@ -29,16 +29,11 @@ const ColorSchemeContextProvider = ({ children }: { children: ReactNode }) => {
     }
     const [colorScheme, setColorScheme] = useState<'dark' | 'light'>(checkTheme());
 
-    // useEffect(() => {
-    //     setLocalStorage('color-theme', colorScheme);
-    //     colorScheme === 'dark' ? document.documentElement.classList.add('dark') : document.documentElement.classList.remove('dark');
-    // }, [colorScheme])
-
     const toggleColorScheme = () => {
-        const test = colorScheme === 'dark' ? 'light' : 'dark';
-        setColorScheme(test);
-        setLocalStorage('color-theme', test);
-        if (test === 'dark') {
+        const newColorTheme = colorScheme === 'dark' ? 'light' : 'dark';
+        setColorScheme(newColorTheme);
+        setLocalStorage('color-theme', newColorTheme);
+        if (newColorTheme === 'dark') {
             if (typeof window !== 'undefined') {
                 window.document.documentElement.classList.add('dark')
             }

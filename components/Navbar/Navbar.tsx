@@ -110,7 +110,7 @@ export const Navbar = () => {
                           </a>
                         </Link>
                         <Link href='/restaurant/get-started'>
-                          <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg' onClick={() => setMobileNavShown(false)}>
+                          <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg dark:text-white' onClick={() => setMobileNavShown(false)}>
                             For Businesses
                           </a>
                         </Link>
@@ -123,6 +123,7 @@ export const Navbar = () => {
                         </a>
                       </Link>
                     )}
+                    <ColorToggle />
                   </ul>
                 </nav>
               </Transition.Child>
