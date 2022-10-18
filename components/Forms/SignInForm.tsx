@@ -63,11 +63,11 @@ export const SignInForm = ({ setLoading }: { setLoading: (val: boolean) => void 
                     autoComplete="current-password"
                     required={true}
                 />
-                <ErrorMessage
+                {/* <ErrorMessage
                     errors={formState.errors}
                     name="singleErrorInput"
                     render={({ message }) => <p>{message}</p>}
-                />
+                /> */}
                 <div className="flex flex-col items-center mt-6">
                     <SubmitButton
                         text="Sign In"
