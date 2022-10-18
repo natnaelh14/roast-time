@@ -1,12 +1,13 @@
 import { SubmitButton } from "../Button/SubmitButton";
 import { useForm } from "react-hook-form";
-import { sleep } from "utils/helpers";
 import { TextInput } from "components/Forms";
 import TagManager from 'react-gtm-module';
 import { useRouter } from "next/router";
 import axios from 'axios';
 import { UserSession } from "types";
 import { useUserSession } from 'contexts/UserSessionContext';
+import { ErrorMessage } from "@hookform/error-message";
+
 interface FormValues {
     email: string,
     password: string
@@ -15,7 +16,7 @@ interface FormValues {
 export const SignInForm = ({ setLoading }: { setLoading: (val: boolean) => void }) => {
     const router = useRouter();
     const { setSession } = useUserSession();
-    const { control, handleSubmit, formState } = useForm<FormValues>({ mode: "onTouched" });
+    const { control, handleSubmit, setError, formState } = useForm<FormValues>({ mode: "onTouched" });
     const { isSubmitting } = formState;
 
     const onSubmit = async (data: FormValues) => {
@@ -61,6 +62,11 @@ export const SignInForm = ({ setLoading }: { setLoading: (val: boolean) => void 
                     type="password"
                     autoComplete="current-password"
                     required={true}
+                />
+                <ErrorMessage
+                    errors={formState.errors}
+                    name="singleErrorInput"
+                    render={({ message }) => <p>{message}</p>}
                 />
                 <div className="flex flex-col items-center mt-6">
                     <SubmitButton
