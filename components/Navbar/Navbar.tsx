@@ -23,7 +23,7 @@ export const Navbar = () => {
   return (
     <nav className='flex flex-row items-center glass max-h-20 bg-gray-200 dark:bg-blue-dark'>
       <HamburgerIcon handleClick={() => setMobileNavShown(true)} />
-      <Link href='/signin'>
+      <Link href='/'>
         <a className='mt-3' aria-label='Link to Homepage'>
           <Image alt='roastTime logo' src='/logo.png' height={200} width={200} />
         </a>
@@ -41,11 +41,11 @@ export const Navbar = () => {
                 Sign Up
               </a>
             </Link>
-            {/* <Link href='/restaurant/get-started'>
+            <Link href='/restaurant/get-started'>
               <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg dark:text-white'>
                 For Businesses
               </a>
-            </Link> */}
+            </Link>
           </>
         )}
         {(userSession?.isLoggedIn) && (
@@ -118,7 +118,7 @@ export const Navbar = () => {
                     )}
                     {(userSession?.isLoggedIn) && (
                       <Link href='/'>
-                        <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg dark:text-white' onClick={() => { setMobileNavShown(false); }}>
+                        <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg dark:text-white' onClick={() => { setMobileNavShown(false); handleLogout(); }}>
                           Sign Out
                         </a>
                       </Link>

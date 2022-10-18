@@ -1,5 +1,4 @@
 import '../styles/globals.css'
-import { useState, useEffect } from "react";
 import type { AppProps } from 'next/app';
 import Layout from 'components/Layout/Layout';
 import Script from 'next/script';
@@ -9,8 +8,7 @@ import {
   ColorSchemeProvider,
   ColorScheme,
 } from "@mantine/core";
-import theme from 'theme';
-import { setLocalStorage, getLocalStorage } from 'utils/storage';
+import { useLocalStorage } from '@mantine/hooks';
 import { SWRConfig } from "swr";
 import fetchJson from 'utils/fetchJson';
 import { UserSessionContextProvider } from 'contexts/UserSessionContext';
@@ -23,35 +21,14 @@ function MyApp({ Component, pageProps }: AppProps) {
     });
   }
 
-  const [colorScheme, setColorScheme] = useState<ColorScheme>(() => getLocalStorage("color-theme"));
-  const toggleColorScheme = (value?: ColorScheme) => {
-    if (colorScheme === "dark") {
-      document.documentElement.classList.remove('dark');
-    } else {
-      document.documentElement.classList.add('dark');
-    }
-    setColorScheme(colorScheme === "dark" ? "light" : "dark");
-    setLocalStorage("color-theme", colorScheme)
-  }
+  const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
+    key: 'color-scheme',
+    defaultValue: 'light',
+    getInitialValueInEffect: true,
+  });
 
-  useEffect(() => {
-    if (!colorScheme) {
-      setLocalStorage("color-theme", "dark")
-      setColorScheme("dark")
-    }
-    // else {
-    //   if (colorScheme === "dark") {
-    //     document.documentElement.classList.remove('dark');
-    //   } else {
-    //     document.documentElement.classList.add('dark');
-    //   }
-    // }
-  }, [colorScheme])
-  // if (colorScheme === "dark") {
-  //   window.document.documentElement.classList.remove('dark');
-  // } else {
-  //   window.document.documentElement.classList.add('dark');
-  // }
+  const toggleColorScheme = (value?: ColorScheme) =>
+    setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'));
 
   return (
     <div className='m-6'>
@@ -68,7 +45,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             colorScheme={colorScheme}
             toggleColorScheme={toggleColorScheme}
           >
-            <MantineProvider theme={theme}>
+            <MantineProvider theme={{ colorScheme }} withGlobalStyles withNormalizeCSS>
               <Layout>
                 <Component {...pageProps} />
               </Layout>
@@ -76,19 +53,6 @@ function MyApp({ Component, pageProps }: AppProps) {
           </ColorSchemeProvider>
         </SWRConfig>
       </UserSessionContextProvider>
-      {/* <Script
-        strategy="afterInteractive"
-        id='darkThemeToggle'
-        dangerouslySetInnerHTML={{
-          __html: `
-              if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                document.documentElement.classList.add('dark');
-            } else {
-                document.documentElement.classList.remove('dark')
-            }
-            `
-        }}
-      /> */}
       {/* Google Tag Manager */}
       <Script
         strategy="afterInteractive"
