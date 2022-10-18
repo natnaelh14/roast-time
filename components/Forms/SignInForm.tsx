@@ -7,17 +7,17 @@ import { useRouter } from "next/router";
 import axios from 'axios';
 import { UserSession } from "types";
 import { useUserSession } from 'contexts/UserSessionContext';
-
 interface FormValues {
     email: string,
     password: string
 }
 
-export const SignInForm = () => {
+export const SignInForm = ({ setLoading }: { setLoading: (val: boolean) => void }) => {
     const router = useRouter();
     const { setSession } = useUserSession();
     const { control, handleSubmit, formState } = useForm<FormValues>({ mode: "onTouched" });
     const { isSubmitting } = formState;
+
     const onSubmit = async (data: FormValues) => {
         try {
             const { data: userData } = await axios.post<UserSession>("/api/auth/login", data)
@@ -30,6 +30,7 @@ export const SignInForm = () => {
                         email: data.email,
                     },
                 });
+                setLoading(true)
                 router.push('/orders');
             }
         }
