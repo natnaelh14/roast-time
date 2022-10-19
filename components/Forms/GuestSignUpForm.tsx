@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import Swal from 'sweetalert2';
 import { UserSession } from "types";
 import { useUserSession } from 'contexts/UserSessionContext';
+import { useState } from 'react';
 
 interface GuestSignUpFormValues {
     first_name: string,
@@ -17,10 +18,12 @@ interface GuestSignUpFormValues {
 
 export const GuestSignUpForm = ({ setLoading }: { setLoading: (val: boolean) => void }) => {
     const router = useRouter();
+    const [errorMessage, setErrorMessage] = useState('');
     const { setSession } = useUserSession();
     const { control, handleSubmit, formState } = useForm<GuestSignUpFormValues>({ mode: "onTouched" });
     const { isSubmitting } = formState;
     const onSubmit = async (data: GuestSignUpFormValues) => {
+        setErrorMessage('');
         try {
             const { data: userData } = await axios.post<UserSession>("/api/auth/signup", data)
             if (userData?.isLoggedIn) {
@@ -38,7 +41,7 @@ export const GuestSignUpForm = ({ setLoading }: { setLoading: (val: boolean) => 
                 router.push('/orders');
             }
         } catch (e) {
-            console.error('unable to register user.')
+            setErrorMessage('Unable to register user, please try again')
         }
     }
     return (
@@ -83,6 +86,9 @@ export const GuestSignUpForm = ({ setLoading }: { setLoading: (val: boolean) => 
                     autoComplete="new-password"
                     required={true}
                 />
+                {errorMessage && (
+                    <p className='text-center text-error'>{errorMessage}</p>
+                )}
                 <div className="mt-6 flex justify-center">
                     <SubmitButton
                         text="Sign Up"

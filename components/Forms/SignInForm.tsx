@@ -6,8 +6,7 @@ import { useRouter } from "next/router";
 import axios from 'axios';
 import { UserSession } from "types";
 import { useUserSession } from 'contexts/UserSessionContext';
-import { ErrorMessage } from "@hookform/error-message";
-
+import { useState } from 'react';
 interface FormValues {
     email: string,
     password: string
@@ -15,11 +14,13 @@ interface FormValues {
 
 export const SignInForm = ({ setLoading }: { setLoading: (val: boolean) => void }) => {
     const router = useRouter();
+    const [errorMessage, setErrorMessage] = useState('')
     const { setSession } = useUserSession();
     const { control, handleSubmit, setError, formState } = useForm<FormValues>({ mode: "onTouched" });
     const { isSubmitting } = formState;
 
     const onSubmit = async (data: FormValues) => {
+        setErrorMessage('');
         try {
             const { data: userData } = await axios.post<UserSession>("/api/auth/login", data)
             if (userData?.isLoggedIn) {
@@ -36,7 +37,8 @@ export const SignInForm = ({ setLoading }: { setLoading: (val: boolean) => void 
             }
         }
         catch (e) {
-            console.error("Unable to log in")
+            // setError('email', { message: 'Opss No go' })
+            setErrorMessage("Unable to log in, Please try again")
         }
     };
     return (
@@ -68,6 +70,9 @@ export const SignInForm = ({ setLoading }: { setLoading: (val: boolean) => void 
                     name="singleErrorInput"
                     render={({ message }) => <p>{message}</p>}
                 /> */}
+                {errorMessage && (
+                    <p className='text-center text-error'>{errorMessage}</p>
+                )}
                 <div className="flex flex-col items-center mt-6">
                     <SubmitButton
                         text="Sign In"
