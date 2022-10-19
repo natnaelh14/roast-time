@@ -54,9 +54,11 @@ export interface UserSession {
 }
 
 export interface SessionAccount {
-  firstName?: string,
-  lastName?: string,
-  emailAddress?: string
+  first_name: string,
+  last_name: string,
+  email: string,
+  phone_number: string,
+  account_type: string
 }
 
 export interface ErrorResponse {

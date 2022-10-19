@@ -13,7 +13,6 @@ const ColorSchemeContextProvider = ({ children }: { children: ReactNode }) => {
     const userTheme = getLocalStorage('color-theme');
     const systemDarkTheme = getSystemDarkTheme();
     const checkTheme = () => {
-        console.log("HARD", systemDarkTheme)
         if (userTheme === 'dark' || (!userTheme && systemDarkTheme)) {
             if (typeof window !== 'undefined') {
                 document.documentElement.classList.add('dark');
