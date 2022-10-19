@@ -1,5 +1,5 @@
 import styles from 'styles/ColorToggle.module.css';
-import { useColorScheme } from 'contexts/colorSchemeContext.tsx';
+import { useColorScheme } from 'contexts/ColorSchemeContext';
 
 const ColorToggle = () => {
     const { colorScheme, toggleColorScheme } = useColorScheme();
