@@ -6,7 +6,7 @@ import TagManager from 'react-gtm-module';
 import { SWRConfig } from "swr";
 import fetchJson from 'utils/fetchJson';
 import { UserSessionContextProvider } from 'contexts/UserSessionContext';
-import { ColorSchemeContextProvider } from 'contexts/colorSchemeContext'
+import { ColorSchemeContextProvider } from 'contexts/ColorSchemeContext';
 
 function MyApp({ Component, pageProps }: AppProps) {
   // eslint-disable-next-line
