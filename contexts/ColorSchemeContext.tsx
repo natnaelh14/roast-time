@@ -1,5 +1,6 @@
-import { createContext, ReactNode, useEffect, useState, useContext } from "react";
+import { createContext, ReactNode, useState, useContext } from "react";
 import { getLocalStorage, setLocalStorage } from 'utils/storage'
+import { getSystemDarkTheme } from 'utils/helpers';
 
 interface ColorSchemeContextState {
     colorScheme: 'dark' | 'light';
@@ -10,13 +11,10 @@ const ColorSchemeContext = createContext({} as ColorSchemeContextState);
 
 const ColorSchemeContextProvider = ({ children }: { children: ReactNode }) => {
     const userTheme = getLocalStorage('color-theme');
-    let systemTheme = false;
-    // if (typeof window !== 'undefined') {
-    //     systemTheme = window.matchMedia("(prefer-color-scheme: dark)").matches;
-    // }
-
+    const systemDarkTheme = getSystemDarkTheme();
     const checkTheme = () => {
-        if (userTheme === 'dark' || (!userTheme && systemTheme)) {
+        console.log("HARD", systemDarkTheme)
+        if (userTheme === 'dark' || (!userTheme && systemDarkTheme)) {
             if (typeof window !== 'undefined') {
                 document.documentElement.classList.add('dark');
             }
