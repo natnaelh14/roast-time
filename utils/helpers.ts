@@ -5,3 +5,10 @@ export function classNames(...classes: unknown[]): string {
 
 export const sleep = (ms: number) =>
   new Promise((resolve) => setTimeout(resolve, ms));
+
+export const getSystemDarkTheme = () => {
+      if (typeof window !== 'undefined') {
+        return window.matchMedia('(prefers-color-scheme: dark)').matches;
+    }
+    return false;
+}
