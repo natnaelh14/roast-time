@@ -51,14 +51,26 @@ export interface UserSession {
   isLoggedIn: boolean,
   accessToken?: string,
   account?: SessionAccount
+  restaurant?: Restaurant
 }
 
 export interface SessionAccount {
+  id: number,
   first_name: string,
   last_name: string,
   email: string,
   phone_number: string,
-  account_type: string
+  account_type: 'guest' | 'restaurant',
+  restaurant_id?: number
+}
+
+export interface Restaurant {
+  id: number,
+  restaurant_name: string,
+  restaurant_street_name: string,
+  restaurant_city: string,
+  restaurant_state: string,
+  restaurant_zip_code: string,
 }
 
 export interface ErrorResponse {
