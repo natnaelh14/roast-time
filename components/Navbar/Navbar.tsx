@@ -49,11 +49,18 @@ export const Navbar = () => {
           </>
         )}
         {(userSession?.isLoggedIn) && (
-          <Link href='#'>
-            <a onClick={() => { handleLogout() }} className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg dark:text-white'>
-              Sign Out
-            </a>
-          </Link>
+          <>
+            <Link href='/orders'>
+              <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg dark:text-white'>
+                Orders
+              </a>
+            </Link>
+            <Link href='#'>
+              <a onClick={() => { handleLogout() }} className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg dark:text-white'>
+                Sign Out
+              </a>
+            </Link>
+          </>
         )}
         <ColorToggle />
       </div>
@@ -117,11 +124,19 @@ export const Navbar = () => {
                       </>
                     )}
                     {(userSession?.isLoggedIn) && (
-                      <Link href='/'>
-                        <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg dark:text-white' onClick={() => { setMobileNavShown(false); handleLogout(); }}>
-                          Sign Out
-                        </a>
-                      </Link>
+                      <>
+
+                        <Link href='/orders'>
+                          <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg dark:text-white'>
+                            Orders
+                          </a>
+                        </Link>
+                        <Link href='/'>
+                          <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg dark:text-white' onClick={() => { setMobileNavShown(false); handleLogout(); }}>
+                            Sign Out
+                          </a>
+                        </Link>
+                      </>
                     )}
                     <ColorToggle />
                   </ul>
