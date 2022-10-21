@@ -4,7 +4,7 @@ interface HamburgerIconProps {
     handleClick: () => void
 }
 
-const HamburgerIcon = ({ handleClick }: HamburgerIconProps) => {
+export const HamburgerIcon = ({ handleClick }: HamburgerIconProps) => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -25,4 +25,3 @@ const HamburgerIcon = ({ handleClick }: HamburgerIconProps) => {
     )
 }
 
-export default HamburgerIcon
