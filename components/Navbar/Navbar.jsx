@@ -50,7 +50,7 @@ export const Navbar = () => {
           </>
         )}
         {(userSession?.isLoggedIn) && (
-          <GuestAccount handleLogout={handleLogout} />
+          <GuestAccount />
         )}
         <ColorToggle />
       </div>

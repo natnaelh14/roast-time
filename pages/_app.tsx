@@ -44,7 +44,7 @@ function MyApp({ Component, pageProps }: AppProps) {
               'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
               })(window,document,'script','dataLayer','GTM-MQ9LW45');`}
       </Script>
-      <Script src="../path/to/flowbite/dist/flowbite.js"></Script>
+      <Script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></Script>
       {/* Flowbite Datepicker */}
       <Script src="https://unpkg.com/flowbite@1.5.3/dist/datepicker.js"></Script>
     </div>
