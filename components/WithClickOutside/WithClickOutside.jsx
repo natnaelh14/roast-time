@@ -3,13 +3,10 @@ import { GuestAccountProps } from 'types';
 
 const WithClickOutside = (WrappedComponent) => {
     // eslint-disable-next-line react/display-name
-    return () => {
-        // eslint-disable-next-line react-hooks/rules-of-hooks
+    const Component = () => {
         const [isDropDownHidden, setDropDownHidden] = useState(true);
 
-        // eslint-disable-next-line react-hooks/rules-of-hooks
         const ref = useRef();
-        // eslint-disable-next-line react-hooks/rules-of-hooks
         useEffect(() => {
             const handleClickOutside = (event) => {
                 if (!ref?.current?.contains(event.target)) {
@@ -20,7 +17,7 @@ const WithClickOutside = (WrappedComponent) => {
         }, [ref]);
         return <WrappedComponent isDropDownHidden={isDropDownHidden} setDropDownHidden={setDropDownHidden} ref={ref} />;
     }
-    // return Component;
+    return Component;
 }
 
 export default WithClickOutside;
