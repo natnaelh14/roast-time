@@ -8,9 +8,7 @@ module.exports = {
   ],
   theme: {
     extend: {
-      backgroundImage:{
-        close: "url(/images/close.png)"
-      },
+      backgroundImage:{},
       colors: {
         gray: {
           100: "#fafafa",
@@ -23,6 +21,8 @@ module.exports = {
           background: "#202224"
         },
         blue: {
+          light: '#4B5563',
+          primary: '#374151',
           dark: "#253443"
         },
         orange: {

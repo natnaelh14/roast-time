@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useState, Fragment } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import HamburgerIcon from './HamburgerIcon';
+import { HamburgerIcon, CloseIcon, UpcomingReservationsIcon } from 'components/Icons';
 import { Dialog, Transition } from "@headlessui/react";
 import ColorToggle from 'components/ColorToggle/ColorToggle';
 import { useRouter } from "next/router";
@@ -50,7 +50,10 @@ export const Navbar = () => {
           </>
         )}
         {(userSession?.isLoggedIn) && (
-          <GuestAccount />
+          <>
+            <UpcomingReservationsIcon />
+            <GuestAccount />
+          </>
         )}
         <ColorToggle />
       </div>
@@ -86,9 +89,10 @@ export const Navbar = () => {
                 <nav className="pointer-events-auto fixed inset-y-0 left-0 h-screen w-64 bg-white dark:bg-blue-dark text-2xl">
                   <button
                     aria-label="close navigation"
-                    className="mt-6 ml-6 h-[48px] w-[48px] bg-close bg-contain bg-no-repeat"
+                    className="mt-6 ml-6 h-[40px] w-[40px]"
                     onClick={() => setMobileNavShown(false)}
                   >
+                   <CloseIcon />
                     <span className="sr-only">Close panel</span>
                   </button>
                   <ul
