@@ -8,6 +8,7 @@ import ColorToggle from 'components/ColorToggle/ColorToggle';
 import { useRouter } from "next/router";
 import { useUserSession } from 'contexts/UserSessionContext';
 import { getSession } from 'components/api/api';
+import GuestAccount from './GuestAccount';
 
 export const Navbar = () => {
   const router = useRouter();
@@ -32,35 +33,24 @@ export const Navbar = () => {
         {(!userSession?.isLoggedIn) && (
           <>
             <Link href='/signin'>
-              <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg dark:text-white'>
+              <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-base dark:text-white'>
                 Sign In
               </a>
             </Link>
             <Link href='/signup'>
-              <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg dark:text-white'>
+              <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-base dark:text-white'>
                 Sign Up
               </a>
             </Link>
             <Link href='/restaurant/get-started'>
-              <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg dark:text-white'>
+              <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-base dark:text-white'>
                 For Businesses
               </a>
             </Link>
           </>
         )}
         {(userSession?.isLoggedIn) && (
-          <>
-            <Link href='/orders'>
-              <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg dark:text-white'>
-                Orders
-              </a>
-            </Link>
-            <Link href='#'>
-              <a onClick={() => { handleLogout() }} className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg dark:text-white'>
-                Sign Out
-              </a>
-            </Link>
-          </>
+          <GuestAccount />
         )}
         <ColorToggle />
       </div>
@@ -107,17 +97,17 @@ export const Navbar = () => {
                     {(!userSession?.isLoggedIn) && (
                       <>
                         <Link href='/signin'>
-                          <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg dark:text-white' onClick={() => setMobileNavShown(false)}>
+                          <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-base dark:text-white' onClick={() => setMobileNavShown(false)}>
                             Sign In
                           </a>
                         </Link>
                         <Link href='/signup'>
-                          <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg dark:text-white' onClick={() => setMobileNavShown(false)}>
+                          <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-base dark:text-white' onClick={() => setMobileNavShown(false)}>
                             Sign Up
                           </a>
                         </Link>
                         <Link href='/restaurant/get-started'>
-                          <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg dark:text-white' onClick={() => setMobileNavShown(false)}>
+                          <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-base dark:text-white' onClick={() => setMobileNavShown(false)}>
                             For Businesses
                           </a>
                         </Link>
@@ -125,14 +115,28 @@ export const Navbar = () => {
                     )}
                     {(userSession?.isLoggedIn) && (
                       <>
-
-                        <Link href='/orders'>
-                          <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg dark:text-white'>
-                            Orders
+                        <Link href='/profile'>
+                          <a onClick={() => setMobileNavShown(false)} className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-base dark:text-white'>
+                            My Profile
+                          </a>
+                        </Link>
+                        <Link href='/restaurant/upcoming-reservations'>
+                          <a onClick={() => setMobileNavShown(false)} className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-base dark:text-white'>
+                            Upcoming reservations
+                          </a>
+                        </Link>
+                        <Link href='/restaurant/dining-history'>
+                          <a onClick={() => setMobileNavShown(false)} className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-base dark:text-white'>
+                            My Dining History
+                          </a>
+                        </Link>
+                        <Link href='/restaurant/saved-restaurants'>
+                          <a onClick={() => setMobileNavShown(false)} className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-base dark:text-white'>
+                            My Saved Restaurants
                           </a>
                         </Link>
                         <Link href='/'>
-                          <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-lg dark:text-white' onClick={() => { setMobileNavShown(false); handleLogout(); }}>
+                          <a className='m-2 p-2 hover:underline hover:text-pink-primary decoration-pink-primary decoration-4 underline-offset-8 text-base dark:text-white' onClick={() => { setMobileNavShown(false); handleLogout(); }}>
                             Sign Out
                           </a>
                         </Link>

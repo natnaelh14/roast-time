@@ -1,5 +1,5 @@
 import { FieldValues, UseControllerProps } from "react-hook-form";
-  import { ComponentPropsWithoutRef } from "react";
+  import { ComponentPropsWithoutRef, RefObject } from "react";
 import { Session } from "node:inspector";
 
 export interface TextInputProps<T extends FieldValues>
@@ -75,4 +75,10 @@ export interface Restaurant {
 
 export interface ErrorResponse {
   message: string
+}
+
+export interface GuestAccountProps {
+  handleLogout: () => void,
+  isDropDownHidden: boolean,
+  setDropDownHidden: (val: boolean) => void,
 }
