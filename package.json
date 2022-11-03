@@ -8,6 +8,7 @@
     "start": "next start -p $PORT",
     "lint": "next lint",
     "test": "jest --watch",
+    "coverage": "jest --coverage --watch --collectCoverageFrom='!/**?*.{types,test, spec}.{ts, tsx'",
     "tailwind-config-viewer": "tailwind-config-viewer -o"
   },
   "author": "Natnael Haile",
@@ -49,6 +50,7 @@
     "eslint-config-next": "12.2.5",
     "jest": "^28.1.3",
     "jest-environment-jsdom": "^28.1.3",
+    "msw": "^0.47.4",
     "postcss": "^8.4.16",
     "tailwindcss": "^3.1.8",
     "typescript": "4.7.4"
