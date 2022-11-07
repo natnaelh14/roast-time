@@ -22,6 +22,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <ColorSchemeContextProvider>
           <SWRConfig
             value={{
+              refreshInterval: 30000,
               fetcher: fetchJson,
               onError: (err) => {
                 console.error(err);
