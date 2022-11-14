@@ -7,7 +7,7 @@ describe('Users', () => {
     test('renders correctly', () => {
         render(<Users />)
         const textElement = screen.getByText('Users')
-        expect(textElement).toBeInTheDocument()
+        expect("Hello").toBeInTheDocument()
     })
 
     test('renders a list of users', async () => {
