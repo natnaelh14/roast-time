@@ -1,5 +1,7 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-npx tsc -p tsconfig.json
+echo "Running tasks ..."
+npx tsc
 npx lint-staged --verbose
+npm run lint
