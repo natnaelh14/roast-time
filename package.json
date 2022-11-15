@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start -p $PORT",
     "lint": "next lint",
-    "test": "jest --watch",
+    "test": "jest",
     "coverage": "jest --coverage=true",
     "tailwind-config-viewer": "tailwind-config-viewer -o",
     "prepare": "husky install"
@@ -70,8 +70,7 @@
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx}": [
       "eslint --fix",
-      "prettier --write",
-      "jest test --watchAll=false --bail"
+      "prettier --write"
     ]
   }
 }
