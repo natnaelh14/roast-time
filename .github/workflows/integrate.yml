@@ -1,4 +1,4 @@
-name: RoastTime Continuous Integration
+name: roastTime continuous integration
 
 on:
   pull_request:

@@ -1,6 +1,5 @@
 import { FieldValues, UseControllerProps } from "react-hook-form";
-  import { ComponentPropsWithoutRef, RefObject } from "react";
-import { Session } from "node:inspector";
+import { ComponentPropsWithoutRef } from "react";
 
 export interface TextInputProps<T extends FieldValues>
   extends UseControllerProps<T>,
@@ -41,44 +40,43 @@ export interface SelectOptionProps {
 }
 
 export interface menuItemValues {
-  id: number,
-  title: string,
-  price: number,
-  description?: string
+  id: number;
+  title: string;
+  price: number;
+  description?: string;
 }
 
 export interface UserSession {
-  isLoggedIn: boolean,
-  accessToken?: string,
-  account?: SessionAccount
-  restaurant?: Restaurant
-}
-
-export interface SessionAccount {
-  id: number,
-  first_name: string,
-  last_name: string,
-  email: string,
-  phone_number: string,
-  account_type: 'guest' | 'restaurant',
-  restaurant_id?: number
+  isLoggedIn: boolean;
+  accessToken?: string;
+  account?: SessionAccount;
 }
 
 export interface Restaurant {
-  id: number,
-  restaurant_name: string,
-  restaurant_street_name: string,
-  restaurant_city: string,
-  restaurant_state: string,
-  restaurant_zip_code: string,
+  id: number;
+  name: string;
+  address: string;
+  city: string;
+  state: string;
+  zipCode: string;
+  userId?: number;
+}
+export interface SessionAccount {
+  id: number;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phoneNumber: string;
+  accountType: "GUEST" | "RESTAURANT";
+  restaurant?: Restaurant;
 }
 
 export interface ErrorResponse {
-  message: string
+  message: string;
 }
 
 export interface GuestAccountProps {
-  handleLogout: () => void,
-  isDropDownHidden: boolean,
-  setDropDownHidden: (val: boolean) => void,
+  handleLogout: () => void;
+  isDropDownHidden: boolean;
+  setDropDownHidden: (val: boolean) => void;
 }
