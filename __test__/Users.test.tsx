@@ -1,29 +1,29 @@
-import { act, render, screen, waitFor } from "@testing-library/react";
-import { Users } from "components/Users/Users";
-import { rest } from "msw";
-import { server } from "mocks/server";
+import { render, screen, waitFor } from '@testing-library/react';
+import { Users } from 'components/Users/Users';
+import { rest } from 'msw';
+import { server } from 'mocks/server';
 
-describe("Users", () => {
-  test.skip("renders correctly", async () => {
+describe('Users', () => {
+  test.skip('renders correctly', async () => {
     render(<Users />);
     await waitFor(async () => {
-      const textElement = screen.getByText("Users");
+      const textElement = screen.getByText('Users');
       expect(textElement).toBeInTheDocument();
     });
   });
 
-  test.skip("renders a list of users", async () => {
+  test.skip('renders a list of users', async () => {
     render(<Users />);
     await waitFor(async () => {
-      const users = await screen.findAllByRole("listitem");
+      const users = await screen.findAllByRole('listitem');
       expect(users).toHaveLength(3);
     });
   });
 
-  test.skip("renders error", async () => {
+  test.skip('renders error', async () => {
     server.use(
       rest.get(
-        "https://jsonplaceholder.typicode.com/users",
+        'https://jsonplaceholder.typicode.com/users',
         (req, res, ctx) => {
           return res(ctx.status(500));
         }
@@ -31,7 +31,7 @@ describe("Users", () => {
     );
     render(<Users />);
     await waitFor(async () => {
-      const error = await screen.findByText("Error fetching users");
+      const error = await screen.findByText('Error fetching users');
       expect(error).toBeInTheDocument();
     });
   });
