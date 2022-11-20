@@ -1,13 +1,13 @@
-import React from 'react';
 import SearchBar from 'components/SearchBar/SearchBar';
+import React from 'react';
 
 const Banner = () => {
-    return (
-        <div className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-black h-[200px] md:h-[300px] banner flex flex-col justify-center items-center text-center">
-            <p className='m-3'>Lets find you the best coffee shop</p>
-            <SearchBar />
-        </div>
-    )
-}
+  return (
+    <div className="banner flex h-[200px] flex-col items-center justify-center text-center text-xl font-black sm:text-2xl md:h-[300px] md:text-4xl lg:text-5xl">
+      <p className="m-3">Lets find you the best coffee shop</p>
+      <SearchBar />
+    </div>
+  );
+};
 
-export default Banner
+export default Banner;

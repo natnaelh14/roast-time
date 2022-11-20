@@ -1,23 +1,22 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app';
+import '../styles/globals.css';
 import Layout from 'components/Layout/Layout';
-import Script from 'next/script';
-import TagManager from 'react-gtm-module';
-import { SWRConfig } from "swr";
 import fetchJson from 'utils/fetchJson';
 import { UserSessionContextProvider } from 'contexts/UserSessionContext';
 import { ColorSchemeContextProvider } from 'contexts/ColorSchemeContext';
+import Script from 'next/script';
+import TagManager from 'react-gtm-module';
+import { SWRConfig } from 'swr';
+import type { AppProps } from 'next/app';
 
 function MyApp({ Component, pageProps }: AppProps) {
-  // eslint-disable-next-line
   if (process.browser) {
     TagManager.initialize({
-      gtmId: "GTM-MQ9LW45",
+      gtmId: 'GTM-MQ9LW45',
     });
   }
 
   return (
-    <div className='m-6'>
+    <div className="m-6">
       <UserSessionContextProvider>
         <ColorSchemeContextProvider>
           <SWRConfig
@@ -36,9 +35,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         </ColorSchemeContextProvider>
       </UserSessionContextProvider>
       {/* Google Tag Manager */}
-      <Script
-        strategy="afterInteractive"
-        id='google-tag-manager'>
+      <Script strategy="afterInteractive" id="google-tag-manager">
         {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
               new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
               j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
@@ -49,7 +46,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       {/* Flowbite Datepicker */}
       <Script src="https://unpkg.com/flowbite@1.5.3/dist/datepicker.js"></Script>
     </div>
-  )
+  );
 }
 
-export default MyApp
+export default MyApp;

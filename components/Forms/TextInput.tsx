@@ -1,11 +1,11 @@
-import { FieldValues, useController } from "react-hook-form";
-import { TextInputProps } from "types";
-import { classNames } from "utils/helpers";
-import { ErrorMessage } from "./ErrorMessage";
-import { FieldDescription } from "./FieldDescription";
+import { ErrorMessage } from './ErrorMessage';
+import { FieldDescription } from './FieldDescription';
+import { TextInputProps } from 'types';
+import { classNames } from 'utils/helpers';
+import { FieldValues, useController } from 'react-hook-form';
 
 export const TextInput = <T extends FieldValues>({
-  type = "text",
+  type = 'text',
   description,
   label,
   ...props
@@ -32,22 +32,22 @@ export const TextInput = <T extends FieldValues>({
           error
             ? `${name}-error`
             : description
-              ? `${name}-description`
-              : undefined
+            ? `${name}-description`
+            : undefined
         }
         className={classNames(
-          "peer inline-block w-full border-0 py-0 pl-0.5 text-base shadow-border-b shadow-gray-300 transition placeholder:text-transparent hover:shadow-border-b-2 hover:shadow-pink-primary focus:shadow-border-b-2 focus:shadow-pink-primary focus:outline-none focus:ring-0 disabled:pointer-events-none disabled:text-gray-300",
-          error && "shadow-error hover:shadow-error focus:shadow-error"
+          'shadow-border-b hover:shadow-border-b-2 focus:shadow-border-b-2 peer inline-block w-full border-0 py-0 pl-0.5 text-base shadow-gray-300 transition placeholder:text-transparent hover:shadow-pink-primary focus:shadow-pink-primary focus:outline-none focus:ring-0 disabled:pointer-events-none disabled:text-gray-300',
+          error && 'shadow-error hover:shadow-error focus:shadow-error',
         )}
       />
       <label
         className={classNames(
-          "font-medium absolute -top-0.5 left-0.5 select-none text-xs md:text-smz transition-all ease-out peer-placeholder-shown:pointer-events-none peer-placeholder-shown:top-5 peer-placeholder-shown:text-xs md:peer-placeholder-shown:text-base peer-required:after:content-['_*'] peer-focus:-top-0.5 peer-focus:text-sm",
+          "md:text-smz absolute -top-0.5 left-0.5 select-none text-xs font-medium transition-all ease-out peer-placeholder-shown:pointer-events-none peer-placeholder-shown:top-5 peer-placeholder-shown:text-xs peer-required:after:content-['_*'] peer-focus:-top-0.5 peer-focus:text-sm md:peer-placeholder-shown:text-base",
           isDisabled
-            ? "pointer-events-none text-gray-300"
+            ? 'pointer-events-none text-gray-300'
             : error
-              ? "text-error"
-              : "text-gray-500"
+            ? 'text-error'
+            : 'text-gray-500',
         )}
         htmlFor={name}
       >

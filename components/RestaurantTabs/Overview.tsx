@@ -1,11 +1,11 @@
-import { Rating } from "components/Rating";
-import React from "react";
-import useSWR from "swr";
 import {
   coffeeShopsFetcher,
   getUrlForCoffeeShops,
-} from "../../libs/coffee-shops";
-import { useRouter } from "next/router";
+} from '../../libs/coffee-shops';
+import { Rating } from 'components/Rating';
+import React from 'react';
+import useSWR from 'swr';
+import { useRouter } from 'next/router';
 
 interface CoffeeShopProps {
   id: number;
@@ -19,12 +19,12 @@ interface CoffeeShopProps {
 }
 
 export const Overview = () => {
-  const latLong = "38.994373%2C-77.029778";
+  const latLong = '38.994373%2C-77.029778';
   const limit = 10;
   const router = useRouter();
-  const id = router.query.id;
+  const { id } = router.query;
   const { data: coffeeShopsData, error } = useSWR(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/restaurant/${id}`
+    `${process.env.NEXT_PUBLIC_BASE_URL}/restaurant/${id}`,
   );
   return (
     <>

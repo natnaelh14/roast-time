@@ -1,0 +1,28 @@
+{
+    "extends": "./tsconfig.json",
+    "include": [
+        "components/**/*.ts",
+        "components/**/*.tsx",
+        "components/**/*.jsx",
+        "pages/**/*.ts",
+        "pages/**/*.tsx",
+        "pages/**/*.js",
+        "contexts/**/*.ts",
+        "contexts/**/*.tsx",
+        "utils/**/*.ts",
+        "utils/**/*.js",
+        "mocks/**/*.ts",
+        "__tests__/**/*.test.tsx",
+        "setupTests.ts",
+        "jest.config.js",
+        "tailwind.config.js",
+        "next.config.js",
+        "postcss.config.js",
+        "next-env.d.ts"
+    ],
+    "exclude": [
+        "node_modules",
+        ".next",
+        "coverage",
+    ]
+}

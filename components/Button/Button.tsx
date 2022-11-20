@@ -1,28 +1,29 @@
-import { ComponentPropsWithoutRef } from "react";
-import { classNames } from "utils/helpers";
+import { classNames } from 'utils/helpers';
+import { ComponentPropsWithoutRef } from 'react';
 
-export interface ButtonProps extends ComponentPropsWithoutRef<"button"> {
-  variant?: "primary" | "secondary" | "tertiary";
+export interface ButtonProps extends ComponentPropsWithoutRef<'button'> {
+  variant?: 'primary' | 'secondary' | 'tertiary';
 }
 
 export const Button = ({
-  variant = "primary",
-  type = "button",
+  variant = 'primary',
+  type = 'button',
   children,
   className,
   ...props
 }: ButtonProps) => {
+  let customButton;
+  if (variant === 'primary') {
+    customButton = 'btn-primary';
+  } else if (variant === 'secondary') {
+    customButton = 'btn-secondary';
+  } else if (variant === 'tertiary') {
+    customButton = 'btn-tertiary';
+  }
   return (
     <button
       {...props}
-      className={classNames(
-        variant === "primary"
-          ? "btn-primary"
-          : variant === "secondary"
-          ? "btn-secondary"
-          : variant === "tertiary" && "btn-tertiary",
-        className
-      )}
+      className={classNames(customButton, className)}
       type={type}
     >
       {children}

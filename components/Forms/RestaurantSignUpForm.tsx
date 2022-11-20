@@ -1,13 +1,12 @@
-import { useState } from "react";
-import axios from "axios";
-import { SubmitButton } from "../Button/SubmitButton";
-import { useForm, SubmitHandler } from "react-hook-form";
-import { sleep } from "utils/helpers";
-import { TextInput } from "./TextInput";
-import { useRouter } from "next/router";
-import { UserSession } from "types";
-import { useUserSession } from "contexts/UserSessionContext";
-import Swal from "sweetalert2";
+import { TextInput } from './TextInput';
+import { SubmitButton } from '../Button/SubmitButton';
+import { UserSession } from 'types';
+import { useUserSession } from 'contexts/UserSessionContext';
+import { useState } from 'react';
+import axios from 'axios';
+import { useForm } from 'react-hook-form';
+import { useRouter } from 'next/router';
+import Swal from 'sweetalert2';
 
 interface RestaurantSignUpFormValues {
   firstName: string;
@@ -28,33 +27,37 @@ export const RestaurantSignUpForm = ({
   setLoading: (val: boolean) => void;
 }) => {
   const router = useRouter();
-  const [errorMessage, setErrorMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState('');
   const { setSession } = useUserSession();
   const { control, handleSubmit, formState } =
-    useForm<RestaurantSignUpFormValues>({ mode: "onTouched" });
+    useForm<RestaurantSignUpFormValues>({ mode: 'onTouched' });
   const { isSubmitting } = formState;
   const onSubmit = async (data: RestaurantSignUpFormValues) => {
-    setErrorMessage("");
+    setErrorMessage('');
     try {
       const { data: userData } = await axios.post<UserSession>(
-        "/api/auth/restaurant/signup",
-        data
+        '/api/auth/restaurant/signup',
+        data,
       );
       if (userData?.isLoggedIn) {
         setSession(userData);
         await Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Congrats! Your account has been created.",
-          color: "#F78888",
-          iconColor: "#F78888",
+          position: 'top-end',
+          icon: 'success',
+          title: 'Congrats! Your account has been created.',
+          color: '#F78888',
+          iconColor: '#F78888',
           showConfirmButton: false,
           timer: 1500,
         });
         setLoading(true);
-        router.push("/orders");
+        router.push('/orders');
       }
-    } catch (e) {}
+    } catch (err) {
+      if (err instanceof Error) {
+        console.log(err.message);
+      }
+    }
   };
   return (
     <div className="flex w-5/6 flex-col items-center justify-between rounded-lg border-2 border-gray-200 bg-white px-16 py-8 lg:w-1/2 xl:w-2/5">
