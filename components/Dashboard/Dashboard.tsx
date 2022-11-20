@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
-import Item from "../Item/Item";
-import useSWR from "swr";
-import { getListOfCoffeeStorePhotos } from "../../libs/coffee-shops";
-import DashboardLoading from "../Loaders/DashboardLoading";
+import Item from '../Item/Item';
+import { getListOfCoffeeStorePhotos } from '../../libs/coffee-shops';
+import DashboardLoading from '../Loaders/DashboardLoading';
+import useSWR from 'swr';
+import React, { useEffect } from 'react';
 
 interface CoffeeShopProps {
   id: number;
@@ -24,7 +24,7 @@ const Dashboard = () => {
 
   // const { data: coffeeShopsData, error } = useSWR(getUrlForCoffeeShops(latLong, limit), coffeeShopsFetcher);
   const { data: coffeeShopsData, error } = useSWR(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/restaurants`
+    `${process.env.NEXT_PUBLIC_BASE_URL}/restaurants`,
   );
 
   useEffect(() => {
@@ -47,12 +47,12 @@ const Dashboard = () => {
             key={item.id}
             id={item.id}
             restaurantName={item.name}
-            restaurantImage={item.imageUrl || ""}
+            restaurantImage={item.imageUrl || ''}
             restaurantStreetName={item.address}
             restaurantCity={item.city}
             restaurantState={item.state}
             restaurantZipCode={item.zipCode}
-            category={"Cafe"}
+            category={'Cafe'}
           />
         );
       })}

@@ -1,7 +1,7 @@
-import axios from "axios";
-import { withIronSessionApiRoute } from "iron-session/next";
-import { NextApiRequest, NextApiResponse } from "next";
-import { sessionOptions } from "utils/config";
+import { sessionOptions } from 'utils/config';
+import axios from 'axios';
+import { withIronSessionApiRoute } from 'iron-session/next';
+import { NextApiRequest, NextApiResponse } from 'next';
 
 interface AuthPayload {
   email: string;
@@ -23,8 +23,8 @@ const signUpRouter = async (req: NextApiRequest, res: NextApiResponse) => {
         firstName,
         lastName,
         phoneNumber,
-        accountType: "GUEST",
-      }
+        accountType: 'GUEST',
+      },
     );
     const user = {
       ...userData,
@@ -34,7 +34,7 @@ const signUpRouter = async (req: NextApiRequest, res: NextApiResponse) => {
     await req.session.save();
     res.status(200).send(user);
   } catch (e) {
-    console.error("unable to register user.");
+    console.error('unable to register user.');
   }
 };
 

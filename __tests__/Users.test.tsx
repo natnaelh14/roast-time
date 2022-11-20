@@ -1,7 +1,7 @@
-import { render, screen, waitFor } from '@testing-library/react';
 import { Users } from 'components/Users/Users';
-import { rest } from 'msw';
 import { server } from 'mocks/server';
+import { render, screen, waitFor } from '@testing-library/react';
+import { rest } from 'msw';
 
 describe('Users', () => {
   test.skip('renders correctly', async () => {
@@ -26,8 +26,8 @@ describe('Users', () => {
         'https://jsonplaceholder.typicode.com/users',
         (req, res, ctx) => {
           return res(ctx.status(500));
-        }
-      )
+        },
+      ),
     );
     render(<Users />);
     await waitFor(async () => {

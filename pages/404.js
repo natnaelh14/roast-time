@@ -13,7 +13,10 @@ const useStyles = createStyles((theme) => ({
     fontSize: 220,
     lineHeight: 1,
     marginBottom: theme.spacing.xl * 1.5,
-    color: theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[2],
+    color:
+      theme.colorScheme === 'dark'
+        ? theme.colors.dark[4]
+        : theme.colors.gray[2],
 
     [theme.fn.smallerThan('sm')]: {
       fontSize: 120,
@@ -25,7 +28,10 @@ const useStyles = createStyles((theme) => ({
     textAlign: 'center',
     fontWeight: 900,
     fontSize: 38,
-
+    color:
+      theme.colorScheme === 'dark'
+        ? theme.colors.dark[4]
+        : theme.colors.gray[2],
     [theme.fn.smallerThan('sm')]: {
       fontSize: 32,
     },
@@ -46,13 +52,20 @@ export default function Custom404() {
     <Container className={classes.root}>
       <div className={classes.label}>404</div>
       <Title className={classes.title}>You have found a secret place.</Title>
-      <Text color="dimmed" size="lg" align="center" className={classes.description}>
-        Unfortunately, this is only a 404 page. You may have mistyped the address, or the page has
-        been moved to another URL.
+      <Text
+        color="dimmed"
+        size="lg"
+        align="center"
+        className={classes.description}
+      >
+        Unfortunately, this is only a 404 page. You may have mistyped the
+        address, or the page has been moved to another URL.
       </Text>
       <Group position="center">
-        <Link href="/" variant="subtle" className=''>
-            <a className='text-pink-primary font-black text-xl'>Take me back to home page</a>
+        <Link href="/" variant="subtle" className="">
+          <a className="text-xl font-black text-pink-primary">
+            Take me back to home page
+          </a>
         </Link>
       </Group>
     </Container>

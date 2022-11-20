@@ -13,7 +13,10 @@ const useStyles = createStyles((theme) => ({
     fontSize: 220,
     lineHeight: 1,
     marginBottom: theme.spacing.xl * 1.5,
-    color: theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[2],
+    color:
+      theme.colorScheme === 'dark'
+        ? theme.colors.dark[4]
+        : theme.colors.gray[2],
 
     [theme.fn.smallerThan('sm')]: {
       fontSize: 120,
@@ -46,13 +49,20 @@ export default function ServerError() {
     <Container className={classes.root}>
       <div className={classes.label}>500</div>
       <Title className={classes.title}>Something bad just happened...</Title>
-      <Text color="dimmed" size="lg" align="center" className={classes.description}>
-      Our servers could not handle your request. Don&apos;t worry, our development team was
-          already notified. Try refreshing the page.
+      <Text
+        color="dimmed"
+        size="lg"
+        align="center"
+        className={classes.description}
+      >
+        Our servers could not handle your request. Don&apos;t worry, our
+        development team was already notified. Try refreshing the page.
       </Text>
       <Group position="center">
-        <Link href="/" variant="subtle" className=''>
-            <a className='text-pink-primary font-black text-xl'>Refresh the page</a>
+        <Link href="/" variant="subtle" className="">
+          <a className="text-xl font-black text-pink-primary">
+            Refresh the page
+          </a>
         </Link>
       </Group>
     </Container>
