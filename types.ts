@@ -49,9 +49,8 @@ export interface Restaurant {
   id: number;
   name: string;
   address: string;
-  city: string;
-  state: string;
-  zipCode: string;
+  category?: string;
+  imageUrl: string;
   userId?: number;
 }
 export interface SessionAccount {

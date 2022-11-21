@@ -9,9 +9,6 @@ interface CoffeeShopProps {
   name: string;
   category?: string;
   address: string;
-  city: string;
-  state: string;
-  zipCode: string;
   imageUrl?: string;
 }
 
@@ -46,9 +43,6 @@ const Dashboard = () => {
             restaurantName={item.name}
             restaurantImage={item.imageUrl || ''}
             restaurantStreetName={item.address}
-            restaurantCity={item.city}
-            restaurantState={item.state}
-            restaurantZipCode={item.zipCode}
             category={item.category || ''}
           />
         );

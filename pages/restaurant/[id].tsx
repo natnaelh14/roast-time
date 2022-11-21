@@ -40,7 +40,7 @@ const Restaurants = () => {
           />
         </div>
       </div>
-      <div className="my-5 flex flex-col items-center lg:flex-row lg:justify-around">
+      <div className="my-5 flex flex-col items-center lg:flex-row lg:items-start lg:justify-around">
         <RestaurantTabs />
         <Reservation />
       </div>

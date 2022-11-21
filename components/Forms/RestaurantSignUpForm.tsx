@@ -1,5 +1,5 @@
-import { TextInput } from './TextInput';
 import { SubmitButton } from '../Button/SubmitButton';
+import { TextInput, LocationSearchInput } from 'components/Forms';
 import { UserSession } from 'types';
 import { useUserSession } from 'contexts/UserSessionContext';
 import { useState } from 'react';
@@ -8,7 +8,7 @@ import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
 import Swal from 'sweetalert2';
 import { classValidatorResolver } from '@hookform/resolvers/class-validator';
-import { Min, IsEmail, IsPhoneNumber, IsPostalCode } from 'class-validator';
+import { Length, IsEmail, IsPhoneNumber } from 'class-validator';
 
 interface RestaurantSignUpFormValues {
   firstName: string;
@@ -17,24 +17,17 @@ interface RestaurantSignUpFormValues {
   email: string;
   password: string;
   name: string;
-  address: string;
-  city: string;
-  state: string;
-  zipCode: string;
 }
 
 class UserFormValues {
   @IsEmail()
   email!: string;
 
-  @Min(10)
+  @Length(10)
   password!: string;
 
   @IsPhoneNumber()
-  phoneNumber!: string;
-
-  @IsPostalCode()
-  zipCode!: string;
+  phoneNumber!: number;
 }
 
 export const RestaurantSignUpForm = ({
@@ -42,6 +35,10 @@ export const RestaurantSignUpForm = ({
 }: {
   setLoading: (val: boolean) => void;
 }) => {
+  const [address, setAddress] = useState<string | undefined>('');
+  const [lat, setLat] = useState<number | undefined>();
+  const [long, setLong] = useState<number | undefined>();
+
   const router = useRouter();
   const [errorMessage, setErrorMessage] = useState('');
   const { setSession } = useUserSession();
@@ -53,10 +50,14 @@ export const RestaurantSignUpForm = ({
   const { isSubmitting } = formState;
   const onSubmit = async (data: RestaurantSignUpFormValues) => {
     setErrorMessage('');
+    console.log({ address, lat, long, data });
+    const imageUrl =
+      'https://images.unsplash.com/photo-1542181961-9590d0c79dab?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNDkxMTF8MHwxfHNlYXJjaHwzMHx8Y29mZmVlJTIwc2hvcHxlbnwwfHx8fDE2NjkwNjQyODg&ixlib=rb-4.0.3&q=80&w=400';
+    const category = 'French';
     try {
       const { data: userData } = await axios.post<UserSession>(
         '/api/auth/restaurant/signup',
-        data,
+        { ...data, address, imageUrl, category },
       );
       if (userData?.isLoggedIn) {
         setSession(userData);
@@ -80,83 +81,58 @@ export const RestaurantSignUpForm = ({
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="w-full">
-      <div className="flex flex-col justify-around md:flex-row">
-        <div>
-          <TextInput
-            control={control}
-            name="firstName"
-            label="First Name"
-            autoComplete="firstName"
-            required={true}
-          />
-          <TextInput
-            control={control}
-            name="lastName"
-            label="Last Name"
-            autoComplete="lastName"
-            required={true}
-          />
-          <TextInput
-            control={control}
-            name="phoneNumber"
-            label="Phone Number"
-            autoComplete="phoneNumber"
-            required={true}
-          />
-          <TextInput
-            control={control}
-            name="email"
-            label="Email"
-            autoComplete="off"
-            required={true}
-          />
-          <TextInput
-            control={control}
-            name="password"
-            label="Password"
-            type="password"
-            autoComplete="new-password"
-            required={true}
-          />
-        </div>
-        <div>
-          <TextInput
-            control={control}
-            name="name"
-            label="Restaurant Name"
-            autoComplete="restaurantName"
-            required={true}
-          />
-          <TextInput
-            control={control}
-            name="address"
-            label="Restaurant Street Name"
-            autoComplete="restaurantStreetName"
-            required={true}
-          />
-          <TextInput
-            control={control}
-            name="city"
-            label="Restaurant City"
-            autoComplete="restaurantCity"
-            required={true}
-          />
-          <TextInput
-            control={control}
-            name="state"
-            label="Restaurant State"
-            autoComplete="restaurantState"
-            required={true}
-          />
-          <TextInput
-            control={control}
-            name="zipCode"
-            label="Restaurant Zip Code"
-            autoComplete="restaurantZipCode"
-            required={true}
-          />
-        </div>
-      </div>
+      <TextInput
+        control={control}
+        name="firstName"
+        label="First Name"
+        autoComplete="firstName"
+        required={true}
+      />
+      <TextInput
+        control={control}
+        name="lastName"
+        label="Last Name"
+        autoComplete="lastName"
+        required={true}
+      />
+      <TextInput
+        type="tel"
+        control={control}
+        name="phoneNumber"
+        label="Phone Number"
+        autoComplete="phoneNumber"
+        required={true}
+      />
+      <TextInput
+        control={control}
+        name="email"
+        label="Email"
+        autoComplete="off"
+        required={true}
+      />
+      <TextInput
+        control={control}
+        name="password"
+        label="Password"
+        type="password"
+        autoComplete="new-password"
+        required={true}
+      />
+      <TextInput
+        control={control}
+        name="name"
+        label="Restaurant Name"
+        autoComplete="restaurantName"
+        required={true}
+      />
+      <LocationSearchInput
+        name="address"
+        label="Restaurant Address"
+        address={address || ''}
+        setAddress={setAddress}
+        setLat={setLat}
+        setLong={setLong}
+      />
       {errorMessage && <p className="text-center text-error">{errorMessage}</p>}
       <div className="mt-6 flex justify-center">
         <SubmitButton

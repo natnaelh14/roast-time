@@ -11,9 +11,8 @@ interface AuthPayload {
   password: string;
   name: string;
   address: string;
-  city: string;
-  state: string;
-  zipCode: string;
+  category: string;
+  imageUrl: string;
 }
 
 const signUpRestaurantRouter = async (
@@ -28,9 +27,8 @@ const signUpRestaurantRouter = async (
     phoneNumber,
     name,
     address,
-    city,
-    state,
-    zipCode,
+    category,
+    imageUrl,
   }: AuthPayload = req.body;
   try {
     const { data: userData } = await axios.post(
@@ -44,9 +42,8 @@ const signUpRestaurantRouter = async (
         accountType: 'RESTAURANT',
         name,
         address,
-        city,
-        state,
-        zipCode,
+        category,
+        imageUrl,
       },
     );
     const user = {

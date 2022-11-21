@@ -16,7 +16,10 @@ module.exports = {
           500: '#858585',
           secondary: '#616161',
           primary: '#303030',
-          background: '#202224',
+          background: {
+            light: '#F8E9E9',
+            dark: '#202224',
+          },
         },
         blue: {
           light: '#4B5563',
