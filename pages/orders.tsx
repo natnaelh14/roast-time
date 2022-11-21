@@ -1,22 +1,25 @@
-import { UserSession } from 'types';
-import { useUserSession } from 'contexts/UserSessionContext';
-import { getSession } from 'components/api/api';
+import { sessionOptions } from 'utils/config';
 import { GetServerSideProps } from 'next';
-import axios from 'axios';
+import { withIronSessionSsr } from 'iron-session/next';
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  // if (!isLoggedIn) {
-  //   return {
-  //     redirect: {
-  //       destination: '/',
-  //       permanent: false,
-  //     },
-  //   }
-  // }
-  return {
-    props: {},
-  };
-};
+export const getServerSideProps: GetServerSideProps = withIronSessionSsr(
+  async ({ req, res }) => {
+    const { user } = req.session;
+
+    if (!user?.isLoggedIn) {
+      return {
+        redirect: {
+          destination: '/',
+          permanent: false,
+        },
+      };
+    }
+    return {
+      props: {},
+    };
+  },
+  sessionOptions,
+);
 
 const Orders = () => {
   return (
