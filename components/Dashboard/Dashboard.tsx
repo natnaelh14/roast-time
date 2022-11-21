@@ -7,10 +7,7 @@ import React, { useEffect } from 'react';
 interface CoffeeShopProps {
   id: number;
   name: string;
-  // categories: {
-  //     name: string
-  // }[],
-  category: string;
+  category?: string;
   address: string;
   city: string;
   state: string;
@@ -52,7 +49,7 @@ const Dashboard = () => {
             restaurantCity={item.city}
             restaurantState={item.state}
             restaurantZipCode={item.zipCode}
-            category={'Cafe'}
+            category={item.category || ''}
           />
         );
       })}

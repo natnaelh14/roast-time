@@ -34,7 +34,9 @@ export const Overview = () => {
           <div className="mt-2 flex flex-row">
             <Rating />
             {/* <p className='ml-4 text-sm text-gray-500'>{findCoffeeStoreById?.categories[0]?.name}{" "}{" "}{findCoffeeStoreById?.categories[1]?.name && <span>&#8226;</span>}{" "}{findCoffeeStoreById?.categories[1]?.name && findCoffeeStoreById?.categories[1]?.name}</p> */}
-            <p className="ml-4 text-sm text-gray-500">Cafe</p>
+            <p className="ml-4 text-sm text-gray-500">
+              {coffeeShopsData.category}
+            </p>
           </div>
           <p className="m-2 leading-relaxed text-gray-500">{`${coffeeShopsData.address}, ${coffeeShopsData.city} ${coffeeShopsData.state} ${coffeeShopsData.zipCode}`}</p>
           <p className="m-2 leading-relaxed text-gray-500">

@@ -1,21 +1,6 @@
 import { RestaurantSignUpForm } from 'components/Forms';
 import ThreeDotsLoading from 'components/Loaders/ThreeDotsLoading';
 import { useState } from 'react';
-import { GetServerSideProps } from 'next';
-
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  // if (session) {
-  //     return {
-  //         redirect: {
-  //             destination: '/',
-  //             permanent: false,
-  //         },
-  //     }
-  // }
-  return {
-    props: {},
-  };
-};
 
 const GetStarted = () => {
   const [loading, setLoading] = useState(false);
@@ -23,7 +8,18 @@ const GetStarted = () => {
 
   return (
     <div className="form-background flex min-h-[800px] w-full flex-row items-center justify-center py-16">
-      <RestaurantSignUpForm setLoading={setLoading} />
+      <div className="flex w-5/6 flex-col items-center justify-between rounded-lg border-2 border-gray-200 bg-white px-16 py-8 lg:w-4/5 xl:w-3/5">
+        <div className="mb-6 text-center">
+          <h1 className="text-center text-xl text-pink-primary md:text-3xl">
+            Get started with RoastTime today.
+          </h1>
+          <p className="mt-1 text-center text-xs text-gray-secondary md:text-base">
+            Fill out the form below and a member of our team will contact you
+            shortly
+          </p>
+        </div>
+        <RestaurantSignUpForm setLoading={setLoading} />
+      </div>
     </div>
   );
 };

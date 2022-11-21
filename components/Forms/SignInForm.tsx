@@ -7,11 +7,21 @@ import TagManager from 'react-gtm-module';
 import { useRouter } from 'next/router';
 import axios from 'axios';
 import { useState } from 'react';
+import { classValidatorResolver } from '@hookform/resolvers/class-validator';
+import { Min, IsEmail } from 'class-validator';
 
 interface FormValues {
   email: string;
   password: string;
 }
+class UserFormValues {
+  @IsEmail()
+  email!: string;
+
+  @Min(10)
+  password!: string;
+}
+const resolver = classValidatorResolver(UserFormValues);
 
 export const SignInForm = ({
   setLoading,
@@ -21,10 +31,15 @@ export const SignInForm = ({
   const router = useRouter();
   const [errorMessage, setErrorMessage] = useState('');
   const { setSession } = useUserSession();
-  const { control, handleSubmit, setError, formState } = useForm<FormValues>({
+  const {
+    control,
+    handleSubmit,
+    setError,
+    formState: { isSubmitting },
+  } = useForm<UserFormValues>({
+    resolver,
     mode: 'onTouched',
   });
-  const { isSubmitting } = formState;
 
   const onSubmit = async (data: FormValues) => {
     setErrorMessage('');
@@ -51,58 +66,46 @@ export const SignInForm = ({
     }
   };
   return (
-    <div className="flex w-5/6 flex-col items-center justify-between rounded-lg border-2 border-gray-200 bg-white px-16 py-8 dark:border-gray-secondary dark:bg-blue-dark md:w-2/3 lg:w-2/5 xl:w-1/3">
-      <div className="mb-6 text-center">
-        <h1 className="text-center text-xl text-pink-primary md:text-3xl">
-          Go ahead, login.
-        </h1>
-        <p className="text center mt-1 text-xs text-gray-secondary dark:text-white md:text-base">
-          Welcome back to RoastTime
-        </p>
-      </div>
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="w-full"
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="w-full"
+      autoComplete="off"
+    >
+      <TextInput
+        control={control}
+        name="email"
+        label="Email"
         autoComplete="off"
-      >
-        <TextInput
-          control={control}
-          name="email"
-          label="Email"
-          autoComplete="off"
-          required={true}
-        />
-        <TextInput
-          control={control}
-          name="password"
-          label="Password"
-          type="password"
-          autoComplete="current-password"
-          required={true}
-        />
-        {/* <ErrorMessage
+        required={true}
+      />
+      <TextInput
+        control={control}
+        name="password"
+        label="Password"
+        type="password"
+        autoComplete="current-password"
+        required={true}
+      />
+      {/* <ErrorMessage
                     errors={formState.errors}
                     name="singleErrorInput"
                     render={({ message }) => <p>{message}</p>}
                 /> */}
-        {errorMessage && (
-          <p className="text-center text-error">{errorMessage}</p>
-        )}
-        <div className="mt-6 flex flex-col items-center">
-          <SubmitButton
-            text="Sign In"
-            submittingText="Signing in..."
-            isSubmitting={isSubmitting}
-            className="w-auto shadow-lg"
-          />
-          <a
-            className="text-md mt-2 block text-center text-pink-primary"
-            href="#"
-          >
-            Forgot your password?
-          </a>
-        </div>
-      </form>
-    </div>
+      {errorMessage && <p className="text-center text-error">{errorMessage}</p>}
+      <div className="mt-6 flex flex-col items-center">
+        <SubmitButton
+          text="Sign In"
+          submittingText="Signing in..."
+          isSubmitting={isSubmitting}
+          className="w-auto shadow-lg"
+        />
+        <a
+          className="text-md mt-2 block text-center text-pink-primary"
+          href="#"
+        >
+          Forgot your password?
+        </a>
+      </div>
+    </form>
   );
 };

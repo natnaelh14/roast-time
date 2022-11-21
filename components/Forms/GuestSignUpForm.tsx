@@ -7,6 +7,8 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import Swal from 'sweetalert2';
 import { useState } from 'react';
+import { classValidatorResolver } from '@hookform/resolvers/class-validator';
+import { Min, IsEmail, IsPhoneNumber } from 'class-validator';
 
 interface GuestSignUpFormValues {
   firstName: string;
@@ -14,6 +16,17 @@ interface GuestSignUpFormValues {
   phoneNumber: string;
   email: string;
   password: string;
+}
+
+class UserFormValues {
+  @IsEmail()
+  email!: string;
+
+  @Min(10)
+  password!: string;
+
+  @IsPhoneNumber()
+  phoneNumber!: string;
 }
 
 export const GuestSignUpForm = ({
@@ -25,6 +38,7 @@ export const GuestSignUpForm = ({
   const [errorMessage, setErrorMessage] = useState('');
   const { setSession } = useUserSession();
   const { control, handleSubmit, formState } = useForm<GuestSignUpFormValues>({
+    resolver: classValidatorResolver(UserFormValues),
     mode: 'onTouched',
   });
   const { isSubmitting } = formState;
@@ -54,61 +68,52 @@ export const GuestSignUpForm = ({
     }
   };
   return (
-    <div className="flex w-5/6 flex-col items-center justify-between rounded-lg border-2 border-gray-200 bg-white px-16 py-8 dark:border-gray-secondary dark:bg-blue-dark lg:w-2/5">
-      <div className="mb-6 text-center">
-        <h1 className="text-xl text-pink-primary md:text-3xl">
-          Get started with RoastTime today.
-        </h1>
+    <form onSubmit={handleSubmit(onSubmit)} className="w-full">
+      <TextInput
+        control={control}
+        name="firstName"
+        label="First Name"
+        autoComplete="firstName"
+        required={true}
+      />
+      <TextInput
+        control={control}
+        name="lastName"
+        label="Last Name"
+        autoComplete="lastName"
+        required={true}
+      />
+      <TextInput
+        control={control}
+        name="phoneNumber"
+        label="Phone Number"
+        autoComplete="phoneNumber"
+        required={true}
+      />
+      <TextInput
+        control={control}
+        name="email"
+        label="Email"
+        autoComplete="email"
+        required={true}
+      />
+      <TextInput
+        control={control}
+        name="password"
+        label="Password"
+        type="password"
+        autoComplete="new-password"
+        required={true}
+      />
+      {errorMessage && <p className="text-center text-error">{errorMessage}</p>}
+      <div className="mt-6 flex justify-center">
+        <SubmitButton
+          text="Sign Up"
+          submittingText="Signing up..."
+          isSubmitting={isSubmitting}
+          className="w-auto shadow-lg"
+        />
       </div>
-      <form onSubmit={handleSubmit(onSubmit)} className="w-full">
-        <TextInput
-          control={control}
-          name="firstName"
-          label="First Name"
-          autoComplete="firstName"
-          required={true}
-        />
-        <TextInput
-          control={control}
-          name="lastName"
-          label="Last Name"
-          autoComplete="lastName"
-          required={true}
-        />
-        <TextInput
-          control={control}
-          name="phoneNumber"
-          label="Phone Number"
-          autoComplete="phoneNumber"
-          required={true}
-        />
-        <TextInput
-          control={control}
-          name="email"
-          label="Email"
-          autoComplete="email"
-          required={true}
-        />
-        <TextInput
-          control={control}
-          name="password"
-          label="Password"
-          type="password"
-          autoComplete="new-password"
-          required={true}
-        />
-        {errorMessage && (
-          <p className="text-center text-error">{errorMessage}</p>
-        )}
-        <div className="mt-6 flex justify-center">
-          <SubmitButton
-            text="Sign Up"
-            submittingText="Signing up..."
-            isSubmitting={isSubmitting}
-            className="w-auto shadow-lg"
-          />
-        </div>
-      </form>
-    </div>
+    </form>
   );
 };
