@@ -45,6 +45,9 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></Script>
       {/* Flowbite Datepicker */}
       <Script src="https://unpkg.com/flowbite@1.5.3/dist/datepicker.js"></Script>
+      <script
+        src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOLE_MAPS_API_KEY}&libraries=places`}
+      ></script>
     </div>
   );
 }

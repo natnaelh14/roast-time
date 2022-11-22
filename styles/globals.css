@@ -41,15 +41,19 @@ a {
 }
 
 .form-background {
-  background-size: cover; 
+  background-size: cover;
   background-repeat: no-repeat;
-  background-position:center center;
+  background-position: center center;
   background-image: url('/images/coffee.jpg');
 }
 
 @layer components {
   .banner {
-    background: linear-gradient(to right bottom, rgb(173, 115, 108) 0%, rgb(115, 70, 64) 100%);
+    background: linear-gradient(
+      to right bottom,
+      rgb(173, 115, 108) 0%,
+      rgb(115, 70, 64) 100%
+    );
     background-repeat: no-repeat;
   }
   .btn-primary {
@@ -60,7 +64,7 @@ a {
     @apply relative inline-flex min-h-[40px] min-w-[120px] select-none items-center justify-center space-x-2 whitespace-nowrap rounded-md border border-orange-primary bg-white px-6 py-2 text-lg font-bold capitalize leading-6 text-gray-400 shadow-sm transition duration-75 ease-out hover:border-blue-300 hover:bg-orange-primary/5 hover:text-gray-400 active:border-orange-primary active:bg-orange-primary/10 active:text-gray-400 disabled:border-orange-primary disabled:bg-white disabled:text-gray-400;
   }
 
-    .btn-tertiary {
+  .btn-tertiary {
     @apply relative inline-flex min-h-[40px] min-w-[120px] select-none items-center justify-center space-x-2 whitespace-nowrap rounded-md border border-white bg-transparent px-6 py-2 text-lg font-bold capitalize leading-6 text-white hover:cursor-pointer;
   }
 }

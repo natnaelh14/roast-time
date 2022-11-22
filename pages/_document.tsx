@@ -20,7 +20,7 @@ class MyDocument extends Document {
           </noscript>
           {/* End Google Tag Manager (noscript) */}
         </Head>
-        <body className="dark:bg-gray-background">
+        <body className="dark:bg-gray-background-dark">
           <Main />
           <NextScript />
         </body>

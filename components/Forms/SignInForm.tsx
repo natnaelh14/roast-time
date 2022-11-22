@@ -8,7 +8,7 @@ import { useRouter } from 'next/router';
 import axios from 'axios';
 import { useState } from 'react';
 import { classValidatorResolver } from '@hookform/resolvers/class-validator';
-import { Min, IsEmail } from 'class-validator';
+import { IsEmail, Length } from 'class-validator';
 
 interface FormValues {
   email: string;
@@ -18,7 +18,7 @@ class UserFormValues {
   @IsEmail()
   email!: string;
 
-  @Min(10)
+  @Length(10)
   password!: string;
 }
 const resolver = classValidatorResolver(UserFormValues);
@@ -72,6 +72,7 @@ export const SignInForm = ({
       autoComplete="off"
     >
       <TextInput
+        type="email"
         control={control}
         name="email"
         label="Email"
@@ -79,10 +80,10 @@ export const SignInForm = ({
         required={true}
       />
       <TextInput
+        type="password"
         control={control}
         name="password"
         label="Password"
-        type="password"
         autoComplete="current-password"
         required={true}
       />
