@@ -83,7 +83,6 @@ export const RestaurantSignUpForm = ({
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="w-full">
       <TextInput
-        type="text"
         control={control}
         name="firstName"
         label="First Name"
@@ -91,7 +90,6 @@ export const RestaurantSignUpForm = ({
         required={true}
       />
       <TextInput
-        type="text"
         control={control}
         name="lastName"
         label="Last Name"
@@ -123,7 +121,6 @@ export const RestaurantSignUpForm = ({
         required={true}
       />
       <TextInput
-        type="text"
         control={control}
         name="name"
         label="Restaurant Name"
@@ -131,7 +128,6 @@ export const RestaurantSignUpForm = ({
         required={true}
       />
       <TextInput
-        type="text"
         control={control}
         name="category"
         label="Restaurant Category"

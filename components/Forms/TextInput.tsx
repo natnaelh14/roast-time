@@ -25,7 +25,7 @@ export const TextInput = <T extends FieldValues>({
         {...field}
         {...props}
         id={name}
-        type={type}
+        type={type || 'text'}
         placeholder="doNotRemove"
         autoComplete="new-password"
         disabled={isDisabled}

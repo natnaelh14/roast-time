@@ -72,6 +72,7 @@ export const SignInForm = ({
       autoComplete="off"
     >
       <TextInput
+        type="email"
         control={control}
         name="email"
         label="Email"
@@ -79,10 +80,10 @@ export const SignInForm = ({
         required={true}
       />
       <TextInput
+        type="password"
         control={control}
         name="password"
         label="Password"
-        type="password"
         autoComplete="current-password"
         required={true}
       />

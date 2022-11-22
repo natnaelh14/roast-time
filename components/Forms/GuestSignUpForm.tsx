@@ -70,7 +70,6 @@ export const GuestSignUpForm = ({
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="w-full">
       <TextInput
-        type="text"
         control={control}
         name="firstName"
         label="First Name"
@@ -78,7 +77,6 @@ export const GuestSignUpForm = ({
         required={true}
       />
       <TextInput
-        type="text"
         control={control}
         name="lastName"
         label="Last Name"
