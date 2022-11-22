@@ -8,7 +8,7 @@ import { useRouter } from 'next/router';
 import Swal from 'sweetalert2';
 import { useState } from 'react';
 import { classValidatorResolver } from '@hookform/resolvers/class-validator';
-import { Min, IsEmail, IsPhoneNumber } from 'class-validator';
+import { Min, IsEmail, IsMobilePhone } from 'class-validator';
 
 interface GuestSignUpFormValues {
   firstName: string;
@@ -25,7 +25,7 @@ class UserFormValues {
   @Min(10)
   password!: string;
 
-  @IsPhoneNumber()
+  @IsMobilePhone()
   phoneNumber!: string;
 }
 
@@ -70,6 +70,7 @@ export const GuestSignUpForm = ({
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="w-full">
       <TextInput
+        type="text"
         control={control}
         name="firstName"
         label="First Name"
@@ -77,6 +78,7 @@ export const GuestSignUpForm = ({
         required={true}
       />
       <TextInput
+        type="text"
         control={control}
         name="lastName"
         label="Last Name"
@@ -84,6 +86,7 @@ export const GuestSignUpForm = ({
         required={true}
       />
       <TextInput
+        type="tel"
         control={control}
         name="phoneNumber"
         label="Phone Number"
@@ -91,6 +94,7 @@ export const GuestSignUpForm = ({
         required={true}
       />
       <TextInput
+        type="email"
         control={control}
         name="email"
         label="Email"
@@ -98,10 +102,10 @@ export const GuestSignUpForm = ({
         required={true}
       />
       <TextInput
+        type="password"
         control={control}
         name="password"
         label="Password"
-        type="password"
         autoComplete="new-password"
         required={true}
       />

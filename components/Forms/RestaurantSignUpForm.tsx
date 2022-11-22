@@ -8,7 +8,7 @@ import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
 import Swal from 'sweetalert2';
 import { classValidatorResolver } from '@hookform/resolvers/class-validator';
-import { Length, IsEmail, IsPhoneNumber } from 'class-validator';
+import { Length, IsEmail, IsMobilePhone } from 'class-validator';
 
 interface RestaurantSignUpFormValues {
   firstName: string;
@@ -17,6 +17,7 @@ interface RestaurantSignUpFormValues {
   email: string;
   password: string;
   name: string;
+  category: string;
 }
 
 class UserFormValues {
@@ -26,7 +27,7 @@ class UserFormValues {
   @Length(10)
   password!: string;
 
-  @IsPhoneNumber()
+  @IsMobilePhone()
   phoneNumber!: number;
 }
 
@@ -82,6 +83,7 @@ export const RestaurantSignUpForm = ({
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="w-full">
       <TextInput
+        type="text"
         control={control}
         name="firstName"
         label="First Name"
@@ -89,6 +91,7 @@ export const RestaurantSignUpForm = ({
         required={true}
       />
       <TextInput
+        type="text"
         control={control}
         name="lastName"
         label="Last Name"
@@ -104,6 +107,7 @@ export const RestaurantSignUpForm = ({
         required={true}
       />
       <TextInput
+        type="email"
         control={control}
         name="email"
         label="Email"
@@ -111,18 +115,27 @@ export const RestaurantSignUpForm = ({
         required={true}
       />
       <TextInput
+        type="password"
         control={control}
         name="password"
         label="Password"
-        type="password"
         autoComplete="new-password"
         required={true}
       />
       <TextInput
+        type="text"
         control={control}
         name="name"
         label="Restaurant Name"
         autoComplete="restaurantName"
+        required={true}
+      />
+      <TextInput
+        type="text"
+        control={control}
+        name="category"
+        label="Restaurant Category"
+        autoComplete="restaurant category"
         required={true}
       />
       <LocationSearchInput

@@ -50,13 +50,13 @@ export const LocationSearchInput = ({ ...props }: LocationSearchInputProps) => {
               className: `${styles.locationSearchInput}`,
             })}
             className={classNames(
-              'shadow-border-b hover:shadow-border-b-2 focus:shadow-border-b-2 peer mt-2 inline-block w-full rounded-lg border border-slate-300 bg-transparent p-2 text-base text-gray-500 shadow-gray-300 transition placeholder:text-transparent hover:shadow-pink-primary focus:shadow-pink-primary focus:outline-none focus:ring-0 disabled:pointer-events-none disabled:text-gray-300 dark:border-gray-500 dark:text-white',
+              'shadow-border-b hover:shadow-border-b-2 focus:shadow-border-b-2 peer mt-2 inline-block w-full rounded-lg border border-slate-300 bg-transparent p-2 text-base text-gray-500 shadow-gray-300 transition placeholder:text-transparent hover:shadow-pink-primary focus:shadow-pink-primary focus:outline-none focus:ring-0 disabled:pointer-events-none disabled:text-gray-300 dark:border-gray-500 dark:bg-blue-50  dark:text-black',
             )}
             placeholder="Search Coffee Shop ..."
           />
           <label
             className={classNames(
-              "absolute -top-0.5 left-0.5 select-none text-xs font-medium text-neutral-500 transition-all ease-out peer-placeholder-shown:pointer-events-none peer-placeholder-shown:text-xs peer-required:after:content-['_*'] peer-focus:-top-0.5 peer-focus:text-sm md:text-sm md:peer-placeholder-shown:text-base",
+              "absolute -top-0.5 left-0.5 select-none text-xs font-medium text-neutral-500 transition-all  ease-out peer-placeholder-shown:pointer-events-none peer-placeholder-shown:text-xs peer-required:after:content-['_*'] peer-focus:-top-0.5 peer-focus:text-sm dark:text-neutral-300 md:text-sm md:peer-placeholder-shown:text-base",
             )}
             htmlFor={name}
           >
