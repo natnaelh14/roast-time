@@ -2,7 +2,7 @@ import React from 'react';
 
 const SearchBar = () => {
   return (
-    <form className="m-2 w-fit w-[300px] md:m-6 md:w-[400px]">
+    <form className="m-2 w-[300px] md:m-6 md:w-[400px]">
       <label
         htmlFor="default-search"
         className="sr-only mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
@@ -34,12 +34,6 @@ const SearchBar = () => {
           placeholder="Search Coffee Shops..."
           required
         />
-        <button
-          type="submit"
-          className="absolute right-2.5 bottom-2.5 rounded-md bg-pink-primary px-4 py-2 text-sm font-medium hover:bg-orange-primary focus:outline-none focus:ring-4 focus:ring-blue-300"
-        >
-          Search
-        </button>
       </div>
     </form>
   );

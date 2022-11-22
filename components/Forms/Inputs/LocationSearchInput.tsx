@@ -50,7 +50,7 @@ export const LocationSearchInput = ({ ...props }: LocationSearchInputProps) => {
               className: `${styles.locationSearchInput}`,
             })}
             className={classNames(
-              'shadow-border-b hover:shadow-border-b-2 focus:shadow-border-b-2 peer mt-2 inline-block w-full rounded-lg border border-slate-300 bg-transparent p-2 text-base text-gray-500 shadow-gray-300 transition placeholder:text-transparent hover:shadow-pink-primary focus:shadow-pink-primary focus:outline-none focus:ring-0 disabled:pointer-events-none disabled:text-gray-300 dark:border-gray-500 dark:bg-blue-50  dark:text-black',
+              'shadow-border-b hover:shadow-border-b-2 focus:shadow-border-b-2 peer mt-2 inline-block w-full rounded-lg border  border-slate-300 bg-transparent p-2 text-base text-gray-500 shadow-gray-300 transition placeholder:text-transparent hover:shadow-pink-primary focus:shadow-pink-primary focus:outline-none focus:ring-0 disabled:pointer-events-none disabled:text-gray-300 dark:border-gray-secondary dark:bg-gray-700  dark:text-gray-300',
             )}
             placeholder="Search Coffee Shop ..."
           />
