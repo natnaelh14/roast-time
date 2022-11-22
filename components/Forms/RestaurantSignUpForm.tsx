@@ -1,5 +1,5 @@
 import { SubmitButton } from '../Button/SubmitButton';
-import { TextInput, LocationSearchInput } from 'components/Forms';
+import { TextInput, LocationSearchInput, ImageInput } from 'components/Forms';
 import { UserSession } from 'types';
 import { useUserSession } from 'contexts/UserSessionContext';
 import { useState } from 'react';
@@ -142,6 +142,7 @@ export const RestaurantSignUpForm = ({
         setLat={setLat}
         setLong={setLong}
       />
+      <ImageInput />
       {errorMessage && <p className="text-center text-error">{errorMessage}</p>}
       <div className="mt-6 flex justify-center">
         <SubmitButton

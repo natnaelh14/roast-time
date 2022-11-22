@@ -1,5 +1,5 @@
-import { ErrorMessage } from './ErrorMessage';
-import { FieldDescription } from './FieldDescription';
+import { ErrorMessage } from '../ErrorMessage';
+import { FieldDescription } from '../FieldDescription';
 import { DateInputProps } from 'types';
 import { classNames } from 'utils/helpers';
 import { FieldValues, useController } from 'react-hook-form';
