@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ItemLoading = () => {
+export const ItemLoading = () => {
   return (
     <div>
       <div className="m-8 w-[250px] animate-pulse rounded border border-gray-200 shadow-lg">
@@ -27,5 +27,3 @@ const ItemLoading = () => {
     </div>
   );
 };
-
-export default ItemLoading;

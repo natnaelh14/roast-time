@@ -38,6 +38,9 @@ module.exports = {
         },
         error: '#eb001c',
       },
+      height: {
+        128: '32rem',
+      },
     },
   },
   /* eslint global-require: "off" */

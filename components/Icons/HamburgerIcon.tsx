@@ -1,3 +1,4 @@
+import { useColorScheme } from 'contexts/ColorSchemeContext';
 import React from 'react';
 
 interface HamburgerIconProps {
@@ -5,22 +6,20 @@ interface HamburgerIconProps {
 }
 
 export const HamburgerIcon = ({ handleClick }: HamburgerIconProps) => {
+  const { colorScheme } = useColorScheme();
+
   return (
     <svg
-      xmlns="http://www.w3.org/2000/svg"
-      id="menu-button"
+      viewBox="0 0 100 80"
+      width="40"
+      height="40"
+      fill={`${colorScheme === 'dark' ? '#F78888' : '#858585'}`}
       className="m-4 block h-8 w-8 cursor-pointer md:hidden"
-      fill="#F78888"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
       onClick={handleClick}
     >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="2"
-        d="M4 6h16M4 12h16M4 18h16"
-      />
+      <rect width="100" height="20"></rect>
+      <rect y="30" width="100" height="20"></rect>
+      <rect y="60" width="100" height="20"></rect>
     </svg>
   );
 };

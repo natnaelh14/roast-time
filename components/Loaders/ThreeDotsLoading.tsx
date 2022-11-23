@@ -1,7 +1,7 @@
 import React from 'react';
 import { ThreeDots } from 'react-loader-spinner';
 
-const ThreeDotsLoading = () => {
+export const ThreeDotsLoading = () => {
   return (
     <div className="flex h-[800px] items-center justify-center">
       <ThreeDots
@@ -11,11 +11,8 @@ const ThreeDotsLoading = () => {
         color="#F78888"
         ariaLabel="three-dots-loading"
         wrapperStyle={{}}
-        // wrapperClassName="jj"
         visible={true}
       />
     </div>
   );
 };
-
-export default ThreeDotsLoading;
