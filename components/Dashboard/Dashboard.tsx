@@ -1,7 +1,8 @@
 import Item from '../Item/Item';
 import { getListOfCoffeeStorePhotos } from '../../libs/coffee-shops';
-import DashboardLoading from '../Loaders/DashboardLoading';
-import useSWR from 'swr';
+import { ThreeDotsLoading, DashboardLoading } from '../Loaders';
+import { useRestaurantContext } from 'contexts/RestaurantsContext';
+import RestaurantsEmptyState from 'components/EmptyState/RestaurantsEmptyState';
 import React, { useEffect } from 'react';
 
 interface CoffeeShopProps {
@@ -13,13 +14,7 @@ interface CoffeeShopProps {
 }
 
 const Dashboard = () => {
-  // const latLong = "38.994373%2C-77.029778";
-  // const limit = 10;
-
-  // const { data: coffeeShopsData, error } = useSWR(getUrlForCoffeeShops(latLong, limit), coffeeShopsFetcher);
-  const { data: coffeeShopsData, error } = useSWR(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/restaurants`,
-  );
+  const { restaurants, error, restaurantSearch } = useRestaurantContext();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,24 +24,27 @@ const Dashboard = () => {
     fetchData();
   }, []);
 
-  if (!coffeeShopsData && !error) return <DashboardLoading />;
-  if (error) return <DashboardLoading />;
+  if (!restaurants && !error && !restaurantSearch?.length)
+    return <DashboardLoading />;
+  if (!restaurants && !error && restaurantSearch?.length)
+    return <ThreeDotsLoading />;
+  if (error) return <RestaurantsEmptyState />;
 
   return (
     <div className="mt-5 flex flex-row overflow-x-scroll md:flex-wrap md:justify-center md:overflow-auto">
-      {}
-      {coffeeShopsData.map((item: CoffeeShopProps) => {
-        return (
-          <Item
-            key={item.id}
-            id={item.id}
-            restaurantName={item.name}
-            restaurantImage={item.imageUrl || ''}
-            restaurantStreetName={item.address}
-            category={item.category || ''}
-          />
-        );
-      })}
+      {restaurants &&
+        restaurants.map((item: CoffeeShopProps) => {
+          return (
+            <Item
+              key={item.id}
+              id={item.id}
+              restaurantName={item.name}
+              restaurantImage={item.imageUrl || ''}
+              restaurantStreetName={item.address}
+              category={item.category || ''}
+            />
+          );
+        })}
     </div>
   );
 };

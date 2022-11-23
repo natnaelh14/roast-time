@@ -1,5 +1,5 @@
 import { SignInForm } from 'components/Forms';
-import ThreeDotsLoading from 'components/Loaders/ThreeDotsLoading';
+import { ThreeDotsLoading } from 'components/Loaders';
 import { useState } from 'react';
 
 const SignIn = () => {

@@ -1,5 +1,5 @@
 import { GuestSignUpForm } from 'components/Forms/GuestSignUpForm';
-import ThreeDotsLoading from 'components/Loaders/ThreeDotsLoading';
+import { ThreeDotsLoading } from 'components/Loaders';
 import { useState } from 'react';
 
 const SignUpForm = () => {
