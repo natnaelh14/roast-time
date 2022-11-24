@@ -40,8 +40,7 @@ export const Select = <T extends FieldValues>({
               open && 'shadow-border-b-2 shadow-pink-primary',
               isDisabled && 'pointer-events-none text-gray-300',
             )}
-            {...props}
-          >
+            {...props}>
             <span className="block h-6 truncate">{selectedOption?.label}</span>
           </Listbox.Button>
           <Listbox.Label
@@ -55,8 +54,7 @@ export const Select = <T extends FieldValues>({
                 : error
                 ? 'text-error'
                 : 'text-gray-secondary',
-            )}
-          >
+            )}>
             {label}
           </Listbox.Label>
           <Transition
@@ -64,8 +62,7 @@ export const Select = <T extends FieldValues>({
             as={Fragment}
             leave="transition ease-in duration-100"
             leaveFrom="opacity-100"
-            leaveTo="opacity-0"
-          >
+            leaveTo="opacity-0">
             <Listbox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded bg-white py-2 shadow-md ring-1 ring-black ring-opacity-5 focus:outline-none">
               {options.map((option) => (
                 <SelectOption

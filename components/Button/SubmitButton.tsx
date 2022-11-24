@@ -29,8 +29,7 @@ export const SubmitButton = ({
           ? 'btn-primary'
           : variant === 'secondary' && 'btn-secondary',
         className,
-      )}
-    >
+      )}>
       {isSubmitting ? submittingText : text}
       {isSubmitting && (
         <span className="-mr-1 ml-2">

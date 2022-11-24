@@ -56,8 +56,7 @@ export default function Custom404() {
         color="dimmed"
         size="lg"
         align="center"
-        className={classes.description}
-      >
+        className={classes.description}>
         Unfortunately, this is only a 404 page. You may have mistyped the
         address, or the page has been moved to another URL.
       </Text>

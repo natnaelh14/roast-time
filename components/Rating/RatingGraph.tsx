@@ -10,8 +10,7 @@ export const RatingGraph = () => {
         <div className="mx-4 h-5 w-2/4 rounded bg-gray-200 dark:bg-gray-700">
           <div
             className="h-5 rounded bg-yellow-400"
-            style={{ width: '70%' }}
-          ></div>
+            style={{ width: '70%' }}></div>
         </div>
         <span className="text-sm font-medium text-blue-600 dark:text-blue-500">
           70%
@@ -24,8 +23,7 @@ export const RatingGraph = () => {
         <div className="mx-4 h-5 w-2/4 rounded bg-gray-200 dark:bg-gray-700">
           <div
             className="h-5 rounded bg-yellow-400"
-            style={{ width: '17%' }}
-          ></div>
+            style={{ width: '17%' }}></div>
         </div>
         <span className="text-sm font-medium text-blue-600 dark:text-blue-500">
           17%
@@ -38,8 +36,7 @@ export const RatingGraph = () => {
         <div className="mx-4 h-5 w-2/4 rounded bg-gray-200 dark:bg-gray-700">
           <div
             className="h-5 rounded bg-yellow-400"
-            style={{ width: '8%' }}
-          ></div>
+            style={{ width: '8%' }}></div>
         </div>
         <span className="text-sm font-medium text-blue-600 dark:text-blue-500">
           8%
@@ -52,8 +49,7 @@ export const RatingGraph = () => {
         <div className="mx-4 h-5 w-2/4 rounded bg-gray-200 dark:bg-gray-700">
           <div
             className="h-5 rounded bg-yellow-400"
-            style={{ width: '4%' }}
-          ></div>
+            style={{ width: '4%' }}></div>
         </div>
         <span className="text-sm font-medium text-blue-600 dark:text-blue-500">
           4%
@@ -66,8 +62,7 @@ export const RatingGraph = () => {
         <div className="mx-4 h-5 w-2/4 rounded bg-gray-200 dark:bg-gray-700">
           <div
             className="h-5 rounded bg-yellow-400"
-            style={{ width: '1%' }}
-          ></div>
+            style={{ width: '1%' }}></div>
         </div>
         <span className="text-sm font-medium text-blue-600 dark:text-blue-500">
           1%

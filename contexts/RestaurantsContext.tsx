@@ -5,14 +5,12 @@ import useSWR from 'swr';
 interface RestaurantSessionContextState {
   restaurants?: Restaurant[];
   error: string;
-  // setRestaurants?: (restaurants: Restaurant) => void;
   restaurantSearch?: string;
   setRestaurantSearch: (search: string) => void;
 }
 
 const RestaurantContext = createContext({} as RestaurantSessionContextState);
 const RestaurantContextProvider = ({ children }: { children: ReactNode }) => {
-  // const [restaurants, setRestaurants] = useState<Restaurant[]>();
   const [restaurantSearch, setRestaurantSearch] = useState<string>();
   const { data: restaurants, error } = useSWR(
     `${process.env.NEXT_PUBLIC_BASE_URL}/restaurants/${restaurantSearch || ''}`,
@@ -20,7 +18,6 @@ const RestaurantContextProvider = ({ children }: { children: ReactNode }) => {
   const value = {
     restaurants,
     error,
-    // setRestaurants,
     restaurantSearch,
     setRestaurantSearch,
   };

@@ -34,12 +34,13 @@ const Item = ({
                 {restaurantName}
               </p>
               <Rating />
-              <p className="text-sm text-gray-500">{category}</p>
-              <p className="text-sm text-gray-500">{`${restaurantStreetName}`}</p>
+              <p className="text-sm text-gray-500 dark:text-gray-300">
+                {category}
+              </p>
+              <p className="text-sm text-gray-500 dark:text-gray-300">{`${restaurantStreetName}`}</p>
               <button
                 type="submit"
-                className="right-0-0 relative bottom-0 mt-3 w-full rounded bg-pink-primary py-2 px-4 hover:bg-orange-primary"
-              >
+                className="right-0-0 relative bottom-0 mt-3 w-full rounded bg-pink-primary py-2 px-4 hover:bg-orange-primary">
                 Reserve
               </button>
             </div>

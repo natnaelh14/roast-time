@@ -15,8 +15,7 @@ export const HamburgerIcon = ({ handleClick }: HamburgerIconProps) => {
       height="40"
       fill={`${colorScheme === 'dark' ? '#F78888' : '#858585'}`}
       className="m-4 block h-8 w-8 cursor-pointer md:hidden"
-      onClick={handleClick}
-    >
+      onClick={handleClick}>
       <rect width="100" height="20"></rect>
       <rect y="30" width="100" height="20"></rect>
       <rect y="60" width="100" height="20"></rect>

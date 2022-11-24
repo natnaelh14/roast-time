@@ -12,8 +12,7 @@ export const SelectOption = ({ value, label }: SelectOptionProps) => {
           active ? 'bg-gray-200' : 'bg-white',
           'relative cursor-default select-none py-1.5 pl-9 pr-4 text-sm hover:bg-gray-200',
         )
-      }
-    >
+      }>
       {({ selected, active }) => (
         <>
           <span
@@ -24,8 +23,7 @@ export const SelectOption = ({ value, label }: SelectOptionProps) => {
                 : selected
                 ? 'font-medium text-pink-primary'
                 : 'font-normal',
-            )}
-          >
+            )}>
             {label}
           </span>
           {selected && (

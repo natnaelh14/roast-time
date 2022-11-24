@@ -26,6 +26,7 @@ export const LocationSearchInput = ({ ...props }: LocationSearchInputProps) => {
       .then((results) => getLatLng(results[0]))
       // eslint-disable-next-line promise/always-return
       .then((latLng) => {
+        console.log('GIRL', latLng);
         setLat(latLng.lat);
         setLong(latLng.lng);
       })
@@ -36,8 +37,7 @@ export const LocationSearchInput = ({ ...props }: LocationSearchInputProps) => {
     <PlacesAutocomplete
       value={address}
       onChange={handleChange}
-      onSelect={handleSelect}
-    >
+      onSelect={handleSelect}>
       {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
         <div className="relative space-y-1 pt-5">
           <input
@@ -58,8 +58,7 @@ export const LocationSearchInput = ({ ...props }: LocationSearchInputProps) => {
             className={classNames(
               "absolute -top-0.5 left-0.5 select-none text-xs font-medium text-neutral-500 transition-all  ease-out peer-placeholder-shown:pointer-events-none peer-placeholder-shown:text-xs peer-required:after:content-['_*'] peer-focus:-top-0.5 peer-focus:text-sm dark:text-neutral-300 md:text-sm md:peer-placeholder-shown:text-base",
             )}
-            htmlFor={name}
-          >
+            htmlFor={name}>
             {label}
           </label>
           <div className={styles.autocompleteContainer}>
@@ -76,8 +75,7 @@ export const LocationSearchInput = ({ ...props }: LocationSearchInputProps) => {
                   {...getSuggestionItemProps(suggestion, {
                     className,
                     style,
-                  })}
-                >
+                  })}>
                   <span>{suggestion.description}</span>
                 </div>
               );
