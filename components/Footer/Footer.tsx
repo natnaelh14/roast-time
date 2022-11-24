@@ -1,3 +1,4 @@
+import packageInfo from 'package.json';
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -21,30 +22,33 @@ const Footer = () => {
         </div>
         <ul className="mb-6 flex flex-col items-center p-2 text-sm text-gray-500 sm:mb-0 lg:flex-row">
           <Link href="/#">
-            <a className="lg-m-0 m-2 mr-4 text-sm decoration-pink-primary decoration-4 underline-offset-8 hover:text-pink-primary hover:underline dark:text-white md:text-base lg:mr-6 lg:text-lg">
+            <a className="lg-m-0 m-2 mr-4 text-sm text-black decoration-pink-primary decoration-4 underline-offset-8 hover:text-pink-primary hover:underline dark:text-white md:text-base lg:mr-6 lg:text-lg">
               About
             </a>
           </Link>
           <Link href="/#">
-            <a className="lg-m-0 m-2 mr-4 p-2 text-sm decoration-pink-primary decoration-4 underline-offset-8 hover:text-pink-primary hover:underline dark:text-white md:text-base lg:mr-6 lg:text-lg">
+            <a className="lg-m-0 m-2 mr-4 p-2 text-sm text-black decoration-pink-primary decoration-4 underline-offset-8 hover:text-pink-primary hover:underline dark:text-white md:text-base lg:mr-6 lg:text-lg">
               Privacy Policy
             </a>
           </Link>
           <Link href="/#">
-            <a className="lg-m-0 m-2 mr-4 p-2 text-sm decoration-pink-primary decoration-4 underline-offset-8 hover:text-pink-primary hover:underline dark:text-white md:text-base lg:mr-6 lg:text-lg">
+            <a className="lg-m-0 m-2 mr-4 p-2 text-sm text-black decoration-pink-primary decoration-4 underline-offset-8 hover:text-pink-primary hover:underline dark:text-white md:text-base lg:mr-6 lg:text-lg">
               Licensing
             </a>
           </Link>
           <Link href="/#">
-            <a className="lg-m-0 m-2 p-2 text-sm decoration-pink-primary decoration-4 underline-offset-8 hover:text-pink-primary hover:underline dark:text-white md:text-base lg:text-lg">
+            <a className="lg-m-0 m-2 p-2 text-sm text-black decoration-pink-primary decoration-4 underline-offset-8 hover:text-pink-primary hover:underline dark:text-white md:text-base lg:text-lg">
               Contact
             </a>
           </Link>
         </ul>
       </div>
-      <hr className="my-2 border-gray-200 sm:mx-auto lg:my-6" />
+      <hr className="my-2 sm:mx-auto lg:my-6" />
       <span className="block text-center text-sm text-gray-500 lg:text-base">
         © 2022 RoastTime. All Rights Reserved.
+      </span>
+      <span className="block text-center text-sm text-gray-500 lg:text-base">
+        v{packageInfo?.version}
       </span>
     </footer>
   );

@@ -53,8 +53,7 @@ export default function ServerError() {
         color="dimmed"
         size="lg"
         align="center"
-        className={classes.description}
-      >
+        className={classes.description}>
         Our servers could not handle your request. Don&apos;t worry, our
         development team was already notified. Try refreshing the page.
       </Text>

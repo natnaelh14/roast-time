@@ -11,8 +11,7 @@ const RestaurantTabs = () => {
               selected
                 ? 'm-3 border-b-2 border-pink-primary p-4 text-pink-primary hover:cursor-pointer focus:outline-hidden'
                 : 'm-3 border-b-2 border-transparent p-4 text-gray-600 hover:cursor-pointer hover:border-gray-secondary focus:outline-hidden'
-            }
-          >
+            }>
             Overview
           </Tab>
           <Tab
@@ -20,8 +19,7 @@ const RestaurantTabs = () => {
               selected
                 ? 'm-3 border-b-2 border-pink-primary p-4 text-pink-primary hover:cursor-pointer focus:outline-hidden'
                 : 'm-3 border-b-2 border-transparent p-4 text-gray-600 hover:cursor-pointer hover:border-gray-secondary focus:outline-hidden'
-            }
-          >
+            }>
             Menu
           </Tab>
           <Tab
@@ -29,8 +27,7 @@ const RestaurantTabs = () => {
               selected
                 ? 'm-3 border-b-2 border-pink-primary p-4 text-pink-primary hover:cursor-pointer focus:outline-hidden'
                 : 'm-3 border-b-2 border-transparent p-4 text-gray-600 hover:cursor-pointer hover:border-gray-secondary focus:outline-hidden'
-            }
-          >
+            }>
             Photos
           </Tab>
           <Tab
@@ -38,8 +35,7 @@ const RestaurantTabs = () => {
               selected
                 ? 'm-3 border-b-2 border-pink-primary p-4 text-pink-primary hover:cursor-pointer focus:outline-hidden'
                 : 'm-3 border-b-2 border-transparent p-4 text-gray-600 hover:cursor-pointer hover:border-gray-secondary focus:outline-hidden'
-            }
-          >
+            }>
             Reviews
           </Tab>
         </Tab.List>

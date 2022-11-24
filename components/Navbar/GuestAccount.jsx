@@ -28,8 +28,7 @@ const GuestAccount = forwardRef(
           id="user-menu-button"
           aria-expanded="false"
           data-dropdown-toggle="user-dropdown"
-          data-dropdown-placement="bottom"
-        >
+          data-dropdown-placement="bottom">
           <span className="sr-only">Open user menu</span>
           <Image
             className="rounded-full"
@@ -43,8 +42,7 @@ const GuestAccount = forwardRef(
           className={`${
             isDropDownHidden && 'hidden'
           } absolute top-9 right-[175px] z-50 my-4 w-48 list-none divide-y divide-gray-100 rounded bg-white text-base shadow dark:divide-gray-600 dark:bg-gray-700`}
-          id="user-dropdown"
-        >
+          id="user-dropdown">
           <div className="py-3 px-4">
             <span className="block text-sm text-gray-900 dark:text-white">
               Hello, {userSession?.account?.first_name}!
@@ -58,8 +56,7 @@ const GuestAccount = forwardRef(
               <Link href="/profile">
                 <a
                   onClick={() => setDropDownHidden(!isDropDownHidden)}
-                  className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white"
-                >
+                  className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white">
                   My Profile
                 </a>
               </Link>
@@ -68,8 +65,7 @@ const GuestAccount = forwardRef(
               <Link href="/restaurant/dining-history">
                 <a
                   onClick={() => setDropDownHidden(!isDropDownHidden)}
-                  className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white"
-                >
+                  className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white">
                   My Dining History
                 </a>
               </Link>
@@ -78,8 +74,7 @@ const GuestAccount = forwardRef(
               <Link href="/restaurant/saved-restaurants">
                 <a
                   onClick={() => setDropDownHidden(!isDropDownHidden)}
-                  className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white"
-                >
+                  className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white">
                   My Saved Restaurants
                 </a>
               </Link>
@@ -91,8 +86,7 @@ const GuestAccount = forwardRef(
                     setDropDownHidden(!isDropDownHidden);
                     handleLogout();
                   }}
-                  className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white"
-                >
+                  className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white">
                   Sign out
                 </a>
               </Link>

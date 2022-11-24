@@ -71,8 +71,7 @@ export const Navbar = () => {
         <Dialog
           as="div"
           className="fixed inset-0 z-20 overflow-hidden"
-          onClose={setMobileNavShown}
-        >
+          onClose={setMobileNavShown}>
           <div className="absolute inset-0 overflow-hidden">
             <Transition.Child
               as={Fragment}
@@ -81,8 +80,7 @@ export const Navbar = () => {
               enterTo="opacity-100"
               leave="ease-in-out duration-500"
               leaveFrom="opacity-100"
-              leaveTo="opacity-0"
-            >
+              leaveTo="opacity-0">
               <Dialog.Overlay className="absolute inset-0 bg-gray-900 bg-opacity-75 transition-opacity" />
             </Transition.Child>
             <div className="pointer-events-none fixed inset-y-0">
@@ -93,14 +91,12 @@ export const Navbar = () => {
                 enterTo="translate-x-0"
                 leave="transform transition ease-in-out duration-300"
                 leaveFrom="translate-x-0"
-                leaveTo="-translate-x-full"
-              >
+                leaveTo="-translate-x-full">
                 <nav className="pointer-events-auto fixed inset-y-0 left-0 h-screen w-64 bg-white text-2xl dark:bg-blue-dark">
                   <button
                     aria-label="close navigation"
                     className="mt-6 ml-6 h-[40px] w-[40px]"
-                    onClick={() => setMobileNavShown(false)}
-                  >
+                    onClick={() => setMobileNavShown(false)}>
                     <CloseIcon />
                     <span className="sr-only">Close panel</span>
                   </button>
@@ -110,24 +106,21 @@ export const Navbar = () => {
                         <Link href="/signin">
                           <a
                             className="m-2 p-2 text-base decoration-pink-primary decoration-4 underline-offset-8 hover:text-pink-primary hover:underline dark:text-white"
-                            onClick={() => setMobileNavShown(false)}
-                          >
+                            onClick={() => setMobileNavShown(false)}>
                             Sign In
                           </a>
                         </Link>
                         <Link href="/signup">
                           <a
                             className="m-2 p-2 text-base decoration-pink-primary decoration-4 underline-offset-8 hover:text-pink-primary hover:underline dark:text-white"
-                            onClick={() => setMobileNavShown(false)}
-                          >
+                            onClick={() => setMobileNavShown(false)}>
                             Sign Up
                           </a>
                         </Link>
                         <Link href="/restaurant/get-started">
                           <a
                             className="m-2 p-2 text-base decoration-pink-primary decoration-4 underline-offset-8 hover:text-pink-primary hover:underline dark:text-white"
-                            onClick={() => setMobileNavShown(false)}
-                          >
+                            onClick={() => setMobileNavShown(false)}>
                             For Businesses
                           </a>
                         </Link>
@@ -138,32 +131,28 @@ export const Navbar = () => {
                         <Link href="/profile">
                           <a
                             onClick={() => setMobileNavShown(false)}
-                            className="m-2 p-2 text-base decoration-pink-primary decoration-4 underline-offset-8 hover:text-pink-primary hover:underline dark:text-white"
-                          >
+                            className="m-2 p-2 text-base decoration-pink-primary decoration-4 underline-offset-8 hover:text-pink-primary hover:underline dark:text-white">
                             My Profile
                           </a>
                         </Link>
                         <Link href="/restaurant/upcoming-reservations">
                           <a
                             onClick={() => setMobileNavShown(false)}
-                            className="m-2 p-2 text-base decoration-pink-primary decoration-4 underline-offset-8 hover:text-pink-primary hover:underline dark:text-white"
-                          >
+                            className="m-2 p-2 text-base decoration-pink-primary decoration-4 underline-offset-8 hover:text-pink-primary hover:underline dark:text-white">
                             Upcoming reservations
                           </a>
                         </Link>
                         <Link href="/restaurant/dining-history">
                           <a
                             onClick={() => setMobileNavShown(false)}
-                            className="m-2 p-2 text-base decoration-pink-primary decoration-4 underline-offset-8 hover:text-pink-primary hover:underline dark:text-white"
-                          >
+                            className="m-2 p-2 text-base decoration-pink-primary decoration-4 underline-offset-8 hover:text-pink-primary hover:underline dark:text-white">
                             My Dining History
                           </a>
                         </Link>
                         <Link href="/restaurant/saved-restaurants">
                           <a
                             onClick={() => setMobileNavShown(false)}
-                            className="m-2 p-2 text-base decoration-pink-primary decoration-4 underline-offset-8 hover:text-pink-primary hover:underline dark:text-white"
-                          >
+                            className="m-2 p-2 text-base decoration-pink-primary decoration-4 underline-offset-8 hover:text-pink-primary hover:underline dark:text-white">
                             My Saved Restaurants
                           </a>
                         </Link>
@@ -173,8 +162,7 @@ export const Navbar = () => {
                             onClick={() => {
                               setMobileNavShown(false);
                               handleLogout();
-                            }}
-                          >
+                            }}>
                             Sign Out
                           </a>
                         </Link>

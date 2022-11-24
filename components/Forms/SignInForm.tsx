@@ -69,8 +69,7 @@ export const SignInForm = ({
     <form
       onSubmit={handleSubmit(onSubmit)}
       className="w-full"
-      autoComplete="off"
-    >
+      autoComplete="off">
       <TextInput
         type="email"
         control={control}
@@ -102,8 +101,7 @@ export const SignInForm = ({
         />
         <a
           className="text-md mt-2 block text-center text-pink-primary"
-          href="#"
-        >
+          href="#">
           Forgot your password?
         </a>
       </div>

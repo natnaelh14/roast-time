@@ -17,8 +17,7 @@ export const FieldDescription = ({
       className={classNames(
         'text-xs font-normal transition-colors',
         isDisabled ? 'text-gray-300' : 'text-gray-500',
-      )}
-    >
+      )}>
       {description}
     </p>
   );

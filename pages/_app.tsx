@@ -26,8 +26,7 @@ function MyApp({ Component, pageProps }: AppProps) {
               onError: (err) => {
                 console.error(err);
               },
-            }}
-          >
+            }}>
             <Layout>
               <Component {...pageProps} />
             </Layout>
@@ -46,8 +45,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       {/* Flowbite Datepicker */}
       <Script src="https://unpkg.com/flowbite@1.5.3/dist/datepicker.js"></Script>
       <script
-        src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOLE_MAPS_API_KEY}&libraries=places`}
-      ></script>
+        src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOLE_MAPS_API_KEY}&libraries=places`}></script>
     </div>
   );
 }

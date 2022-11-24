@@ -50,8 +50,7 @@ export const TextInput = <T extends FieldValues>({
             ? 'text-error'
             : 'text-neutral-500 dark:text-neutral-300',
         )}
-        htmlFor={name}
-      >
+        htmlFor={name}>
         {label}
       </label>
       <div className="mt-1 ml-[1px] min-h-[1.25rem] text-xs">

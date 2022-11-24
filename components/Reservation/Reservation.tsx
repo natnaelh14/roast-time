@@ -36,7 +36,7 @@ const Reservation = () => {
   ];
 
   return (
-    <div className="mx-4 mt-8 flex h-fit w-fit flex-col items-center rounded-lg border-2 border-gray-200 bg-white px-16 py-8 shadow-lg dark:border-gray-secondary dark:bg-blue-dark lg:justify-between">
+    <div className="m-8 flex h-fit w-fit flex-col items-center rounded-lg border-2 border-gray-200 bg-white px-16 py-8 shadow-lg dark:border-gray-secondary dark:bg-blue-dark lg:justify-between">
       <div className="mb-6 text-center">
         <h1 className="text-center text-xl text-pink-primary lg:text-3xl">
           Make a reservation
@@ -45,8 +45,7 @@ const Reservation = () => {
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="w-full"
-        autoComplete="off"
-      >
+        autoComplete="off">
         <Select
           control={control}
           label="Party Size"
