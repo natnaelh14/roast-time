@@ -22,7 +22,7 @@ const UserSessionContextProvider = ({ children }: { children: ReactNode }) => {
       await axios
         .get('/api/user')
         .then((res) => setUserSession(res.data))
-        .catch(() => console.log('An error occurred'));
+        .catch(() => console.error('An error occurred'));
     };
     fetchData();
   }, []);

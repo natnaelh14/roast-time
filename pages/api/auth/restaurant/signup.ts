@@ -11,6 +11,8 @@ interface AuthPayload {
   password: string;
   name: string;
   address: string;
+  latitude: number;
+  longitude: number;
   category: string;
   imageUrl: string;
 }
@@ -19,32 +21,11 @@ const signUpRestaurantRouter = async (
   req: NextApiRequest,
   res: NextApiResponse,
 ) => {
-  const {
-    email,
-    password,
-    firstName,
-    lastName,
-    phoneNumber,
-    name,
-    address,
-    category,
-    imageUrl,
-  }: AuthPayload = req.body;
+  const { ...payload }: AuthPayload = req.body;
   try {
     const { data: userData } = await axios.post(
       `${process.env.NEXT_PUBLIC_BASE_URL}/restaurant/register`,
-      {
-        email,
-        password,
-        firstName,
-        lastName,
-        phoneNumber,
-        accountType: 'RESTAURANT',
-        name,
-        address,
-        category,
-        imageUrl,
-      },
+      { ...payload, accountType: 'RESTAURANT' },
     );
     const user = {
       ...userData,

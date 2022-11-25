@@ -26,7 +26,6 @@ export const LocationSearchInput = ({ ...props }: LocationSearchInputProps) => {
       .then((results) => getLatLng(results[0]))
       // eslint-disable-next-line promise/always-return
       .then((latLng) => {
-        console.log('GIRL', latLng);
         setLat(latLng.lat);
         setLong(latLng.lng);
       })
