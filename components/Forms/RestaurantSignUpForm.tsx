@@ -39,7 +39,7 @@ export const RestaurantSignUpForm = ({
   const [address, setAddress] = useState<string | undefined>('');
   const [lat, setLat] = useState<number | undefined>();
   const [long, setLong] = useState<number | undefined>();
-
+  const [image, setImage] = useState<Blob | undefined>();
   const router = useRouter();
   const [errorMessage, setErrorMessage] = useState('');
   const { setSession } = useUserSession();
@@ -51,14 +51,20 @@ export const RestaurantSignUpForm = ({
   const { isSubmitting } = formState;
   const onSubmit = async (data: RestaurantSignUpFormValues) => {
     setErrorMessage('');
-    console.log({ address, lat, long, data });
-    const imageUrl =
-      'https://images.unsplash.com/photo-1542181961-9590d0c79dab?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNDkxMTF8MHwxfHNlYXJjaHwzMHx8Y29mZmVlJTIwc2hvcHxlbnwwfHx8fDE2NjkwNjQyODg&ixlib=rb-4.0.3&q=80&w=400';
-    const category = 'French';
     try {
+      const resumeData = new FormData();
+      resumeData.append('upload_preset', 'resume');
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore:next-line
+      resumeData.append('file', image);
+      const resumeRes = await axios.post(
+        `https://api.cloudinary.com/v1_1/doalzf6o2/image/upload`,
+        resumeData,
+      );
+      const imageUrl = resumeRes.data.secure_url;
       const { data: userData } = await axios.post<UserSession>(
         '/api/auth/restaurant/signup',
-        { ...data, address, imageUrl, category },
+        { ...data, address, latitude: lat, longitude: long, imageUrl },
       );
       if (userData?.isLoggedIn) {
         setSession(userData);
@@ -76,7 +82,7 @@ export const RestaurantSignUpForm = ({
       }
     } catch (err) {
       if (err instanceof Error) {
-        console.log(err.message);
+        console.error(err.message);
       }
     }
   };
@@ -142,7 +148,7 @@ export const RestaurantSignUpForm = ({
         setLat={setLat}
         setLong={setLong}
       />
-      <ImageInput />
+      <ImageInput setImage={setImage} />
       {errorMessage && <p className="text-center text-error">{errorMessage}</p>}
       <div className="mt-6 flex justify-center">
         <SubmitButton
