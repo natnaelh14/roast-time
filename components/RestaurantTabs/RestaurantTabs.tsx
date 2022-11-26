@@ -10,7 +10,7 @@ const RestaurantTabs = () => {
             className={({ selected }) =>
               selected
                 ? 'm-3 border-b-2 border-pink-primary p-4 text-pink-primary hover:cursor-pointer focus:outline-hidden'
-                : 'm-3 border-b-2 border-transparent p-4 text-gray-600 hover:cursor-pointer hover:border-gray-secondary focus:outline-hidden'
+                : 'm-3 border-b-2 border-transparent p-4 text-gray-600 hover:cursor-pointer hover:border-gray-secondary focus:outline-hidden dark:text-gray-300'
             }>
             Overview
           </Tab>
@@ -18,7 +18,7 @@ const RestaurantTabs = () => {
             className={({ selected }) =>
               selected
                 ? 'm-3 border-b-2 border-pink-primary p-4 text-pink-primary hover:cursor-pointer focus:outline-hidden'
-                : 'm-3 border-b-2 border-transparent p-4 text-gray-600 hover:cursor-pointer hover:border-gray-secondary focus:outline-hidden'
+                : 'm-3 border-b-2 border-transparent p-4 text-gray-600 hover:cursor-pointer hover:border-gray-secondary focus:outline-hidden dark:text-gray-300'
             }>
             Menu
           </Tab>
@@ -26,7 +26,7 @@ const RestaurantTabs = () => {
             className={({ selected }) =>
               selected
                 ? 'm-3 border-b-2 border-pink-primary p-4 text-pink-primary hover:cursor-pointer focus:outline-hidden'
-                : 'm-3 border-b-2 border-transparent p-4 text-gray-600 hover:cursor-pointer hover:border-gray-secondary focus:outline-hidden'
+                : 'm-3 border-b-2 border-transparent p-4 text-gray-600 hover:cursor-pointer hover:border-gray-secondary focus:outline-hidden dark:text-gray-300'
             }>
             Photos
           </Tab>
@@ -34,7 +34,7 @@ const RestaurantTabs = () => {
             className={({ selected }) =>
               selected
                 ? 'm-3 border-b-2 border-pink-primary p-4 text-pink-primary hover:cursor-pointer focus:outline-hidden'
-                : 'm-3 border-b-2 border-transparent p-4 text-gray-600 hover:cursor-pointer hover:border-gray-secondary focus:outline-hidden'
+                : 'm-3 border-b-2 border-transparent p-4 text-gray-600 hover:cursor-pointer hover:border-gray-secondary focus:outline-hidden dark:text-gray-300'
             }>
             Reviews
           </Tab>

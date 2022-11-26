@@ -15,12 +15,12 @@ export const ItemLoading = () => {
           </svg>
         </div>
         <div className="mx-2 mt-4 animate-pulse">
-          <div className="mb-3 h-2.5 w-28  rounded-full bg-gray-200"></div>
-          <div className="mb-3 h-2.5 w-32  rounded-full bg-gray-200"></div>
-          <div className="mb-3 h-2.5 w-32  rounded-full bg-gray-200"></div>
-          <div className="mb-2.5 h-2 rounded-full  bg-gray-200"></div>
-          <div className="mb-4 h-2.5 w-48  rounded-full bg-gray-200"></div>
-          <div className="mb-4 h-10 w-full rounded-md bg-gray-200"></div>
+          <div className="mb-3 h-2.5 w-28  rounded-full bg-gray-200 dark:bg-gray-600"></div>
+          <div className="mb-3 h-2.5 w-32  rounded-full bg-gray-200 dark:bg-gray-600"></div>
+          <div className="mb-3 h-2.5 w-32  rounded-full bg-gray-200 dark:bg-gray-600"></div>
+          <div className="mb-2.5 h-2 rounded-full  bg-gray-200 dark:bg-gray-600"></div>
+          <div className="mb-4 h-2.5 w-48  rounded-full bg-gray-200 dark:bg-gray-600"></div>
+          <div className="mb-4 h-10 w-full rounded-md bg-gray-200 dark:bg-gray-600"></div>
         </div>
       </div>
     </div>
