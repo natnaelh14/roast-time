@@ -1,4 +1,5 @@
 import { Rating } from 'components/Rating';
+import { OverviewLoading } from 'components/Loaders';
 import React from 'react';
 import useSWR from 'swr';
 import { useRouter } from 'next/router';
@@ -9,6 +10,9 @@ export const Overview = () => {
   const { data: restaurant, error } = useSWR(
     `${process.env.NEXT_PUBLIC_BASE_URL}/search/restaurant/${id}`,
   );
+
+  if (!restaurant && !error) return <OverviewLoading />;
+
   return (
     <>
       {restaurant && (
@@ -16,9 +20,11 @@ export const Overview = () => {
           <p className="text-5xl dark:text-white">{restaurant.name}</p>
           <div className="mt-2 flex flex-row">
             <Rating />
-            <p className="ml-4 text-sm text-gray-500">{restaurant.category}</p>
+            <p className="ml-4 text-base text-gray-500 dark:text-gray-300">
+              {restaurant.category}
+            </p>
           </div>
-          <p className="m-2 leading-relaxed text-gray-500">
+          <p className="m-2 text-base leading-relaxed text-gray-500 dark:text-gray-300">
             {restaurant.address}
           </p>
           <p className="m-2 leading-relaxed text-gray-500">
