@@ -9,7 +9,6 @@ export const OverviewLoading = () => {
       </div>
       <div className="m-2 mb-3 ml-4 h-5 w-44 bg-gray-200 dark:bg-gray-600"></div>
       <div className="m-2 mb-3 ml-4 h-28 bg-gray-200 dark:bg-gray-600 xl:w-[900px]"></div>
-      <div className="m-2 mb-3 ml-4 h-28 bg-gray-200 dark:bg-gray-600 xl:w-[900px]"></div>
     </div>
   );
 };

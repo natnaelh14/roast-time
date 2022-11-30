@@ -74,14 +74,14 @@ export const GuestSignUpForm = ({
         name="firstName"
         label="First Name"
         autoComplete="firstName"
-        required={true}
+        rules={{ required: true }}
       />
       <TextInput
         control={control}
         name="lastName"
         label="Last Name"
         autoComplete="lastName"
-        required={true}
+        rules={{ required: true }}
       />
       <TextInput
         type="tel"
@@ -89,7 +89,7 @@ export const GuestSignUpForm = ({
         name="phoneNumber"
         label="Phone Number"
         autoComplete="phoneNumber"
-        required={true}
+        rules={{ required: true }}
       />
       <TextInput
         type="email"
@@ -97,7 +97,7 @@ export const GuestSignUpForm = ({
         name="email"
         label="Email"
         autoComplete="email"
-        required={true}
+        rules={{ required: true }}
       />
       <TextInput
         type="password"
@@ -105,7 +105,7 @@ export const GuestSignUpForm = ({
         name="password"
         label="Password"
         autoComplete="new-password"
-        required={true}
+        rules={{ required: true }}
       />
       {errorMessage && <p className="text-center text-error">{errorMessage}</p>}
       <div className="mt-6 flex justify-center">
