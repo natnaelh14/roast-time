@@ -7,14 +7,17 @@ import { useRouter } from 'next/router';
 
 interface FormValues {
   partySize: number;
-  reserveDate: Date;
+  reserveDate: string;
 }
 
 const Reservation = () => {
   const router = useRouter();
   const { control, handleSubmit, formState } = useForm<FormValues>({
     mode: 'onTouched',
-    defaultValues: { partySize: 1 },
+    defaultValues: {
+      partySize: 1,
+      reserveDate: new Date().toISOString().slice(0, 10),
+    },
   });
   const { isSubmitting } = formState;
   const onSubmit = async (data: FormValues) => {

@@ -29,7 +29,7 @@ export const LocationSearchInput = ({ ...props }: LocationSearchInputProps) => {
         setLat(latLng.lat);
         setLong(latLng.lng);
       })
-      .catch((error) => console.error('Error', error));
+      .catch((e) => console.error('Error', e));
   };
 
   return (
@@ -62,7 +62,7 @@ export const LocationSearchInput = ({ ...props }: LocationSearchInputProps) => {
           </label>
           <div className={styles.autocompleteContainer}>
             {loading && <div>Loading...</div>}
-            {suggestions.map((suggestion) => {
+            {suggestions.map((suggestion, i) => {
               const className = suggestion.active
                 ? 'suggestion-item--active'
                 : 'suggestion-item';
@@ -71,6 +71,9 @@ export const LocationSearchInput = ({ ...props }: LocationSearchInputProps) => {
                 : { backgroundColor: '#fafafa', cursor: 'pointer' };
               return (
                 <div
+                  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                  // @ts-ignore:next-line
+                  key={i}
                   {...getSuggestionItemProps(suggestion, {
                     className,
                     style,
