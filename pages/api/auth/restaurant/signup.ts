@@ -14,7 +14,7 @@ interface AuthPayload {
   latitude: number;
   longitude: number;
   category: string;
-  imageUrl: string;
+  imageData: string[];
 }
 
 const signUpRestaurantRouter = async (

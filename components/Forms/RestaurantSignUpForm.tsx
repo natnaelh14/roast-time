@@ -64,7 +64,13 @@ export const RestaurantSignUpForm = ({
       const imageUrl = resumeRes.data.secure_url;
       const { data: userData } = await axios.post<UserSession>(
         '/api/auth/restaurant/signup',
-        { ...data, address, latitude: lat, longitude: long, imageUrl },
+        {
+          ...data,
+          address,
+          latitude: lat,
+          longitude: long,
+          imageData: [imageUrl],
+        },
       );
       if (userData?.isLoggedIn) {
         setSession(userData);
