@@ -50,7 +50,7 @@ export interface Restaurant {
   name: string;
   address: string;
   category: string;
-  imageUrl: string;
+  imageData: string[];
   userId?: number;
 }
 export interface SessionAccount {

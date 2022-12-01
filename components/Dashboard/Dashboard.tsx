@@ -3,15 +3,8 @@ import { getListOfCoffeeStorePhotos } from '../../libs/coffee-shops';
 import { ThreeDotsLoading, DashboardLoading } from '../Loaders';
 import { useRestaurantContext } from 'contexts/RestaurantsContext';
 import RestaurantsEmptyState from 'components/EmptyState/RestaurantsEmptyState';
+import { Restaurant } from 'types';
 import React, { useEffect } from 'react';
-
-interface CoffeeShopProps {
-  id: number;
-  name: string;
-  category?: string;
-  address: string;
-  imageUrl?: string;
-}
 
 const Dashboard = () => {
   const { restaurants, error, restaurantSearch } = useRestaurantContext();
@@ -33,15 +26,15 @@ const Dashboard = () => {
   return (
     <div className="mt-5 flex flex-row overflow-x-scroll md:flex-wrap md:justify-center md:overflow-auto">
       {restaurants &&
-        restaurants.map((item: CoffeeShopProps) => {
+        restaurants.map((item: Restaurant) => {
           return (
             <Item
               key={item.id}
               id={item.id}
-              restaurantName={item.name}
-              restaurantImage={item.imageUrl || ''}
-              restaurantStreetName={item.address}
-              category={item.category || ''}
+              name={item.name}
+              imageData={item.imageData}
+              address={item.address}
+              category={item.category}
             />
           );
         })}
