@@ -7,7 +7,7 @@ export const UpcomingReservationsIcon = () => {
   return (
     <div className="hover:cursor-pointer">
       {colorScheme === 'dark' ? (
-        <div className="p-2 hover:rounded-full hover:bg-blue-light">
+        <div className="flex flex-row p-2 hover:rounded-full hover:bg-blue-light">
           <svg
             data-tooltip-target="tooltip-default"
             className="h-6 w-6"
@@ -22,9 +22,12 @@ export const UpcomingReservationsIcon = () => {
               d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
             />
           </svg>
+          <span className="inline-flex h-1 w-1 items-center justify-center rounded-full bg-orange-light p-2 text-xs font-medium text-orange-primary dark:bg-orange-primary dark:text-orange-light">
+            3
+          </span>
         </div>
       ) : (
-        <div className="p-2 hover:rounded-full hover:bg-gray-300">
+        <div className="flex flex-row p-2 hover:rounded-full hover:bg-gray-300">
           <svg
             data-tooltip-target="tooltip-default"
             className="h-6 w-6"
@@ -39,12 +42,11 @@ export const UpcomingReservationsIcon = () => {
               d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
             />
           </svg>
+          <span className="inline-flex h-1 w-1 items-center justify-center rounded-full bg-orange-light p-2 text-xs font-medium text-orange-primary dark:bg-orange-primary dark:text-orange-light">
+            3
+          </span>
         </div>
       )}
-      {/* <div id="tooltip-default" role="tooltip" className="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip dark:bg-gray-700">
-                Tooltip content
-                <div className="tooltip-arrow" data-popper-arrow></div>
-            </div> */}
     </div>
   );
 };

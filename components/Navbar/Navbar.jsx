@@ -138,8 +138,13 @@ export const Navbar = () => {
                         <Link href="/restaurant/upcoming-reservations">
                           <a
                             onClick={() => setMobileNavShown(false)}
-                            className="m-2 p-2 text-base decoration-pink-primary decoration-4 underline-offset-8 hover:text-pink-primary hover:underline dark:text-white">
-                            Upcoming reservations
+                            className="m-2 p-2">
+                            <span className="text-base decoration-pink-primary decoration-4 underline-offset-8 hover:text-pink-primary hover:underline dark:text-white">
+                              Upcoming reservations
+                            </span>
+                            <span className="ml-3 inline-flex h-3 w-3 items-center justify-center rounded-full bg-orange-light p-3 text-sm font-medium text-orange-primary dark:bg-orange-primary dark:text-orange-light">
+                              3
+                            </span>
                           </a>
                         </Link>
                         <Link href="/restaurant/dining-history">

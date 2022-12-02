@@ -6,6 +6,7 @@ import { ColorSchemeContextProvider } from 'contexts/ColorSchemeContext';
 import Script from 'next/script';
 import TagManager from 'react-gtm-module';
 import { SWRConfig } from 'swr';
+import { Analytics } from '@vercel/analytics/react';
 import type { AppProps } from 'next/app';
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -29,6 +30,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             }}>
             <Layout>
               <Component {...pageProps} />
+              <Analytics />
             </Layout>
           </SWRConfig>
         </ColorSchemeContextProvider>
@@ -44,6 +46,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></Script>
       {/* Flowbite Datepicker */}
       <Script src="https://unpkg.com/flowbite@1.5.3/dist/datepicker.js"></Script>
+      {/* Google Maps API */}
       <script
         src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOLE_MAPS_API_KEY}&libraries=places`}></script>
     </div>

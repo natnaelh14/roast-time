@@ -50,12 +50,12 @@ export const DateInput = <T extends FieldValues>({
       />
       <label
         className={classNames(
-          "md:text-smz absolute -top-0.5 left-0.5 select-none text-xs font-medium transition-all ease-out peer-placeholder-shown:pointer-events-none peer-placeholder-shown:top-5 peer-placeholder-shown:text-xs peer-required:after:content-['_*'] peer-focus:-top-0.5 peer-focus:text-sm md:peer-placeholder-shown:text-base",
+          "md:text-smz absolute -top-0.5 left-0.5 select-none text-xs font-medium transition-all ease-out peer-placeholder-shown:pointer-events-none peer-placeholder-shown:top-5 peer-placeholder-shown:text-xs peer-required:after:content-['_*'] peer-focus:-top-0.5 peer-focus:text-sm md:text-sm md:peer-placeholder-shown:text-base",
           isDisabled
             ? 'pointer-events-none text-gray-300'
             : error
             ? 'text-error'
-            : 'text-gray-500',
+            : 'text-neutral-500 dark:text-neutral-300',
         )}
         htmlFor={name}>
         {label}
