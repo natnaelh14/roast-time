@@ -1,25 +1,37 @@
 import { Restaurant } from 'types';
-import { createContext, ReactNode, useState, useContext } from 'react';
+import {
+  createContext,
+  ReactNode,
+  useState,
+  useContext,
+  Dispatch,
+  SetStateAction,
+} from 'react';
 import useSWR from 'swr';
 
 interface RestaurantSessionContextState {
-  restaurants?: Restaurant[];
+  restaurantsData?: { restaurants: Restaurant[]; totalCount: number };
   error: string;
-  restaurantSearch?: string;
-  setRestaurantSearch: (search: string) => void;
+  restaurantSearch: string;
+  setRestaurantSearch: Dispatch<SetStateAction<string>>;
+  pageCount: number;
+  setPageCount: Dispatch<SetStateAction<number>>;
 }
 
 const RestaurantContext = createContext({} as RestaurantSessionContextState);
 const RestaurantContextProvider = ({ children }: { children: ReactNode }) => {
-  const [restaurantSearch, setRestaurantSearch] = useState<string>();
-  const { data: restaurants, error } = useSWR(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/restaurants/${restaurantSearch || ''}`,
+  const [restaurantSearch, setRestaurantSearch] = useState<string>('');
+  const [pageCount, setPageCount] = useState<number>(1);
+  const { data: restaurantsData, error } = useSWR(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/restaurants/${pageCount}/${restaurantSearch}`,
   );
   const value = {
-    restaurants,
+    restaurantsData,
     error,
     restaurantSearch,
     setRestaurantSearch,
+    pageCount,
+    setPageCount,
   };
   return (
     <RestaurantContext.Provider value={value}>

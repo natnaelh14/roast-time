@@ -7,7 +7,8 @@ import { Restaurant } from 'types';
 import React, { useEffect } from 'react';
 
 const Dashboard = () => {
-  const { restaurants, error, restaurantSearch } = useRestaurantContext();
+  const { restaurantsData, error, restaurantSearch } = useRestaurantContext();
+  const restaurants = restaurantsData?.restaurants;
 
   useEffect(() => {
     const fetchData = async () => {
