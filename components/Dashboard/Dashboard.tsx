@@ -1,22 +1,12 @@
 import Item from '../Item/Item';
-import { getListOfCoffeeStorePhotos } from '../../libs/coffee-shops';
 import { ThreeDotsLoading, DashboardLoading } from '../Loaders';
 import { useRestaurantContext } from 'contexts/RestaurantsContext';
 import RestaurantsEmptyState from 'components/EmptyState/RestaurantsEmptyState';
 import { Restaurant } from 'types';
-import React, { useEffect } from 'react';
 
 const Dashboard = () => {
   const { restaurantsData, error, restaurantSearch } = useRestaurantContext();
   const restaurants = restaurantsData?.restaurants;
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const photos = await getListOfCoffeeStorePhotos();
-      console.log({ photos });
-    };
-    fetchData();
-  }, []);
 
   if (!restaurants && !error && !restaurantSearch?.length)
     return <DashboardLoading />;

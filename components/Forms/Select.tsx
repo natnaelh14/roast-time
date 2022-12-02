@@ -36,24 +36,26 @@ export const Select = <T extends FieldValues>({
         <div className="relative mt-1 h-[70px] w-full pt-5">
           <Listbox.Button
             className={classNames(
-              'shadow-border-b hover:shadow-border-b-2 focus:shadow-border-b-2 form-select relative inline-block w-full cursor-pointer border-0 bg-white py-0 pl-0.5 pr-10 text-left text-base shadow-gray-300 transition placeholder:text-transparent hover:shadow-pink-primary focus:shadow-pink-primary focus:outline-none focus:ring-0',
+              'shadow-border-b hover:shadow-border-b-2 focus:shadow-border-b-2 form-select relative inline-block w-full cursor-pointer border-0 bg-white py-0 pl-0.5 pr-10 text-left text-base shadow-gray-300 transition placeholder:text-transparent hover:shadow-pink-primary focus:shadow-pink-primary focus:outline-none focus:ring-0 dark:bg-blue-dark dark:text-gray-100',
               open && 'shadow-border-b-2 shadow-pink-primary',
               isDisabled && 'pointer-events-none text-gray-300',
             )}
             {...props}>
-            <span className="block h-6 truncate">{selectedOption?.label}</span>
+            <span className="inline-flex h-8 items-center truncate">
+              {selectedOption?.label}
+            </span>
           </Listbox.Button>
           <Listbox.Label
             className={classNames(
               !!field.value || open
-                ? 'pointer-events-auto top-0 text-xs'
-                : 'top-5 text-sm',
+                ? 'pointer-events-auto top-0 text-xs md:text-sm'
+                : 'top-5 text-sm md:text-sm',
               'pointer-events-none absolute left-0.5 select-none font-medium transition-all ease-out',
               isDisabled
                 ? 'pointer-events-none text-gray-300'
                 : error
                 ? 'text-error'
-                : 'text-gray-secondary',
+                : 'text-neutral-500 dark:text-neutral-300',
             )}>
             {label}
           </Listbox.Label>
@@ -63,7 +65,7 @@ export const Select = <T extends FieldValues>({
             leave="transition ease-in duration-100"
             leaveFrom="opacity-100"
             leaveTo="opacity-0">
-            <Listbox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded bg-white py-2 shadow-md ring-1 ring-black ring-opacity-5 focus:outline-none">
+            <Listbox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded bg-white shadow-md ring-1 ring-gray-200 ring-opacity-5 focus:outline-none dark:ring-gray-secondary">
               {options.map((option) => (
                 <SelectOption
                   key={option.value}

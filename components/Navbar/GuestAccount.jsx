@@ -45,7 +45,7 @@ const GuestAccount = forwardRef(
           id="user-dropdown">
           <div className="py-3 px-4">
             <span className="block text-sm text-gray-900 dark:text-white">
-              Hello, {userSession?.account?.first_name}!
+              Hello, {userSession?.account?.firstName}
             </span>
             <span className="block truncate text-sm font-medium text-gray-500 dark:text-gray-400">
               {userSession?.account?.email}

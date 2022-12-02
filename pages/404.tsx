@@ -28,7 +28,10 @@ const useStyles = createStyles((theme) => ({
     textAlign: 'center',
     fontWeight: 900,
     fontSize: 38,
-
+    color:
+      theme.colorScheme === 'dark'
+        ? theme.colors.dark[4]
+        : theme.colors.gray[2],
     [theme.fn.smallerThan('sm')]: {
       fontSize: 32,
     },
@@ -42,25 +45,25 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export default function ServerError() {
+export default function Custom404() {
   const { classes } = useStyles();
 
   return (
     <Container className={classes.root}>
-      <div className={classes.label}>500</div>
-      <Title className={classes.title}>Something bad just happened...</Title>
+      <div className={classes.label}>404</div>
+      <Title className={classes.title}>You have found a secret place.</Title>
       <Text
         color="dimmed"
         size="lg"
         align="center"
         className={classes.description}>
-        Our servers could not handle your request. Don&apos;t worry, our
-        development team was already notified. Try refreshing the page.
+        Unfortunately, this is only a 404 page. You may have mistyped the
+        address, or the page has been moved to another URL.
       </Text>
       <Group position="center">
-        <Link href="/" variant="subtle" className="">
+        <Link href="/" className="">
           <a className="text-xl font-black text-pink-primary">
-            Refresh the page
+            Take me back to home page
           </a>
         </Link>
       </Group>

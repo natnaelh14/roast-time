@@ -11,7 +11,7 @@ const MenuItem = ({ title, price, description }: MenuItemProps) => {
       {title && price && (
         <div className="flex flex-wrap justify-between text-base">
           <p className="text-gray-secondary dark:text-gray-300">{title}</p>
-          <p className="text-gray-500">${price}</p>
+          <p className="text-gray-secondary dark:text-gray-300">${price}</p>
         </div>
       )}
       {description && <p className="text-base text-gray-500">{description}</p>}
