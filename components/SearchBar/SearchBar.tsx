@@ -1,7 +1,7 @@
 import { useRestaurantContext } from 'contexts/RestaurantsContext';
 
 const SearchBar = () => {
-  const { setRestaurantSearch } = useRestaurantContext();
+  const { setPageCount, setRestaurantSearch } = useRestaurantContext();
   return (
     <form className="m-2 w-[300px] md:m-6 md:w-[400px]">
       <label
@@ -31,9 +31,10 @@ const SearchBar = () => {
           className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-4 pl-10 text-sm focus:outline-none"
           placeholder="Search Coffee Shops..."
           required
-          onKeyUp={(event) =>
-            setRestaurantSearch((event.target as HTMLInputElement).value)
-          }
+          onKeyUp={(event) => {
+            setRestaurantSearch((event.target as HTMLInputElement).value);
+            setPageCount(1);
+          }}
         />
       </div>
     </form>
