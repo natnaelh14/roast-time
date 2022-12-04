@@ -7,18 +7,7 @@ export interface TextInputProps<T extends FieldValues>
   /** Field label. This acts as the placeholder until in focus */
   label: string;
   /** Field type. Defaults to "text" */
-  type?: 'text' | 'password' | 'email' | 'number' | 'tel';
-  /** Optional description will show below the input. Will not be shown if the field has an error */
-  description?: string;
-}
-
-export interface DateInputProps<T extends FieldValues>
-  extends UseControllerProps<T>,
-    Omit<ComponentPropsWithoutRef<'input'>, 'name' | 'defaultValue'> {
-  /** Field label. This acts as the placeholder until in focus */
-  label: string;
-  /** Field type. Defaults to "text" */
-  type?: 'text';
+  type?: 'text' | 'password' | 'email' | 'number' | 'tel' | 'time';
   /** Optional description will show below the input. Will not be shown if the field has an error */
   description?: string;
 }
