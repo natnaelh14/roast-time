@@ -1,5 +1,5 @@
 import { SubmitButton } from 'components/Button';
-import { TextInput } from 'components/Forms';
+import { TextInput } from 'components/Inputs';
 import { UserSession } from 'types';
 import { useUserSession } from 'contexts/UserSessionContext';
 import { useForm } from 'react-hook-form';

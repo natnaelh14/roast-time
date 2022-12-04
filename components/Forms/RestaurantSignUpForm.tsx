@@ -1,5 +1,5 @@
 import { SubmitButton } from '../Button/SubmitButton';
-import { TextInput, LocationSearchInput, ImageInput } from 'components/Forms';
+import { TextInput, LocationSearchInput, ImageInput } from 'components/Inputs';
 import { UserSession } from 'types';
 import { useUserSession } from 'contexts/UserSessionContext';
 import { useState } from 'react';

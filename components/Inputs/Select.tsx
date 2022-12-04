@@ -1,6 +1,6 @@
 import { ErrorMessage } from './ErrorMessage';
 import { FieldDescription } from './FieldDescription';
-import { SelectOption } from './SelectOption';
+import { SelectOption } from 'components/Inputs';
 import { SelectProps } from 'types';
 import { classNames } from 'utils/helpers';
 import { Listbox, Transition } from '@headlessui/react';

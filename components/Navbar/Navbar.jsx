@@ -142,7 +142,7 @@ export const Navbar = () => {
                             <span className="text-base decoration-pink-primary decoration-4 underline-offset-8 hover:text-pink-primary hover:underline dark:text-white">
                               Upcoming reservations
                             </span>
-                            <span className="ml-3 inline-flex h-3 w-3 items-center justify-center rounded-full bg-orange-light p-3 text-sm font-medium text-orange-primary dark:bg-orange-primary dark:text-orange-light">
+                            <span className="ml-3 inline-flex h-3 w-3 items-center justify-center rounded-full bg-orange-light p-3 text-sm font-medium text-black dark:bg-orange-primary dark:text-white">
                               3
                             </span>
                           </a>

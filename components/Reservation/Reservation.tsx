@@ -1,13 +1,14 @@
 import { SubmitButton } from '../Button/SubmitButton';
-import { DateInput } from '../Forms';
-import { Select } from 'components/Forms/Select';
+import { Select, TextInput } from 'components/Inputs';
 import { SelectOptionProps } from 'types';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import { useRouter } from 'next/router';
+import { DatePicker } from '@mantine/dates';
 
 interface FormValues {
   partySize: number;
-  reserveDate: string;
+  reserveDate: Date;
+  time: string;
 }
 
 const Reservation = () => {
@@ -16,11 +17,12 @@ const Reservation = () => {
     mode: 'onTouched',
     defaultValues: {
       partySize: 1,
-      reserveDate: new Date().toISOString().slice(0, 10),
+      reserveDate: new Date(),
     },
   });
   const { isSubmitting } = formState;
   const onSubmit = async (data: FormValues) => {
+    console.log('🚀 ~ file: Reservation.tsx:27 ~ onSubmit ~ data', data);
     console.log('reservation', data);
     router.push('/thank-you');
   };
@@ -55,7 +57,29 @@ const Reservation = () => {
           name="partySize"
           options={people}
         />
-        <DateInput control={control} label="Select Date" name="reserveDate" />
+        <Controller
+          control={control}
+          name="reserveDate"
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore:next-line
+          render={({ field: { onChange, value, name } }) => (
+            <DatePicker
+              label="Select Date"
+              placeholder="Pick date"
+              defaultValue={new Date()}
+              name={name}
+              value={value}
+              onChange={onChange}
+            />
+          )}
+        />
+        <TextInput
+          control={control}
+          type="time"
+          name="time"
+          label="Select Time"
+          rules={{ required: true }}
+        />
         <div className="mt-6 flex flex-col items-center">
           <SubmitButton
             text="Find a time"

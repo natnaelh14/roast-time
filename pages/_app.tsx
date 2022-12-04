@@ -43,9 +43,6 @@ function MyApp({ Component, pageProps }: AppProps) {
               'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
               })(window,document,'script','dataLayer','GTM-MQ9LW45');`}
       </Script>
-      <Script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></Script>
-      {/* Flowbite Datepicker */}
-      <Script src="https://unpkg.com/flowbite@1.5.3/dist/datepicker.js"></Script>
       {/* Google Maps API */}
       <script
         src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOLE_MAPS_API_KEY}&libraries=places`}></script>
