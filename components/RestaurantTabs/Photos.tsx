@@ -1,5 +1,5 @@
 import { OverviewLoading } from 'components/Loaders';
-import Image from 'next/image';
+import ImageModal from 'components/Modal/ImageModal';
 import useSWR from 'swr';
 import { useRouter } from 'next/router';
 
@@ -17,7 +17,7 @@ export const Photos = () => {
       {restaurant.imageData.map((image: string, i: number) => {
         return (
           <div className="m-4" key={i}>
-            <Image alt="shopping-item" src={image} width={200} height={150} />
+            <ImageModal imageUrl={image} />
           </div>
         );
       })}

@@ -9,6 +9,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import { classValidatorResolver } from '@hookform/resolvers/class-validator';
 import { IsEmail, Length } from 'class-validator';
+import Link from 'next/link';
 
 interface FormValues {
   email: string;
@@ -99,11 +100,15 @@ export const SignInForm = ({
           isSubmitting={isSubmitting}
           className="w-auto shadow-lg"
         />
-        <a
-          className="text-md mt-2 block text-center text-pink-primary"
-          href="#">
-          Forgot your password?
-        </a>
+        <div className="mt-2 block ">
+          <span>New User?</span>
+          {'  '}
+          <Link href="/signup">
+            <a className="text-md text-center underline decoration-pink-primary decoration-4 underline-offset-8 hover:text-pink-primary">
+              Signup
+            </a>
+          </Link>
+        </div>
       </div>
     </form>
   );
