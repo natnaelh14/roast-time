@@ -53,8 +53,16 @@ export interface SessionAccount {
 }
 export interface UserSession {
   isLoggedIn: boolean;
-  accessToken?: string;
+  token?: string;
   account?: SessionAccount;
+}
+
+export interface Reservation {
+  id: string;
+  partySize: number;
+  reservationDate: Date;
+  reservationTime: string;
+  restaurant: Restaurant;
 }
 
 export interface ErrorResponse {

@@ -18,8 +18,12 @@ export class FetchError extends Error {
   }
 }
 
-export default async function fetchJson(input, init) {
-  const response = await fetch(input, init);
+export default async function fetchJson(input, token) {
+  const response = await fetch(input, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 
   // if the server replies, there's always some data in json
   // if there's a network error, it will throw at the previous line
