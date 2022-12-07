@@ -100,7 +100,7 @@ export const SignInForm = ({
           isSubmitting={isSubmitting}
           className="w-auto shadow-lg"
         />
-        <div className="mt-2 block ">
+        <div className="mt-3 block dark:text-white">
           <span>New User?</span>
           {'  '}
           <Link href="/signup">

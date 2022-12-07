@@ -31,6 +31,7 @@
     "axios": "^0.27.2",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.13.2",
+    "dayjs": "^1.11.7",
     "flowbite": "^1.5.2",
     "flowbite-datepicker": "^1.2.2",
     "flowbite-react": "^0.1.9",

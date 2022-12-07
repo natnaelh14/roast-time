@@ -1,8 +1,8 @@
 import Item from '../Item/Item';
 import { ThreeDotsLoading, DashboardLoading } from '../Loaders';
 import { useRestaurantContext } from 'contexts/RestaurantsContext';
-import RestaurantsEmptyState from 'components/EmptyState/RestaurantsEmptyState';
 import { Restaurant } from 'types';
+import EmptyState from 'components/EmptyState/EmptyState';
 
 const Dashboard = () => {
   const { restaurantsData, error, restaurantSearch } = useRestaurantContext();
@@ -12,7 +12,7 @@ const Dashboard = () => {
     return <DashboardLoading />;
   if (!restaurants && !error && restaurantSearch?.length)
     return <ThreeDotsLoading />;
-  if (error) return <RestaurantsEmptyState />;
+  if (error) return <EmptyState message="No restaurants found" />;
 
   return (
     <div className="mt-5 flex flex-row overflow-x-scroll md:flex-wrap md:justify-center md:overflow-auto">
