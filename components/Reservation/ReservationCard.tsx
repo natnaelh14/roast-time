@@ -54,7 +54,7 @@ const ReservationCard = ({
   };
 
   return (
-    <div className="w-lg flex flex-row overflow-hidden rounded border p-2 shadow-lg dark:border-gray-secondary">
+    <div className="w-lg flex min-w-80 flex-col overflow-hidden rounded border p-2 shadow-lg dark:border-gray-secondary md:flex-row">
       <Link href={`restaurant/${restaurant?.id}`} passHref>
         <a className="hover:cursor-pointer">
           <Image
