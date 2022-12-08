@@ -1,18 +1,58 @@
 import { Reservation } from 'types';
 import { Button } from 'components/Button';
+import { updateReservation, deleteReservation } from 'components/api/api';
+import { useUserSession } from 'contexts/UserSessionContext';
 import React from 'react';
 import dayjs from 'dayjs';
 import Image from 'next/image';
 import Link from 'next/link';
+import Swal from 'sweetalert2';
 
 const ReservationCard = ({
   reservation,
   isHistory,
+  mutate,
 }: {
   reservation: Reservation;
   isHistory?: boolean;
+  mutate?: () => void;
 }) => {
+  const { userSession } = useUserSession();
+
   const { restaurant } = reservation;
+
+  const handleUpdateReservation = () => {};
+
+  const handleDeleteReservation = () => {
+    return Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to restore the reservation!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+    }).then(async (result) => {
+      // eslint-disable-next-line promise/always-return
+      if (result.isConfirmed) {
+        const { hasError } = await deleteReservation(
+          // @ts-ignore:next-line
+          userSession?.token,
+          userSession?.account?.id,
+          reservation?.id,
+        );
+        if (!hasError && mutate) {
+          mutate();
+          Swal.fire(
+            'Deleted!',
+            'Your reservation has been deleted.',
+            'success',
+          );
+        }
+      }
+    });
+  };
+
   return (
     <div className="w-lg flex flex-row overflow-hidden rounded border p-2 shadow-lg dark:border-gray-secondary">
       <Link href={`restaurant/${restaurant?.id}`} passHref>
@@ -40,12 +80,14 @@ const ReservationCard = ({
           {reservation.reservationTime}
         </p>
         <p className="my-2 inline-block rounded-full bg-gray-200 px-3 py-1 text-sm font-semibold text-gray-700 dark:bg-blue-dark dark:text-gray-300">
-          #{restaurant?.category}
+          #{restaurant.category}
         </p>
         {!isHistory && (
           <>
             <Button className="my-2">Update</Button>
-            <Button className="my-2">Cancel</Button>
+            <Button className="my-2" onClick={handleDeleteReservation}>
+              Cancel
+            </Button>
           </>
         )}
       </div>

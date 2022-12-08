@@ -71,7 +71,6 @@ export const LocationSearchInput = ({ ...props }: LocationSearchInputProps) => {
                 : { backgroundColor: '#fafafa', cursor: 'pointer' };
               return (
                 <div
-                  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                   // @ts-ignore:next-line
                   key={i}
                   {...getSuggestionItemProps(suggestion, {

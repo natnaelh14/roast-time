@@ -22,7 +22,6 @@ const Reservation = () => {
   });
   const { isSubmitting } = formState;
   const onSubmit = async (data: FormValues) => {
-    console.log('🚀 ~ file: Reservation.tsx:27 ~ onSubmit ~ data', data);
     console.log('reservation', data);
     router.push('/thank-you');
   };
@@ -60,7 +59,6 @@ const Reservation = () => {
         <Controller
           control={control}
           name="reserveDate"
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
           // @ts-ignore:next-line
           render={({ field: { onChange, value, name } }) => (
             <DatePicker
