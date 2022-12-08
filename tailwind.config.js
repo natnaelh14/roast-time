@@ -41,6 +41,12 @@ module.exports = {
       height: {
         128: '32rem',
       },
+      minHeight: {
+        140: '35rem',
+      },
+      minWidth: {
+        80: '20rem',
+      },
     },
   },
   /* eslint global-require: "off" */
