@@ -11,7 +11,6 @@ export const ImageInput = ({ setImage }: ImageInputProps) => {
         required={true}
         className="mb-5 block w-full cursor-pointer rounded-lg border border-slate-300 bg-gray-50 text-xs text-gray-900 focus:outline-none dark:border-gray-secondary  dark:bg-gray-700 dark:text-gray-400 dark:placeholder-gray-400"
         type="file"
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore:next-line
         onChange={(e) => setImage(e.target.files[0])}
       />

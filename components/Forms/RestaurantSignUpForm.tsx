@@ -54,7 +54,6 @@ export const RestaurantSignUpForm = ({
     try {
       const resumeData = new FormData();
       resumeData.append('upload_preset', 'resume');
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore:next-line
       resumeData.append('file', image);
       const resumeRes = await axios.post(

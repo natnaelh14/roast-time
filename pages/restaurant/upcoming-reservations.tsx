@@ -38,7 +38,11 @@ const UpcomingReservations = ({
   accountId: string;
   token: string;
 }) => {
-  const { data: reservationData, error } = useSWR([
+  const {
+    data: reservationData,
+    error,
+    mutate,
+  } = useSWR([
     `${process.env.NEXT_PUBLIC_BASE_URL}/reservations/${accountId}`,
     token,
   ]);
@@ -53,7 +57,7 @@ const UpcomingReservations = ({
         {reservationData?.reservations.map((reservation: Reservation) => {
           return (
             <div key={reservation?.id} className="m-4">
-              <ReservationCard reservation={reservation} />
+              <ReservationCard reservation={reservation} mutate={mutate} />
             </div>
           );
         })}
