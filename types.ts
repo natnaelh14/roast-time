@@ -74,3 +74,9 @@ export interface GuestAccountProps {
   isDropDownHidden: boolean;
   setDropDownHidden: (val: boolean) => void;
 }
+
+export interface ReservationFormValues {
+  partySize: number;
+  reservationDate: Date;
+  reservationTime: string;
+}
