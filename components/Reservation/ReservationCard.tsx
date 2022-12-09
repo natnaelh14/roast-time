@@ -1,7 +1,8 @@
 import { Reservation } from 'types';
 import { Button } from 'components/Button';
-import { updateReservation, deleteReservation } from 'components/api/api';
+import { deleteReservation } from 'components/api/api';
 import { useUserSession } from 'contexts/UserSessionContext';
+import UpdateReservationModal from 'components/Modal/UpdateReservationModal';
 import React from 'react';
 import dayjs from 'dayjs';
 import Image from 'next/image';
@@ -18,10 +19,8 @@ const ReservationCard = ({
   mutate?: () => void;
 }) => {
   const { userSession } = useUserSession();
-
   const { restaurant } = reservation;
-
-  const handleUpdateReservation = () => {};
+  console.log('🚀 ~ file: ReservationCard.tsx:23 ~ restaurant', restaurant);
 
   const handleDeleteReservation = () => {
     return Swal.fire({
@@ -84,7 +83,7 @@ const ReservationCard = ({
         </p>
         {!isHistory && (
           <>
-            <Button className="my-2">Update</Button>
+            <UpdateReservationModal reservation={reservation} mutate={mutate} />
             <Button className="my-2" onClick={handleDeleteReservation}>
               Cancel
             </Button>

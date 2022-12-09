@@ -21,14 +21,14 @@ const ModalWrapper = ({
       bottom: 'auto',
       marginRight: '-50%',
       transform: 'translate(-50%, -50%)',
-      backgroundColor:
-        colorScheme === 'dark' ? '#1e1e1e' : 'rgb(198 198 198 / 75%)',
+      backgroundColor: '',
       borderRadius: '16px',
       border: 0,
     },
     overlay: {
       background:
         colorScheme === 'dark' ? 'rgb(0 0 0 / 87%)' : 'rgb(0 0 0 / 25%)',
+      borderRadius: '16px',
     },
   };
 

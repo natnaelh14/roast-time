@@ -1,6 +1,13 @@
 import axios, { AxiosRequestHeaders } from 'axios';
 
-export const getSession = () => axios.get('/api/user');
+export const getSession = async () => {
+  try {
+    const { data } = await axios.get('/api/user');
+    return { data, hasError: false };
+  } catch (e) {
+    return { e, hasError: true };
+  }
+};
 
 const getHeader = (token?: string): AxiosRequestHeaders => {
   return {
@@ -16,12 +23,12 @@ export const updateReservation = async ({
   token,
   accountId,
   reservationId,
-  updateReservationPayload,
+  reservation,
 }: {
   token: string;
   accountId: string;
   reservationId: string;
-  updateReservationPayload: {
+  reservation: {
     partySize: number;
     reservationDate: Date;
     reservationTime: string;
@@ -30,7 +37,7 @@ export const updateReservation = async ({
   try {
     const { data } = await axios.put(
       `${process.env.NEXT_PUBLIC_BASE_URL}/reservation/${accountId}/update/${reservationId}`,
-      updateReservationPayload,
+      reservation,
       {
         timeout: AXIO_TIMEOUT,
         headers: getHeader(token),

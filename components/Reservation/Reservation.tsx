@@ -1,27 +1,21 @@
-import { SubmitButton } from '../Button/SubmitButton';
+import { SubmitButton } from 'components/Button';
 import { Select, TextInput } from 'components/Inputs';
-import { SelectOptionProps } from 'types';
+import { SelectOptionProps, ReservationFormValues } from 'types';
 import { useForm, Controller } from 'react-hook-form';
 import { useRouter } from 'next/router';
 import { DatePicker } from '@mantine/dates';
 
-interface FormValues {
-  partySize: number;
-  reserveDate: Date;
-  time: string;
-}
-
 const Reservation = () => {
   const router = useRouter();
-  const { control, handleSubmit, formState } = useForm<FormValues>({
+  const { control, handleSubmit, formState } = useForm<ReservationFormValues>({
     mode: 'onTouched',
     defaultValues: {
       partySize: 1,
-      reserveDate: new Date(),
+      reservationDate: new Date(),
     },
   });
   const { isSubmitting } = formState;
-  const onSubmit = async (data: FormValues) => {
+  const onSubmit = async (data: ReservationFormValues) => {
     console.log('reservation', data);
     router.push('/thank-you');
   };
@@ -58,7 +52,7 @@ const Reservation = () => {
         />
         <Controller
           control={control}
-          name="reserveDate"
+          name="reservationDate"
           // @ts-ignore:next-line
           render={({ field: { onChange, value, name } }) => (
             <DatePicker
@@ -74,7 +68,7 @@ const Reservation = () => {
         <TextInput
           control={control}
           type="time"
-          name="time"
+          name="reservationTime"
           label="Select Time"
           rules={{ required: true }}
         />
