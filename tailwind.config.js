@@ -31,7 +31,8 @@ module.exports = {
           dark: '#ce3636',
         },
         brown: {
-          light: '#f5ebe0',
+          light: '#facea8',
+          dark: '#c69977',
         },
         pink: {
           primary: '#F78888',

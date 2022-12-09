@@ -3,6 +3,7 @@ import { Button } from 'components/Button';
 import { deleteReservation } from 'components/api/api';
 import { useUserSession } from 'contexts/UserSessionContext';
 import UpdateReservationModal from 'components/Modal/UpdateReservationModal';
+import { useColorScheme } from 'contexts/ColorSchemeContext';
 import React from 'react';
 import dayjs from 'dayjs';
 import Image from 'next/image';
@@ -18,9 +19,9 @@ const ReservationCard = ({
   isHistory?: boolean;
   mutate?: () => void;
 }) => {
+  const { colorScheme } = useColorScheme();
   const { userSession } = useUserSession();
   const { restaurant } = reservation;
-  console.log('🚀 ~ file: ReservationCard.tsx:23 ~ restaurant', restaurant);
 
   const handleDeleteReservation = () => {
     return Swal.fire({
@@ -28,9 +29,11 @@ const ReservationCard = ({
       text: "You won't be able to restore the reservation!",
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
+      color: `${colorScheme === 'dark' && '#cfcfcf'}`,
+      confirmButtonColor: '#F78888',
+      // cancelButtonColor: '#d33',
       confirmButtonText: 'Yes, delete it!',
+      background: `${colorScheme === 'dark' && '#253443'}`,
     }).then(async (result) => {
       // eslint-disable-next-line promise/always-return
       if (result.isConfirmed) {
@@ -84,7 +87,9 @@ const ReservationCard = ({
         {!isHistory && (
           <>
             <UpdateReservationModal reservation={reservation} mutate={mutate} />
-            <Button className="my-2" onClick={handleDeleteReservation}>
+            <Button
+              className="my-2 inline-flex items-center"
+              onClick={handleDeleteReservation}>
               Cancel
             </Button>
           </>
