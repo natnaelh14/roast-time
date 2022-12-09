@@ -26,7 +26,7 @@ export const TextInput = <T extends FieldValues>({
         {...props}
         id={name}
         type={type || 'text'}
-        placeholder="doNotRemove"
+        placeholder={type === 'tel' ? '(XXX) XXX-XXXX' : ''}
         autoComplete="new-password"
         disabled={isDisabled}
         aria-describedby={
@@ -37,13 +37,13 @@ export const TextInput = <T extends FieldValues>({
             : undefined
         }
         className={classNames(
-          'shadow-border-b hover:shadow-border-b-2 focus:shadow-border-b-2 peer mt-2 inline-block w-full rounded-lg border border-slate-300 p-2 text-base text-gray-500 shadow-gray-300 transition placeholder:text-transparent hover:shadow-pink-primary focus:shadow-pink-primary focus:outline-none focus:ring-0 disabled:pointer-events-none disabled:text-gray-300 dark:border-gray-secondary dark:bg-gray-700  dark:text-gray-300',
+          'shadow-border-b hover:shadow-border-b-2 focus:shadow-border-b-2 peer mt-2 inline-block w-full rounded-lg border border-slate-300 p-2 text-base text-gray-500 shadow-gray-300 transition hover:shadow-pink-primary focus:shadow-pink-primary focus:outline-none focus:ring-0 disabled:pointer-events-none disabled:text-gray-300 dark:border-gray-secondary dark:bg-gray-700  dark:text-gray-300',
           error && 'shadow-error hover:shadow-error focus:shadow-error',
         )}
       />
       <label
         className={classNames(
-          "absolute -top-0.5 left-0.5 select-none text-xs font-medium transition-all ease-out peer-placeholder-shown:pointer-events-none peer-placeholder-shown:text-xs peer-required:after:content-['_*'] peer-focus:-top-0.5 peer-focus:text-sm md:text-sm md:peer-placeholder-shown:text-base",
+          "absolute -top-0.5 left-0.5 select-none text-xs font-medium transition-all ease-out peer-placeholder-shown:pointer-events-none peer-required:after:content-['_*'] peer-focus:-top-0.5 peer-focus:text-sm md:text-base",
           isDisabled
             ? 'pointer-events-none text-gray-300'
             : error

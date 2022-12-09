@@ -12,6 +12,7 @@ const Reservation = () => {
     defaultValues: {
       partySize: 1,
       reservationDate: new Date(),
+      reservationTime: '12:00',
     },
   });
   const { isSubmitting } = formState;
@@ -55,14 +56,17 @@ const Reservation = () => {
           name="reservationDate"
           // @ts-ignore:next-line
           render={({ field: { onChange, value, name } }) => (
-            <DatePicker
-              label="Select Date"
-              placeholder="Pick date"
-              defaultValue={new Date()}
-              name={name}
-              value={value}
-              onChange={onChange}
-            />
+            <div className="mb-5">
+              <DatePicker
+                label="Select Date"
+                placeholder="MM/DD/YYYY"
+                defaultValue={new Date()}
+                name={name}
+                value={value}
+                onChange={onChange}
+                required={true}
+              />
+            </div>
           )}
         />
         <TextInput
@@ -70,11 +74,11 @@ const Reservation = () => {
           type="time"
           name="reservationTime"
           label="Select Time"
-          rules={{ required: true }}
+          required={true}
         />
         <div className="mt-6 flex flex-col items-center">
           <SubmitButton
-            text="Find a time"
+            text="Reserve"
             submittingText="Finding..."
             isSubmitting={isSubmitting}
             className="w-auto shadow-lg"

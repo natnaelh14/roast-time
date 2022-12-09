@@ -48,9 +48,9 @@ export const Select = <T extends FieldValues>({
           <Listbox.Label
             className={classNames(
               !!field.value || open
-                ? 'pointer-events-auto top-0 text-xs md:text-sm'
+                ? 'pointer-events-auto top-0 text-sm md:text-base'
                 : 'top-5 text-sm md:text-sm',
-              'pointer-events-none absolute left-0.5 select-none font-medium transition-all ease-out',
+              'pointer-events-none absolute left-0.5 select-none font-medium transition-all ease-out after:-top-0.5 after:text-sm',
               isDisabled
                 ? 'pointer-events-none text-gray-300'
                 : error

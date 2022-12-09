@@ -51,7 +51,7 @@ const UpcomingReservations = ({
   if (error) return <EmptyState message="No upcoming reservations found" />;
 
   return (
-    <div className=" my-10 min-h-160 text-3xl dark:text-white ">
+    <div className="my-10 min-h-160 text-3xl dark:text-white">
       <h1 className="m-4 text-center text-4xl">Upcoming Reservations</h1>
       <div className="flex flex-row overflow-x-scroll md:flex-wrap md:justify-center md:overflow-auto">
         {reservationData?.reservations.map((reservation: Reservation) => {
