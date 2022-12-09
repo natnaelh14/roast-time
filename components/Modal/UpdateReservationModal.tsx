@@ -84,7 +84,7 @@ const UpdateReservationModal = ({
         Update
       </Button>
       <ModalWrapper modalIsOpen={modalIsOpen} setIsOpen={setIsOpen}>
-        <div className="h-160 w-160 rounded-xl border border-gray-200 bg-white px-24 py-16 dark:border-gray-secondary dark:bg-blue-dark">
+        <div className="rounded-xl border border-gray-200 bg-white px-24 py-16 dark:border-gray-secondary dark:bg-blue-dark">
           <h1 className="mb-10 text-center text-3xl dark:text-gray-200">
             Update Reservation
           </h1>
@@ -103,14 +103,17 @@ const UpdateReservationModal = ({
               name="reservationDate"
               // @ts-ignore:next-line
               render={({ field: { onChange, value, name } }) => (
-                <DatePicker
-                  label="Select Date"
-                  placeholder="Pick date"
-                  defaultValue={new Date()}
-                  name={name}
-                  value={value}
-                  onChange={onChange}
-                />
+                <div className="mb-5">
+                  <DatePicker
+                    label="Select Date"
+                    placeholder="MM/DD/YYYY"
+                    defaultValue={new Date()}
+                    name={name}
+                    value={value}
+                    onChange={onChange}
+                    required={true}
+                  />
+                </div>
               )}
             />
             <TextInput
@@ -118,9 +121,9 @@ const UpdateReservationModal = ({
               type="time"
               name="reservationTime"
               label="Select Time"
-              rules={{ required: true }}
+              required={true}
             />
-            <div className="mt-20 flex flex-row items-end justify-center gap-6">
+            <div className="mt-10 flex flex-row items-end justify-center gap-6">
               <SubmitButton
                 text="Update"
                 submittingText="Updating..."

@@ -38,14 +38,14 @@ const DiningHistory = ({
   token: string;
 }) => {
   const { data: reservationData, error } = useSWR([
-    `${process.env.NEXT_PUBLIC_BASE_URL}/reservations/${accountId}`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/reservations/history/${accountId}`,
     token,
   ]);
 
   if (!reservationData && !error) return <ThreeDotsLoading />;
 
   return (
-    <div className="my-10 text-3xl dark:text-white ">
+    <div className="my-10 min-h-160 text-3xl dark:text-white">
       <h1 className="m-4 text-center text-4xl">Reservation History</h1>
       <div className="flex flex-row overflow-x-scroll md:flex-wrap md:justify-center md:overflow-auto">
         {reservationData?.reservations.map((reservation: Reservation) => {

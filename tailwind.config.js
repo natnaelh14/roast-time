@@ -40,10 +40,6 @@ module.exports = {
       },
       height: {
         128: '32rem',
-        160: '40rem',
-      },
-      width: {
-        160: '40rem',
       },
       minHeight: {
         160: '40rem',
