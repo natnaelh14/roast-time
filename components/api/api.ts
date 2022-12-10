@@ -67,3 +67,27 @@ export const deleteReservation = async (
     return { e, hasError: true };
   }
 };
+
+export const handleReservation = async (reservation: {
+  token: string;
+  userId: string;
+  reservationId: string;
+  partySize: number;
+  reservationDate: Date;
+  reservationTime: string;
+}) => {
+  try {
+    const { token, ...reservationPayload } = reservation;
+    const { data } = await axios.post(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/reservation`,
+      reservationPayload,
+      {
+        timeout: AXIO_TIMEOUT,
+        headers: getHeader(token),
+      },
+    );
+    return { data, hasError: false };
+  } catch (e) {
+    return { e, hasError: true };
+  }
+};

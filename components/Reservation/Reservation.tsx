@@ -1,12 +1,20 @@
 import { SubmitButton } from 'components/Button';
 import { Select, TextInput } from 'components/Inputs';
 import { SelectOptionProps, ReservationFormValues } from 'types';
+import { handleReservation } from 'components/api/api';
+import { useUserSession } from 'contexts/UserSessionContext';
+import { useColorScheme } from 'contexts/ColorSchemeContext';
 import { useForm, Controller } from 'react-hook-form';
 import { useRouter } from 'next/router';
 import { DatePicker } from '@mantine/dates';
+import Swal from 'sweetalert2';
 
 const Reservation = () => {
   const router = useRouter();
+  const { id: restaurantId } = router.query;
+  const { userSession } = useUserSession();
+  const { colorScheme } = useColorScheme();
+
   const { control, handleSubmit, formState } = useForm<ReservationFormValues>({
     mode: 'onTouched',
     defaultValues: {
@@ -17,8 +25,33 @@ const Reservation = () => {
   });
   const { isSubmitting } = formState;
   const onSubmit = async (data: ReservationFormValues) => {
-    console.log('reservation', data);
-    router.push('/thank-you');
+    try {
+      const reservationPayload = {
+        // @ts-ignore:next-line
+        ...data,
+        restaurantId,
+        userId: userSession?.account?.id,
+        token: userSession?.token,
+      };
+      // @ts-ignore:next-line
+      const { hasError } = await handleReservation(reservationPayload);
+      if (!hasError) {
+        await Swal.fire({
+          title: 'Congrats',
+          text: 'Your reservation has been confirmed.',
+          icon: 'success',
+          color: `${colorScheme === 'dark' && '#cfcfcf'}`,
+          background: `${colorScheme === 'dark' && '#253443'}`,
+          confirmButtonText: 'Ok',
+          confirmButtonColor: '#F78888',
+          iconColor: `${colorScheme === 'dark' ? '#facea8' : '#c69977'}`,
+        });
+        router.push('/restaurant/upcoming-reservations');
+      }
+      return;
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   const people: SelectOptionProps[] = [
@@ -78,8 +111,9 @@ const Reservation = () => {
         />
         <div className="mt-6 flex flex-col items-center">
           <SubmitButton
+            variant="primary"
             text="Reserve"
-            submittingText="Finding..."
+            submittingText="Reserving..."
             isSubmitting={isSubmitting}
             className="w-auto shadow-lg"
           />

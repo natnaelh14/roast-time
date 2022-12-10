@@ -7,8 +7,8 @@ import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
 import Swal from 'sweetalert2';
-import { classValidatorResolver } from '@hookform/resolvers/class-validator';
-import { Length, IsEmail, IsMobilePhone } from 'class-validator';
+import * as z from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
 
 interface RestaurantSignUpFormValues {
   firstName: string;
@@ -20,16 +20,13 @@ interface RestaurantSignUpFormValues {
   category: string;
 }
 
-class UserFormValues {
-  @IsEmail()
-  email!: string;
-
-  @Length(10)
-  password!: string;
-
-  @IsMobilePhone()
-  phoneNumber!: number;
-}
+const schema = z.object({
+  email: z.string().email({ message: 'Invalid email address' }),
+  password: z
+    .string()
+    .min(10, { message: 'Must be 10 or more characters long' }),
+});
+const resolver = zodResolver(schema);
 
 export const RestaurantSignUpForm = ({
   setLoading,
@@ -45,8 +42,8 @@ export const RestaurantSignUpForm = ({
   const { setSession } = useUserSession();
   const { control, handleSubmit, formState } =
     useForm<RestaurantSignUpFormValues>({
-      resolver: classValidatorResolver(UserFormValues),
-      mode: 'onTouched',
+      resolver,
+      mode: 'onSubmit',
     });
   const { isSubmitting } = formState;
   const onSubmit = async (data: RestaurantSignUpFormValues) => {
@@ -158,6 +155,7 @@ export const RestaurantSignUpForm = ({
       <div className="mt-6 flex justify-center">
         <SubmitButton
           text="Sign Up"
+          variant="primary"
           submittingText="Signing up..."
           isSubmitting={isSubmitting}
           className="w-auto shadow-lg"

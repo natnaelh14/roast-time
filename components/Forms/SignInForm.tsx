@@ -7,22 +7,22 @@ import TagManager from 'react-gtm-module';
 import { useRouter } from 'next/router';
 import axios from 'axios';
 import { useState } from 'react';
-import { classValidatorResolver } from '@hookform/resolvers/class-validator';
-import { IsEmail, Length } from 'class-validator';
 import Link from 'next/link';
+import * as z from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
 
 interface FormValues {
   email: string;
   password: string;
 }
-class UserFormValues {
-  @IsEmail()
-  email!: string;
 
-  @Length(10)
-  password!: string;
-}
-const resolver = classValidatorResolver(UserFormValues);
+const schema = z.object({
+  email: z.string().email({ message: 'Invalid email address' }),
+  password: z
+    .string()
+    .min(10, { message: 'Must be 10 or more characters long' }),
+});
+const resolver = zodResolver(schema);
 
 export const SignInForm = ({
   setLoading,
@@ -37,9 +37,9 @@ export const SignInForm = ({
     handleSubmit,
     setError,
     formState: { isSubmitting },
-  } = useForm<UserFormValues>({
+  } = useForm<FormValues>({
     resolver,
-    mode: 'onTouched',
+    mode: 'onSubmit',
   });
 
   const onSubmit = async (data: FormValues) => {
@@ -96,6 +96,7 @@ export const SignInForm = ({
       <div className="mt-6 flex flex-col items-center">
         <SubmitButton
           text="Sign In"
+          variant="primary"
           submittingText="Signing in..."
           isSubmitting={isSubmitting}
           className="w-auto shadow-lg"

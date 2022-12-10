@@ -46,7 +46,9 @@ const DiningHistory = ({
 
   return (
     <div className="my-10 min-h-160 text-3xl dark:text-white">
-      <h1 className="m-4 text-center text-4xl">Reservation History</h1>
+      <h1 className="m-4 text-center text-4xl text-brown-dark dark:text-brown-light">
+        Reservation History
+      </h1>
       <div className="flex flex-row overflow-x-scroll md:flex-wrap md:justify-center md:overflow-auto">
         {reservationData?.reservations.map((reservation: Reservation) => {
           return (

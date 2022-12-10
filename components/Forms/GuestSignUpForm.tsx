@@ -7,8 +7,8 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import Swal from 'sweetalert2';
 import { useState } from 'react';
-import { classValidatorResolver } from '@hookform/resolvers/class-validator';
-import { Min, IsEmail, IsMobilePhone } from 'class-validator';
+import * as z from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
 
 interface GuestSignUpFormValues {
   firstName: string;
@@ -18,16 +18,13 @@ interface GuestSignUpFormValues {
   password: string;
 }
 
-class UserFormValues {
-  @IsEmail()
-  email!: string;
-
-  @Min(10)
-  password!: string;
-
-  @IsMobilePhone()
-  phoneNumber!: string;
-}
+const schema = z.object({
+  email: z.string().email({ message: 'Invalid email address' }),
+  password: z
+    .string()
+    .min(10, { message: 'Must be 10 or more characters long' }),
+});
+const resolver = zodResolver(schema);
 
 export const GuestSignUpForm = ({
   setLoading,
@@ -38,8 +35,8 @@ export const GuestSignUpForm = ({
   const [errorMessage, setErrorMessage] = useState('');
   const { setSession } = useUserSession();
   const { control, handleSubmit, formState } = useForm<GuestSignUpFormValues>({
-    resolver: classValidatorResolver(UserFormValues),
-    mode: 'onTouched',
+    resolver,
+    mode: 'onSubmit',
   });
   const { isSubmitting } = formState;
   const onSubmit = async (data: GuestSignUpFormValues) => {
@@ -109,6 +106,7 @@ export const GuestSignUpForm = ({
       <div className="mt-6 flex justify-center">
         <SubmitButton
           text="Sign Up"
+          variant="primary"
           submittingText="Signing up..."
           isSubmitting={isSubmitting}
           className="w-auto shadow-lg"

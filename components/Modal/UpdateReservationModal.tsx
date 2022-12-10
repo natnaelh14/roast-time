@@ -3,6 +3,7 @@ import { Button, SubmitButton } from 'components/Button';
 import { Select, TextInput } from 'components/Inputs';
 import { SelectOptionProps, ReservationFormValues, Reservation } from 'types';
 import { updateReservation, getSession } from 'components/api/api';
+import { useColorScheme } from 'contexts/ColorSchemeContext';
 import { useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { DatePicker } from '@mantine/dates';
@@ -15,6 +16,7 @@ const UpdateReservationModal = ({
   reservation: Reservation;
   mutate?: () => void;
 }) => {
+  const { colorScheme } = useColorScheme();
   const [modalIsOpen, setIsOpen] = useState(false);
   const {
     id: reservationId,
@@ -53,7 +55,10 @@ const UpdateReservationModal = ({
         position: 'top-end',
         showConfirmButton: false,
         timer: 3000,
+        color: `${colorScheme === 'dark' && '#cfcfcf'}`,
         timerProgressBar: true,
+        iconColor: `${colorScheme === 'dark' ? '#facea8' : '#c69977'}`,
+        background: `${colorScheme === 'dark' && '#4B5563'}`,
       });
       Toast.fire({
         icon: 'success',
@@ -79,13 +84,16 @@ const UpdateReservationModal = ({
   ];
 
   return (
-    <div>
-      <Button onClick={() => setIsOpen(true)} className="my-2">
+    <>
+      <Button
+        variant="primary"
+        onClick={() => setIsOpen(true)}
+        className="my-2">
         Update
       </Button>
       <ModalWrapper modalIsOpen={modalIsOpen} setIsOpen={setIsOpen}>
         <div className="rounded-xl border border-gray-200 bg-white px-24 py-16 dark:border-gray-secondary dark:bg-blue-dark">
-          <h1 className="mb-10 text-center text-3xl dark:text-gray-200">
+          <h1 className="mb-10 text-center text-3xl text-brown-dark dark:text-brown-light">
             Update Reservation
           </h1>
           <form
@@ -126,16 +134,23 @@ const UpdateReservationModal = ({
             <div className="mt-10 flex flex-row items-end justify-center gap-6">
               <SubmitButton
                 text="Update"
+                variant="primary"
                 submittingText="Updating..."
                 isSubmitting={isSubmitting}
                 className="w-auto shadow-lg"
               />
-              <Button onClick={() => setIsOpen(false)}>Cancel</Button>
+              <Button
+                variant="secondary"
+                className="bg-zinc-500 text-white hover:bg-zinc-600 hover:text-white"
+                disabled={isSubmitting}
+                onClick={() => setIsOpen(false)}>
+                Cancel
+              </Button>
             </div>
           </form>
         </div>
       </ModalWrapper>
-    </div>
+    </>
   );
 };
 
