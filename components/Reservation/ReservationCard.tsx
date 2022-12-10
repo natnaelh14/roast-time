@@ -31,7 +31,6 @@ const ReservationCard = ({
       showCancelButton: true,
       color: `${colorScheme === 'dark' && '#cfcfcf'}`,
       confirmButtonColor: '#F78888',
-      // cancelButtonColor: '#d33',
       confirmButtonText: 'Yes, delete it!',
       background: `${colorScheme === 'dark' && '#253443'}`,
     }).then(async (result) => {
@@ -45,11 +44,16 @@ const ReservationCard = ({
         );
         if (!hasError && mutate) {
           mutate();
-          Swal.fire(
-            'Deleted!',
-            'Your reservation has been deleted.',
-            'success',
-          );
+          Swal.fire({
+            title: 'Deleted!',
+            text: 'Your reservation has been deleted.',
+            icon: 'success',
+            color: `${colorScheme === 'dark' && '#cfcfcf'}`,
+            background: `${colorScheme === 'dark' && '#253443'}`,
+            confirmButtonText: 'Ok',
+            confirmButtonColor: '#F78888',
+            iconColor: `${colorScheme === 'dark' ? '#facea8' : '#c69977'}`,
+          });
         }
       }
     });
@@ -88,6 +92,7 @@ const ReservationCard = ({
           <>
             <UpdateReservationModal reservation={reservation} mutate={mutate} />
             <Button
+              variant="secondary"
               className="my-2 inline-flex items-center"
               onClick={handleDeleteReservation}>
               Cancel

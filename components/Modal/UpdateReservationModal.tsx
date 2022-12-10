@@ -85,7 +85,10 @@ const UpdateReservationModal = ({
 
   return (
     <>
-      <Button onClick={() => setIsOpen(true)} className="my-2">
+      <Button
+        variant="primary"
+        onClick={() => setIsOpen(true)}
+        className="my-2">
         Update
       </Button>
       <ModalWrapper modalIsOpen={modalIsOpen} setIsOpen={setIsOpen}>
@@ -131,11 +134,16 @@ const UpdateReservationModal = ({
             <div className="mt-10 flex flex-row items-end justify-center gap-6">
               <SubmitButton
                 text="Update"
+                variant="primary"
                 submittingText="Updating..."
                 isSubmitting={isSubmitting}
                 className="w-auto shadow-lg"
               />
-              <Button disabled={isSubmitting} onClick={() => setIsOpen(false)}>
+              <Button
+                variant="secondary"
+                className="bg-zinc-500 text-white hover:bg-zinc-600 hover:text-white"
+                disabled={isSubmitting}
+                onClick={() => setIsOpen(false)}>
                 Cancel
               </Button>
             </div>

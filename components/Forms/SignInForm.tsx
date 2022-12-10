@@ -96,6 +96,7 @@ export const SignInForm = ({
       <div className="mt-6 flex flex-col items-center">
         <SubmitButton
           text="Sign In"
+          variant="primary"
           submittingText="Signing in..."
           isSubmitting={isSubmitting}
           className="w-auto shadow-lg"

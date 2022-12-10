@@ -106,6 +106,7 @@ export const GuestSignUpForm = ({
       <div className="mt-6 flex justify-center">
         <SubmitButton
           text="Sign Up"
+          variant="primary"
           submittingText="Signing up..."
           isSubmitting={isSubmitting}
           className="w-auto shadow-lg"

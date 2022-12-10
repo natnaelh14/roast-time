@@ -15,21 +15,27 @@ export const SubmitButton = ({
   text,
   submittingText,
   isSubmitting,
-  variant = 'primary',
+  variant,
   className,
   ...props
 }: SubmitButtonProps) => {
+  let customButton;
+  switch (variant) {
+    case 'primary':
+      customButton = 'btn-primary';
+      break;
+    case 'secondary':
+      customButton = 'btn-secondary';
+      break;
+    default:
+      customButton = 'btn-tertiary';
+  }
   return (
     <button
       {...props}
       type="submit"
       disabled={isSubmitting}
-      className={classNames(
-        variant === 'primary'
-          ? 'btn-primary'
-          : variant === 'secondary' && 'btn-secondary',
-        className,
-      )}>
+      className={classNames(customButton, className)}>
       {isSubmitting ? submittingText : text}
       {isSubmitting && (
         <span className="-mr-1 ml-2">
