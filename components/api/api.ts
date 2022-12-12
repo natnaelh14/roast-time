@@ -91,3 +91,42 @@ export const handleReservation = async (reservation: {
     return { e, hasError: true };
   }
 };
+
+export const saveRestaurant = async (
+  token: string | undefined,
+  accountId: string | undefined,
+  restaurantId: string | undefined,
+) => {
+  try {
+    const { data } = await axios.post(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/save/${accountId}/restaurant/${restaurantId}`,
+      {},
+      {
+        timeout: AXIO_TIMEOUT,
+        headers: getHeader(token),
+      },
+    );
+    return { data, hasError: false };
+  } catch (e) {
+    return { e, hasError: true };
+  }
+};
+
+export const removeSavedRestaurant = async (
+  token: string | undefined,
+  accountId: string | undefined,
+  restaurantId: string | undefined,
+) => {
+  try {
+    const { data } = await axios.delete(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/delete/${accountId}/restaurant/${restaurantId}`,
+      {
+        timeout: AXIO_TIMEOUT,
+        headers: getHeader(token),
+      },
+    );
+    return { data, hasError: false };
+  } catch (e) {
+    return { e, hasError: true };
+  }
+};

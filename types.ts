@@ -50,7 +50,7 @@ export interface SavedRestaurant {
   userId: string;
 }
 export interface SessionAccount {
-  id: number;
+  id: string;
   firstName: string;
   lastName: string;
   email: string;

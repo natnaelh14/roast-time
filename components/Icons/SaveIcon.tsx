@@ -1,17 +1,37 @@
+/* eslint-disable eslint-comments/disable-enable-pair */
+/* eslint-disable @typescript-eslint/no-unused-expressions */
 import { useColorScheme } from 'contexts/ColorSchemeContext';
 import { useUserSession } from 'contexts/UserSessionContext';
 import { SavedRestaurant } from 'types';
-import React from 'react';
+import { saveRestaurant, removeSavedRestaurant } from 'components/api/api';
+import { useState } from 'react';
 
 export const SaveIcon = ({ restaurantId }: { restaurantId: string }) => {
   const { colorScheme } = useColorScheme();
   const { userSession } = useUserSession();
+  const token = userSession?.token;
+  const accountId = userSession?.account?.id;
   // @ts-ignore:next-line
-  const isSaved = userSession?.account?.savedRestaurant?.filter(
+  const filteredSavedRestaurant = userSession?.account?.savedRestaurant?.filter(
     (restaurant: SavedRestaurant) => restaurant.restaurantId === restaurantId,
   );
+  const [isSaved, setIsSaved] = useState(!!filteredSavedRestaurant.length);
+  const handleSaveRestaurantToggle = async () => {
+    if (isSaved) {
+      const { hasError } = await removeSavedRestaurant(
+        token,
+        accountId,
+        restaurantId,
+      );
+      !hasError && setIsSaved((prev) => !prev);
+    } else {
+      const { hasError } = await saveRestaurant(token, accountId, restaurantId);
+      !hasError && setIsSaved((prev) => !prev);
+    }
+  };
+
   return (
-    <div className="hover:cursor-pointer">
+    <div className="hover:cursor-pointer" onClick={handleSaveRestaurantToggle}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="20"
@@ -24,7 +44,7 @@ export const SaveIcon = ({ restaurantId }: { restaurantId: string }) => {
         />
         <path
           fill="#e3a008"
-          visibility={`${isSaved.length ? 'visible' : 'hidden'}`}
+          visibility={`${isSaved ? 'visible' : 'hidden'}`}
           d="M6 5a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v13.131a1 1 0 0 1-1.555.832l-3.89-2.593a1 1 0 0 0-1.11 0l-3.89 2.593A1 1 0 0 1 6 18.131V5Z"
         />
       </svg>

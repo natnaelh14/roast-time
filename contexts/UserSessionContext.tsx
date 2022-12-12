@@ -31,15 +31,8 @@ const UserSessionContextProvider = ({ children }: { children: ReactNode }) => {
       ? [`${process.env.NEXT_PUBLIC_BASE_URL}/account/${accountId}`, token]
       : null,
   );
-  console.log(
-    '🚀 ~ file: UserSessionContext.tsx:30 ~ UserSessionContextProvider ~ accountData',
-    accountData,
-  );
   useEffect(() => {
     const fetchData = async () => {
-      console.log('resttesgsefgdf', userSession);
-      console.log('resttesgsefgdf', accountData);
-
       if (
         // accountData.length &&
         userSession?.account?.savedRestaurant !==
@@ -48,10 +41,6 @@ const UserSessionContextProvider = ({ children }: { children: ReactNode }) => {
         const { data: userSessionData } = await axios.post('/api/mutate-user', {
           account: accountData?.account,
         });
-        console.log(
-          '🚀 ~ file: UserSessionContext.tsx:49 ~ fetchData ~ userSessionData',
-          userSessionData,
-        );
 
         setUserSession(userSessionData);
       } else if (!userSession) {

@@ -24,6 +24,6 @@ async function mutateUserRoute(
       });
     }
   } catch (e) {
-    console.log('error wow');
+    console.error('error with mutate user');
   }
 }
