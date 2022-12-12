@@ -1,3 +1,4 @@
+import SavedRestaurants from 'pages/restaurant/saved-restaurants';
 import { FieldValues, UseControllerProps } from 'react-hook-form';
 import { ComponentPropsWithoutRef } from 'react';
 
@@ -35,21 +36,28 @@ export interface MenuItemValues {
 }
 
 export interface Restaurant {
-  id: number;
+  id: string;
   name: string;
   address: string;
   category: string;
   imageData: string[];
   userId?: number;
 }
+
+export interface SavedRestaurant {
+  id: string;
+  restaurantId: string;
+  userId: string;
+}
 export interface SessionAccount {
-  id: number;
+  id: string;
   firstName: string;
   lastName: string;
   email: string;
   phoneNumber: string;
   accountType: 'GUEST' | 'RESTAURANT';
   restaurant?: Restaurant;
+  savedRestaurant?: SavedRestaurant;
 }
 export interface UserSession {
   isLoggedIn: boolean;

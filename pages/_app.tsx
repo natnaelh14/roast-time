@@ -18,23 +18,23 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <div className="m-6">
-      <UserSessionContextProvider>
-        <ColorSchemeContextProvider>
-          <SWRConfig
-            value={{
-              refreshInterval: 30000,
-              fetcher: fetchJson,
-              onError: (err) => {
-                console.error(err);
-              },
-            }}>
+      <SWRConfig
+        value={{
+          refreshInterval: 30000,
+          fetcher: fetchJson,
+          onError: (err) => {
+            console.error(err);
+          },
+        }}>
+        <UserSessionContextProvider>
+          <ColorSchemeContextProvider>
             <Layout>
               <Component {...pageProps} />
               <Analytics />
             </Layout>
-          </SWRConfig>
-        </ColorSchemeContextProvider>
-      </UserSessionContextProvider>
+          </ColorSchemeContextProvider>
+        </UserSessionContextProvider>
+      </SWRConfig>
       {/* Google Tag Manager */}
       <Script strategy="afterInteractive" id="google-tag-manager">
         {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':

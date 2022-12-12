@@ -37,7 +37,7 @@ export const TextInput = <T extends FieldValues>({
             : undefined
         }
         className={classNames(
-          'shadow-border-b hover:shadow-border-b-2 focus:shadow-border-b-2 peer mt-2 inline-block w-full rounded-lg border border-slate-300 p-2 text-base text-gray-500 shadow-gray-300 transition hover:shadow-pink-primary focus:shadow-pink-primary focus:outline-none focus:ring-0 disabled:pointer-events-none disabled:text-gray-300 dark:border-gray-secondary dark:bg-gray-700  dark:text-gray-300',
+          'shadow-border-b hover:shadow-border-b-2 focus:shadow-border-b-2 peer mt-2 inline-block w-full rounded-lg border border-slate-300 p-2 text-base text-gray-500 shadow-gray-300 transition hover:shadow-pink-primary focus:shadow-pink-primary focus:outline-none focus:ring-0 disabled:pointer-events-none disabled:text-gray-300 dark:border-gray-secondary dark:bg-gray-700 dark:text-gray-300',
           error && 'shadow-error hover:shadow-error focus:shadow-error',
         )}
       />

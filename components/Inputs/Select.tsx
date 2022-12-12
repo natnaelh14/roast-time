@@ -36,12 +36,12 @@ export const Select = <T extends FieldValues>({
         <div className="relative mt-1 h-[70px] w-full pt-5">
           <Listbox.Button
             className={classNames(
-              'shadow-border-b hover:shadow-border-b-2 focus:shadow-border-b-2 form-select relative inline-block w-full cursor-pointer border-0 bg-white py-0 pl-0.5 pr-10 text-left text-base shadow-gray-300 transition placeholder:text-transparent hover:shadow-pink-primary focus:shadow-pink-primary focus:outline-none focus:ring-0 dark:bg-blue-dark dark:text-gray-100',
+              'shadow-border-b hover:shadow-border-b-2 focus:shadow-border-b-2 form-select relative inline-block w-full cursor-pointer border-0 bg-white py-0 pl-0.5 pr-10 text-left text-base shadow-gray-300 transition placeholder:text-transparent hover:shadow-pink-primary focus:shadow-pink-primary focus:outline-none focus:ring-0 dark:bg-blue-dark dark:text-gray-300',
               open && 'shadow-border-b-2 shadow-pink-primary',
               isDisabled && 'pointer-events-none text-gray-300',
             )}
             {...props}>
-            <span className="inline-flex h-8 items-center truncate">
+            <span className="inline-flex h-8 items-center truncate text-gray-500 dark:text-gray-300">
               {selectedOption?.label}
             </span>
           </Listbox.Button>
