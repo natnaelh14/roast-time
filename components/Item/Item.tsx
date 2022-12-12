@@ -1,12 +1,27 @@
 import { Rating } from 'components/Rating';
-import { Restaurant } from 'types';
 import { SaveIcon } from 'components/Icons';
 import { useUserSession } from 'contexts/UserSessionContext';
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-const Item = ({ id, name, imageData, address, category }: Restaurant) => {
+interface ItemProps {
+  id: string;
+  name: string;
+  address: string;
+  category: string;
+  imageData: string[];
+  refreshSavedRestaurants?: () => void;
+}
+
+const Item = ({
+  id,
+  name,
+  imageData,
+  address,
+  category,
+  refreshSavedRestaurants,
+}: ItemProps) => {
   const { userSession } = useUserSession();
   const token = !!userSession?.token;
 
@@ -22,8 +37,13 @@ const Item = ({ id, name, imageData, address, category }: Restaurant) => {
           />
           <div className="m-2">
             <div className="flex flex-row items-center justify-between">
-              <p className="text-md font-extrabold dark:text-white">{name}</p>
-              {token && <SaveIcon restaurantId={id} />}
+              <p className="text-base font-extrabold dark:text-white">{name}</p>
+              {token && (
+                <SaveIcon
+                  restaurantId={id}
+                  refreshSavedRestaurants={refreshSavedRestaurants}
+                />
+              )}
             </div>
             <Rating />
             <p className="text-sm text-gray-500 dark:text-gray-300">
@@ -34,7 +54,7 @@ const Item = ({ id, name, imageData, address, category }: Restaurant) => {
               <a href="hover:cursor-pointer">
                 <button
                   type="submit"
-                  className="right-0-0 relative bottom-0 mt-3 w-full rounded bg-pink-primary py-2 px-4 hover:bg-orange-primary">
+                  className="right-0-0 relative bottom-0 mt-3 w-full rounded bg-pink-primary py-2 px-4 text-base text-white hover:bg-orange-primary dark:text-black">
                   Reserve
                 </button>
               </a>

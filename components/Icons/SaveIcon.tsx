@@ -6,9 +6,15 @@ import { SavedRestaurant } from 'types';
 import { saveRestaurant, removeSavedRestaurant } from 'components/api/api';
 import { useState } from 'react';
 
-export const SaveIcon = ({ restaurantId }: { restaurantId: string }) => {
+export const SaveIcon = ({
+  restaurantId,
+  refreshSavedRestaurants,
+}: {
+  restaurantId: string;
+  refreshSavedRestaurants?: () => void;
+}) => {
   const { colorScheme } = useColorScheme();
-  const { userSession } = useUserSession();
+  const { userSession, refreshAccount } = useUserSession();
   const token = userSession?.token;
   const accountId = userSession?.account?.id;
   // @ts-ignore:next-line
@@ -24,9 +30,13 @@ export const SaveIcon = ({ restaurantId }: { restaurantId: string }) => {
         restaurantId,
       );
       !hasError && setIsSaved((prev) => !prev);
+      refreshSavedRestaurants && refreshSavedRestaurants();
+      refreshAccount && refreshAccount();
     } else {
       const { hasError } = await saveRestaurant(token, accountId, restaurantId);
       !hasError && setIsSaved((prev) => !prev);
+      refreshSavedRestaurants && refreshSavedRestaurants();
+      refreshAccount && refreshAccount();
     }
   };
 
