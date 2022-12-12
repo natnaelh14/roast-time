@@ -7,7 +7,7 @@ export const SaveIcon = ({ restaurantId }: { restaurantId: string }) => {
   const { colorScheme } = useColorScheme();
   const { userSession } = useUserSession();
   // @ts-ignore:next-line
-  const isSaved = userSession?.account?.savedRestaurant.filter(
+  const isSaved = userSession?.account?.savedRestaurant?.filter(
     (restaurant: SavedRestaurant) => restaurant.restaurantId === restaurantId,
   );
   return (

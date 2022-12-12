@@ -1,11 +1,15 @@
 import { Rating } from 'components/Rating';
 import { Restaurant } from 'types';
 import { SaveIcon } from 'components/Icons';
+import { useUserSession } from 'contexts/UserSessionContext';
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
 const Item = ({ id, name, imageData, address, category }: Restaurant) => {
+  const { userSession } = useUserSession();
+  const token = !!userSession?.token;
+
   return (
     <div>
       {imageData && (
@@ -19,7 +23,7 @@ const Item = ({ id, name, imageData, address, category }: Restaurant) => {
           <div className="m-2">
             <div className="flex flex-row items-center justify-between">
               <p className="text-md font-extrabold dark:text-white">{name}</p>
-              <SaveIcon restaurantId={id} />
+              {token && <SaveIcon restaurantId={id} />}
             </div>
             <Rating />
             <p className="text-sm text-gray-500 dark:text-gray-300">
