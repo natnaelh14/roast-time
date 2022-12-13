@@ -32,6 +32,7 @@ export const SignInForm = ({
   const router = useRouter();
   const [errorMessage, setErrorMessage] = useState('');
   const { setSession } = useUserSession();
+  const { restaurantId } = router.query;
   const {
     control,
     handleSubmit,
@@ -59,7 +60,11 @@ export const SignInForm = ({
           },
         });
         setLoading(true);
-        router.push('/orders');
+        if (restaurantId) {
+          router.push(`/restaurant/${restaurantId}`);
+        } else {
+          router.push('/restaurant/upcoming-reservations');
+        }
       }
     } catch (e) {
       // setError('email', { message: 'Opss No go' })

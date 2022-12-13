@@ -21,6 +21,7 @@ module.exports = {
           },
         },
         blue: {
+          400: '#718da2',
           light: '#4B5563',
           primary: '#374151',
           dark: '#253443',

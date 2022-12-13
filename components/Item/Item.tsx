@@ -29,12 +29,16 @@ const Item = ({
     <div>
       {imageData && (
         <div className="m-8 w-[250px] rounded-lg border border-gray-200 p-1 shadow-lg transition delay-150 ease-in-out hover:scale-105 dark:border-gray-secondary">
-          <Image
-            alt="shopping-item"
-            src={imageData[0]}
-            width={250}
-            height={200}
-          />
+          <Link href={`/restaurant/${id}`}>
+            <a href="hover:cursor-pointer">
+              <Image
+                alt="shopping-item"
+                src={imageData[0]}
+                width={250}
+                height={200}
+              />
+            </a>
+          </Link>
           <div className="m-2">
             <div className="flex flex-row items-center justify-between">
               <p className="text-base font-extrabold dark:text-white">{name}</p>
