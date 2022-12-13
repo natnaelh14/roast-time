@@ -2,7 +2,11 @@ import { useColorScheme } from 'contexts/ColorSchemeContext';
 import React from 'react';
 import Link from 'next/link';
 
-export const UpcomingReservationsIcon = () => {
+export const UpcomingReservationsIcon = ({
+  reservationCount,
+}: {
+  reservationCount: number;
+}) => {
   const { colorScheme } = useColorScheme();
 
   return (
@@ -27,7 +31,7 @@ export const UpcomingReservationsIcon = () => {
               />
             </svg>
             <span className="inline-flex h-1 w-1 items-center justify-center rounded-full bg-orange-light p-2 text-xs font-medium text-orange-primary dark:bg-orange-primary dark:text-white">
-              3
+              {reservationCount}
             </span>
           </div>
         ) : (
@@ -47,7 +51,7 @@ export const UpcomingReservationsIcon = () => {
               />
             </svg>
             <span className="inline-flex h-1 w-1 items-center justify-center rounded-full bg-orange-light p-2 text-xs font-medium text-black dark:bg-orange-primary dark:text-white">
-              3
+              {reservationCount}
             </span>
           </div>
         )}

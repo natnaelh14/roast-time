@@ -7,6 +7,7 @@ import {
 import ColorToggle from 'components/ColorToggle/ColorToggle';
 import { useUserSession } from 'contexts/UserSessionContext';
 import { getSession } from 'components/api/api';
+import { useReservationsContext } from 'contexts/UpcomingReservationsContext';
 import axios from 'axios';
 import { useState, Fragment } from 'react';
 import Image from 'next/image';
@@ -18,6 +19,8 @@ export const Navbar = () => {
   const router = useRouter();
   const [mobileNavShown, setMobileNavShown] = useState(false);
   const { setSession, userSession } = useUserSession();
+  const { reservations } = useReservationsContext();
+
   const handleLogout = async () => {
     await axios.post('/api/auth/logout');
     const res = await getSession().catch((e) => console.error(e));
@@ -60,7 +63,9 @@ export const Navbar = () => {
         )}
         {userSession?.isLoggedIn && (
           <>
-            <UpcomingReservationsIcon />
+            <UpcomingReservationsIcon
+              reservationCount={reservations?.length || 0}
+            />
             <GuestAccount />
           </>
         )}
@@ -143,7 +148,7 @@ export const Navbar = () => {
                               Upcoming reservations
                             </span>
                             <span className="ml-3 inline-flex h-3 w-3 items-center justify-center rounded-full bg-orange-light p-3 text-sm font-medium text-black dark:bg-orange-primary dark:text-white">
-                              3
+                              {reservations?.length || 0}
                             </span>
                           </a>
                         </Link>
