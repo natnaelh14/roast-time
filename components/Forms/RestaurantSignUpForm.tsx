@@ -21,10 +21,15 @@ interface RestaurantSignUpFormValues {
 }
 
 const schema = z.object({
+  firstName: z.string(),
+  lastName: z.string(),
+  phoneNumber: z.string(),
   email: z.string().email({ message: 'Invalid email address' }),
   password: z
     .string()
     .min(10, { message: 'Must be 10 or more characters long' }),
+  name: z.string(),
+  category: z.string(),
 });
 const resolver = zodResolver(schema);
 

@@ -1,7 +1,7 @@
 import { SubmitButton } from 'components/Button';
-import { TextInput } from 'components/Inputs';
 import { UserSession } from 'types';
 import { useUserSession } from 'contexts/UserSessionContext';
+import { TextInput, LocationSearchInput } from 'components/Inputs';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { useRouter } from 'next/router';
@@ -19,6 +19,9 @@ interface GuestSignUpFormValues {
 }
 
 const schema = z.object({
+  firstName: z.string(),
+  lastName: z.string(),
+  phoneNumber: z.string(),
   email: z.string().email({ message: 'Invalid email address' }),
   password: z
     .string()
@@ -33,6 +36,9 @@ export const GuestSignUpForm = ({
 }) => {
   const router = useRouter();
   const [errorMessage, setErrorMessage] = useState('');
+  const [address, setAddress] = useState<string | undefined>('');
+  const [lat, setLat] = useState<number | undefined>();
+  const [long, setLong] = useState<number | undefined>();
   const { setSession } = useUserSession();
   const { control, handleSubmit, formState } = useForm<GuestSignUpFormValues>({
     resolver,
@@ -44,7 +50,12 @@ export const GuestSignUpForm = ({
     try {
       const { data: userData } = await axios.post<UserSession>(
         '/api/auth/signup',
-        data,
+        {
+          ...data,
+          address,
+          latitude: lat,
+          longitude: long,
+        },
       );
       if (userData?.isLoggedIn) {
         setSession(userData);
@@ -85,6 +96,14 @@ export const GuestSignUpForm = ({
         label="Phone Number"
         maxLength={10}
         required={true}
+      />
+      <LocationSearchInput
+        name="address"
+        label="Address"
+        address={address || ''}
+        setAddress={setAddress}
+        setLat={setLat}
+        setLong={setLong}
       />
       <TextInput
         type="email"

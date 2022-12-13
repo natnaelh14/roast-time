@@ -9,20 +9,18 @@ interface AuthPayload {
   firstName: string;
   lastName: string;
   phoneNumber: string;
+  address: string;
+  latitude: number;
+  longitude: number;
 }
 
 const signUpRouter = async (req: NextApiRequest, res: NextApiResponse) => {
-  const { email, password, firstName, lastName, phoneNumber }: AuthPayload =
-    req.body;
+  const { ...payload }: AuthPayload = req.body;
   try {
     const { data: userData } = await axios.post(
       `${process.env.NEXT_PUBLIC_BASE_URL}/register`,
       {
-        email,
-        password,
-        firstName,
-        lastName,
-        phoneNumber,
+        ...payload,
         accountType: 'GUEST',
       },
     );

@@ -38,7 +38,7 @@ export const LocationSearchInput = ({ ...props }: LocationSearchInputProps) => {
       onChange={handleChange}
       onSelect={handleSelect}>
       {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-        <div className="relative space-y-1 pt-5">
+        <div className="relative mb-5 space-y-1 pt-5">
           <input
             id={name}
             required={true}
