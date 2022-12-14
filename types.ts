@@ -39,6 +39,8 @@ export interface Restaurant {
   id: string;
   name: string;
   address: string;
+  latitude: number;
+  longitude: number;
   category: string;
   imageData: string[];
   userId?: number;
@@ -55,6 +57,9 @@ export interface SessionAccount {
   lastName: string;
   email: string;
   phoneNumber: string;
+  address?: string;
+  latitude?: number;
+  longitude?: number;
   accountType: 'GUEST' | 'RESTAURANT';
   restaurant?: Restaurant;
   savedRestaurant?: SavedRestaurant;

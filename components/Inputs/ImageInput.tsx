@@ -5,7 +5,7 @@ interface ImageInputProps {
 }
 export const ImageInput = ({ setImage }: ImageInputProps) => {
   return (
-    <div className="relative mt-5 space-y-1 pt-7">
+    <div className="relative space-y-1 pt-7">
       <input
         id='"restaurant_image"'
         required={true}

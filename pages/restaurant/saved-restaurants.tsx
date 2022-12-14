@@ -56,7 +56,8 @@ const SavedRestaurants = ({
   const savedRestaurants = data?.savedRestaurants;
 
   if (!savedRestaurants && !error) return <ThreeDotsLoading />;
-  if (error) return <EmptyState message="No saved restaurants found" />;
+  if (error || !savedRestaurants.length)
+    return <EmptyState message="No saved restaurants found" />;
 
   return (
     <div className="my-10 min-h-160 text-3xl dark:text-white">
@@ -66,16 +67,15 @@ const SavedRestaurants = ({
       <div className="mt-5 flex flex-row overflow-x-scroll md:flex-wrap md:justify-center md:overflow-auto">
         {savedRestaurants.map((savedRestaurant: SavedRestaurantProps) => {
           return (
-            <div key={savedRestaurant?.id} className="m-4">
-              <Item
-                id={savedRestaurant?.restaurant.id}
-                name={savedRestaurant?.restaurant.name}
-                imageData={savedRestaurant?.restaurant.imageData}
-                address={savedRestaurant?.restaurant.address}
-                category={savedRestaurant?.restaurant.category}
-                refreshSavedRestaurants={refreshSavedRestaurants}
-              />
-            </div>
+            <Item
+              key={savedRestaurant?.id}
+              id={savedRestaurant?.restaurant.id}
+              name={savedRestaurant?.restaurant.name}
+              imageData={savedRestaurant?.restaurant.imageData}
+              address={savedRestaurant?.restaurant.address}
+              category={savedRestaurant?.restaurant.category}
+              refreshSavedRestaurants={refreshSavedRestaurants}
+            />
           );
         })}
       </div>

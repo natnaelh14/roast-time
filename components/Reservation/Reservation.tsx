@@ -24,8 +24,15 @@ const Reservation = () => {
     },
   });
   const { isSubmitting } = formState;
+  // eslint-disable-next-line consistent-return
   const onSubmit = async (data: ReservationFormValues) => {
     try {
+      if (!userSession?.token) {
+        router.push({
+          pathname: '/signin',
+          query: { restaurantId },
+        });
+      }
       const reservationPayload = {
         // @ts-ignore:next-line
         ...data,
@@ -48,6 +55,7 @@ const Reservation = () => {
         });
         router.push('/restaurant/upcoming-reservations');
       }
+      // eslint-disable-next-line consistent-return
       return;
     } catch (e) {
       console.error(e);

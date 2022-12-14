@@ -21,6 +21,7 @@ module.exports = {
           },
         },
         blue: {
+          400: '#718da2',
           light: '#4B5563',
           primary: '#374151',
           dark: '#253443',
@@ -40,7 +41,7 @@ module.exports = {
         error: '#eb001c',
       },
       height: {
-        128: '32rem',
+        180: '45rem',
       },
       minHeight: {
         160: '40rem',
