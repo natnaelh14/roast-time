@@ -3,6 +3,30 @@ import { Reservation } from 'types';
 import { ThreeDotsLoading } from 'components/Loaders';
 import EmptyState from 'components/EmptyState/EmptyState';
 import { useReservationsContext } from 'contexts/UpcomingReservationsContext';
+import { sessionOptions } from 'utils/config';
+import { GetServerSideProps } from 'next';
+import { withIronSessionSsr } from 'iron-session/next';
+
+export const getServerSideProps: GetServerSideProps = withIronSessionSsr(
+  async ({ req, res }) => {
+    const { user } = req.session;
+    const accountId = user?.account?.id;
+    const token = user?.token;
+
+    if (!user?.isLoggedIn) {
+      return {
+        redirect: {
+          destination: '/',
+          permanent: false,
+        },
+      };
+    }
+    return {
+      props: {},
+    };
+  },
+  sessionOptions,
+);
 
 const UpcomingReservations = () => {
   const { reservations, error, mutate } = useReservationsContext();

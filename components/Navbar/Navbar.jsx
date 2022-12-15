@@ -23,8 +23,8 @@ export const Navbar = () => {
 
   const handleLogout = async () => {
     await axios.post('/api/auth/logout');
-    const res = await getSession().catch((e) => console.error(e));
-    setSession(res?.data);
+    const { data } = await getSession().catch((e) => console.error(e));
+    setSession(data);
     router.push('/signin');
   };
 
@@ -41,7 +41,7 @@ export const Navbar = () => {
           />
         </a>
       </Link>
-      <div className="absolute right-0 flex hidden flex-row items-center md:flex">
+      <div className="absolute right-0 hidden flex-row items-center md:flex">
         {!userSession?.isLoggedIn && (
           <>
             <Link href="/signin">

@@ -63,7 +63,7 @@ export const SignInForm = ({
         if (restaurantId) {
           router.push(`/restaurant/${restaurantId}`);
         } else {
-          router.push('/restaurant/upcoming-reservations');
+          router.push('/');
         }
       }
     } catch (e) {

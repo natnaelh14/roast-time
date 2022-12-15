@@ -130,3 +130,27 @@ export const removeSavedRestaurant = async (
     return { e, hasError: true };
   }
 };
+
+export const updateAccount = async (
+  token: string,
+  accountId: string,
+  accountPayload: {
+    firstName: string;
+    lastName: string;
+    phoneNumber: string;
+  },
+) => {
+  try {
+    const { data } = await axios.put(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/account/${accountId}/update`,
+      accountPayload,
+      {
+        timeout: AXIO_TIMEOUT,
+        headers: getHeader(token),
+      },
+    );
+    return { data, hasError: false };
+  } catch (e) {
+    return { e, hasError: true };
+  }
+};

@@ -2,9 +2,11 @@ import { sessionOptions } from 'utils/config';
 import { useUserSession } from 'contexts/UserSessionContext';
 import { Button } from 'components/Button';
 import { useReservationsContext } from 'contexts/UpcomingReservationsContext';
+import UpdateUserProfileModal from 'components/Modal/UpdateUserProfileModal';
 import { GetServerSideProps } from 'next';
 import { withIronSessionSsr } from 'iron-session/next';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export const getServerSideProps: GetServerSideProps = withIronSessionSsr(
   async ({ req, res }) => {
@@ -39,40 +41,42 @@ const profile = () => {
               <div className="absolute top-[-80px] flex h-auto max-w-[150px] flex-col items-center gap-4 rounded-full border-none">
                 <Image
                   alt="user logo"
-                  src="/../public/profile_picture.jpg"
+                  src={account?.imageUrl || ''}
                   height={150}
                   width={150}
                   className="rounded-full border-none"
                 />
-                <Button variant="secondary" disabled={false}>
-                  Edit
-                </Button>
+                <UpdateUserProfileModal />
               </div>
             </div>
             <div className="mt-10 w-full px-4 text-center">
               <div className="flex justify-center py-4 lg:pt-4">
-                <div className="mr-4 p-3 text-center dark:text-gray-200">
-                  <span className="block text-xl font-bold uppercase tracking-wide">
-                    {
-                      // @ts-ignore:next-line
-                      reservations?.length || 0
-                    }
-                  </span>
-                  <span className="text-sm text-gray-500 dark:text-blue-200">
-                    Upcoming Reservations
-                  </span>
-                </div>
-                <div className="mr-4 p-3 text-center dark:text-gray-200">
-                  <span className="block text-xl font-bold uppercase tracking-wide">
-                    {
-                      // @ts-ignore:next-line
-                      account?.savedRestaurant?.length || 0
-                    }
-                  </span>
-                  <span className="text-sm text-gray-500 dark:text-blue-200">
-                    Saved Restaurants
-                  </span>
-                </div>
+                <Link href="/restaurant/upcoming-reservations">
+                  <a className="mr-4 p-3 text-center underline-offset-8 hover:underline dark:text-gray-200">
+                    <span className="block text-xl font-bold uppercase tracking-wide">
+                      {
+                        // @ts-ignore:next-line
+                        reservations?.length || 0
+                      }
+                    </span>
+                    <span className="text-sm text-gray-500 dark:text-blue-200">
+                      Upcoming Reservations
+                    </span>
+                  </a>
+                </Link>
+                <Link href="/restaurant/saved-restaurants">
+                  <a className="mr-4 p-3 text-center underline-offset-8 hover:underline dark:text-gray-200">
+                    <span className="block text-xl font-bold uppercase tracking-wide">
+                      {
+                        // @ts-ignore:next-line
+                        account?.savedRestaurant?.length || 0
+                      }
+                    </span>
+                    <span className="text-sm text-gray-500 dark:text-blue-200">
+                      Saved Restaurants
+                    </span>
+                  </a>
+                </Link>
               </div>
             </div>
           </div>

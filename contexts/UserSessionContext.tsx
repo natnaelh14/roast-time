@@ -33,17 +33,14 @@ const UserSessionContextProvider = ({ children }: { children: ReactNode }) => {
   );
   useEffect(() => {
     const fetchData = async () => {
-      if (
-        // accountData.length &&
-        userSession?.account?.savedRestaurant !==
-        accountData?.account?.savedRestaurant
-      ) {
-        const { data: userSessionData } = await axios.post('/api/mutate-user', {
-          account: accountData?.account,
-        });
-
-        setUserSession(userSessionData);
-      } else if (!userSession) {
+      if (userSession?.isLoggedIn) {
+        const res = await axios
+          .post('/api/mutate-user', {
+            account: accountData?.account,
+          })
+          .catch((e) => console.error('mutate user error', e));
+        setUserSession(res?.data);
+      } else {
         const { data } = await axios.get('/api/user');
         setUserSession(data);
       }

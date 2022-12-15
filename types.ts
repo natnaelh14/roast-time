@@ -57,6 +57,7 @@ export interface SessionAccount {
   lastName: string;
   email: string;
   phoneNumber: string;
+  imageUrl: string;
   address?: string;
   latitude?: number;
   longitude?: number;
