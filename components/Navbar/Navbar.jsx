@@ -63,9 +63,11 @@ export const Navbar = () => {
         )}
         {userSession?.isLoggedIn && (
           <>
-            <UpcomingReservationsIcon
-              reservationCount={reservations?.length || 0}
-            />
+            {userSession?.account?.accountType === 'GUEST' && (
+              <UpcomingReservationsIcon
+                reservationCount={reservations?.length || 0}
+              />
+            )}
             <GuestAccount />
           </>
         )}
@@ -140,32 +142,47 @@ export const Navbar = () => {
                             My Profile
                           </a>
                         </Link>
-                        <Link href="/restaurant/upcoming-reservations">
-                          <a
-                            onClick={() => setMobileNavShown(false)}
-                            className="m-2 p-2">
-                            <span className="text-base decoration-pink-primary decoration-4 underline-offset-8 hover:text-pink-primary hover:underline dark:text-white">
-                              Upcoming reservations
-                            </span>
-                            <span className="ml-3 inline-flex h-3 w-3 items-center justify-center rounded-full bg-orange-light p-3 text-sm font-medium text-black dark:bg-orange-primary dark:text-white">
-                              {reservations?.length || 0}
-                            </span>
-                          </a>
-                        </Link>
-                        <Link href="/restaurant/dining-history">
-                          <a
-                            onClick={() => setMobileNavShown(false)}
-                            className="m-2 p-2 text-base decoration-pink-primary decoration-4 underline-offset-8 hover:text-pink-primary hover:underline dark:text-white">
-                            My Dining History
-                          </a>
-                        </Link>
-                        <Link href="/restaurant/saved-restaurants">
-                          <a
-                            onClick={() => setMobileNavShown(false)}
-                            className="m-2 p-2 text-base decoration-pink-primary decoration-4 underline-offset-8 hover:text-pink-primary hover:underline dark:text-white">
-                            My Saved Restaurants
-                          </a>
-                        </Link>
+                        {userSession?.account?.accountType === 'GUEST' ? (
+                          <>
+                            <Link href="/restaurant/upcoming-reservations">
+                              <a
+                                onClick={() => setMobileNavShown(false)}
+                                className="m-2 p-2">
+                                <span className="text-base decoration-pink-primary decoration-4 underline-offset-8 hover:text-pink-primary hover:underline dark:text-white">
+                                  Upcoming reservations
+                                </span>
+                                <span className="ml-3 inline-flex h-3 w-3 items-center justify-center rounded-full bg-orange-light p-3 text-sm font-medium text-black dark:bg-orange-primary dark:text-white">
+                                  {reservations?.length || 0}
+                                </span>
+                              </a>
+                            </Link>
+                            <Link href="/restaurant/dining-history">
+                              <a
+                                onClick={() => setMobileNavShown(false)}
+                                className="m-2 p-2 text-base decoration-pink-primary decoration-4 underline-offset-8 hover:text-pink-primary hover:underline dark:text-white">
+                                My Dining History
+                              </a>
+                            </Link>
+                            <Link href="/restaurant/saved-restaurants">
+                              <a
+                                onClick={() => setMobileNavShown(false)}
+                                className="m-2 p-2 text-base decoration-pink-primary decoration-4 underline-offset-8 hover:text-pink-primary hover:underline dark:text-white">
+                                My Saved Restaurants
+                              </a>
+                            </Link>
+                          </>
+                        ) : (
+                          userSession?.account?.accountType ===
+                            'RESTAURANT' && (
+                            <Link href="/orders">
+                              <a
+                                onClick={() => setMobileNavShown(false)}
+                                className="m-2 p-2 text-base decoration-pink-primary decoration-4 underline-offset-8 hover:text-pink-primary hover:underline dark:text-white">
+                                Orders
+                              </a>
+                            </Link>
+                          )
+                        )}
                         <Link href="/">
                           <a
                             className="m-2 p-2 text-base decoration-pink-primary decoration-4 underline-offset-8 hover:text-pink-primary hover:underline dark:text-white"
