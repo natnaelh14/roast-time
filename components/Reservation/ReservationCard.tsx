@@ -25,13 +25,14 @@ const ReservationCard = ({
 
   const handleDeleteReservation = () => {
     return Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to restore the reservation!",
+      title: 'Cancel Reservation',
+      text: 'Are you sure you want to cancel this reservation?',
       icon: 'warning',
       showCancelButton: true,
       color: `${colorScheme === 'dark' && '#cfcfcf'}`,
       confirmButtonColor: '#F78888',
-      confirmButtonText: 'Yes, delete it!',
+      confirmButtonText: 'Yes',
+      cancelButtonText: 'No',
       background: `${colorScheme === 'dark' && '#253443'}`,
     }).then(async (result) => {
       // eslint-disable-next-line promise/always-return

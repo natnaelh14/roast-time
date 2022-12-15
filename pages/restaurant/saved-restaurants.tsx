@@ -12,8 +12,17 @@ export const getServerSideProps: GetServerSideProps = withIronSessionSsr(
     const { user } = req.session;
     const accountId = user?.account?.id;
     const token = user?.token;
+    const accountType = user?.account?.accountType;
 
     if (!user?.isLoggedIn) {
+      return {
+        redirect: {
+          destination: '/',
+          permanent: false,
+        },
+      };
+    }
+    if (accountType === 'RESTAURANT') {
       return {
         redirect: {
           destination: '/',

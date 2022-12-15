@@ -61,24 +61,40 @@ const GuestAccount = forwardRef(
                 </a>
               </Link>
             </li>
-            <li>
-              <Link href="/restaurant/dining-history">
-                <a
-                  onClick={() => setDropDownHidden(!isDropDownHidden)}
-                  className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white">
-                  My Dining History
-                </a>
-              </Link>
-            </li>
-            <li>
-              <Link href="/restaurant/saved-restaurants">
-                <a
-                  onClick={() => setDropDownHidden(!isDropDownHidden)}
-                  className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white">
-                  My Saved Restaurants
-                </a>
-              </Link>
-            </li>
+            {userSession?.account?.accountType === 'GUEST' ? (
+              <>
+                <li>
+                  <Link href="/restaurant/dining-history">
+                    <a
+                      onClick={() => setDropDownHidden(!isDropDownHidden)}
+                      className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white">
+                      My Dining History
+                    </a>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/restaurant/saved-restaurants">
+                    <a
+                      onClick={() => setDropDownHidden(!isDropDownHidden)}
+                      className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white">
+                      My Saved Restaurants
+                    </a>
+                  </Link>
+                </li>
+              </>
+            ) : (
+              userSession?.account?.accountType === 'RESTAURANT' && (
+                <li>
+                  <Link href="/orders">
+                    <a
+                      onClick={() => setDropDownHidden(!isDropDownHidden)}
+                      className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white">
+                      Orders
+                    </a>
+                  </Link>
+                </li>
+              )
+            )}
             <li>
               <Link href="#">
                 <a
