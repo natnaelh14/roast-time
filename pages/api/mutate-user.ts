@@ -24,6 +24,6 @@ async function mutateUserRoute(
       });
     }
   } catch (e) {
-    console.error('error with mutate user');
+    console.error('error with mutate user', e);
   }
 }

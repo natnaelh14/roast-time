@@ -1,7 +1,7 @@
 import { SubmitButton } from 'components/Button';
 import { UserSession } from 'types';
 import { useUserSession } from 'contexts/UserSessionContext';
-import { TextInput, LocationSearchInput } from 'components/Inputs';
+import { TextInput, LocationSearchInput, ImageInput } from 'components/Inputs';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { useRouter } from 'next/router';
@@ -39,6 +39,7 @@ export const GuestSignUpForm = ({
   const [address, setAddress] = useState<string | undefined>('');
   const [lat, setLat] = useState<number | undefined>();
   const [long, setLong] = useState<number | undefined>();
+  const [image, setImage] = useState<Blob | undefined>();
   const { setSession } = useUserSession();
   const { control, handleSubmit, formState } = useForm<GuestSignUpFormValues>({
     resolver,
@@ -48,6 +49,15 @@ export const GuestSignUpForm = ({
   const onSubmit = async (data: GuestSignUpFormValues) => {
     setErrorMessage('');
     try {
+      const resumeData = new FormData();
+      resumeData.append('upload_preset', 'resume');
+      // @ts-ignore:next-line
+      resumeData.append('file', image);
+      const resumeRes = await axios.post(
+        `https://api.cloudinary.com/v1_1/doalzf6o2/image/upload`,
+        resumeData,
+      );
+      const imageUrl = resumeRes.data.secure_url;
       const { data: userData } = await axios.post<UserSession>(
         '/api/auth/signup',
         {
@@ -55,6 +65,7 @@ export const GuestSignUpForm = ({
           address,
           latitude: lat,
           longitude: long,
+          imageUrl,
         },
       );
       if (userData?.isLoggedIn) {
@@ -69,7 +80,7 @@ export const GuestSignUpForm = ({
           timer: 1500,
         });
         setLoading(true);
-        router.push('/orders');
+        router.push('/');
       }
     } catch (e) {
       setErrorMessage('Unable to register user, please try again');
@@ -105,6 +116,7 @@ export const GuestSignUpForm = ({
         setLat={setLat}
         setLong={setLong}
       />
+      <ImageInput setImage={setImage} />
       <TextInput
         type="email"
         control={control}

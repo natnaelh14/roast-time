@@ -1,12 +1,6 @@
 import { Reservation } from 'types';
-import { getSession } from 'components/api/api';
-import {
-  createContext,
-  ReactNode,
-  useState,
-  useContext,
-  useEffect,
-} from 'react';
+import { useUserSession } from 'contexts/UserSessionContext';
+import { createContext, ReactNode, useContext } from 'react';
 import useSWR from 'swr';
 
 interface ReservationsContextState {
@@ -17,20 +11,9 @@ interface ReservationsContextState {
 
 const ReservationsContext = createContext({} as ReservationsContextState);
 const ReservationsContextProvider = ({ children }: { children: ReactNode }) => {
-  const [token, setToken] = useState<string>('');
-  const [accountId, setAccountId] = useState<string>('');
-  useEffect(() => {
-    const fetchData = async () => {
-      await getSession().then((res) => {
-        // eslint-disable-next-line promise/always-return
-        if (res.data?.token) {
-          setToken(res.data?.token);
-          setAccountId(res.data?.account?.id);
-        }
-      });
-    };
-    fetchData();
-  }, []);
+  const { userSession } = useUserSession();
+  const accountId = userSession?.account?.id;
+  const token = userSession?.token;
 
   const {
     data: reservationData,

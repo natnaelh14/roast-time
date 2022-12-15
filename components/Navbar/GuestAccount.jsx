@@ -34,7 +34,7 @@ const GuestAccount = forwardRef(
             className="rounded-full"
             width={32}
             height={32}
-            src="/profile_picture.jpg"
+            src={userSession?.account?.imageUrl}
             alt="user profile photo"
           />
         </button>
