@@ -66,7 +66,7 @@ const ReservationCard = ({
         <a className="hover:cursor-pointer">
           <Image
             className=""
-            src={restaurant.imageData[0]}
+            src={restaurant?.imageData[0] || ''}
             height={275}
             width={325}
             alt={restaurant?.name}
@@ -75,7 +75,7 @@ const ReservationCard = ({
       </Link>
       <div className="flex flex-col items-start px-6 py-4">
         <h1 className="mb-2 text-xl font-bold dark:text-white">
-          {restaurant.name}
+          {restaurant?.name}
         </h1>
         <p className="text-base font-bold text-gray-500 dark:text-gray-300">
           <span className="font-medium">Party Size: </span>
@@ -87,7 +87,7 @@ const ReservationCard = ({
           {reservation.reservationTime}
         </p>
         <p className="my-2 inline-block rounded-full bg-gray-200 px-3 py-1 text-sm font-semibold text-gray-700 dark:bg-blue-dark dark:text-gray-300">
-          #{restaurant.category}
+          #{restaurant?.category}
         </p>
         {!isHistory && (
           <>
