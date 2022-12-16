@@ -47,10 +47,7 @@ const DiningHistory = ({
   accountId: string;
   token: string;
 }) => {
-  const {
-    data: { reservations },
-    error,
-  } = useSWR(
+  const { data, error } = useSWR(
     token
       ? [
           `${process.env.NEXT_PUBLIC_BASE_URL}/reservations/history/${accountId}`,
@@ -58,6 +55,7 @@ const DiningHistory = ({
         ]
       : null,
   );
+  const reservations = data?.reservations;
 
   if (!reservations && !error) return <ThreeDotsLoading />;
   if (error || !reservations.length)

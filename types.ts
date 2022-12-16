@@ -76,7 +76,8 @@ export interface Reservation {
   partySize: number;
   reservationDate: Date;
   reservationTime: string;
-  restaurant: Restaurant;
+  restaurant?: Restaurant;
+  user?: SessionAccount;
 }
 
 export interface ErrorResponse {
