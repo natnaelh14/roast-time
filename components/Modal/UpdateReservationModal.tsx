@@ -2,8 +2,12 @@ import ModalWrapper from 'components/Modal/ModalWrapper';
 import { Button, SubmitButton } from 'components/Button';
 import { Select, TextInput } from 'components/Inputs';
 import { SelectOptionProps, ReservationFormValues, Reservation } from 'types';
-import { updateReservation, getSession } from 'components/api/api';
+import {
+  updateReservation,
+  updateReservationByRestaurant,
+} from 'components/api/api';
 import { useColorScheme } from 'contexts/ColorSchemeContext';
+import { useUserSession } from 'contexts/UserSessionContext';
 import { useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { DatePicker } from '@mantine/dates';
@@ -12,11 +16,14 @@ import Swal from 'sweetalert2';
 const UpdateReservationModal = ({
   reservation,
   mutate,
+  reservationType,
 }: {
   reservation: Reservation;
   mutate?: () => void;
+  reservationType: string;
 }) => {
   const { colorScheme } = useColorScheme();
+  const { userSession } = useUserSession();
   const [modalIsOpen, setIsOpen] = useState(false);
   const {
     id: reservationId,
@@ -35,19 +42,26 @@ const UpdateReservationModal = ({
   const { isSubmitting } = formState;
 
   const onSubmit = async (data: ReservationFormValues) => {
-    const { data: SessionData } = await getSession();
-    const updateReservationPayload = {
-      token: SessionData.token,
-      accountId: SessionData.account.id,
-      reservationId,
-      reservation: { ...data },
-    };
-    const {
-      data: updatedReservation,
-      hasError,
-      e,
-    } = await updateReservation(updateReservationPayload);
-    if (updatedReservation && mutate) {
+    let hasError;
+    if (reservationType === 'GUEST') {
+      const updateReservationPayload = {
+        token: userSession?.token || '',
+        accountId: userSession?.account?.id || '',
+        reservationId,
+        reservation: { ...data },
+      };
+      const response = await updateReservation(updateReservationPayload);
+      hasError = response.hasError;
+    } else if (reservationType === 'RESTAURANT') {
+      const response = await updateReservationByRestaurant(
+        userSession?.token || '',
+        userSession?.account?.restaurant?.id || '',
+        reservationId,
+        { ...data },
+      );
+      hasError = response.hasError;
+    }
+    if (!hasError && mutate) {
       mutate();
       setIsOpen(false);
       const Toast = Swal.mixin({
@@ -64,9 +78,8 @@ const UpdateReservationModal = ({
         icon: 'success',
         title: 'Updated reservation successfully',
       });
-    }
-    if (hasError) {
-      console.error('reservation update error', e);
+    } else {
+      console.error('reservation update error');
     }
   };
 

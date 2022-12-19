@@ -174,7 +174,7 @@ export const Navbar = () => {
                         ) : (
                           userSession?.account?.accountType ===
                             'RESTAURANT' && (
-                            <Link href="/orders">
+                            <Link href="/restaurant/orders">
                               <a
                                 onClick={() => setMobileNavShown(false)}
                                 className="m-2 p-2 text-base decoration-pink-primary decoration-4 underline-offset-8 hover:text-pink-primary hover:underline dark:text-white">
