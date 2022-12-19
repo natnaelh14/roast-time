@@ -85,7 +85,7 @@ export const RestaurantSignUpForm = ({
           timer: 1500,
         });
         setLoading(true);
-        router.push('/orders');
+        router.push('/restaurant/orders');
       }
     } catch (err) {
       if (err instanceof Error) {

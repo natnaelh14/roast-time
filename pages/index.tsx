@@ -17,7 +17,7 @@ export const getServerSideProps: GetServerSideProps = withIronSessionSsr(
     if (accountType === 'RESTAURANT') {
       return {
         redirect: {
-          destination: '/orders',
+          destination: '/restaurant/orders',
           permanent: false,
         },
       };

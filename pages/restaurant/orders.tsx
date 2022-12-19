@@ -13,8 +13,17 @@ export const getServerSideProps: GetServerSideProps = withIronSessionSsr(
     const accountId = user?.account?.id;
     const restaurant = user?.account?.restaurant;
     const token = user?.token;
+    const accountType = user?.account?.accountType;
 
     if (!user?.isLoggedIn) {
+      return {
+        redirect: {
+          destination: '/',
+          permanent: false,
+        },
+      };
+    }
+    if (accountType === 'GUEST') {
       return {
         redirect: {
           destination: '/',
@@ -113,7 +122,9 @@ const Orders = ({
               </thead>
               <tbody>
                 {reservations.map((reservation: Reservation) => {
-                  return <OrderItem reservation={reservation} />;
+                  return (
+                    <OrderItem reservation={reservation} mutate={mutate} />
+                  );
                 })}
               </tbody>
             </table>

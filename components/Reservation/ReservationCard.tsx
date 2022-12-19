@@ -91,7 +91,11 @@ const ReservationCard = ({
         </p>
         {!isHistory && (
           <>
-            <UpdateReservationModal reservation={reservation} mutate={mutate} />
+            <UpdateReservationModal
+              reservation={reservation}
+              reservationType="GUEST"
+              mutate={mutate}
+            />
             <Button
               variant="secondary"
               className="my-2 inline-flex items-center"

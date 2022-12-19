@@ -85,7 +85,7 @@ const GuestAccount = forwardRef(
             ) : (
               userSession?.account?.accountType === 'RESTAURANT' && (
                 <li>
-                  <Link href="/orders">
+                  <Link href="/restaurant/orders">
                     <a
                       onClick={() => setDropDownHidden(!isDropDownHidden)}
                       className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white">

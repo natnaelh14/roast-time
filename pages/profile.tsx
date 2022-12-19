@@ -1,6 +1,5 @@
 import { sessionOptions } from 'utils/config';
 import { useUserSession } from 'contexts/UserSessionContext';
-import { Button } from 'components/Button';
 import { useReservationsContext } from 'contexts/UpcomingReservationsContext';
 import UpdateUserProfileModal from 'components/Modal/UpdateUserProfileModal';
 import { GetServerSideProps } from 'next';

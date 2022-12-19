@@ -154,3 +154,47 @@ export const updateAccount = async (
     return { e, hasError: true };
   }
 };
+
+export const updateReservationByRestaurant = async (
+  token: string,
+  restaurantId: string,
+  reservationId: string,
+  reservationPayload: {
+    partySize: number;
+    reservationDate: Date;
+    reservationTime: string;
+  },
+) => {
+  try {
+    const { data } = await axios.put(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/reservation/${reservationId}/restaurant/${restaurantId}`,
+      reservationPayload,
+      {
+        timeout: AXIO_TIMEOUT,
+        headers: getHeader(token),
+      },
+    );
+    return { data, hasError: false };
+  } catch (e) {
+    return { e, hasError: true };
+  }
+};
+
+export const deleteReservationByRestaurant = async (
+  token: string,
+  restaurantId: string,
+  reservationId: string,
+) => {
+  try {
+    const { data } = await axios.delete(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/reservation/${reservationId}/restaurant/${restaurantId}`,
+      {
+        timeout: AXIO_TIMEOUT,
+        headers: getHeader(token),
+      },
+    );
+    return { data, hasError: false };
+  } catch (e) {
+    return { e, hasError: true };
+  }
+};
