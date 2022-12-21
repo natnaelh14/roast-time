@@ -54,7 +54,7 @@ export const GuestSignUpForm = ({
       // @ts-ignore:next-line
       resumeData.append('file', image);
       const resumeRes = await axios.post(
-        `https://api.cloudinary.com/v1_1/doalzf6o2/image/upload`,
+        `${process.env.NEXT_PUBLIC_CLOUDINARY_URL}`,
         resumeData,
       );
       const imageUrl = resumeRes.data.secure_url;

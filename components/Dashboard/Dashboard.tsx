@@ -1,5 +1,5 @@
-import Item from '../Item/Item';
-import { ThreeDotsLoading, DashboardLoading } from '../Loaders';
+import Item from 'components/Item/Item';
+import { ThreeDotsLoading, DashboardLoading } from 'components/Loaders';
 import { useRestaurantContext } from 'contexts/RestaurantsContext';
 import { Restaurant } from 'types';
 import EmptyState from 'components/EmptyState/EmptyState';

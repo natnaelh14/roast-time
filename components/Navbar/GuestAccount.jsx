@@ -1,7 +1,6 @@
 import { useUserSession } from 'contexts/UserSessionContext';
 import WithClickOutside from 'components/WithClickOutside/WithClickOutside';
 import { getSession } from 'components/api/api';
-import { GuestAccountProps } from 'types';
 import axios from 'axios';
 import Image from 'next/image';
 import Link from 'next/link';

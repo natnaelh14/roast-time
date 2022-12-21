@@ -4,7 +4,6 @@ import { useUserSession } from 'contexts/UserSessionContext';
 import { deleteReservationByRestaurant } from 'components/api/api';
 import { useColorScheme } from 'contexts/ColorSchemeContext';
 import UpdateReservationModal from 'components/Modal/UpdateReservationModal';
-import React from 'react';
 import Image from 'next/image';
 import dayjs from 'dayjs';
 import Swal from 'sweetalert2';
@@ -57,7 +56,7 @@ const OrderItem = ({
 
   return (
     <tr key={reservation.id}>
-      <td className="border-b border-gray-200 bg-white px-5 py-5 text-sm">
+      <td className="border-b border-gray-200 px-5 py-5 text-sm dark:border-gray-secondary">
         <div className="flex items-center">
           <div className="h-10 w-10 flex-shrink-0">
             <Image
@@ -69,27 +68,29 @@ const OrderItem = ({
             />
           </div>
           <div className="ml-3">
-            <p className="whitespace-no-wrap text-gray-900">
+            <p className="whitespace-no-wrap text-gray-900 dark:text-gray-200">
               {reservation?.user?.firstName} {reservation?.user?.firstName}
             </p>
           </div>
         </div>
       </td>
-      <td className="border-b border-gray-200 bg-white px-5 py-5 text-sm">
-        <p className="whitespace-no-wrap text-gray-900">
+      <td className="border-b border-gray-200 px-5 py-5 text-sm dark:border-gray-secondary">
+        <p className="whitespace-no-wrap text-gray-900 dark:text-gray-200">
           {reservation?.user?.phoneNumber}
         </p>
       </td>
-      <td className="border-b border-gray-200 bg-white px-5 py-5 text-sm">
-        <p className="whitespace-no-wrap text-gray-900">
+      <td className="border-b border-gray-200 px-5 py-5 text-sm dark:border-gray-secondary">
+        <p className="whitespace-no-wrap text-gray-900 dark:text-gray-200">
           {dayjs(reservation.reservationDate).format('MM/DD/YYYY')}{' '}
           {reservation?.reservationTime}
         </p>
       </td>
-      <td className="border-b border-gray-200 bg-white px-5 py-5 text-sm">
-        {reservation?.partySize}
+      <td className="border-b border-gray-200 px-5 py-5 text-sm dark:border-gray-secondary">
+        <p className="whitespace-no-wrap text-gray-900 dark:text-gray-200">
+          {reservation?.partySize}
+        </p>
       </td>
-      <td className="flex flex-row items-start gap-2 border-b border-gray-200 bg-white px-5 py-5 text-sm">
+      <td className="flex flex-row items-start gap-2 border-b border-gray-200 px-5 py-5 text-sm dark:border-gray-secondary">
         <UpdateReservationModal
           reservation={reservation}
           reservationType="RESTAURANT"

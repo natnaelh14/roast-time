@@ -1,5 +1,3 @@
-import React from 'react';
-
 const EmptyState = ({ message }: { message: string }) => {
   return (
     <div className="flex h-180 items-center justify-center">

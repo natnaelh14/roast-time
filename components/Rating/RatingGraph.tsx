@@ -1,5 +1,3 @@
-import React from 'react';
-
 export const RatingGraph = () => {
   return (
     <div className="m-10 flex w-96 flex-col">

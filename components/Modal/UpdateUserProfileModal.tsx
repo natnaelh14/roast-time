@@ -1,7 +1,6 @@
 import ModalWrapper from 'components/Modal/ModalWrapper';
 import { Button, SubmitButton } from 'components/Button';
 import { TextInput } from 'components/Inputs';
-import { SessionAccount } from 'types';
 import { updateAccount } from 'components/api/api';
 import { useColorScheme } from 'contexts/ColorSchemeContext';
 import { useUserSession } from 'contexts/UserSessionContext';

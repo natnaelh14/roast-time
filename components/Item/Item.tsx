@@ -1,7 +1,6 @@
 import { Rating } from 'components/Rating';
 import { SaveIcon } from 'components/Icons';
 import { useUserSession } from 'contexts/UserSessionContext';
-import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
