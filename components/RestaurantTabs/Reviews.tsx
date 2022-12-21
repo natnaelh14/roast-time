@@ -1,5 +1,4 @@
 import { Rating, RatingGraph } from 'components/Rating';
-import React from 'react';
 
 export const Reviews = () => {
   return (

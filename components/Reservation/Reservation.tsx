@@ -101,7 +101,19 @@ const Reservation = () => {
               <DatePicker
                 label="Select Date"
                 placeholder="MM/DD/YYYY"
-                defaultValue={new Date()}
+                styles={() => ({
+                  day: {
+                    backgroundColor: colorScheme === 'dark' ? '#253443' : '',
+                  },
+                  label: {
+                    color: colorScheme === 'dark' ? '#cfcfcf' : '#737373',
+                    fontSize: '1rem',
+                  },
+                  input: {
+                    color: colorScheme === 'dark' ? '#cfcfcf' : '#737373',
+                  },
+                })}
+                variant="unstyled"
                 name={name}
                 value={value}
                 onChange={onChange}

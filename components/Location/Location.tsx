@@ -1,5 +1,4 @@
 import LocationSVG from './LocationSVG';
-import React from 'react';
 
 const Location = () => {
   return (

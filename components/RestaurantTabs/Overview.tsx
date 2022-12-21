@@ -1,6 +1,5 @@
 import { Rating } from 'components/Rating';
 import { OverviewLoading } from 'components/Loaders';
-import React from 'react';
 import useSWR from 'swr';
 import { useRouter } from 'next/router';
 

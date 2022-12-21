@@ -28,7 +28,7 @@ const SearchBar = () => {
         <input
           type="search"
           id="default-search"
-          className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-4 pl-10 text-sm focus:outline-none"
+          className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-4 pl-10 text-sm focus:outline-none dark:border-gray-secondary dark:bg-blue-light dark:text-gray-200"
           placeholder="Search Coffee Shops..."
           required
           onKeyUp={(event) => {

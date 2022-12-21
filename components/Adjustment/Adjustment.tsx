@@ -1,6 +1,5 @@
-import FilterCoffeeShops from '../FilterCoffeeShops/FilterCoffeeShops';
+import FilterCoffeeShops from 'components/FilterCoffeeShops/FilterCoffeeShops';
 import Location from 'components/Location/Location';
-import React from 'react';
 
 const Adjustment = () => {
   return (

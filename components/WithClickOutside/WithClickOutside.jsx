@@ -1,5 +1,5 @@
 import { GuestAccountProps } from 'types';
-import React, { useState, useRef, useEffect, MouseEvent } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 const WithClickOutside = (WrappedComponent) => {
   // eslint-disable-next-line

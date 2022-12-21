@@ -1,5 +1,4 @@
 import { useColorScheme } from 'contexts/ColorSchemeContext';
-import React from 'react';
 
 interface HamburgerIconProps {
   handleClick: () => void;

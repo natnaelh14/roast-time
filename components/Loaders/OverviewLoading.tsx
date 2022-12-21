@@ -1,5 +1,3 @@
-import React from 'react';
-
 export const OverviewLoading = () => {
   return (
     <div className="my-5 animate-pulse">

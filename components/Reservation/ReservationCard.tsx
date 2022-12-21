@@ -4,7 +4,6 @@ import { deleteReservation } from 'components/api/api';
 import { useUserSession } from 'contexts/UserSessionContext';
 import UpdateReservationModal from 'components/Modal/UpdateReservationModal';
 import { useColorScheme } from 'contexts/ColorSchemeContext';
-import React from 'react';
 import dayjs from 'dayjs';
 import Image from 'next/image';
 import Link from 'next/link';

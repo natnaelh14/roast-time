@@ -1,6 +1,5 @@
 import MenuItem from './MenuItem/MenuItem';
 import { beverageItems, breakfastItems, sideItems } from 'data';
-import React from 'react';
 
 export const Menu = () => {
   return (

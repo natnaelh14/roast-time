@@ -1,5 +1,3 @@
-import React from 'react';
-
 interface ImageInputProps {
   setImage: (image: Blob) => void;
 }

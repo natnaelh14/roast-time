@@ -1,7 +1,6 @@
 import Reservation from 'components/Reservation/Reservation';
 import RestaurantTabs from 'components/RestaurantTabs/RestaurantTabs';
 import Banner from 'components/Banner/Banner';
-import React from 'react';
 
 const Restaurants = () => {
   return (
