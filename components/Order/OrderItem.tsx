@@ -55,7 +55,7 @@ const OrderItem = ({
   };
 
   return (
-    <tr key={reservation.id}>
+    <tr>
       <td className="border-b border-gray-200 px-5 py-5 text-sm dark:border-gray-secondary">
         <div className="flex items-center">
           <div className="h-10 w-10 flex-shrink-0">
