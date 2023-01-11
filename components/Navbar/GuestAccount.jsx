@@ -2,7 +2,7 @@ import { useUserSession } from 'contexts/UserSessionContext';
 import WithClickOutside from 'components/WithClickOutside/WithClickOutside';
 import { getSession } from 'components/api/api';
 import axios from 'axios';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { forwardRef } from 'react';
@@ -52,58 +52,53 @@ const GuestAccount = forwardRef(
           </div>
           <ul className="py-1" aria-labelledby="user-menu-button">
             <li>
-              <Link href="/profile">
-                <a
-                  onClick={() => setDropDownHidden(!isDropDownHidden)}
-                  className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white">
-                  My Profile
-                </a>
+              <Link
+                href="/profile"
+                onClick={() => setDropDownHidden(!isDropDownHidden)}
+                className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white">
+                My Profile
               </Link>
             </li>
             {userSession?.account?.accountType === 'GUEST' ? (
               <>
                 <li>
-                  <Link href="/restaurant/dining-history">
-                    <a
-                      onClick={() => setDropDownHidden(!isDropDownHidden)}
-                      className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white">
-                      My Dining History
-                    </a>
+                  <Link
+                    href="/restaurant/dining-history"
+                    onClick={() => setDropDownHidden(!isDropDownHidden)}
+                    className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white">
+                    My Dining History
                   </Link>
                 </li>
                 <li>
-                  <Link href="/restaurant/saved-restaurants">
-                    <a
-                      onClick={() => setDropDownHidden(!isDropDownHidden)}
-                      className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white">
-                      My Saved Restaurants
-                    </a>
+                  <Link
+                    href="/restaurant/saved-restaurants"
+                    onClick={() => setDropDownHidden(!isDropDownHidden)}
+                    className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white">
+                    My Saved Restaurants
                   </Link>
                 </li>
               </>
             ) : (
               userSession?.account?.accountType === 'RESTAURANT' && (
                 <li>
-                  <Link href="/restaurant/orders">
-                    <a
-                      onClick={() => setDropDownHidden(!isDropDownHidden)}
-                      className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white">
-                      Orders
-                    </a>
+                  <Link
+                    href="/restaurant/orders"
+                    onClick={() => setDropDownHidden(!isDropDownHidden)}
+                    className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white">
+                    Orders
                   </Link>
                 </li>
               )
             )}
             <li>
-              <Link href="#">
-                <a
-                  onClick={() => {
-                    setDropDownHidden(!isDropDownHidden);
-                    handleLogout();
-                  }}
-                  className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white">
-                  Sign out
-                </a>
+              <Link
+                href="#"
+                onClick={() => {
+                  setDropDownHidden(!isDropDownHidden);
+                  handleLogout();
+                }}
+                className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white">
+                Sign out
               </Link>
             </li>
           </ul>

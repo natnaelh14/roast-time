@@ -58,10 +58,8 @@ export default function ServerError() {
         development team was already notified. Try refreshing the page.
       </Text>
       <Group position="center">
-        <Link href="/" className="">
-          <a className="text-xl font-black text-pink-primary">
-            Refresh the page
-          </a>
+        <Link href="/" className="text-xl font-black text-pink-primary">
+          Refresh the page
         </Link>
       </Group>
     </Container>
