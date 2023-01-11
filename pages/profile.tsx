@@ -4,7 +4,7 @@ import { useReservationsContext } from 'contexts/UpcomingReservationsContext';
 import UpdateUserProfileModal from 'components/Modal/UpdateUserProfileModal';
 import { GetServerSideProps } from 'next';
 import { withIronSessionSsr } from 'iron-session/next';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import Link from 'next/link';
 
 export const getServerSideProps: GetServerSideProps = withIronSessionSsr(
@@ -50,31 +50,31 @@ const profile = () => {
             </div>
             <div className="mt-10 w-full px-4 text-center">
               <div className="flex justify-center py-4 lg:pt-4">
-                <Link href="/restaurant/upcoming-reservations">
-                  <a className="mr-4 p-3 text-center underline-offset-8 hover:underline dark:text-gray-200">
-                    <span className="block text-xl font-bold uppercase tracking-wide">
-                      {
-                        // @ts-ignore:next-line
-                        reservations?.length || 0
-                      }
-                    </span>
-                    <span className="text-sm text-gray-500 dark:text-blue-200">
-                      Upcoming Reservations
-                    </span>
-                  </a>
+                <Link
+                  href="/restaurant/upcoming-reservations"
+                  className="mr-4 p-3 text-center underline-offset-8 hover:underline dark:text-gray-200">
+                  <span className="block text-xl font-bold uppercase tracking-wide">
+                    {
+                      // @ts-ignore:next-line
+                      reservations?.length || 0
+                    }
+                  </span>
+                  <span className="text-sm text-gray-500 dark:text-blue-200">
+                    Upcoming Reservations
+                  </span>
                 </Link>
-                <Link href="/restaurant/saved-restaurants">
-                  <a className="mr-4 p-3 text-center underline-offset-8 hover:underline dark:text-gray-200">
-                    <span className="block text-xl font-bold uppercase tracking-wide">
-                      {
-                        // @ts-ignore:next-line
-                        account?.savedRestaurant?.length || 0
-                      }
-                    </span>
-                    <span className="text-sm text-gray-500 dark:text-blue-200">
-                      Saved Restaurants
-                    </span>
-                  </a>
+                <Link
+                  href="/restaurant/saved-restaurants"
+                  className="mr-4 p-3 text-center underline-offset-8 hover:underline dark:text-gray-200">
+                  <span className="block text-xl font-bold uppercase tracking-wide">
+                    {
+                      // @ts-ignore:next-line
+                      account?.savedRestaurant?.length || 0
+                    }
+                  </span>
+                  <span className="text-sm text-gray-500 dark:text-blue-200">
+                    Saved Restaurants
+                  </span>
                 </Link>
               </div>
             </div>

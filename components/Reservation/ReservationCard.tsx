@@ -5,7 +5,7 @@ import { useUserSession } from 'contexts/UserSessionContext';
 import UpdateReservationModal from 'components/Modal/UpdateReservationModal';
 import { useColorScheme } from 'contexts/ColorSchemeContext';
 import dayjs from 'dayjs';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import Link from 'next/link';
 import Swal from 'sweetalert2';
 
@@ -61,16 +61,17 @@ const ReservationCard = ({
 
   return (
     <div className="w-lg flex min-w-80 flex-col overflow-hidden rounded border p-2 shadow-lg dark:border-gray-secondary md:flex-row">
-      <Link href={`restaurant/${restaurant?.id}`} passHref>
-        <a className="hover:cursor-pointer">
-          <Image
-            className=""
-            src={restaurant?.imageData[0] || ''}
-            height={275}
-            width={325}
-            alt={restaurant?.name}
-          />
-        </a>
+      <Link
+        href={`restaurant/${restaurant?.id}`}
+        className="hover:cursor-pointer"
+        passHref>
+        <Image
+          className=""
+          src={restaurant?.imageData[0] || ''}
+          height={275}
+          width={325}
+          alt={restaurant?.name || ''}
+        />
       </Link>
       <div className="flex flex-col items-start px-6 py-4">
         <h1 className="mb-2 text-xl font-bold dark:text-white">

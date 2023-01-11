@@ -109,10 +109,10 @@ export const SignInForm = ({
         <div className="mt-3 block dark:text-white">
           <span>New User?</span>
           {'  '}
-          <Link href="/signup">
-            <a className="text-md text-center underline decoration-pink-primary decoration-4 underline-offset-8 hover:text-pink-primary">
-              Signup
-            </a>
+          <Link
+            href="/signup"
+            className="text-md text-center underline decoration-pink-primary decoration-4 underline-offset-8 hover:text-pink-primary">
+            Signup
           </Link>
         </div>
       </div>

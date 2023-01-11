@@ -61,10 +61,8 @@ export default function Custom404() {
         address, or the page has been moved to another URL.
       </Text>
       <Group position="center">
-        <Link href="/" className="">
-          <a className="text-xl font-black text-pink-primary">
-            Take me back to home page
-          </a>
+        <Link href="/" className="text-xl font-black text-pink-primary">
+          Take me back to home page
         </Link>
       </Group>
     </Container>

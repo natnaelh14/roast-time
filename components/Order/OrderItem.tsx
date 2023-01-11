@@ -4,7 +4,7 @@ import { useUserSession } from 'contexts/UserSessionContext';
 import { deleteReservationByRestaurant } from 'components/api/api';
 import { useColorScheme } from 'contexts/ColorSchemeContext';
 import UpdateReservationModal from 'components/Modal/UpdateReservationModal';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import dayjs from 'dayjs';
 import Swal from 'sweetalert2';
 

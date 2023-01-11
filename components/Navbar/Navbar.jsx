@@ -10,7 +10,7 @@ import { getSession } from 'components/api/api';
 import { useReservationsContext } from 'contexts/UpcomingReservationsContext';
 import axios from 'axios';
 import { useState, Fragment } from 'react';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import Link from 'next/link';
 import { Dialog, Transition } from '@headlessui/react';
 import { useRouter } from 'next/router';
@@ -31,33 +31,26 @@ export const Navbar = () => {
   return (
     <nav className="glass flex max-h-20 flex-row items-center bg-gray-200 dark:bg-blue-dark">
       <HamburgerIcon handleClick={() => setMobileNavShown(true)} />
-      <Link href="/">
-        <a className="mt-3" aria-label="Link to Homepage">
-          <Image
-            alt="roastTime logo"
-            src="/logo.png"
-            height={200}
-            width={200}
-          />
-        </a>
+      <Link href="/" className="mt-3" aria-label="Link to Homepage">
+        <Image alt="roastTime logo" src="/logo.png" height={200} width={200} />
       </Link>
       <div className="absolute right-0 hidden flex-row items-center md:flex">
         {!userSession?.isLoggedIn && (
           <>
-            <Link href="/signin">
-              <a className="m-2 p-2 text-base decoration-pink-primary decoration-4 underline-offset-8 hover:text-pink-primary hover:underline dark:text-white">
-                Sign In
-              </a>
+            <Link
+              href="/signin"
+              className="m-2 p-2 text-base decoration-pink-primary decoration-4 underline-offset-8 hover:text-pink-primary hover:underline dark:text-white">
+              Sign In
             </Link>
-            <Link href="/signup">
-              <a className="m-2 p-2 text-base decoration-pink-primary decoration-4 underline-offset-8 hover:text-pink-primary hover:underline dark:text-white">
-                Sign Up
-              </a>
+            <Link
+              href="/signup"
+              className="m-2 p-2 text-base decoration-pink-primary decoration-4 underline-offset-8 hover:text-pink-primary hover:underline dark:text-white">
+              Sign Up
             </Link>
-            <Link href="/restaurant/get-started">
-              <a className="m-2 p-2 text-base decoration-pink-primary decoration-4 underline-offset-8 hover:text-pink-primary hover:underline dark:text-white">
-                For Businesses
-              </a>
+            <Link
+              href="/restaurant/get-started"
+              className="m-2 p-2 text-base decoration-pink-primary decoration-4 underline-offset-8 hover:text-pink-primary hover:underline dark:text-white">
+              For Businesses
             </Link>
           </>
         )}
@@ -110,88 +103,79 @@ export const Navbar = () => {
                   <ul className="flex flex-col space-y-6 pl-3 pt-8">
                     {!userSession?.isLoggedIn && (
                       <>
-                        <Link href="/signin">
-                          <a
-                            className="m-2 p-2 text-base decoration-pink-primary decoration-4 underline-offset-8 hover:text-pink-primary hover:underline dark:text-white"
-                            onClick={() => setMobileNavShown(false)}>
-                            Sign In
-                          </a>
+                        <Link
+                          href="/signin"
+                          className="m-2 p-2 text-base decoration-pink-primary decoration-4 underline-offset-8 hover:text-pink-primary hover:underline dark:text-white"
+                          onClick={() => setMobileNavShown(false)}>
+                          Sign In
                         </Link>
-                        <Link href="/signup">
-                          <a
-                            className="m-2 p-2 text-base decoration-pink-primary decoration-4 underline-offset-8 hover:text-pink-primary hover:underline dark:text-white"
-                            onClick={() => setMobileNavShown(false)}>
-                            Sign Up
-                          </a>
+                        <Link
+                          href="/signup"
+                          className="m-2 p-2 text-base decoration-pink-primary decoration-4 underline-offset-8 hover:text-pink-primary hover:underline dark:text-white"
+                          onClick={() => setMobileNavShown(false)}>
+                          Sign Up
                         </Link>
-                        <Link href="/restaurant/get-started">
-                          <a
-                            className="m-2 p-2 text-base decoration-pink-primary decoration-4 underline-offset-8 hover:text-pink-primary hover:underline dark:text-white"
-                            onClick={() => setMobileNavShown(false)}>
-                            For Businesses
-                          </a>
+                        <Link
+                          href="/restaurant/get-started"
+                          className="m-2 p-2 text-base decoration-pink-primary decoration-4 underline-offset-8 hover:text-pink-primary hover:underline dark:text-white"
+                          onClick={() => setMobileNavShown(false)}>
+                          For Businesses
                         </Link>
                       </>
                     )}
                     {userSession?.isLoggedIn && (
                       <>
-                        <Link href="/profile">
-                          <a
-                            onClick={() => setMobileNavShown(false)}
-                            className="m-2 p-2 text-base decoration-pink-primary decoration-4 underline-offset-8 hover:text-pink-primary hover:underline dark:text-white">
-                            My Profile
-                          </a>
+                        <Link
+                          href="/profile"
+                          onClick={() => setMobileNavShown(false)}
+                          className="m-2 p-2 text-base decoration-pink-primary decoration-4 underline-offset-8 hover:text-pink-primary hover:underline dark:text-white">
+                          My Profile
                         </Link>
                         {userSession?.account?.accountType === 'GUEST' ? (
                           <>
-                            <Link href="/restaurant/upcoming-reservations">
-                              <a
-                                onClick={() => setMobileNavShown(false)}
-                                className="m-2 p-2">
-                                <span className="text-base decoration-pink-primary decoration-4 underline-offset-8 hover:text-pink-primary hover:underline dark:text-white">
-                                  Upcoming reservations
-                                </span>
-                                <span className="ml-3 inline-flex h-3 w-3 items-center justify-center rounded-full bg-orange-light p-3 text-sm font-medium text-black dark:bg-orange-primary dark:text-white">
-                                  {reservations?.length || 0}
-                                </span>
-                              </a>
+                            <Link
+                              href="/restaurant/upcoming-reservations"
+                              onClick={() => setMobileNavShown(false)}
+                              className="m-2 p-2">
+                              <span className="text-base decoration-pink-primary decoration-4 underline-offset-8 hover:text-pink-primary hover:underline dark:text-white">
+                                Upcoming reservations
+                              </span>
+                              <span className="ml-3 inline-flex h-3 w-3 items-center justify-center rounded-full bg-orange-light p-3 text-sm font-medium text-black dark:bg-orange-primary dark:text-white">
+                                {reservations?.length || 0}
+                              </span>
                             </Link>
-                            <Link href="/restaurant/dining-history">
-                              <a
-                                onClick={() => setMobileNavShown(false)}
-                                className="m-2 p-2 text-base decoration-pink-primary decoration-4 underline-offset-8 hover:text-pink-primary hover:underline dark:text-white">
-                                My Dining History
-                              </a>
+                            <Link
+                              href="/restaurant/dining-history"
+                              onClick={() => setMobileNavShown(false)}
+                              className="m-2 p-2 text-base decoration-pink-primary decoration-4 underline-offset-8 hover:text-pink-primary hover:underline dark:text-white">
+                              My Dining History
                             </Link>
-                            <Link href="/restaurant/saved-restaurants">
-                              <a
-                                onClick={() => setMobileNavShown(false)}
-                                className="m-2 p-2 text-base decoration-pink-primary decoration-4 underline-offset-8 hover:text-pink-primary hover:underline dark:text-white">
-                                My Saved Restaurants
-                              </a>
+                            <Link
+                              href="/restaurant/saved-restaurants"
+                              onClick={() => setMobileNavShown(false)}
+                              className="m-2 p-2 text-base decoration-pink-primary decoration-4 underline-offset-8 hover:text-pink-primary hover:underline dark:text-white">
+                              My Saved Restaurants
                             </Link>
                           </>
                         ) : (
                           userSession?.account?.accountType ===
                             'RESTAURANT' && (
-                            <Link href="/restaurant/orders">
-                              <a
-                                onClick={() => setMobileNavShown(false)}
-                                className="m-2 p-2 text-base decoration-pink-primary decoration-4 underline-offset-8 hover:text-pink-primary hover:underline dark:text-white">
-                                Orders
-                              </a>
+                            <Link
+                              href="/restaurant/orders"
+                              onClick={() => setMobileNavShown(false)}
+                              className="m-2 p-2 text-base decoration-pink-primary decoration-4 underline-offset-8 hover:text-pink-primary hover:underline dark:text-white">
+                              Orders
                             </Link>
                           )
                         )}
-                        <Link href="/">
-                          <a
-                            className="m-2 p-2 text-base decoration-pink-primary decoration-4 underline-offset-8 hover:text-pink-primary hover:underline dark:text-white"
-                            onClick={() => {
-                              setMobileNavShown(false);
-                              handleLogout();
-                            }}>
-                            Sign Out
-                          </a>
+                        <Link
+                          href="/"
+                          className="m-2 p-2 text-base decoration-pink-primary decoration-4 underline-offset-8 hover:text-pink-primary hover:underline dark:text-white"
+                          onClick={() => {
+                            setMobileNavShown(false);
+                            handleLogout();
+                          }}>
+                          Sign Out
                         </Link>
                       </>
                     )}

@@ -1,5 +1,5 @@
 import ModalWrapper from 'components/Modal/ModalWrapper';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import { useState } from 'react';
 
 const ImageModal = ({ imageUrl }: { imageUrl: string }) => {
