@@ -8,6 +8,7 @@ import ColorToggle from 'components/ColorToggle/ColorToggle';
 import { useUserSession } from 'contexts/UserSessionContext';
 import { getSession } from 'components/api/api';
 import { useReservationsContext } from 'contexts/UpcomingReservationsContext';
+import { useRestaurantContext } from 'contexts/RestaurantsContext';
 import axios from 'axios';
 import { useState, Fragment } from 'react';
 import Image from 'next/legacy/image';
@@ -20,6 +21,7 @@ export const Navbar = () => {
   const [mobileNavShown, setMobileNavShown] = useState(false);
   const { setSession, userSession } = useUserSession();
   const { reservations } = useReservationsContext();
+  const { restaurantsData, error } = useRestaurantContext();
 
   const handleLogout = async () => {
     await axios.post('/api/auth/logout');
@@ -34,6 +36,15 @@ export const Navbar = () => {
       <Link href="/" className="mt-3" aria-label="Link to Homepage">
         <Image alt="roastTime logo" src="/logo.png" height={200} width={200} />
       </Link>
+      <div>
+        {error ? (
+          <h2 className="text-red-600">• API Not Connected</h2>
+        ) : !restaurantsData?.restaurants?.length && !error ? (
+          <h2 className="text-yellow-400">• API Loading</h2>
+        ) : (
+          <h2 className="text-green-400">• API Connected</h2>
+        )}
+      </div>
       <div className="absolute right-0 hidden flex-row items-center md:flex">
         {!userSession?.isLoggedIn && (
           <>

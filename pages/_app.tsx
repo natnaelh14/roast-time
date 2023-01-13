@@ -4,6 +4,7 @@ import fetchJson from 'utils/fetchJson';
 import { UserSessionContextProvider } from 'contexts/UserSessionContext';
 import { ColorSchemeContextProvider } from 'contexts/ColorSchemeContext';
 import { ReservationsContextProvider } from 'contexts/UpcomingReservationsContext';
+import { RestaurantContextProvider } from 'contexts/RestaurantsContext';
 import Script from 'next/script';
 import TagManager from 'react-gtm-module';
 import { SWRConfig } from 'swr';
@@ -28,14 +29,16 @@ function MyApp({ Component, pageProps }: AppProps) {
           },
         }}>
         <UserSessionContextProvider>
-          <ReservationsContextProvider>
-            <ColorSchemeContextProvider>
-              <Layout>
-                <Component {...pageProps} />
-                <Analytics />
-              </Layout>
-            </ColorSchemeContextProvider>
-          </ReservationsContextProvider>
+          <RestaurantContextProvider>
+            <ReservationsContextProvider>
+              <ColorSchemeContextProvider>
+                <Layout>
+                  <Component {...pageProps} />
+                  <Analytics />
+                </Layout>
+              </ColorSchemeContextProvider>
+            </ReservationsContextProvider>
+          </RestaurantContextProvider>
         </UserSessionContextProvider>
       </SWRConfig>
       {/* Google Tag Manager */}
