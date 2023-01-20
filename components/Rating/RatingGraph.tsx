@@ -1,6 +1,6 @@
 export const RatingGraph = () => {
   return (
-    <div className="m-10 flex w-96 flex-col">
+    <div className="mx-10 my-10 flex w-96 flex-col lg:my-0">
       <div className="mt-4 flex items-center">
         <span className="text-sm font-medium text-blue-600 dark:text-blue-500">
           5 star

@@ -24,6 +24,9 @@ const signUpRouter = async (req: NextApiRequest, res: NextApiResponse) => {
         accountType: 'GUEST',
       },
     );
+    if (!userData) {
+      throw new Error();
+    }
     const user = {
       ...userData,
       isLoggedIn: true,

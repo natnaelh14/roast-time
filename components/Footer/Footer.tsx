@@ -41,10 +41,10 @@ const Footer = () => {
         </ul>
       </div>
       <hr className="my-2 sm:mx-auto lg:my-6" />
-      <span className="block text-center text-sm text-gray-500 lg:text-base">
-        © 2022 RoastTime. All Rights Reserved.
+      <span className="block text-center text-sm text-gray-300 lg:text-base">
+        © 2023 RoastTime. All Rights Reserved.
       </span>
-      <span className="block text-center text-sm text-gray-500 lg:text-base">
+      <span className="block text-center text-sm text-gray-300 lg:text-base">
         v{packageInfo?.version}
       </span>
     </footer>
