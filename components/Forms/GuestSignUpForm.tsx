@@ -35,6 +35,7 @@ export const GuestSignUpForm = ({
   setLoading: (val: boolean) => void;
 }) => {
   const router = useRouter();
+  const { restaurantId } = router.query;
   const [errorMessage, setErrorMessage] = useState('');
   const [address, setAddress] = useState<string | undefined>('');
   const [lat, setLat] = useState<number | undefined>();
@@ -80,7 +81,11 @@ export const GuestSignUpForm = ({
           timer: 1500,
         });
         setLoading(true);
-        router.push('/');
+        if (restaurantId) {
+          router.push(`/restaurant/${restaurantId}`);
+        } else {
+          router.push('/');
+        }
       }
     } catch (e) {
       setErrorMessage('Unable to register user, please try again');

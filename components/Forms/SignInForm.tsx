@@ -110,7 +110,9 @@ export const SignInForm = ({
           <span>New User?</span>
           {'  '}
           <Link
-            href="/signup"
+            href={`/signup${
+              restaurantId?.length ? `?restaurantId=${restaurantId}` : ''
+            }`}
             className="text-md text-center underline decoration-pink-primary decoration-4 underline-offset-8 hover:text-pink-primary">
             Signup
           </Link>
