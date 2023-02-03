@@ -83,7 +83,7 @@ const profile = () => {
             <h3 className="mb-2 text-xl font-semibold leading-normal dark:text-gray-200">
               {`${account?.firstName} ${account?.lastName}`}
             </h3>
-            <div className="mt-0 mb-2 text-sm font-bold uppercase leading-normal text-gray-500 dark:text-blue-200">
+            <div className="mt-0 mb-2 text-sm font-bold leading-normal text-gray-500 dark:text-blue-200">
               {account?.email}
             </div>
             <div className="mt-0 mb-2 text-sm font-bold uppercase leading-normal text-gray-500 dark:text-blue-200">

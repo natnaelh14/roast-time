@@ -80,8 +80,8 @@ const Orders = ({
   if (!reservations && !error) return <ThreeDotsLoading />;
 
   return (
-    <div className="flex justify-center ">
-      <div className="m-8 min-h-[700px] w-2/3 rounded-md border-gray-200 bg-white p-8 shadow-xl dark:border-gray-secondary dark:bg-blue-dark">
+    <div className="flex min-h-[700px] justify-center">
+      <div className="m-8 h-fit w-full rounded-md border-gray-200 bg-white p-8 shadow-xl dark:border-gray-secondary dark:bg-blue-dark lg:w-2/3">
         <div className=" flex items-center justify-between pb-6">
           <div>
             <h2 className="font-semibold text-brown-dark md:text-3xl">

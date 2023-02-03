@@ -23,15 +23,16 @@ const UpdateUserProfileModal = () => {
   const phoneNumber = userSession?.account?.phoneNumber;
   const accountId = userSession?.account?.id;
   const token = userSession?.token;
-  const { control, handleSubmit, formState } = useForm<AccountFormValues>({
-    mode: 'onTouched',
-    defaultValues: {
-      firstName,
-      lastName,
-      phoneNumber,
-    },
-  });
-  const { isSubmitting } = formState;
+  const { setError, control, handleSubmit, formState } =
+    useForm<AccountFormValues>({
+      mode: 'onTouched',
+      defaultValues: {
+        firstName,
+        lastName,
+        phoneNumber,
+      },
+    });
+  const { isSubmitting, errors } = formState;
 
   const onSubmit = async (data: AccountFormValues) => {
     const {
@@ -59,6 +60,11 @@ const UpdateUserProfileModal = () => {
     }
     if (hasError) {
       console.error('account update error', e);
+      // @ts-ignore:next-line
+      setError('apiError', {
+        type: 'custom',
+        message: 'Unable to update profile. Please try again.',
+      });
     }
   };
 
@@ -112,6 +118,13 @@ const UpdateUserProfileModal = () => {
                 Cancel
               </Button>
             </div>
+            {/* @ts-ignore:next-line */}
+            {errors.apiError && (
+              <div className="mt-5 text-red-500">
+                {/* @ts-ignore:next-line */}
+                {errors.apiError?.message}
+              </div>
+            )}
           </form>
         </div>
       </ModalWrapper>
