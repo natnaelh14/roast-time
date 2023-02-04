@@ -2,6 +2,7 @@ import { SubmitButton } from '../Button/SubmitButton';
 import { TextInput, LocationSearchInput, ImageInput } from 'components/Inputs';
 import { UserSession } from 'types';
 import { useUserSession } from 'contexts/UserSessionContext';
+import { validateEmail, validatePhoneNumber } from 'components/api/api';
 import { useState } from 'react';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
@@ -43,16 +44,28 @@ export const RestaurantSignUpForm = ({
   const [long, setLong] = useState<number | undefined>();
   const [image, setImage] = useState<Blob | undefined>();
   const router = useRouter();
-  const [errorMessage, setErrorMessage] = useState('');
   const { setSession } = useUserSession();
-  const { control, handleSubmit, formState } =
+  const { setError, control, handleSubmit, formState } =
     useForm<RestaurantSignUpFormValues>({
       resolver,
       mode: 'onSubmit',
     });
-  const { isSubmitting } = formState;
+  const { errors, isSubmitting } = formState;
   const onSubmit = async (data: RestaurantSignUpFormValues) => {
-    setErrorMessage('');
+    const { data: emailData } = await validateEmail(data.email);
+    if (!emailData?.isValid) {
+      return setError('email', {
+        message: 'A user with this email already exists.',
+      });
+    }
+    const { data: phoneNumberData } = await validatePhoneNumber(
+      data.phoneNumber,
+    );
+    if (!phoneNumberData?.isValid) {
+      return setError('phoneNumber', {
+        message: 'A user with this phone number already exists.',
+      });
+    }
     try {
       const resumeData = new FormData();
       resumeData.append('upload_preset', 'resume');
@@ -87,10 +100,13 @@ export const RestaurantSignUpForm = ({
         setLoading(true);
         router.push('/restaurant/orders');
       }
-    } catch (err) {
-      if (err instanceof Error) {
-        console.error(err.message);
-      }
+    } catch (e) {
+      console.error('account creation error', e);
+      // @ts-ignore:next-line
+      return setError('apiError', {
+        type: 'custom',
+        message: 'Unable to sign up. Please try again.',
+      });
     }
   };
   return (
@@ -156,7 +172,13 @@ export const RestaurantSignUpForm = ({
         setLong={setLong}
       />
       <ImageInput setImage={setImage} />
-      {errorMessage && <p className="text-center text-error">{errorMessage}</p>}
+      {/* @ts-ignore:next-line */}
+      {errors.apiError && (
+        <div className="mt-5 text-center text-red-500">
+          {/* @ts-ignore:next-line */}
+          {errors.apiError?.message}
+        </div>
+      )}
       <div className="mt-6 flex justify-center">
         <SubmitButton
           text="Sign Up"

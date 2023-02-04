@@ -198,3 +198,33 @@ export const deleteReservationByRestaurant = async (
     return { e, hasError: true };
   }
 };
+
+export const validatePhoneNumber = async (phoneNumber: string) => {
+  try {
+    const { data } = await axios.get(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/validate/phonenumber/${phoneNumber}`,
+      {
+        timeout: AXIO_TIMEOUT,
+        headers: getHeader(),
+      },
+    );
+    return { data, hasError: false };
+  } catch (e) {
+    return { e, hasError: true };
+  }
+};
+
+export const validateEmail = async (email: string) => {
+  try {
+    const { data } = await axios.get(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/validate/email/${email}`,
+      {
+        timeout: AXIO_TIMEOUT,
+        headers: getHeader(),
+      },
+    );
+    return { data, hasError: false };
+  } catch (e) {
+    return { e, hasError: true };
+  }
+};
