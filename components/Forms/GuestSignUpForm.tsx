@@ -1,8 +1,8 @@
 import { SubmitButton } from 'components/Button';
-import { UserSession } from 'types';
+import { UserSession, SignUpFormValues } from 'types';
 import { useUserSession } from 'contexts/UserSessionContext';
 import { TextInput, LocationSearchInput, ImageInput } from 'components/Inputs';
-import { validateEmail, validatePhoneNumber } from 'components/api/api';
+import { validateEmailAndPhoneNumber } from 'utils/helpers';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { useRouter } from 'next/router';
@@ -10,14 +10,6 @@ import Swal from 'sweetalert2';
 import { useState } from 'react';
 import * as z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-
-interface GuestSignUpFormValues {
-  firstName: string;
-  lastName: string;
-  phoneNumber: string;
-  email: string;
-  password: string;
-}
 
 const schema = z.object({
   firstName: z.string(),
@@ -43,27 +35,14 @@ export const GuestSignUpForm = ({
   const [image, setImage] = useState<Blob | undefined>();
   const { setSession } = useUserSession();
   const { setError, control, handleSubmit, formState } =
-    useForm<GuestSignUpFormValues>({
+    useForm<SignUpFormValues>({
       resolver,
       mode: 'onSubmit',
     });
   const { isSubmitting, errors } = formState;
-  const onSubmit = async (data: GuestSignUpFormValues) => {
-    const { data: emailData } = await validateEmail(data.email);
-    if (!emailData?.isValid) {
-      return setError('email', {
-        message: 'A user with this email already exists.',
-      });
-    }
-    const { data: phoneNumberData } = await validatePhoneNumber(
-      data.phoneNumber,
-    );
-    if (!phoneNumberData?.isValid) {
-      return setError('phoneNumber', {
-        message: 'A user with this phone number already exists.',
-      });
-    }
+  const onSubmit = async (data: SignUpFormValues) => {
     try {
+      await validateEmailAndPhoneNumber(data.email, data.phoneNumber, setError);
       const resumeData = new FormData();
       resumeData.append('upload_preset', 'resume');
       // @ts-ignore:next-line

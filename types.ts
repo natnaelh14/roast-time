@@ -1,4 +1,3 @@
-import SavedRestaurants from 'pages/restaurant/saved-restaurants';
 import { FieldValues, UseControllerProps } from 'react-hook-form';
 import { ComponentPropsWithoutRef } from 'react';
 
@@ -95,3 +94,23 @@ export interface ReservationFormValues {
   reservationDate: Date;
   reservationTime: string;
 }
+
+export interface SignUpFormValues {
+  firstName: string;
+  lastName: string;
+  phoneNumber: string;
+  email: string;
+  password: string;
+  name?: string;
+  category?: string;
+}
+
+// export interface RestaurantSignUpFormValues {
+//   firstName: string;
+//   lastName: string;
+//   phoneNumber: string;
+//   email: string;
+//   password: string;
+//   name: string;
+//   category: string;
+// }

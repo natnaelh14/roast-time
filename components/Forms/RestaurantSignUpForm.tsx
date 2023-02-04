@@ -1,8 +1,8 @@
 import { SubmitButton } from '../Button/SubmitButton';
 import { TextInput, LocationSearchInput, ImageInput } from 'components/Inputs';
-import { UserSession } from 'types';
+import { UserSession, SignUpFormValues } from 'types';
 import { useUserSession } from 'contexts/UserSessionContext';
-import { validateEmail, validatePhoneNumber } from 'components/api/api';
+import { validateEmailAndPhoneNumber } from 'utils/helpers';
 import { useState } from 'react';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
@@ -10,16 +10,6 @@ import { useRouter } from 'next/router';
 import Swal from 'sweetalert2';
 import * as z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-
-interface RestaurantSignUpFormValues {
-  firstName: string;
-  lastName: string;
-  phoneNumber: string;
-  email: string;
-  password: string;
-  name: string;
-  category: string;
-}
 
 const schema = z.object({
   firstName: z.string(),
@@ -46,27 +36,14 @@ export const RestaurantSignUpForm = ({
   const router = useRouter();
   const { setSession } = useUserSession();
   const { setError, control, handleSubmit, formState } =
-    useForm<RestaurantSignUpFormValues>({
+    useForm<SignUpFormValues>({
       resolver,
       mode: 'onSubmit',
     });
   const { errors, isSubmitting } = formState;
-  const onSubmit = async (data: RestaurantSignUpFormValues) => {
-    const { data: emailData } = await validateEmail(data.email);
-    if (!emailData?.isValid) {
-      return setError('email', {
-        message: 'A user with this email already exists.',
-      });
-    }
-    const { data: phoneNumberData } = await validatePhoneNumber(
-      data.phoneNumber,
-    );
-    if (!phoneNumberData?.isValid) {
-      return setError('phoneNumber', {
-        message: 'A user with this phone number already exists.',
-      });
-    }
+  const onSubmit = async (data: SignUpFormValues) => {
     try {
+      await validateEmailAndPhoneNumber(data.email, data.phoneNumber, setError);
       const resumeData = new FormData();
       resumeData.append('upload_preset', 'resume');
       // @ts-ignore:next-line

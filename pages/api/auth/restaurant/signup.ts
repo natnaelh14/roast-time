@@ -36,6 +36,7 @@ const signUpRestaurantRouter = async (
     res.status(200).send(user);
   } catch (e) {
     console.error('unable to register user.');
+    return res.status(500).send(e);
   }
 };
 
