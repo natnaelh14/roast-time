@@ -1,7 +1,8 @@
 import { SubmitButton } from '../Button/SubmitButton';
 import { TextInput, LocationSearchInput, ImageInput } from 'components/Inputs';
-import { UserSession } from 'types';
+import { UserSession, SignUpFormValues } from 'types';
 import { useUserSession } from 'contexts/UserSessionContext';
+import { validateEmailAndPhoneNumber } from 'utils/helpers';
 import { useState } from 'react';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
@@ -9,16 +10,6 @@ import { useRouter } from 'next/router';
 import Swal from 'sweetalert2';
 import * as z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-
-interface RestaurantSignUpFormValues {
-  firstName: string;
-  lastName: string;
-  phoneNumber: string;
-  email: string;
-  password: string;
-  name: string;
-  category: string;
-}
 
 const schema = z.object({
   firstName: z.string(),
@@ -43,17 +34,16 @@ export const RestaurantSignUpForm = ({
   const [long, setLong] = useState<number | undefined>();
   const [image, setImage] = useState<Blob | undefined>();
   const router = useRouter();
-  const [errorMessage, setErrorMessage] = useState('');
   const { setSession } = useUserSession();
-  const { control, handleSubmit, formState } =
-    useForm<RestaurantSignUpFormValues>({
+  const { setError, control, handleSubmit, formState } =
+    useForm<SignUpFormValues>({
       resolver,
       mode: 'onSubmit',
     });
-  const { isSubmitting } = formState;
-  const onSubmit = async (data: RestaurantSignUpFormValues) => {
-    setErrorMessage('');
+  const { errors, isSubmitting } = formState;
+  const onSubmit = async (data: SignUpFormValues) => {
     try {
+      await validateEmailAndPhoneNumber(data.email, data.phoneNumber, setError);
       const resumeData = new FormData();
       resumeData.append('upload_preset', 'resume');
       // @ts-ignore:next-line
@@ -87,10 +77,13 @@ export const RestaurantSignUpForm = ({
         setLoading(true);
         router.push('/restaurant/orders');
       }
-    } catch (err) {
-      if (err instanceof Error) {
-        console.error(err.message);
-      }
+    } catch (e) {
+      console.error('account creation error', e);
+      // @ts-ignore:next-line
+      return setError('apiError', {
+        type: 'custom',
+        message: 'Unable to sign up. Please try again.',
+      });
     }
   };
   return (
@@ -156,7 +149,13 @@ export const RestaurantSignUpForm = ({
         setLong={setLong}
       />
       <ImageInput setImage={setImage} />
-      {errorMessage && <p className="text-center text-error">{errorMessage}</p>}
+      {/* @ts-ignore:next-line */}
+      {errors.apiError && (
+        <div className="mt-5 text-center text-red-500">
+          {/* @ts-ignore:next-line */}
+          {errors.apiError?.message}
+        </div>
+      )}
       <div className="mt-6 flex justify-center">
         <SubmitButton
           text="Sign Up"

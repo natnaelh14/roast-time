@@ -24,7 +24,6 @@ const Reservation = () => {
     },
   });
   const { isSubmitting } = formState;
-  // eslint-disable-next-line consistent-return
   const onSubmit = async (data: ReservationFormValues) => {
     try {
       if (!userSession?.token) {
@@ -55,7 +54,6 @@ const Reservation = () => {
         });
         router.push('/restaurant/upcoming-reservations');
       }
-      // eslint-disable-next-line consistent-return
       return;
     } catch (e) {
       console.error(e);

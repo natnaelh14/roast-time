@@ -61,7 +61,7 @@ const UpdateUserProfileModal = () => {
     if (hasError) {
       console.error('account update error', e);
       // @ts-ignore:next-line
-      setError('apiError', {
+      return setError('apiError', {
         type: 'custom',
         message: 'Unable to update profile. Please try again.',
       });

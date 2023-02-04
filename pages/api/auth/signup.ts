@@ -36,6 +36,7 @@ const signUpRouter = async (req: NextApiRequest, res: NextApiResponse) => {
     res.status(200).send(user);
   } catch (e) {
     console.error('unable to register user.');
+    return res.status(500).send(e);
   }
 };
 

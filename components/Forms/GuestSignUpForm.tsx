@@ -1,7 +1,8 @@
 import { SubmitButton } from 'components/Button';
-import { UserSession } from 'types';
+import { UserSession, SignUpFormValues } from 'types';
 import { useUserSession } from 'contexts/UserSessionContext';
 import { TextInput, LocationSearchInput, ImageInput } from 'components/Inputs';
+import { validateEmailAndPhoneNumber } from 'utils/helpers';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { useRouter } from 'next/router';
@@ -9,14 +10,6 @@ import Swal from 'sweetalert2';
 import { useState } from 'react';
 import * as z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-
-interface GuestSignUpFormValues {
-  firstName: string;
-  lastName: string;
-  phoneNumber: string;
-  email: string;
-  password: string;
-}
 
 const schema = z.object({
   firstName: z.string(),
@@ -36,20 +29,20 @@ export const GuestSignUpForm = ({
 }) => {
   const router = useRouter();
   const { restaurantId } = router.query;
-  const [errorMessage, setErrorMessage] = useState('');
   const [address, setAddress] = useState<string | undefined>('');
   const [lat, setLat] = useState<number | undefined>();
   const [long, setLong] = useState<number | undefined>();
   const [image, setImage] = useState<Blob | undefined>();
   const { setSession } = useUserSession();
-  const { control, handleSubmit, formState } = useForm<GuestSignUpFormValues>({
-    resolver,
-    mode: 'onSubmit',
-  });
-  const { isSubmitting } = formState;
-  const onSubmit = async (data: GuestSignUpFormValues) => {
-    setErrorMessage('');
+  const { setError, control, handleSubmit, formState } =
+    useForm<SignUpFormValues>({
+      resolver,
+      mode: 'onSubmit',
+    });
+  const { isSubmitting, errors } = formState;
+  const onSubmit = async (data: SignUpFormValues) => {
     try {
+      await validateEmailAndPhoneNumber(data.email, data.phoneNumber, setError);
       const resumeData = new FormData();
       resumeData.append('upload_preset', 'resume');
       // @ts-ignore:next-line
@@ -88,7 +81,12 @@ export const GuestSignUpForm = ({
         }
       }
     } catch (e) {
-      setErrorMessage('Unable to register user, please try again');
+      console.error('account creation error', e);
+      // @ts-ignore:next-line
+      return setError('apiError', {
+        type: 'custom',
+        message: 'Unable to sign up. Please try again.',
+      });
     }
   };
   return (
@@ -138,7 +136,13 @@ export const GuestSignUpForm = ({
         autoComplete="new-password"
         required={true}
       />
-      {errorMessage && <p className="text-center text-error">{errorMessage}</p>}
+      {/* @ts-ignore:next-line */}
+      {errors.apiError && (
+        <div className="mt-5 text-center text-red-500">
+          {/* @ts-ignore:next-line */}
+          {errors.apiError?.message}
+        </div>
+      )}
       <div className="mt-6 flex justify-center">
         <SubmitButton
           text="Sign Up"
