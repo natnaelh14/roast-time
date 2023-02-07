@@ -1,5 +1,7 @@
+import { Dispatch, SetStateAction } from 'react';
+
 interface ImageInputProps {
-  setImage: (image: Blob) => void;
+  setImage: Dispatch<SetStateAction<Blob | undefined>>;
 }
 export const ImageInput = ({ setImage }: ImageInputProps) => {
   return (

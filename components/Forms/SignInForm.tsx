@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import TagManager from 'react-gtm-module';
 import { useRouter } from 'next/router';
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, Dispatch, SetStateAction } from 'react';
 import Link from 'next/link';
 import * as z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -27,11 +27,11 @@ const resolver = zodResolver(schema);
 export const SignInForm = ({
   setLoading,
 }: {
-  setLoading: (val: boolean) => void;
+  setLoading: Dispatch<SetStateAction<boolean>>;
 }) => {
   const router = useRouter();
   const [errorMessage, setErrorMessage] = useState('');
-  const { setSession } = useUserSession();
+  const { setUserSession } = useUserSession();
   const { restaurantId } = router.query;
   const {
     control,
@@ -51,7 +51,7 @@ export const SignInForm = ({
         data,
       );
       if (userData?.isLoggedIn) {
-        setSession(userData);
+        setUserSession(userData);
         // eslint-disable-next-line
         TagManager.dataLayer({
           dataLayer: {

@@ -10,11 +10,11 @@ import { forwardRef } from 'react';
 const GuestAccount = forwardRef(
   ({ isDropDownHidden, setDropDownHidden }, ref) => {
     const router = useRouter();
-    const { userSession, setSession } = useUserSession();
+    const { userSession, setUserSession } = useUserSession();
     const handleLogout = async () => {
       await axios.post('/api/auth/logout');
       const res = await getSession().catch((e) => console.error(e));
-      setSession(res?.data);
+      setUserSession(res?.data);
       router.push('/signin');
     };
 

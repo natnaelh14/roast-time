@@ -5,13 +5,15 @@ import {
   useEffect,
   useState,
   useContext,
+  Dispatch,
+  SetStateAction,
 } from 'react';
 import axios from 'axios';
 import useSWR from 'swr';
 
 interface UserSessionContextState {
   userSession?: UserSession;
-  setSession: (userSession: UserSession) => void;
+  setUserSession: Dispatch<SetStateAction<UserSession | undefined>>;
   refreshAccount?: () => void;
 }
 
@@ -48,13 +50,9 @@ const UserSessionContextProvider = ({ children }: { children: ReactNode }) => {
     fetchData();
   }, [accountData]);
 
-  const setSession = (val: UserSession) => {
-    setUserSession(val);
-  };
-
   const value = {
     userSession,
-    setSession,
+    setUserSession,
     refreshAccount,
   };
   return (

@@ -50,7 +50,7 @@ const UpcomingReservations = () => {
       <div className="flex flex-row overflow-x-scroll md:flex-wrap md:justify-center md:overflow-auto">
         {reservations.map((reservation: Reservation) => {
           return (
-            <div key={reservation?.id} className="m-4">
+            <div key={reservation.id} className="m-4">
               <ReservationCard reservation={reservation} mutate={mutate} />
             </div>
           );

@@ -3,7 +3,7 @@ import { TextInput, LocationSearchInput, ImageInput } from 'components/Inputs';
 import { UserSession, SignUpFormValues } from 'types';
 import { useUserSession } from 'contexts/UserSessionContext';
 import { validateEmailAndPhoneNumber } from 'utils/helpers';
-import { useState } from 'react';
+import { useState, Dispatch, SetStateAction } from 'react';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
@@ -27,14 +27,14 @@ const resolver = zodResolver(schema);
 export const RestaurantSignUpForm = ({
   setLoading,
 }: {
-  setLoading: (val: boolean) => void;
+  setLoading: Dispatch<SetStateAction<boolean>>;
 }) => {
   const [address, setAddress] = useState<string | undefined>('');
   const [lat, setLat] = useState<number | undefined>();
   const [long, setLong] = useState<number | undefined>();
   const [image, setImage] = useState<Blob | undefined>();
   const router = useRouter();
-  const { setSession } = useUserSession();
+  const { setUserSession } = useUserSession();
   const { setError, control, handleSubmit, formState } =
     useForm<SignUpFormValues>({
       resolver,
@@ -64,7 +64,7 @@ export const RestaurantSignUpForm = ({
         },
       );
       if (userData?.isLoggedIn) {
-        setSession(userData);
+        setUserSession(userData);
         await Swal.fire({
           position: 'top-end',
           icon: 'success',

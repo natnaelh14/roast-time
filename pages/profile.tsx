@@ -2,6 +2,7 @@ import { sessionOptions } from 'utils/config';
 import { useUserSession } from 'contexts/UserSessionContext';
 import { useReservationsContext } from 'contexts/UpcomingReservationsContext';
 import UpdateUserProfileModal from 'components/Modal/UpdateUserProfileModal';
+import { ThreeDotsLoading } from 'components/Loaders';
 import { GetServerSideProps } from 'next';
 import { withIronSessionSsr } from 'iron-session/next';
 import Image from 'next/legacy/image';
@@ -10,7 +11,6 @@ import Link from 'next/link';
 export const getServerSideProps: GetServerSideProps = withIronSessionSsr(
   async ({ req, res }) => {
     const { user } = req.session;
-
     if (!user?.isLoggedIn) {
       return {
         redirect: {
@@ -31,6 +31,8 @@ const profile = () => {
   const { reservations } = useReservationsContext();
   const account = userSession?.account;
 
+  if (!account) return <ThreeDotsLoading />;
+
   return (
     <section className="mb-20 pt-16">
       <div className="mx-auto w-full px-4 lg:w-1/2">
@@ -40,7 +42,7 @@ const profile = () => {
               <div className="absolute top-[-80px] flex h-auto max-w-[150px] flex-col items-center gap-4 rounded-full border-none">
                 <Image
                   alt="user logo"
-                  src={account?.imageUrl || ''}
+                  src={account.imageUrl}
                   height={150}
                   width={150}
                   className="rounded-full border-none"
@@ -81,16 +83,16 @@ const profile = () => {
           </div>
           <div className="my-8 text-center">
             <h3 className="mb-2 text-xl font-semibold leading-normal dark:text-gray-200">
-              {`${account?.firstName} ${account?.lastName}`}
+              {`${account.firstName} ${account.lastName}`}
             </h3>
             <div className="mt-0 mb-2 text-sm font-bold leading-normal text-gray-500 dark:text-blue-200">
-              {account?.email}
+              {account.email}
             </div>
             <div className="mt-0 mb-2 text-sm font-bold uppercase leading-normal text-gray-500 dark:text-blue-200">
-              {account?.phoneNumber}
+              {account.phoneNumber}
             </div>
             <div className="mt-0 mb-2 text-sm font-bold uppercase leading-normal text-gray-500 dark:text-blue-200">
-              {account?.address}
+              {account.address}
             </div>
           </div>
         </div>

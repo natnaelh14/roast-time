@@ -13,7 +13,6 @@ export const getServerSideProps: GetServerSideProps = withIronSessionSsr(
     const accountId = user?.account?.id;
     const token = user?.token;
     const accountType = user?.account?.accountType;
-
     if (!user?.isLoggedIn) {
       return {
         redirect: {
@@ -63,7 +62,6 @@ const SavedRestaurants = ({
     token,
   ]);
   const savedRestaurants = data?.savedRestaurants;
-
   if (!savedRestaurants && !error) return <ThreeDotsLoading />;
   if (error || !savedRestaurants.length)
     return <EmptyState message="No saved restaurants found" />;
@@ -77,12 +75,12 @@ const SavedRestaurants = ({
         {savedRestaurants.map((savedRestaurant: SavedRestaurantProps) => {
           return (
             <Item
-              key={savedRestaurant?.id}
-              id={savedRestaurant?.restaurant.id}
-              name={savedRestaurant?.restaurant.name}
-              imageData={savedRestaurant?.restaurant.imageData}
-              address={savedRestaurant?.restaurant.address}
-              category={savedRestaurant?.restaurant.category}
+              key={savedRestaurant.id}
+              id={savedRestaurant.restaurant.id}
+              name={savedRestaurant.restaurant.name}
+              imageData={savedRestaurant.restaurant.imageData}
+              address={savedRestaurant.restaurant.address}
+              category={savedRestaurant.restaurant.category}
               refreshSavedRestaurants={refreshSavedRestaurants}
             />
           );

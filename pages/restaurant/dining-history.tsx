@@ -56,7 +56,6 @@ const DiningHistory = ({
       : null,
   );
   const reservations = data?.reservations;
-
   if (!reservations && !error) return <ThreeDotsLoading />;
   if (error || !reservations.length)
     return <EmptyState message="No dining history found" />;
@@ -69,7 +68,7 @@ const DiningHistory = ({
       <div className="flex flex-row overflow-x-scroll md:flex-wrap md:justify-center md:overflow-auto">
         {reservations.map((reservation: Reservation) => {
           return (
-            <div key={reservation?.id} className="m-4">
+            <div key={reservation.id} className="m-4">
               <ReservationCard reservation={reservation} isHistory={true} />
             </div>
           );

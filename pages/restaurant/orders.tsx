@@ -141,7 +141,7 @@ const Orders = ({
                     {reservations.map((reservation: Reservation) => {
                       return (
                         <OrderItem
-                          key={reservation?.id}
+                          key={reservation.id}
                           reservation={reservation}
                           mutate={mutate}
                         />
