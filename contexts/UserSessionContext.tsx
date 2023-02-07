@@ -5,20 +5,22 @@ import {
   useEffect,
   useState,
   useContext,
+  Dispatch,
+  SetStateAction,
 } from 'react';
 import axios from 'axios';
 import useSWR from 'swr';
 
 interface UserSessionContextState {
   userSession?: UserSession;
-  setSession: (userSession: UserSession) => void;
+  setSession: Dispatch<SetStateAction<UserSession | undefined>>;
   refreshAccount?: () => void;
 }
 
 const UserSessionContext = createContext({} as UserSessionContextState);
 
 const UserSessionContextProvider = ({ children }: { children: ReactNode }) => {
-  const [userSession, setUserSession] = useState<UserSession>();
+  const [userSession, setSession] = useState<UserSession>();
   const token = userSession?.token;
   const accountId = userSession?.account?.id;
 
@@ -39,18 +41,18 @@ const UserSessionContextProvider = ({ children }: { children: ReactNode }) => {
             account: accountData?.account,
           })
           .catch((e) => console.error('mutate user error', e));
-        setUserSession(res?.data);
+        setSession(res?.data);
       } else {
         const { data } = await axios.get('/api/user');
-        setUserSession(data);
+        setSession(data);
       }
     };
     fetchData();
   }, [accountData]);
 
-  const setSession = (val: UserSession) => {
-    setUserSession(val);
-  };
+  // const setSession = (val: UserSession) => {
+  //   setUserSession(val);
+  // };
 
   const value = {
     userSession,

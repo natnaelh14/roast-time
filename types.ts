@@ -104,13 +104,3 @@ export interface SignUpFormValues {
   name?: string;
   category?: string;
 }
-
-// export interface RestaurantSignUpFormValues {
-//   firstName: string;
-//   lastName: string;
-//   phoneNumber: string;
-//   email: string;
-//   password: string;
-//   name: string;
-//   category: string;
-// }

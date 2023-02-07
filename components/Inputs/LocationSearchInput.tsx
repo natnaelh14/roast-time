@@ -4,14 +4,15 @@ import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
 } from 'react-places-autocomplete';
+import { Dispatch, SetStateAction } from 'react';
 
 interface LocationSearchInputProps {
   name: string;
   label: string;
   address: string;
-  setAddress: (address: string) => void;
-  setLat: (lat: number) => void;
-  setLong: (long: number) => void;
+  setAddress: Dispatch<SetStateAction<string | undefined>>;
+  setLat: Dispatch<SetStateAction<number | undefined>>;
+  setLong: Dispatch<SetStateAction<number | undefined>>;
 }
 
 export const LocationSearchInput = ({ ...props }: LocationSearchInputProps) => {
