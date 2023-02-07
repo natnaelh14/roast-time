@@ -19,14 +19,14 @@ import { useRouter } from 'next/router';
 export const Navbar = () => {
   const router = useRouter();
   const [mobileNavShown, setMobileNavShown] = useState(false);
-  const { setSession, userSession } = useUserSession();
+  const { setUserSession, userSession } = useUserSession();
   const { reservations } = useReservationsContext();
   const { restaurantsData, error } = useRestaurantContext();
 
   const handleLogout = async () => {
     await axios.post('/api/auth/logout');
     const { data } = await getSession().catch((e) => console.error(e));
-    setSession(data);
+    setUserSession(data);
     router.push('/signin');
   };
 

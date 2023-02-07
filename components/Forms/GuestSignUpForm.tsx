@@ -33,7 +33,7 @@ export const GuestSignUpForm = ({
   const [lat, setLat] = useState<number | undefined>();
   const [long, setLong] = useState<number | undefined>();
   const [image, setImage] = useState<Blob | undefined>();
-  const { setSession } = useUserSession();
+  const { setUserSession } = useUserSession();
   const { setError, control, handleSubmit, formState } =
     useForm<SignUpFormValues>({
       resolver,
@@ -63,7 +63,7 @@ export const GuestSignUpForm = ({
         },
       );
       if (userData?.isLoggedIn) {
-        setSession(userData);
+        setUserSession(userData);
         await Swal.fire({
           position: 'top-end',
           icon: 'success',

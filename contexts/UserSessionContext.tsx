@@ -13,14 +13,14 @@ import useSWR from 'swr';
 
 interface UserSessionContextState {
   userSession?: UserSession;
-  setSession: Dispatch<SetStateAction<UserSession | undefined>>;
+  setUserSession: Dispatch<SetStateAction<UserSession | undefined>>;
   refreshAccount?: () => void;
 }
 
 const UserSessionContext = createContext({} as UserSessionContextState);
 
 const UserSessionContextProvider = ({ children }: { children: ReactNode }) => {
-  const [userSession, setSession] = useState<UserSession>();
+  const [userSession, setUserSession] = useState<UserSession>();
   const token = userSession?.token;
   const accountId = userSession?.account?.id;
 
@@ -41,22 +41,18 @@ const UserSessionContextProvider = ({ children }: { children: ReactNode }) => {
             account: accountData?.account,
           })
           .catch((e) => console.error('mutate user error', e));
-        setSession(res?.data);
+        setUserSession(res?.data);
       } else {
         const { data } = await axios.get('/api/user');
-        setSession(data);
+        setUserSession(data);
       }
     };
     fetchData();
   }, [accountData]);
 
-  // const setSession = (val: UserSession) => {
-  //   setUserSession(val);
-  // };
-
   const value = {
     userSession,
-    setSession,
+    setUserSession,
     refreshAccount,
   };
   return (

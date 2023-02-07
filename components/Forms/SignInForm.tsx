@@ -31,7 +31,7 @@ export const SignInForm = ({
 }) => {
   const router = useRouter();
   const [errorMessage, setErrorMessage] = useState('');
-  const { setSession } = useUserSession();
+  const { setUserSession } = useUserSession();
   const { restaurantId } = router.query;
   const {
     control,
@@ -51,7 +51,7 @@ export const SignInForm = ({
         data,
       );
       if (userData?.isLoggedIn) {
-        setSession(userData);
+        setUserSession(userData);
         // eslint-disable-next-line
         TagManager.dataLayer({
           dataLayer: {
