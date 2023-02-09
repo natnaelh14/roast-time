@@ -1,5 +1,5 @@
 import { SubmitButton } from 'components/Button';
-import { Select, TextInput } from 'components/Inputs';
+import { Select, LabeledInput } from 'components/Inputs';
 import { SelectOptionProps, ReservationFormValues } from 'types';
 import { handleReservation } from 'components/api/api';
 import { useUserSession } from 'contexts/UserSessionContext';
@@ -120,7 +120,7 @@ const Reservation = () => {
             </div>
           )}
         />
-        <TextInput
+        <LabeledInput
           control={control}
           type="time"
           name="reservationTime"

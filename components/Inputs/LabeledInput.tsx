@@ -1,15 +1,15 @@
 import { ErrorMessage } from './ErrorMessage';
 import { FieldDescription } from './FieldDescription';
-import { TextInputProps } from 'types';
+import { LabeledInputProps } from 'types';
 import { classNames } from 'utils/helpers';
 import { FieldValues, useController } from 'react-hook-form';
 
-export const TextInput = <T extends FieldValues>({
+export const LabeledInput = <T extends FieldValues>({
   type,
   description,
   label,
   ...props
-}: TextInputProps<T>) => {
+}: LabeledInputProps<T>) => {
   const {
     field,
     fieldState: { error },

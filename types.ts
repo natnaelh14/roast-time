@@ -1,7 +1,7 @@
 import { FieldValues, UseControllerProps } from 'react-hook-form';
 import { ComponentPropsWithoutRef } from 'react';
 
-export interface TextInputProps<T extends FieldValues>
+export interface LabeledInputProps<T extends FieldValues>
   extends UseControllerProps<T>,
     Omit<ComponentPropsWithoutRef<'input'>, 'name' | 'defaultValue'> {
   /** Field label. This acts as the placeholder until in focus */

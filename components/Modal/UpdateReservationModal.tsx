@@ -1,6 +1,6 @@
 import ModalWrapper from 'components/Modal/ModalWrapper';
 import { Button, SubmitButton } from 'components/Button';
-import { Select, TextInput } from 'components/Inputs';
+import { Select, LabeledInput } from 'components/Inputs';
 import { SelectOptionProps, ReservationFormValues, Reservation } from 'types';
 import {
   updateReservation,
@@ -150,7 +150,7 @@ const UpdateReservationModal = ({
                 </div>
               )}
             />
-            <TextInput
+            <LabeledInput
               control={control}
               type="time"
               name="reservationTime"
