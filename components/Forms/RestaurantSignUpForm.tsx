@@ -1,11 +1,15 @@
 import { SubmitButton } from '../Button/SubmitButton';
-import { TextInput, LocationSearchInput, ImageInput } from 'components/Inputs';
+import {
+  LabeledInput,
+  LocationSearchInput,
+  ImageInput,
+} from 'components/Inputs';
 import { UserSession, SignUpFormValues } from 'types';
 import { useUserSession } from 'contexts/UserSessionContext';
-import { validateEmailAndPhoneNumber } from 'utils/helpers';
+import { validateEmailAndPhoneNumber, formatPhoneNumber } from 'utils/helpers';
 import { useState, Dispatch, SetStateAction } from 'react';
 import axios from 'axios';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import { useRouter } from 'next/router';
 import Swal from 'sweetalert2';
 import * as z from 'zod';
@@ -88,29 +92,37 @@ export const RestaurantSignUpForm = ({
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="w-full">
-      <TextInput
+      <LabeledInput
         control={control}
         name="firstName"
         label="First Name"
         autoComplete="firstName"
         required={true}
       />
-      <TextInput
+      <LabeledInput
         control={control}
         name="lastName"
         label="Last Name"
         autoComplete="lastName"
         required={true}
       />
-      <TextInput
-        type="tel"
-        control={control}
+      <Controller
         name="phoneNumber"
-        label="Phone Number"
-        autoComplete="phoneNumber"
-        required={true}
+        render={({ field }) => (
+          <LabeledInput
+            type="tel"
+            control={control}
+            name="phoneNumber"
+            label="Phone Number"
+            required={true}
+            onChange={(e) => {
+              field.onChange(formatPhoneNumber(e.target.value));
+            }}
+          />
+        )}
+        control={control}
       />
-      <TextInput
+      <LabeledInput
         type="email"
         control={control}
         name="email"
@@ -118,7 +130,7 @@ export const RestaurantSignUpForm = ({
         autoComplete="off"
         required={true}
       />
-      <TextInput
+      <LabeledInput
         type="password"
         control={control}
         name="password"
@@ -126,14 +138,14 @@ export const RestaurantSignUpForm = ({
         autoComplete="new-password"
         required={true}
       />
-      <TextInput
+      <LabeledInput
         control={control}
         name="name"
         label="Restaurant Name"
         autoComplete="restaurantName"
         required={true}
       />
-      <TextInput
+      <LabeledInput
         control={control}
         name="category"
         label="Restaurant Category"

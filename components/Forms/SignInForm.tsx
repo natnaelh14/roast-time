@@ -1,5 +1,5 @@
 import { SubmitButton } from '../Button/SubmitButton';
-import { TextInput } from 'components/Inputs';
+import { LabeledInput } from 'components/Inputs';
 import { UserSession } from 'types';
 import { useUserSession } from 'contexts/UserSessionContext';
 import { useForm } from 'react-hook-form';
@@ -76,7 +76,7 @@ export const SignInForm = ({
       onSubmit={handleSubmit(onSubmit)}
       className="w-full"
       autoComplete="off">
-      <TextInput
+      <LabeledInput
         type="email"
         control={control}
         name="email"
@@ -84,7 +84,7 @@ export const SignInForm = ({
         autoComplete="off"
         required={true}
       />
-      <TextInput
+      <LabeledInput
         type="password"
         control={control}
         name="password"

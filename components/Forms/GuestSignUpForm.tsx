@@ -1,9 +1,13 @@
 import { SubmitButton } from 'components/Button';
 import { UserSession, SignUpFormValues } from 'types';
 import { useUserSession } from 'contexts/UserSessionContext';
-import { TextInput, LocationSearchInput, ImageInput } from 'components/Inputs';
-import { validateEmailAndPhoneNumber } from 'utils/helpers';
-import { useForm } from 'react-hook-form';
+import {
+  LabeledInput,
+  LocationSearchInput,
+  ImageInput,
+} from 'components/Inputs';
+import { validateEmailAndPhoneNumber, formatPhoneNumber } from 'utils/helpers';
+import { useForm, Controller } from 'react-hook-form';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import Swal from 'sweetalert2';
@@ -91,25 +95,33 @@ export const GuestSignUpForm = ({
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="w-full">
-      <TextInput
+      <LabeledInput
         control={control}
         name="firstName"
         label="First Name"
         required={true}
       />
-      <TextInput
+      <LabeledInput
         control={control}
         name="lastName"
         label="Last Name"
         required={true}
       />
-      <TextInput
-        type="tel"
-        control={control}
+      <Controller
         name="phoneNumber"
-        label="Phone Number"
-        maxLength={10}
-        required={true}
+        render={({ field }) => (
+          <LabeledInput
+            type="tel"
+            control={control}
+            name="phoneNumber"
+            label="Phone Number"
+            required={true}
+            onChange={(e) => {
+              field.onChange(formatPhoneNumber(e.target.value));
+            }}
+          />
+        )}
+        control={control}
       />
       <LocationSearchInput
         name="address"
@@ -120,7 +132,7 @@ export const GuestSignUpForm = ({
         setLong={setLong}
       />
       <ImageInput setImage={setImage} />
-      <TextInput
+      <LabeledInput
         type="email"
         control={control}
         name="email"
@@ -128,7 +140,7 @@ export const GuestSignUpForm = ({
         autoComplete="email"
         required={true}
       />
-      <TextInput
+      <LabeledInput
         type="password"
         control={control}
         name="password"

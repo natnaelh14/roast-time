@@ -1,6 +1,6 @@
 import ModalWrapper from 'components/Modal/ModalWrapper';
 import { Button, SubmitButton } from 'components/Button';
-import { TextInput } from 'components/Inputs';
+import { LabeledInput } from 'components/Inputs';
 import { updateAccount } from 'components/api/api';
 import { useColorScheme } from 'contexts/ColorSchemeContext';
 import { useUserSession } from 'contexts/UserSessionContext';
@@ -82,19 +82,19 @@ const UpdateUserProfileModal = () => {
             onSubmit={handleSubmit(onSubmit)}
             className="w-full"
             autoComplete="off">
-            <TextInput
+            <LabeledInput
               control={control}
               name="firstName"
               label="First Name"
               required={true}
             />
-            <TextInput
+            <LabeledInput
               control={control}
               name="lastName"
               label="Last Name"
               required={true}
             />
-            <TextInput
+            <LabeledInput
               type="tel"
               control={control}
               name="phoneNumber"

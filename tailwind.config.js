@@ -41,7 +41,7 @@ module.exports = {
         error: '#eb001c',
       },
       height: {
-        180: '45rem',
+        160: '40rem',
       },
       minHeight: {
         160: '40rem',
