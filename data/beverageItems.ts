@@ -1,6 +1,6 @@
-import { MenuItemValues } from 'types';
+import { MenuItemData } from 'types';
 
-export const beverageItems: MenuItemValues[] = [
+export const beverageItems: MenuItemData[] = [
   {
     id: 1,
     title: 'Espresso',

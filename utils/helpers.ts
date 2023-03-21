@@ -1,6 +1,6 @@
 import { validateEmail, validatePhoneNumber } from 'components/api/api';
-import { SignUpFormValues } from 'types';
 import { UseFormSetError } from 'react-hook-form';
+import { SignUpFormData } from 'types';
 
 /** Combines multiple class strings into one. Separate by comma */
 export function classNames(...classes: unknown[]): string {
@@ -18,7 +18,7 @@ export const validateEmailAndPhoneNumber = async (
   email: string,
   phoneNumber: string,
   // @ts-ignore:next-line
-  setError: UseFormSetError<SignUpFormValues>,
+  setError: UseFormSetError<SignUpFormData>,
 ) => {
   const { data: emailData } = await validateEmail(email);
   if (!emailData?.isValid) {

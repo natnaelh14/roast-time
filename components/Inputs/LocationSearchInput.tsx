@@ -1,10 +1,10 @@
-import { classNames } from 'utils/helpers';
-import styles from 'styles/LocationSearch.module.css';
+import { Dispatch, SetStateAction } from 'react';
 import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
 } from 'react-places-autocomplete';
-import { Dispatch, SetStateAction } from 'react';
+import styles from 'styles/LocationSearch.module.css';
+import { classNames } from 'utils/helpers';
 
 interface LocationSearchInputProps {
   name: string;
@@ -24,9 +24,9 @@ export const LocationSearchInput = ({ ...props }: LocationSearchInputProps) => {
   const handleSelect = (updatedAddress: string) => {
     setAddress(updatedAddress);
     geocodeByAddress(updatedAddress)
-      .then((results) => getLatLng(results[0]))
-      // eslint-disable-next-line promise/always-return
+      .then((results) => results[0] && getLatLng(results[0]))
       .then((latLng) => {
+        if (latLng === undefined) return;
         setLat(latLng.lat);
         setLong(latLng.lng);
       })

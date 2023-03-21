@@ -1,5 +1,5 @@
-import { Rating } from 'components/Rating';
 import { SaveIcon } from 'components/Icons';
+import { Rating } from 'components/Rating';
 import { useUserSession } from 'contexts/UserSessionContext';
 import Image from 'next/legacy/image';
 import Link from 'next/link';
@@ -31,7 +31,7 @@ const Item = ({
           <Link href={`/restaurant/${id}`} className="hover:cursor-pointer">
             <Image
               alt="shopping-item"
-              src={imageData[0]}
+              src={imageData[0] || ''}
               width={250}
               height={200}
             />

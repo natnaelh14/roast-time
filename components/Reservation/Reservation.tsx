@@ -1,13 +1,13 @@
-import { SubmitButton } from 'components/Button';
-import { Select, LabeledInput } from 'components/Inputs';
-import { SelectOptionProps, ReservationFormValues } from 'types';
-import { handleReservation } from 'components/api/api';
-import { useUserSession } from 'contexts/UserSessionContext';
-import { useColorScheme } from 'contexts/ColorSchemeContext';
-import { useForm, Controller } from 'react-hook-form';
-import { useRouter } from 'next/router';
 import { DatePicker } from '@mantine/dates';
+import { handleReservation } from 'components/api/api';
+import { SubmitButton } from 'components/Button';
+import { LabeledInput, Select } from 'components/Inputs';
+import { useColorScheme } from 'contexts/ColorSchemeContext';
+import { useUserSession } from 'contexts/UserSessionContext';
+import { useRouter } from 'next/router';
+import { Controller, useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
+import { ReservationFormData, SelectOptionProps } from 'types';
 
 const Reservation = () => {
   const router = useRouter();
@@ -15,7 +15,7 @@ const Reservation = () => {
   const { userSession } = useUserSession();
   const { colorScheme } = useColorScheme();
 
-  const { control, handleSubmit, formState } = useForm<ReservationFormValues>({
+  const { control, handleSubmit, formState } = useForm<ReservationFormData>({
     mode: 'onTouched',
     defaultValues: {
       partySize: 1,
@@ -24,7 +24,7 @@ const Reservation = () => {
     },
   });
   const { isSubmitting } = formState;
-  const onSubmit = async (data: ReservationFormValues) => {
+  const onSubmit = async (data: ReservationFormData) => {
     try {
       if (!userSession?.token) {
         router.push({
