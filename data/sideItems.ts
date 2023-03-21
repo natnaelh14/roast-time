@@ -1,6 +1,6 @@
-import { MenuItemValues } from 'types';
+import { MenuItemData } from 'types';
 
-export const sideItems: MenuItemValues[] = [
+export const sideItems: MenuItemData[] = [
   {
     id: 1,
     title: 'Applewood Bacon',

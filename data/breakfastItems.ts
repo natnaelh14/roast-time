@@ -1,6 +1,6 @@
-import { MenuItemValues } from 'types';
+import { MenuItemData } from 'types';
 
-export const breakfastItems: MenuItemValues[] = [
+export const breakfastItems: MenuItemData[] = [
   {
     id: 1,
     title: 'Eggs and Meat',

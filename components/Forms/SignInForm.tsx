@@ -1,28 +1,27 @@
-import { SubmitButton } from '../Button/SubmitButton';
-import { LabeledInput } from 'components/Inputs';
-import { UserSession } from 'types';
-import { useUserSession } from 'contexts/UserSessionContext';
-import { useForm } from 'react-hook-form';
-import TagManager from 'react-gtm-module';
-import { useRouter } from 'next/router';
-import axios from 'axios';
-import { useState, Dispatch, SetStateAction } from 'react';
-import Link from 'next/link';
-import * as z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import axios from 'axios';
+import { LabeledInput } from 'components/Inputs';
+import { useUserSession } from 'contexts/UserSessionContext';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { Dispatch, SetStateAction, useState } from 'react';
+import TagManager from 'react-gtm-module';
+import { useForm } from 'react-hook-form';
+import { UserSession } from 'types';
+import { z, ZodType } from 'zod';
+import { SubmitButton } from '../Button/SubmitButton';
 
-interface FormValues {
+interface SignInFormData {
   email: string;
   password: string;
 }
 
-const schema = z.object({
+const schema: ZodType<SignInFormData> = z.object({
   email: z.string().email({ message: 'Invalid email address' }),
   password: z
     .string()
     .min(10, { message: 'Must be 10 or more characters long' }),
 });
-const resolver = zodResolver(schema);
 
 export const SignInForm = ({
   setLoading,
@@ -38,12 +37,12 @@ export const SignInForm = ({
     handleSubmit,
     setError,
     formState: { isSubmitting },
-  } = useForm<FormValues>({
-    resolver,
+  } = useForm<SignInFormData>({
+    resolver: zodResolver(schema),
     mode: 'onSubmit',
   });
 
-  const onSubmit = async (data: FormValues) => {
+  const onSubmit = async (data: SignInFormData) => {
     setErrorMessage('');
     try {
       const { data: userData } = await axios.post<UserSession>(

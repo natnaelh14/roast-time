@@ -1,21 +1,21 @@
-import { SubmitButton } from '../Button/SubmitButton';
+import { zodResolver } from '@hookform/resolvers/zod';
+import axios from 'axios';
 import {
+  ImageInput,
   LabeledInput,
   LocationSearchInput,
-  ImageInput,
 } from 'components/Inputs';
-import { UserSession, SignUpFormValues } from 'types';
 import { useUserSession } from 'contexts/UserSessionContext';
-import { validateEmailAndPhoneNumber, formatPhoneNumber } from 'utils/helpers';
-import { useState, Dispatch, SetStateAction } from 'react';
-import axios from 'axios';
-import { useForm, Controller } from 'react-hook-form';
 import { useRouter } from 'next/router';
+import { Dispatch, SetStateAction, useState } from 'react';
+import { Controller, useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
-import * as z from 'zod';
-import { zodResolver } from '@hookform/resolvers/zod';
+import { SignUpFormData, UserSession } from 'types';
+import { formatPhoneNumber, validateEmailAndPhoneNumber } from 'utils/helpers';
+import { z, ZodType } from 'zod';
+import { SubmitButton } from '../Button/SubmitButton';
 
-const schema = z.object({
+const schema: ZodType<SignUpFormData> = z.object({
   firstName: z.string(),
   lastName: z.string(),
   phoneNumber: z.string(),
@@ -26,7 +26,6 @@ const schema = z.object({
   name: z.string(),
   category: z.string(),
 });
-const resolver = zodResolver(schema);
 
 export const RestaurantSignUpForm = ({
   setLoading,
@@ -40,12 +39,12 @@ export const RestaurantSignUpForm = ({
   const router = useRouter();
   const { setUserSession } = useUserSession();
   const { setError, control, handleSubmit, formState } =
-    useForm<SignUpFormValues>({
-      resolver,
+    useForm<SignUpFormData>({
+      resolver: zodResolver(schema),
       mode: 'onSubmit',
     });
   const { errors, isSubmitting } = formState;
-  const onSubmit = async (data: SignUpFormValues) => {
+  const onSubmit = async (data: SignUpFormData) => {
     try {
       await validateEmailAndPhoneNumber(data.email, data.phoneNumber, setError);
       const resumeData = new FormData();

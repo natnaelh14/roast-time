@@ -27,7 +27,7 @@ export interface SelectProps<T extends FieldValues>
   options: SelectOptionProps[];
 }
 
-export interface MenuItemValues {
+export interface MenuItemData {
   id: number;
   title: string;
   price: number;
@@ -89,13 +89,13 @@ export interface GuestAccountProps {
   setDropDownHidden: (val: boolean) => void;
 }
 
-export interface ReservationFormValues {
+export interface ReservationFormData {
   partySize: number;
   reservationDate: Date;
   reservationTime: string;
 }
 
-export interface SignUpFormValues {
+export interface SignUpFormData {
   firstName: string;
   lastName: string;
   phoneNumber: string;

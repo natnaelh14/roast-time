@@ -1,7 +1,7 @@
 import ModalWrapper from 'components/Modal/ModalWrapper';
 import { Button, SubmitButton } from 'components/Button';
 import { Select, LabeledInput } from 'components/Inputs';
-import { SelectOptionProps, ReservationFormValues, Reservation } from 'types';
+import { SelectOptionProps, ReservationFormData, Reservation } from 'types';
 import {
   updateReservation,
   updateReservationByRestaurant,
@@ -31,7 +31,7 @@ const UpdateReservationModal = ({
     reservationDate,
     reservationTime,
   } = reservation;
-  const { control, handleSubmit, formState } = useForm<ReservationFormValues>({
+  const { control, handleSubmit, formState } = useForm<ReservationFormData>({
     mode: 'onTouched',
     defaultValues: {
       partySize,
@@ -41,7 +41,7 @@ const UpdateReservationModal = ({
   });
   const { isSubmitting } = formState;
 
-  const onSubmit = async (data: ReservationFormValues) => {
+  const onSubmit = async (data: ReservationFormData) => {
     let hasError;
     if (reservationType === 'GUEST') {
       const updateReservationPayload = {
