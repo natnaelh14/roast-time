@@ -4,67 +4,53 @@
 
 html,
 body {
-  padding: 0;
-  margin: 0;
-  font-family: 'Cairo', sans-serif;
+	padding: 0;
+	margin: 0;
+	font-family: "Cairo", sans-serif;
 }
 
 a {
-  color: inherit;
-  text-decoration: none;
+	color: inherit;
+	text-decoration: none;
 }
 
 * {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
-/* @media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
-} */
-
 .glass {
-  background: rgba(255, 255, 255, 0.2);
-  border-top-left-radius: 16px;
-  border-top-right-radius: 16px;
-  border-bottom-right-radius: 0px;
-  border-bottom-left-radius: 0px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+	background: rgba(255, 255, 255, 0.2);
+	border-top-left-radius: 16px;
+	border-top-right-radius: 16px;
+	border-bottom-right-radius: 0px;
+	border-bottom-left-radius: 0px;
+	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+	backdrop-filter: blur(5px);
+	-webkit-backdrop-filter: blur(5px);
+	border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .form-background {
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-image: url('/images/coffee.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-image: url("/images/coffee.jpg");
 }
 
 @layer components {
-  .banner {
-    background: linear-gradient(
-      to right bottom,
-      rgb(173, 115, 108) 0%,
-      rgb(115, 70, 64) 100%
-    );
-    background-repeat: no-repeat;
-  }
-  .btn-primary {
-    @apply relative inline-flex min-h-[40px] min-w-[120px] items-center justify-center space-x-2 whitespace-nowrap rounded-md bg-pink-primary py-2 px-6 text-lg font-bold capitalize leading-6 text-white text-white shadow-sm transition duration-150 ease-out hover:bg-orange-primary hover:shadow active:bg-orange-dark disabled:border-orange-light disabled:bg-orange-light;
-  }
+	.banner {
+		background: linear-gradient(to right bottom, rgb(173, 115, 108) 0%, rgb(115, 70, 64) 100%);
+		background-repeat: no-repeat;
+	}
+	.btn-primary {
+		@apply relative inline-flex min-h-[40px] min-w-[120px] items-center justify-center space-x-2 whitespace-nowrap rounded-md bg-pink-primary py-2 px-6 text-lg font-bold capitalize leading-6 text-white shadow-sm transition duration-150 ease-out hover:bg-orange-primary hover:shadow active:bg-orange-dark disabled:border-orange-light disabled:bg-gray-400;
+	}
 
-  .btn-secondary {
-    @apply relative inline-flex min-h-[40px] min-w-[120px] items-center justify-center space-x-2 whitespace-nowrap rounded-md bg-zinc-500 py-2 px-6 text-lg font-bold capitalize leading-6 text-white shadow-sm transition duration-150 ease-out hover:bg-zinc-600 hover:shadow active:bg-zinc-600 disabled:bg-zinc-500 disabled:bg-zinc-500;
-  }
+	.btn-secondary {
+		@apply relative inline-flex min-h-[40px] min-w-[120px] items-center justify-center space-x-2 whitespace-nowrap rounded-md bg-zinc-500 py-2 px-6 text-lg font-bold capitalize leading-6 text-white shadow-sm transition duration-150 ease-out hover:bg-zinc-600 hover:shadow active:bg-zinc-600 disabled:bg-zinc-500;
+	}
 
-  .btn-tertiary {
-    @apply relative inline-flex min-h-[40px] min-w-[120px] select-none items-center justify-center space-x-2 whitespace-nowrap rounded-md border border-white bg-transparent px-6 py-2 text-lg font-bold capitalize leading-6 text-white hover:cursor-pointer;
-  }
+	.btn-tertiary {
+		@apply relative inline-flex min-h-[40px] min-w-[120px] select-none items-center justify-center space-x-2 whitespace-nowrap rounded-md border border-white bg-transparent px-6 py-2 text-lg font-bold capitalize leading-6 text-white hover:cursor-pointer;
+	}
 }

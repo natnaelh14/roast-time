@@ -1,48 +1,48 @@
-import { useColorScheme } from 'contexts/ColorSchemeContext';
-import React, { Dispatch, SetStateAction } from 'react';
-import Modal from 'react-modal';
+import { useColorScheme } from "contexts/ColorSchemeContext";
+import React, { Dispatch, SetStateAction } from "react";
+import Modal from "react-modal";
 
 const ModalWrapper = ({
-  children,
-  modalIsOpen,
-  setIsOpen,
+	children,
+	modalIsOpen,
+	setIsOpen,
 }: {
-  children: React.ReactNode;
-  modalIsOpen: boolean;
-  setIsOpen: Dispatch<SetStateAction<boolean>>;
+	children: React.ReactNode;
+	modalIsOpen: boolean;
+	setIsOpen: Dispatch<SetStateAction<boolean>>;
 }) => {
-  const { colorScheme } = useColorScheme();
+	const { colorScheme } = useColorScheme();
 
-  const customStyles = {
-    content: {
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
-      backgroundColor: '',
-      borderRadius: '16px',
-      border: 0,
-    },
-    overlay: {
-      background:
-        colorScheme === 'dark' ? 'rgb(0 0 0 / 87%)' : 'rgb(0 0 0 / 25%)',
-      borderRadius: '16px',
-    },
-  };
+	const customStyles = {
+		content: {
+			top: "50%",
+			left: "50%",
+			right: "auto",
+			bottom: "auto",
+			marginRight: "-50%",
+			transform: "translate(-50%, -50%)",
+			backgroundColor: "",
+			borderRadius: "16px",
+			border: 0,
+		},
+		overlay: {
+			background: colorScheme === "dark" ? "rgb(0 0 0 / 87%)" : "rgb(0 0 0 / 25%)",
+			borderRadius: "16px",
+		},
+	};
 
-  return (
-    <Modal
-      isOpen={modalIsOpen}
-      onRequestClose={() => setIsOpen(false)}
-      style={customStyles}
-      ariaHideApp={false}
-      data={{ background: 'green' }}
-      contentLabel="restaurant-modal">
-      {children}
-    </Modal>
-  );
+	return (
+		<Modal
+			isOpen={modalIsOpen}
+			onRequestClose={() => setIsOpen(false)}
+			style={customStyles}
+			ariaHideApp={false}
+			data={{ background: "green" }}
+			contentLabel="restaurant-modal"
+		>
+			{children}
+		</Modal>
+	);
 };
 
 export default ModalWrapper;
