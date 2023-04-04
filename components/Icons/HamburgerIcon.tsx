@@ -1,23 +1,24 @@
-import { useColorScheme } from 'contexts/ColorSchemeContext';
+import { useColorScheme } from "contexts/ColorSchemeContext";
 
 interface HamburgerIconProps {
-  handleClick: () => void;
+	handleClick: () => void;
 }
 
 export const HamburgerIcon = ({ handleClick }: HamburgerIconProps) => {
-  const { colorScheme } = useColorScheme();
+	const { colorScheme } = useColorScheme();
 
-  return (
-    <svg
-      viewBox="0 0 100 80"
-      width="40"
-      height="40"
-      fill={`${colorScheme === 'dark' ? '#F78888' : '#858585'}`}
-      className="m-4 block h-8 w-8 cursor-pointer md:hidden"
-      onClick={handleClick}>
-      <rect width="100" height="20"></rect>
-      <rect y="30" width="100" height="20"></rect>
-      <rect y="60" width="100" height="20"></rect>
-    </svg>
-  );
+	return (
+		<svg
+			viewBox="0 0 100 80"
+			width="40"
+			height="40"
+			fill={`${colorScheme === "dark" ? "#F78888" : "#858585"}`}
+			className="m-4 block h-8 w-8 cursor-pointer md:hidden"
+			onClick={handleClick}
+		>
+			<rect width="100" height="20"></rect>
+			<rect y="30" width="100" height="20"></rect>
+			<rect y="60" width="100" height="20"></rect>
+		</svg>
+	);
 };

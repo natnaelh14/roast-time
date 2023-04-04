@@ -1,2 +1,2 @@
-export { Rating } from './Rating';
-export { RatingGraph } from './RatingGraph';
+export { Rating } from "./Rating";
+export { RatingGraph } from "./RatingGraph";
