@@ -1,7 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import { LabeledInput } from "components/Inputs";
-import { UseUserSession } from "contexts/UserSessionContext";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
@@ -10,6 +9,7 @@ import { useForm } from "react-hook-form";
 import { UserSession } from "types";
 import { z, ZodType } from "zod";
 import { SubmitButton } from "../Button/SubmitButton";
+import { useUser } from "components/useUser";
 
 interface SignInFormData {
 	email: string;
@@ -23,8 +23,8 @@ const schema: ZodType = z.object({
 
 export const SignInForm = () => {
 	const router = useRouter();
+	const { mutate } = useUser();
 	const [errorMessage, setErrorMessage] = useState("");
-	const { setUserSession } = UseUserSession();
 	const { restaurantId } = router.query;
 	const {
 		control,
@@ -40,7 +40,6 @@ export const SignInForm = () => {
 		try {
 			const { data: userData } = await axios.post<UserSession>("/api/auth/login", data);
 			if (userData?.isLoggedIn) {
-				setUserSession(userData);
 				// eslint-disable-next-line
 				TagManager.dataLayer({
 					dataLayer: {
@@ -53,6 +52,7 @@ export const SignInForm = () => {
 				} else {
 					await router.push("/restaurant/upcoming-reservations");
 				}
+				await mutate();
 			}
 		} catch (e) {
 			// setError('email', { message: 'Opss No go' })

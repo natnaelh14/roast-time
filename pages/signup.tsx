@@ -1,6 +1,24 @@
 import { GuestSignUpForm } from "components/Forms/GuestSignUpForm";
 import { ThreeDotsLoading } from "components/Loaders";
 import { useState } from "react";
+import { GetServerSideProps } from "next";
+import { withIronSessionSsr } from "iron-session/next";
+import { sessionOptions } from "utils/config";
+
+export const getServerSideProps: GetServerSideProps = withIronSessionSsr(({ req, res }) => {
+	const { user } = req.session;
+	if (user?.isLoggedIn) {
+		return {
+			redirect: {
+				destination: "/",
+				permanent: false,
+			},
+		};
+	}
+	return {
+		props: {},
+	};
+}, sessionOptions);
 
 const SignUpForm = () => {
 	const [loading, setLoading] = useState(false);

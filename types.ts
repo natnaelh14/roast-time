@@ -83,12 +83,6 @@ export interface ErrorResponse {
 	message: string;
 }
 
-export interface GuestAccountProps {
-	handleLogout: () => void;
-	isDropDownHidden: boolean;
-	setDropDownHidden: (val: boolean) => void;
-}
-
 export interface ReservationFormData {
 	partySize: number;
 	reservationDate: Date;
