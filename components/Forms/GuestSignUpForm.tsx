@@ -2,7 +2,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import { SubmitButton } from "components/Button";
 import { ImageInput, LabeledInput, LocationSearchInput } from "components/Inputs";
-import { UseUserSession } from "contexts/UserSessionContext";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
@@ -10,6 +9,7 @@ import Swal from "sweetalert2";
 import { IGuestSignUpForm, UserSession } from "types";
 import { formatPhoneNumber, validateEmailAndPhoneNumber } from "utils/helpers";
 import { z, ZodType } from "zod";
+import { useUser } from "components/useUser";
 
 const schema: ZodType = z.object({
 	firstName: z.string(),
@@ -21,12 +21,12 @@ const schema: ZodType = z.object({
 
 export const GuestSignUpForm = ({ setLoading }: { setLoading: (val: boolean) => void }) => {
 	const router = useRouter();
+	const { userMutate } = useUser();
 	const { restaurantId } = router.query;
 	const [address, setAddress] = useState<string | undefined>("");
 	const [lat, setLat] = useState<number | undefined>();
 	const [long, setLong] = useState<number | undefined>();
 	const [image, setImage] = useState<Blob | undefined>();
-	const { setUserSession } = UseUserSession();
 	const { setError, control, handleSubmit, formState } = useForm<IGuestSignUpForm>({
 		resolver: zodResolver(schema),
 		mode: "onSubmit",
@@ -41,16 +41,13 @@ export const GuestSignUpForm = ({ setLoading }: { setLoading: (val: boolean) => 
 			const resumeRes = await axios.post(`${process.env.NEXT_PUBLIC_CLOUDINARY_URL}`, resumeData);
 			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
 			const imageUrl = resumeRes.data.secure_url;
-			const { data: userData } = await axios.post<UserSession>("/api/auth/signup", {
+			await axios.post<UserSession>("/api/auth/signup", {
 				...data,
 				address,
 				latitude: lat,
 				longitude: long,
-				// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 				imageUrl,
 			});
-			// if (userData?.isLoggedIn) {
-			setUserSession(userData);
 			await Swal.fire({
 				position: "top-end",
 				icon: "success",
@@ -66,7 +63,7 @@ export const GuestSignUpForm = ({ setLoading }: { setLoading: (val: boolean) => 
 			} else {
 				await router.push("/");
 			}
-			// }
+			await userMutate();
 		} catch (e) {
 			console.error("account creation error", e);
 			// @ts-ignore:next-line
@@ -115,13 +112,7 @@ export const GuestSignUpForm = ({ setLoading }: { setLoading: (val: boolean) => 
 				</div>
 			)}
 			<div className="mt-6 flex justify-center">
-				<SubmitButton
-					text="Sign Up"
-					variant="primary"
-					submittingText="Signing up..."
-					isSubmitting={isSubmitting}
-					className="w-auto shadow-lg"
-				/>
+				<SubmitButton text="Sign Up" variant="primary" isSubmitting={isSubmitting} className="w-auto shadow-lg" />
 			</div>
 		</form>
 	);

@@ -23,7 +23,7 @@ const schema: ZodType = z.object({
 
 export const SignInForm = () => {
 	const router = useRouter();
-	const { mutate } = useUser();
+	const { userMutate } = useUser();
 	const [errorMessage, setErrorMessage] = useState("");
 	const { restaurantId } = router.query;
 	const {
@@ -38,24 +38,21 @@ export const SignInForm = () => {
 	const onSubmit = async (data: SignInFormData) => {
 		setErrorMessage("");
 		try {
-			const { data: userData } = await axios.post<UserSession>("/api/auth/login", data);
-			if (userData?.isLoggedIn) {
-				// eslint-disable-next-line
-				TagManager.dataLayer({
-					dataLayer: {
-						event: "login",
-						email: data.email,
-					},
-				});
-				if (restaurantId) {
-					await router.push(`/restaurant/${restaurantId}`);
-				} else {
-					await router.push("/restaurant/upcoming-reservations");
-				}
-				await mutate();
+			await axios.post<UserSession>("/api/auth/login", data);
+			// eslint-disable-next-line
+			TagManager.dataLayer({
+				dataLayer: {
+					event: "login",
+					email: data.email,
+				},
+			});
+			if (restaurantId) {
+				await router.push(`/restaurant/${restaurantId}`);
+			} else {
+				await router.push("/restaurant/upcoming-reservations");
 			}
+			await userMutate();
 		} catch (e) {
-			// setError('email', { message: 'Opss No go' })
 			setErrorMessage("Unable to log in, Please try again");
 		}
 	};
@@ -70,14 +67,7 @@ export const SignInForm = () => {
                 /> */}
 			{errorMessage && <p className="text-center text-error">{errorMessage}</p>}
 			<div className="mt-6 flex flex-col items-center">
-				<SubmitButton
-					text="Sign In"
-					variant="primary"
-					submittingText="Signing in..."
-					isSubmitting={isSubmitting}
-					className="w-auto shadow-lg"
-					isValid={isValid}
-				/>
+				<SubmitButton text="Sign In" variant="primary" isSubmitting={isSubmitting} className="w-auto shadow-lg" />
 				<div className="mt-3 block dark:text-white">
 					<span>New User?</span>
 					{"  "}

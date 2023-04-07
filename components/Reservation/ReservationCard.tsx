@@ -1,13 +1,13 @@
 import { Reservation } from "types";
 import { Button } from "components/Button";
 import { deleteReservation } from "components/api/api";
-import { UseUserSession } from "contexts/UserSessionContext";
 import UpdateReservationModal from "components/Modal/UpdateReservationModal";
 import { useColorScheme } from "contexts/ColorSchemeContext";
 import dayjs from "dayjs";
 import Image from "next/legacy/image";
 import Link from "next/link";
 import Swal from "sweetalert2";
+import { useUser } from "components/useUser";
 
 const ReservationCard = ({
 	reservation,
@@ -19,7 +19,7 @@ const ReservationCard = ({
 	mutate?: () => void;
 }) => {
 	const { colorScheme } = useColorScheme();
-	const { userSession } = UseUserSession();
+	const { user } = useUser();
 	const { restaurant } = reservation;
 
 	const handleDeleteReservation = () => {
@@ -38,8 +38,8 @@ const ReservationCard = ({
 			if (result.isConfirmed) {
 				const { isSuccess } = await deleteReservation(
 					// @ts-ignore:next-line
-					userSession?.token,
-					userSession?.account?.id,
+					user?.token,
+					user?.account?.id,
 					reservation?.id,
 				);
 				if (isSuccess && mutate) {

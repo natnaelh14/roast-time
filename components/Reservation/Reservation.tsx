@@ -3,16 +3,16 @@ import { handleReservation } from "components/api/api";
 import { SubmitButton } from "components/Button";
 import { LabeledInput, Select } from "components/Inputs";
 import { useColorScheme } from "contexts/ColorSchemeContext";
-import { UseUserSession } from "contexts/UserSessionContext";
 import { useRouter } from "next/router";
 import { Controller, useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { ReservationFormData, SelectOptionProps } from "types";
+import { useUser } from "components/useUser";
 
 const Reservation = () => {
 	const router = useRouter();
 	const { id: restaurantId } = router.query;
-	const { userSession } = UseUserSession();
+	const { user } = useUser();
 	const { colorScheme } = useColorScheme();
 
 	const { control, handleSubmit, formState } = useForm<ReservationFormData>({
@@ -26,7 +26,7 @@ const Reservation = () => {
 	const { isSubmitting, isValid } = formState;
 	const onSubmit = async (data: ReservationFormData) => {
 		try {
-			if (!userSession?.token) {
+			if (!user?.token) {
 				await router.push({
 					pathname: "/signin",
 					query: { restaurantId },
@@ -35,8 +35,8 @@ const Reservation = () => {
 			const reservationPayload = {
 				...data,
 				restaurantId,
-				userId: userSession?.account?.id,
-				token: userSession?.token,
+				userId: user?.account?.id,
+				token: user?.token,
 			};
 			// @ts-ignore:next-line
 			const { hasError } = await handleReservation(reservationPayload);
@@ -111,14 +111,7 @@ const Reservation = () => {
 				/>
 				<LabeledInput control={control} type="time" name="reservationTime" label="Select Time" required={true} />
 				<div className="mt-6 flex flex-col items-center">
-					<SubmitButton
-						variant="primary"
-						text="Reserve"
-						submittingText="Reserving..."
-						isSubmitting={isSubmitting}
-						isValid={isValid}
-						className="w-auto shadow-lg"
-					/>
+					<SubmitButton variant="primary" text="Reserve" isSubmitting={isSubmitting} className="w-auto shadow-lg" />
 				</div>
 			</form>
 		</div>

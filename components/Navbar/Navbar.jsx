@@ -13,7 +13,7 @@ import { useUser } from "components/useUser";
 
 export const Navbar = () => {
 	const router = useRouter();
-	const { user, mutate } = useUser();
+	const { user, userMutate } = useUser();
 	const [mobileNavShown, setMobileNavShown] = useState(false);
 	const { reservations } = UseReservationsContext();
 	const { restaurantsData, error } = useRestaurantContext();
@@ -21,7 +21,7 @@ export const Navbar = () => {
 	const handleLogout = async () => {
 		await axios.post("/api/auth/logout");
 		await router.push("/signin");
-		await mutate();
+		await userMutate();
 	};
 
 	return (

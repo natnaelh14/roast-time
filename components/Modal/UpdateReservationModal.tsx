@@ -4,11 +4,11 @@ import { Select, LabeledInput } from "components/Inputs";
 import { SelectOptionProps, ReservationFormData, Reservation } from "types";
 import { updateReservation, updateReservationByRestaurant } from "components/api/api";
 import { useColorScheme } from "contexts/ColorSchemeContext";
-import { UseUserSession } from "contexts/UserSessionContext";
 import { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { DatePicker } from "@mantine/dates";
 import Swal from "sweetalert2";
+import { useUser } from "components/useUser";
 
 const UpdateReservationModal = ({
 	reservation,
@@ -19,8 +19,8 @@ const UpdateReservationModal = ({
 	mutate?: () => void;
 	reservationType: string;
 }) => {
+	const { user } = useUser();
 	const { colorScheme } = useColorScheme();
-	const { userSession } = UseUserSession();
 	const [modalIsOpen, setIsOpen] = useState(false);
 	const { id: reservationId, partySize, reservationDate, reservationTime } = reservation;
 	const { control, handleSubmit, formState } = useForm<ReservationFormData>({
@@ -37,8 +37,8 @@ const UpdateReservationModal = ({
 		let hasError;
 		if (reservationType === "GUEST") {
 			const updateReservationPayload = {
-				token: userSession?.token || "",
-				accountId: userSession?.account?.id || "",
+				token: user?.token || "",
+				accountId: user?.account?.id || "",
 				reservationId,
 				reservation: { ...data },
 			};
@@ -46,8 +46,8 @@ const UpdateReservationModal = ({
 			hasError = !response.isSuccess;
 		} else if (reservationType === "RESTAURANT") {
 			const response = await updateReservationByRestaurant(
-				userSession?.token || "",
-				userSession?.account?.restaurant?.id || "",
+				user?.token || "",
+				user?.account?.restaurant?.id || "",
 				reservationId,
 				{ ...data },
 			);
@@ -130,14 +130,7 @@ const UpdateReservationModal = ({
 						/>
 						<LabeledInput control={control} type="time" name="reservationTime" label="Select Time" required={true} />
 						<div className="mt-10 flex flex-row items-end justify-center gap-6">
-							<SubmitButton
-								text="Update"
-								variant="primary"
-								submittingText="Updating..."
-								isSubmitting={isSubmitting}
-								isValid={isValid}
-								className="w-auto shadow-lg"
-							/>
+							<SubmitButton text="Update" variant="primary" isSubmitting={isSubmitting} className="w-auto shadow-lg" />
 							<Button
 								variant="secondary"
 								className="bg-zinc-500 text-white hover:bg-zinc-600 hover:text-white"

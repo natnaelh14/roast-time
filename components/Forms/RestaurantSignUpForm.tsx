@@ -1,7 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import { ImageInput, LabeledInput, LocationSearchInput } from "components/Inputs";
-import { UseUserSession } from "contexts/UserSessionContext";
 import { useRouter } from "next/router";
 import { Dispatch, SetStateAction, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
@@ -10,6 +9,7 @@ import { IRestaurantSignUpForm, UserSession } from "types";
 import { formatPhoneNumber, validateEmailAndPhoneNumber } from "utils/helpers";
 import { z, ZodType } from "zod";
 import { SubmitButton } from "../Button/SubmitButton";
+import { useUser } from "components/useUser";
 
 const schema: ZodType = z.object({
 	firstName: z.string(),
@@ -22,12 +22,12 @@ const schema: ZodType = z.object({
 });
 
 export const RestaurantSignUpForm = ({ setLoading }: { setLoading: Dispatch<SetStateAction<boolean>> }) => {
+	const router = useRouter();
+	const { userMutate } = useUser();
 	const [address, setAddress] = useState<string | undefined>("");
 	const [lat, setLat] = useState<number | undefined>();
 	const [long, setLong] = useState<number | undefined>();
 	const [image, setImage] = useState<Blob | undefined>();
-	const router = useRouter();
-	const { setUserSession } = UseUserSession();
 	const { setError, control, handleSubmit, formState } = useForm<IRestaurantSignUpForm>({
 		resolver: zodResolver(schema),
 		mode: "onSubmit",
@@ -42,27 +42,25 @@ export const RestaurantSignUpForm = ({ setLoading }: { setLoading: Dispatch<SetS
 			resumeData.append("file", image);
 			const resumeRes = await axios.post(`${process.env.NEXT_PUBLIC_CLOUDINARY_URL}`, resumeData);
 			const imageUrl = resumeRes.data.secure_url;
-			const { data: userData } = await axios.post<UserSession>("/api/auth/restaurant/signup", {
+			await axios.post<UserSession>("/api/auth/restaurant/signup", {
 				...data,
 				address,
 				latitude: lat,
 				longitude: long,
 				imageData: [imageUrl],
 			});
-			if (userData?.isLoggedIn) {
-				setUserSession(userData);
-				await Swal.fire({
-					position: "top-end",
-					icon: "success",
-					title: "Congrats! Your account has been created.",
-					color: "#F78888",
-					iconColor: "#F78888",
-					showConfirmButton: false,
-					timer: 1500,
-				});
-				setLoading(true);
-				await router.push("/restaurant/orders");
-			}
+			await Swal.fire({
+				position: "top-end",
+				icon: "success",
+				title: "Congrats! Your account has been created.",
+				color: "#F78888",
+				iconColor: "#F78888",
+				showConfirmButton: false,
+				timer: 1500,
+			});
+			setLoading(true);
+			await router.push("/restaurant/orders");
+			await userMutate();
 		} catch (e) {
 			console.error("account creation error", e);
 			// @ts-ignore:next-line
@@ -113,13 +111,7 @@ export const RestaurantSignUpForm = ({ setLoading }: { setLoading: Dispatch<SetS
 				</div>
 			)}
 			<div className="mt-6 flex justify-center">
-				<SubmitButton
-					text="Sign Up"
-					variant="primary"
-					submittingText="Signing up..."
-					isSubmitting={isSubmitting}
-					className="w-auto shadow-lg"
-				/>
+				<SubmitButton text="Sign Up" variant="primary" isSubmitting={isSubmitting} className="w-auto shadow-lg" />
 			</div>
 		</form>
 	);

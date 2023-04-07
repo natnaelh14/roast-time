@@ -8,11 +8,11 @@ import { useUser } from "components/useUser";
 
 export const MenuDropdown = () => {
 	const router = useRouter();
-	const { user, mutate } = useUser();
+	const { user, userMutate } = useUser();
 	const handleLogout = async () => {
 		await axios.post("/api/auth/logout");
 		await router.push("/signin");
-		await mutate();
+		await userMutate();
 	};
 
 	return (

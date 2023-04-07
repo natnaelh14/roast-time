@@ -3,10 +3,10 @@ import { Button, SubmitButton } from "components/Button";
 import { LabeledInput } from "components/Inputs";
 import { updateAccount } from "components/api/api";
 import { useColorScheme } from "contexts/ColorSchemeContext";
-import { UseUserSession } from "contexts/UserSessionContext";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
+import { useUser } from "components/useUser";
 
 interface AccountFormValues {
 	firstName: string;
@@ -14,15 +14,14 @@ interface AccountFormValues {
 	phoneNumber: string;
 }
 const UpdateUserProfileModal = () => {
-	const { userSession, refreshAccount } = UseUserSession();
-
+	const { user, userMutate } = useUser();
 	const { colorScheme } = useColorScheme();
 	const [modalIsOpen, setIsOpen] = useState(false);
-	const firstName = userSession?.account?.firstName;
-	const lastName = userSession?.account?.lastName;
-	const phoneNumber = userSession?.account?.phoneNumber;
-	const accountId = userSession?.account?.id;
-	const token = userSession?.token;
+	const firstName = user?.account?.firstName;
+	const lastName = user?.account?.lastName;
+	const phoneNumber = user?.account?.phoneNumber;
+	const accountId = user?.account?.id;
+	const token = user?.token;
 	const { setError, control, handleSubmit, formState } = useForm<AccountFormValues>({
 		mode: "onTouched",
 		defaultValues: {
@@ -43,24 +42,22 @@ const UpdateUserProfileModal = () => {
 				message: "Unable to update profile. Please try again.",
 			});
 		}
-		if (response.data && refreshAccount) {
-			refreshAccount();
-			setIsOpen(false);
-			const Toast = Swal.mixin({
-				toast: true,
-				position: "top-end",
-				showConfirmButton: false,
-				timer: 3000,
-				color: `${colorScheme === "dark" ? "#cfcfcf" : ""}`,
-				timerProgressBar: true,
-				iconColor: `${colorScheme === "dark" ? "#facea8" : "#c69977"}`,
-				background: `${colorScheme === "dark" ? "#4B5563" : ""}`,
-			});
-			await Toast.fire({
-				icon: "success",
-				title: "Updated account successfully",
-			});
-		}
+		await userMutate();
+		setIsOpen(false);
+		const Toast = Swal.mixin({
+			toast: true,
+			position: "top-end",
+			showConfirmButton: false,
+			timer: 1000,
+			color: `${colorScheme === "dark" ? "#cfcfcf" : ""}`,
+			timerProgressBar: true,
+			iconColor: `${colorScheme === "dark" ? "#facea8" : "#c69977"}`,
+			background: `${colorScheme === "dark" ? "#4B5563" : ""}`,
+		});
+		await Toast.fire({
+			icon: "success",
+			title: "Updated account successfully",
+		});
 	};
 
 	return (
@@ -83,14 +80,7 @@ const UpdateUserProfileModal = () => {
 							required={true}
 						/>
 						<div className="mt-10 flex flex-row items-end justify-center gap-6">
-							<SubmitButton
-								text="Update"
-								variant="primary"
-								submittingText="Updating..."
-								isSubmitting={isSubmitting}
-								isValid={isValid}
-								className="w-auto shadow-lg"
-							/>
+							<SubmitButton text="Update" variant="primary" isSubmitting={isSubmitting} className="w-auto shadow-lg" />
 							<Button
 								variant="secondary"
 								className="bg-zinc-500 text-white hover:bg-zinc-600 hover:text-white"
