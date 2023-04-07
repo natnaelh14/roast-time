@@ -46,9 +46,10 @@ module.exports = {
 				"@typescript-eslint/ban-ts-comment": "off",
 				"@typescript-eslint/no-unsafe-assignment": "off",
 				"@typescript-eslint/no-misused-promises": [
-					"off",
+					"error",
 					{
 						checksConditionals: false,
+						checksVoidReturn: false,
 					},
 				],
 				"@typescript-eslint/no-use-before-define": [

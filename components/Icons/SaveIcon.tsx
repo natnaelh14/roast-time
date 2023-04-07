@@ -1,8 +1,8 @@
 import { useColorScheme } from "contexts/ColorSchemeContext";
-import { UseUserSession } from "contexts/UserSessionContext";
 import { SavedRestaurant } from "types";
 import { saveRestaurant, removeSavedRestaurant } from "components/api/api";
 import { useState } from "react";
+import { useUser } from "components/useUser";
 
 export const SaveIcon = ({
 	restaurantId,
@@ -11,13 +11,13 @@ export const SaveIcon = ({
 	restaurantId: string;
 	refreshSavedRestaurants?: () => void;
 }) => {
+	const { user, userMutate } = useUser();
 	const { colorScheme } = useColorScheme();
-	const { userSession, refreshAccount } = UseUserSession();
-	const token = userSession?.token;
-	const accountId = userSession?.account?.id;
+	const token = user?.token;
+	const accountId = user?.account?.id;
 	// @ts-ignore:next-line
 	// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
-	const filteredSavedRestaurant: SavedRestaurant | undefined = userSession?.account?.savedRestaurant?.filter(
+	const filteredSavedRestaurant: SavedRestaurant | undefined = user?.account?.savedRestaurant?.filter(
 		(restaurant: SavedRestaurant) => restaurant.restaurantId === restaurantId,
 	);
 	const [isSaved, setIsSaved] = useState(!!filteredSavedRestaurant?.id);
@@ -26,12 +26,12 @@ export const SaveIcon = ({
 			const { isSuccess } = await removeSavedRestaurant(token, accountId, restaurantId);
 			isSuccess && setIsSaved((prev) => !prev);
 			refreshSavedRestaurants && refreshSavedRestaurants();
-			refreshAccount && refreshAccount();
+			await userMutate();
 		} else {
 			const { isSuccess } = await saveRestaurant(token, accountId, restaurantId);
 			isSuccess && setIsSaved((prev) => !prev);
 			refreshSavedRestaurants && refreshSavedRestaurants();
-			refreshAccount && refreshAccount();
+			await userMutate();
 		}
 	};
 

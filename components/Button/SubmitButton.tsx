@@ -3,23 +3,12 @@ import { classNames } from "utils/helpers";
 import { ButtonSpinner } from "../Loaders";
 
 export interface SubmitButtonProps extends Omit<ComponentPropsWithoutRef<"button">, "type" | "disabled"> {
-	// formState: FormState<T>;
 	text: string;
-	submittingText: string;
 	isSubmitting: boolean;
-	isValid?: boolean;
 	variant?: "primary" | "secondary" | "tertiary";
 }
 
-export const SubmitButton = ({
-	text,
-	submittingText,
-	isSubmitting,
-	isValid,
-	variant,
-	className,
-	...props
-}: SubmitButtonProps) => {
+export const SubmitButton = ({ text, isSubmitting, variant, className, ...props }: SubmitButtonProps) => {
 	let customButton;
 	switch (variant) {
 		case "primary":
@@ -32,18 +21,9 @@ export const SubmitButton = ({
 			customButton = "btn-tertiary";
 	}
 	return (
-		<button
-			{...props}
-			type="submit"
-			disabled={!!(!isValid || isSubmitting)}
-			className={classNames(customButton, className)}
-		>
-			{isSubmitting ? submittingText : text}
-			{isSubmitting && (
-				<span className="-mr-1 ml-2">
-					<ButtonSpinner />
-				</span>
-			)}
+		<button {...props} type="submit" disabled={isSubmitting} className={classNames(customButton, className)}>
+			{!isSubmitting && text}
+			{isSubmitting && <ButtonSpinner />}
 		</button>
 	);
 };

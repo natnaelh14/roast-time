@@ -1,8 +1,8 @@
 import { SaveIcon } from "components/Icons";
 import { Rating } from "components/Rating";
-import { UseUserSession } from "contexts/UserSessionContext";
 import Image from "next/legacy/image";
 import Link from "next/link";
+import { useUser } from "components/useUser";
 
 interface ItemProps {
 	id: string;
@@ -14,8 +14,8 @@ interface ItemProps {
 }
 
 const Item = ({ id, name, imageData, address, category, refreshSavedRestaurants }: ItemProps) => {
-	const { userSession } = UseUserSession();
-	const token = !!userSession?.token;
+	const { user } = useUser();
+	const token = !!user?.token;
 
 	return (
 		<div>

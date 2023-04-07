@@ -1,7 +1,6 @@
 import "../styles/globals.css";
 import Layout from "components/Layout/Layout";
 import fetchJson from "utils/fetchJson";
-import { UserSessionContextProvider } from "contexts/UserSessionContext";
 import { ColorSchemeContextProvider } from "contexts/ColorSchemeContext";
 import { ReservationsContextProvider } from "contexts/UpcomingReservationsContext";
 import { RestaurantContextProvider } from "contexts/RestaurantsContext";
@@ -29,18 +28,16 @@ function MyApp({ Component, pageProps }: AppProps) {
 					},
 				}}
 			>
-				<UserSessionContextProvider>
-					<RestaurantContextProvider>
-						<ReservationsContextProvider>
-							<ColorSchemeContextProvider>
-								<Layout>
-									<Component {...pageProps} />
-									<Analytics />
-								</Layout>
-							</ColorSchemeContextProvider>
-						</ReservationsContextProvider>
-					</RestaurantContextProvider>
-				</UserSessionContextProvider>
+				<RestaurantContextProvider>
+					<ReservationsContextProvider>
+						<ColorSchemeContextProvider>
+							<Layout>
+								<Component {...pageProps} />
+								<Analytics />
+							</Layout>
+						</ColorSchemeContextProvider>
+					</ReservationsContextProvider>
+				</RestaurantContextProvider>
 			</SWRConfig>
 			{/* Google Tag Manager */}
 			<Script strategy="afterInteractive" id="google-tag-manager">

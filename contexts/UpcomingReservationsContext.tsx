@@ -1,7 +1,7 @@
 import { Reservation } from "types";
-import { UseUserSession } from "contexts/UserSessionContext";
 import { createContext, ReactNode, useContext } from "react";
 import useSWR from "swr";
+import { useUser } from "components/useUser";
 
 interface ReservationsContextState {
 	reservations: Reservation[];
@@ -11,9 +11,9 @@ interface ReservationsContextState {
 
 const ReservationsContext = createContext({} as ReservationsContextState);
 const ReservationsContextProvider = ({ children }: { children: ReactNode }) => {
-	const { userSession } = UseUserSession();
-	const accountId = userSession?.account?.id;
-	const token = userSession?.token;
+	const { user } = useUser();
+	const accountId = user?.account?.id;
+	const token = user?.token;
 
 	const {
 		data: reservationData,

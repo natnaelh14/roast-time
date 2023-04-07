@@ -1,16 +1,16 @@
 import { Button } from "components/Button";
 import { Reservation } from "types";
-import { UseUserSession } from "contexts/UserSessionContext";
 import { deleteReservationByRestaurant } from "components/api/api";
 import { useColorScheme } from "contexts/ColorSchemeContext";
 import UpdateReservationModal from "components/Modal/UpdateReservationModal";
 import Image from "next/legacy/image";
 import dayjs from "dayjs";
 import Swal from "sweetalert2";
+import { useUser } from "components/useUser";
 
 const OrderItem = ({ reservation, mutate }: { reservation: Reservation; mutate: () => void }) => {
 	const { colorScheme } = useColorScheme();
-	const { userSession } = UseUserSession();
+	const { user } = useUser();
 
 	const handleDeleteReservation = () => {
 		return Swal.fire({
@@ -27,8 +27,8 @@ const OrderItem = ({ reservation, mutate }: { reservation: Reservation; mutate: 
 			// eslint-disable-next-line promise/always-return
 			if (result.isConfirmed) {
 				const { isSuccess } = await deleteReservationByRestaurant(
-					userSession?.token || "",
-					userSession?.account?.restaurant?.id || "",
+					user?.token || "",
+					user?.account?.restaurant?.id || "",
 					reservation?.id,
 				);
 				if (isSuccess && mutate) {

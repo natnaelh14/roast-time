@@ -40,6 +40,21 @@ const getHeader = (token?: string): AxiosRequestHeaders => {
 };
 const AXIO_TIMEOUT = 30000;
 
+export const getAccount = async (token: string, accountId: string): Promise<IRequestResponse<Account>> => {
+	try {
+		const { data } = await axios.get<Account>(`${process.env.NEXT_PUBLIC_BASE_URL}/account/${accountId}`, {
+			timeout: AXIO_TIMEOUT,
+			headers: getHeader(token),
+		});
+		return { data, isSuccess: true };
+	} catch (error) {
+		if (axios.isAxiosError(error)) {
+			return { error, isSuccess: false };
+		}
+		return { error: new AxiosError("Bad Request"), isSuccess: false };
+	}
+};
+
 export const login = async (payload: { email: string; password: string }): Promise<IRequestResponse<Account>> => {
 	try {
 		const { data } = await axios.post<Account>(`${process.env.NEXT_PUBLIC_BASE_URL}/login`, payload);

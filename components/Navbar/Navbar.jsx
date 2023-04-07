@@ -1,8 +1,5 @@
-import GuestAccount from "./GuestAccount";
 import { HamburgerIcon, CloseIcon, UpcomingReservationsIcon } from "components/Icons";
 import ColorToggle from "components/ColorToggle/ColorToggle";
-import { UseUserSession } from "contexts/UserSessionContext";
-import { getSession } from "components/api/api";
 import { UseReservationsContext } from "contexts/UpcomingReservationsContext";
 import { useRestaurantContext } from "contexts/RestaurantsContext";
 import axios from "axios";
@@ -11,19 +8,20 @@ import Image from "next/legacy/image";
 import Link from "next/link";
 import { Dialog, Transition } from "@headlessui/react";
 import { useRouter } from "next/router";
+import { MenuDropdown } from "./MenuDropdown";
+import { useUser } from "components/useUser";
 
 export const Navbar = () => {
 	const router = useRouter();
+	const { user, userMutate } = useUser();
 	const [mobileNavShown, setMobileNavShown] = useState(false);
-	const { setUserSession, userSession } = UseUserSession();
 	const { reservations } = UseReservationsContext();
 	const { restaurantsData, error } = useRestaurantContext();
 
 	const handleLogout = async () => {
 		await axios.post("/api/auth/logout");
-		const { data } = await getSession().catch((e) => console.error(e));
-		setUserSession(data);
-		router.push("/signin");
+		await router.push("/signin");
+		await userMutate();
 	};
 
 	return (
@@ -42,7 +40,7 @@ export const Navbar = () => {
 				)}
 			</div>
 			<div className="absolute right-0 hidden flex-row items-center md:flex">
-				{!userSession?.isLoggedIn && (
+				{!user?.isLoggedIn && (
 					<>
 						<Link
 							href="/signin"
@@ -64,12 +62,12 @@ export const Navbar = () => {
 						</Link>
 					</>
 				)}
-				{userSession?.isLoggedIn && (
+				{user?.isLoggedIn && (
 					<>
-						{userSession?.account?.accountType === "GUEST" && (
+						{user?.account?.accountType === "GUEST" && (
 							<UpcomingReservationsIcon reservationCount={reservations?.length || 0} />
 						)}
-						<GuestAccount />
+						<MenuDropdown />
 					</>
 				)}
 				<ColorToggle />
@@ -109,7 +107,7 @@ export const Navbar = () => {
 										<span className="sr-only">Close panel</span>
 									</button>
 									<ul className="flex flex-col space-y-6 pl-3 pt-8">
-										{!userSession?.isLoggedIn && (
+										{!user?.isLoggedIn && (
 											<>
 												<Link
 													href="/signin"
@@ -134,7 +132,7 @@ export const Navbar = () => {
 												</Link>
 											</>
 										)}
-										{userSession?.isLoggedIn && (
+										{user?.isLoggedIn && (
 											<>
 												<Link
 													href="/profile"
@@ -143,7 +141,7 @@ export const Navbar = () => {
 												>
 													My Profile
 												</Link>
-												{userSession?.account?.accountType === "GUEST" ? (
+												{user?.account?.accountType === "GUEST" ? (
 													<>
 														<Link
 															href="/restaurant/upcoming-reservations"
@@ -173,7 +171,7 @@ export const Navbar = () => {
 														</Link>
 													</>
 												) : (
-													userSession?.account?.accountType === "RESTAURANT" && (
+													user?.account?.accountType === "RESTAURANT" && (
 														<Link
 															href="/restaurant/orders"
 															onClick={() => setMobileNavShown(false)}
