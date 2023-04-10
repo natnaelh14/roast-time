@@ -3,7 +3,6 @@ import axios from "axios";
 import { LabeledInput } from "components/Inputs";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState } from "react";
 import TagManager from "react-gtm-module";
 import { useForm } from "react-hook-form";
 import { UserSession } from "types";
@@ -14,29 +13,30 @@ import { useUser } from "components/useUser";
 interface SignInFormData {
 	email: string;
 	password: string;
+	serverError: () => void;
 }
 
 const schema: ZodType = z.object({
 	email: z.string().email({ message: "Invalid email address" }).default(""),
 	password: z.string().min(10, { message: "Must be 10 or more characters long" }).default(""),
+	serverError: z.void(),
 });
 
 export const SignInForm = () => {
 	const router = useRouter();
 	const { userMutate } = useUser();
-	const [errorMessage, setErrorMessage] = useState("");
 	const { restaurantId } = router.query;
 	const {
 		control,
 		handleSubmit,
-		formState: { isSubmitting, isValid },
+		setError,
+		formState: { isSubmitting, errors },
 	} = useForm<SignInFormData>({
 		resolver: zodResolver(schema),
 		mode: "onChange",
 	});
 
 	const onSubmit = async (data: SignInFormData) => {
-		setErrorMessage("");
 		try {
 			await axios.post<UserSession>("/api/auth/login", data);
 			// eslint-disable-next-line
@@ -53,19 +53,18 @@ export const SignInForm = () => {
 			}
 			await userMutate();
 		} catch (e) {
-			setErrorMessage("Unable to log in, Please try again");
+			console.log("🚀 ~ file: SignInForm.tsx:58 ~ onSubmit ~ e:", e);
+			return setError("serverError", {
+				type: "server",
+				message: "Unable to log in, Please try again",
+			});
 		}
 	};
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className="w-full">
 			<LabeledInput type="email" control={control} name="email" label="Email" required={true} />
 			<LabeledInput type="password" control={control} name="password" label="Password" required={true} />
-			{/* <ErrorMessage
-                    errors={formState.errors}
-                    name="singleErrorInput"
-                    render={({ message }) => <p>{message}</p>}
-                /> */}
-			{errorMessage && <p className="text-center text-error">{errorMessage}</p>}
+			{errors.serverError && <span className="text-center text-error">{errors.serverError?.message}</span>}
 			<div className="mt-6 flex flex-col items-center">
 				<SubmitButton text="Sign In" variant="primary" isSubmitting={isSubmitting} className="w-auto shadow-lg" />
 				<div className="mt-3 block dark:text-white">

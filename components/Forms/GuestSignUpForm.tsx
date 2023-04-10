@@ -17,6 +17,7 @@ const schema: ZodType = z.object({
 	phoneNumber: z.string(),
 	email: z.string().email({ message: "Invalid email address" }),
 	password: z.string().min(10, { message: "Must be 10 or more characters long" }),
+	serverError: z.void(),
 });
 
 export const GuestSignUpForm = ({ setLoading }: { setLoading: (val: boolean) => void }) => {
@@ -39,7 +40,6 @@ export const GuestSignUpForm = ({ setLoading }: { setLoading: (val: boolean) => 
 			resumeData.append("upload_preset", "resume");
 			resumeData.append("file", image as Blob);
 			const resumeRes = await axios.post(`${process.env.NEXT_PUBLIC_CLOUDINARY_URL}`, resumeData);
-			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
 			const imageUrl = resumeRes.data.secure_url;
 			await axios.post<UserSession>("/api/auth/signup", {
 				...data,
@@ -66,9 +66,8 @@ export const GuestSignUpForm = ({ setLoading }: { setLoading: (val: boolean) => 
 			await userMutate();
 		} catch (e) {
 			console.error("account creation error", e);
-			// @ts-ignore:next-line
-			return setError("apiError", {
-				type: "custom",
+			return setError("serverError", {
+				type: "server",
 				message: "Unable to sign up. Please try again.",
 			});
 		}
@@ -104,13 +103,7 @@ export const GuestSignUpForm = ({ setLoading }: { setLoading: (val: boolean) => 
 			<ImageInput setImage={setImage} />
 			<LabeledInput type="email" control={control} name="email" label="Email" required={true} />
 			<LabeledInput type="password" control={control} name="password" label="Password" required={true} />
-			{/* @ts-ignore:next-line */}
-			{errors.apiError && (
-				<div className="mt-5 text-center text-red-500">
-					{/* @ts-ignore:next-line */}
-					{errors.apiError?.message}
-				</div>
-			)}
+			{errors.serverError && <span className="mt-5 text-center text-red-500">{errors.serverError?.message}</span>}
 			<div className="mt-6 flex justify-center">
 				<SubmitButton text="Sign Up" variant="primary" isSubmitting={isSubmitting} className="w-auto shadow-lg" />
 			</div>
