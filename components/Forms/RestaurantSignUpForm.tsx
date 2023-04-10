@@ -19,6 +19,7 @@ const schema: ZodType = z.object({
 	password: z.string().min(10, { message: "Must be 10 or more characters long" }),
 	name: z.string(),
 	category: z.string(),
+	serverError: z.void(),
 });
 
 export const RestaurantSignUpForm = ({ setLoading }: { setLoading: Dispatch<SetStateAction<boolean>> }) => {
@@ -38,8 +39,7 @@ export const RestaurantSignUpForm = ({ setLoading }: { setLoading: Dispatch<SetS
 			await validateEmailAndPhoneNumber(data.email, data.phoneNumber, setError);
 			const resumeData = new FormData();
 			resumeData.append("upload_preset", "resume");
-			// @ts-ignore:next-line
-			resumeData.append("file", image);
+			resumeData.append("file", image as Blob);
 			const resumeRes = await axios.post(`${process.env.NEXT_PUBLIC_CLOUDINARY_URL}`, resumeData);
 			const imageUrl = resumeRes.data.secure_url;
 			await axios.post<UserSession>("/api/auth/restaurant/signup", {
@@ -62,9 +62,8 @@ export const RestaurantSignUpForm = ({ setLoading }: { setLoading: Dispatch<SetS
 			await router.push("/restaurant/orders");
 			await userMutate();
 		} catch (e) {
-			console.error("account creation error", e);
-			// @ts-ignore:next-line
-			return setError("apiError", {
+			console.log("🚀 ~ file: RestaurantSignUpForm.tsx:66 ~ onSubmit ~ e:", e);
+			return setError("serverError", {
 				type: "custom",
 				message: "Unable to sign up. Please try again.",
 			});
@@ -103,13 +102,7 @@ export const RestaurantSignUpForm = ({ setLoading }: { setLoading: Dispatch<SetS
 				setLong={setLong}
 			/>
 			<ImageInput setImage={setImage} />
-			{/* @ts-ignore:next-line */}
-			{errors.apiError && (
-				<div className="mt-5 text-center text-red-500">
-					{/* @ts-ignore:next-line */}
-					{errors.apiError?.message}
-				</div>
-			)}
+			{errors.serverError && <div className="mt-5 text-center text-red-500">{errors.serverError?.message}</div>}
 			<div className="mt-6 flex justify-center">
 				<SubmitButton text="Sign Up" variant="primary" isSubmitting={isSubmitting} className="w-auto shadow-lg" />
 			</div>

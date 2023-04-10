@@ -95,6 +95,7 @@ export interface IGuestSignUpForm {
 	phoneNumber: string;
 	email: string;
 	password: string;
+	serverError: () => void;
 }
 
 export interface IRestaurantSignUpForm extends IGuestSignUpForm {

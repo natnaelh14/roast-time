@@ -4,6 +4,7 @@ module.exports = {
 		es2021: true,
 		jest: true,
 	},
+	plugins: ["@typescript-eslint", "jest", "testing-library", "promise", "import", "prettier"],
 	extends: [
 		"eslint:recommended",
 		"plugin:react/recommended",
@@ -11,15 +12,13 @@ module.exports = {
 		"plugin:jsx-a11y/recommended",
 		"next/core-web-vitals",
 		"plugin:promise/recommended",
-		//The last plugin overrides the rest.
 		"plugin:prettier/recommended",
 	],
+	parser: "@typescript-eslint/parser",
 	parserOptions: {
 		ecmaVersion: "latest",
 		sourceType: "module",
 	},
-	plugins: ["@typescript-eslint", "jest", "testing-library", "promise", "import", "prettier"],
-	parser: "@typescript-eslint/parser",
 	overrides: [
 		{
 			files: ["**/?(*.)+(spec|test).[jt]s?(x)"],
