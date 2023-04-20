@@ -1,6 +1,6 @@
 import { getLocalStorage, setLocalStorage } from "utils/storage";
 import { getSystemDarkTheme } from "utils/helpers";
-import { createContext, ReactNode, useState, useContext } from "react";
+import { createContext, ReactNode, useState, useContext, useMemo } from "react";
 
 interface ColorSchemeContextState {
 	colorScheme: "dark" | "light";
@@ -39,10 +39,8 @@ const ColorSchemeContextProvider = ({ children }: { children: ReactNode }) => {
 		}
 	};
 
-	const value = {
-		colorScheme,
-		toggleColorScheme,
-	};
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	const value = useMemo(() => ({ colorScheme, toggleColorScheme }), [colorScheme]);
 	return <ColorSchemeContext.Provider value={value}>{children}</ColorSchemeContext.Provider>;
 };
 

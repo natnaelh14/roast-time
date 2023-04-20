@@ -16,7 +16,7 @@ const Layout = ({ children }: LayoutProps) => {
 				<meta property="og:title" content="RoastTime table reservation" key="title" />
 			</Head>
 			<Navbar />
-			<div>{children}</div>
+			<div className="mt-20">{children}</div>
 			<Footer />
 		</>
 	);

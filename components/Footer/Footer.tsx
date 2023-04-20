@@ -4,7 +4,7 @@ import Image from "next/legacy/image";
 
 const Footer = () => {
 	return (
-		<footer className="md:py-8m mt-auto flex h-[300px] w-full flex-col justify-center rounded-b-2xl bg-gray-200 p-4 shadow dark:bg-blue-dark md:px-6">
+		<footer className="mt-auto flex h-[300px] w-full flex-col justify-center rounded-b-2xl bg-gray-200 p-4 shadow dark:bg-blue-dark md:py-8 md:px-6">
 			<div className="flex flex-row items-center justify-around">
 				<div className="flex h-16 justify-center">
 					<Link href="/" className="mb-4 flex items-center sm:mb-0">
