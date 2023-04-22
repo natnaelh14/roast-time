@@ -1,18 +1,18 @@
-import ModalWrapper from "components/Modal/ModalWrapper";
+import { Modal } from "components/Modal/Modal";
 import Image from "next/legacy/image";
 import { useState } from "react";
 
 const ImageModal = ({ imageUrl }: { imageUrl: string }) => {
-	const [modalIsOpen, setIsOpen] = useState(false);
+	const [modalOpen, setModalOpen] = useState(false);
 
 	return (
 		<div>
-			<button onClick={() => setIsOpen(true)}>
+			<button onClick={() => setModalOpen(true)}>
 				<Image alt="restaurant-image" width={200} height={150} src={imageUrl} />
 			</button>
-			<ModalWrapper modalIsOpen={modalIsOpen} setIsOpen={setIsOpen}>
+			<Modal open={modalOpen} setOpen={setModalOpen}>
 				<Image alt="restaurant-image" width={800} height={600} src={imageUrl} />
-			</ModalWrapper>
+			</Modal>
 		</div>
 	);
 };

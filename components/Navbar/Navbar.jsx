@@ -25,7 +25,7 @@ export const Navbar = () => {
 	};
 
 	return (
-		<nav className="glass flex max-h-20 flex-row items-center bg-gray-200 dark:bg-blue-dark">
+		<nav className="glass fixed inset-x-0 top-0 z-20 flex h-20 flex-row items-center px-2 dark:bg-blue-dark">
 			<HamburgerIcon handleClick={() => setMobileNavShown(true)} />
 			<Link href="/" className="mt-3" aria-label="Link to Homepage">
 				<Image alt="roastTime logo" src="/logo.png" height={200} width={200} />
@@ -39,7 +39,7 @@ export const Navbar = () => {
 					<h2 className="text-green-400">• API Connected</h2>
 				)}
 			</div>
-			<div className="absolute right-0 hidden flex-row items-center md:flex">
+			<div className="absolute right-2 hidden flex-row items-center md:flex">
 				{!user?.isLoggedIn && (
 					<>
 						<Link

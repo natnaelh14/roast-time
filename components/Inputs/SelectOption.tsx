@@ -1,7 +1,7 @@
 import { SelectOptionProps } from "types";
 import { classNames } from "utils/helpers";
 import { Listbox } from "@headlessui/react";
-import { CheckIcon } from "@heroicons/react/solid";
+import { CheckIcon } from "@heroicons/react/24/outline";
 
 export const SelectOption = ({ value, label }: SelectOptionProps) => {
 	return (

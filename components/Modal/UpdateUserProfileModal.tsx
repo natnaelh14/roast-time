@@ -1,9 +1,9 @@
-import ModalWrapper from "components/Modal/ModalWrapper";
+import { useState } from "react";
+import { Modal } from "components/Modal/Modal";
 import { Button, SubmitButton } from "components/Button";
 import { LabeledInput } from "components/Inputs";
 import { updateAccount } from "components/api/api";
 import { useColorScheme } from "contexts/ColorSchemeContext";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { useUser } from "components/useUser";
@@ -13,10 +13,11 @@ interface AccountFormValues {
 	lastName: string;
 	phoneNumber: string;
 }
-const UpdateUserProfileModal = () => {
+
+export const UpdateUserProfileModal = () => {
 	const { user, userMutate } = useUser();
 	const { colorScheme } = useColorScheme();
-	const [modalIsOpen, setIsOpen] = useState(false);
+	const [openModal, setOpenModal] = useState(false);
 	const firstName = user?.account?.firstName;
 	const lastName = user?.account?.lastName;
 	const phoneNumber = user?.account?.phoneNumber;
@@ -30,7 +31,7 @@ const UpdateUserProfileModal = () => {
 			phoneNumber,
 		},
 	});
-	const { isSubmitting, isValid, errors } = formState;
+	const { isSubmitting, errors } = formState;
 
 	const onSubmit = async (data: AccountFormValues) => {
 		const response = await updateAccount(token || "", accountId || "", data);
@@ -43,7 +44,7 @@ const UpdateUserProfileModal = () => {
 			});
 		}
 		await userMutate();
-		setIsOpen(false);
+		setOpenModal(false);
 		const Toast = Swal.mixin({
 			toast: true,
 			position: "top-end",
@@ -62,46 +63,41 @@ const UpdateUserProfileModal = () => {
 
 	return (
 		<>
-			<Button variant="secondary" onClick={() => setIsOpen(true)}>
+			<Button variant="secondary" onClick={() => setOpenModal(true)}>
 				Edit
 			</Button>
-			<ModalWrapper modalIsOpen={modalIsOpen} setIsOpen={setIsOpen}>
-				<div className="rounded-xl border border-gray-200 bg-white px-24 py-16 dark:border-gray-secondary dark:bg-blue-dark">
-					<h1 className="mb-10 text-center text-3xl text-brown-dark dark:text-brown-light">Update Profile</h1>
-					<form onSubmit={handleSubmit(onSubmit)} className="w-full">
-						<LabeledInput control={control} name="firstName" label="First Name" required={true} />
-						<LabeledInput control={control} name="lastName" label="Last Name" required={true} />
-						<LabeledInput
-							type="tel"
-							control={control}
-							name="phoneNumber"
-							label="Phone Number"
-							maxLength={10}
-							required={true}
-						/>
-						<div className="mt-10 flex flex-row items-end justify-center gap-6">
-							<SubmitButton text="Update" variant="primary" isSubmitting={isSubmitting} className="w-auto shadow-lg" />
-							<Button
-								variant="secondary"
-								className="bg-zinc-500 text-white hover:bg-zinc-600 hover:text-white"
-								disabled={isSubmitting}
-								onClick={() => setIsOpen(false)}
-							>
-								Cancel
-							</Button>
+			<Modal open={openModal} setOpen={setOpenModal} title="Update Profile">
+				<form onSubmit={handleSubmit(onSubmit)} className="w-full">
+					<LabeledInput control={control} name="firstName" label="First Name" required={true} />
+					<LabeledInput control={control} name="lastName" label="Last Name" required={true} />
+					<LabeledInput
+						type="tel"
+						control={control}
+						name="phoneNumber"
+						label="Phone Number"
+						maxLength={10}
+						required={true}
+					/>
+					<div className="mt-10 flex flex-row items-end justify-center gap-6">
+						<SubmitButton text="Update" variant="primary" isSubmitting={isSubmitting} className="w-auto shadow-lg" />
+						<Button
+							variant="secondary"
+							className="bg-zinc-500 text-white hover:bg-zinc-600 hover:text-white"
+							disabled={isSubmitting}
+							onClick={() => setOpenModal(false)}
+						>
+							Cancel
+						</Button>
+					</div>
+					{/* @ts-ignore:next-line */}
+					{errors.apiError && (
+						<div className="mt-5 text-red-500">
+							{/* @ts-ignore:next-line */}
+							{errors.apiError?.message}
 						</div>
-						{/* @ts-ignore:next-line */}
-						{errors.apiError && (
-							<div className="mt-5 text-red-500">
-								{/* @ts-ignore:next-line */}
-								{errors.apiError?.message}
-							</div>
-						)}
-					</form>
-				</div>
-			</ModalWrapper>
+					)}
+				</form>
+			</Modal>
 		</>
 	);
 };
-
-export default UpdateUserProfileModal;

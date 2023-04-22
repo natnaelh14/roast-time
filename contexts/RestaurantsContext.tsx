@@ -1,5 +1,5 @@
 import { Restaurant } from "types";
-import { createContext, ReactNode, useState, useContext, Dispatch, SetStateAction } from "react";
+import { createContext, ReactNode, useState, useContext, Dispatch, SetStateAction, useMemo } from "react";
 import useSWR from "swr";
 
 interface RestaurantSessionContextState {
@@ -18,14 +18,11 @@ const RestaurantContextProvider = ({ children }: { children: ReactNode }) => {
 	const { data: restaurantsData, error } = useSWR(
 		`${process.env.NEXT_PUBLIC_BASE_URL}/restaurants/${pageCount}/${restaurantSearch}`,
 	);
-	const value = {
-		restaurantsData,
-		error,
-		restaurantSearch,
-		setRestaurantSearch,
-		pageCount,
-		setPageCount,
-	};
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	const value = useMemo(
+		() => ({ restaurantsData, error, restaurantSearch, setRestaurantSearch, pageCount, setPageCount }),
+		[restaurantsData, error, restaurantSearch, pageCount],
+	);
 	return <RestaurantContext.Provider value={value}>{children}</RestaurantContext.Provider>;
 };
 
