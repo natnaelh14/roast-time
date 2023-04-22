@@ -1,12 +1,12 @@
 import { sessionOptions } from "utils/config";
 import { UseReservationsContext } from "contexts/UpcomingReservationsContext";
-import UpdateUserProfileModal from "components/Modal/UpdateUserProfileModal";
 import { ThreeDotsLoading } from "components/Loaders";
 import { GetServerSideProps } from "next";
 import { withIronSessionSsr } from "iron-session/next";
 import Image from "next/legacy/image";
 import Link from "next/link";
 import { useUser } from "components/useUser";
+import { UpdateUserProfileModal } from "components/Modal/UpdateUserProfileModal";
 
 export const getServerSideProps: GetServerSideProps = withIronSessionSsr(({ req, res }) => {
 	const { user } = req.session;

@@ -2,7 +2,7 @@ import { Button } from "components/Button";
 import { Reservation } from "types";
 import { deleteReservationByRestaurant } from "components/api/api";
 import { useColorScheme } from "contexts/ColorSchemeContext";
-import UpdateReservationModal from "components/Modal/UpdateReservationModal";
+import { UpdateReservationModal } from "components/Modal/UpdateReservationModal";
 import Image from "next/legacy/image";
 import dayjs from "dayjs";
 import Swal from "sweetalert2";

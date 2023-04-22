@@ -1,4 +1,4 @@
-import ModalWrapper from "components/Modal/ModalWrapper";
+import { Modal } from "components/Modal/Modal";
 import { Button, SubmitButton } from "components/Button";
 import { Select, LabeledInput } from "components/Inputs";
 import { SelectOptionProps, ReservationFormData, Reservation } from "types";
@@ -10,7 +10,7 @@ import { DatePicker } from "@mantine/dates";
 import Swal from "sweetalert2";
 import { useUser } from "components/useUser";
 
-const UpdateReservationModal = ({
+export const UpdateReservationModal = ({
 	reservation,
 	mutate,
 	reservationType,
@@ -21,7 +21,7 @@ const UpdateReservationModal = ({
 }) => {
 	const { user } = useUser();
 	const { colorScheme } = useColorScheme();
-	const [modalIsOpen, setIsOpen] = useState(false);
+	const [openModal, setOpenModal] = useState(false);
 	const { id: reservationId, partySize, reservationDate, reservationTime } = reservation;
 	const { control, handleSubmit, formState } = useForm<ReservationFormData>({
 		mode: "onTouched",
@@ -31,7 +31,7 @@ const UpdateReservationModal = ({
 			reservationTime,
 		},
 	});
-	const { isSubmitting, isValid } = formState;
+	const { isSubmitting } = formState;
 
 	const onSubmit = async (data: ReservationFormData) => {
 		let hasError;
@@ -55,7 +55,7 @@ const UpdateReservationModal = ({
 		}
 		if (!hasError && mutate) {
 			mutate();
-			setIsOpen(false);
+			setOpenModal(false);
 			const Toast = Swal.mixin({
 				toast: true,
 				position: "top-end",
@@ -74,7 +74,6 @@ const UpdateReservationModal = ({
 			console.error("reservation update error");
 		}
 	};
-
 	const people: SelectOptionProps[] = [
 		{ value: 1, label: "1 person" },
 		{ value: 2, label: "2 people" },
@@ -90,61 +89,56 @@ const UpdateReservationModal = ({
 
 	return (
 		<>
-			<Button variant="primary" onClick={() => setIsOpen(true)} className="my-2">
+			<Button variant="primary" onClick={() => setOpenModal(true)} className="my-2">
 				Update
 			</Button>
-			<ModalWrapper modalIsOpen={modalIsOpen} setIsOpen={setIsOpen}>
-				<div className="rounded-xl border border-gray-200 bg-white px-24 py-16 dark:border-gray-secondary dark:bg-blue-dark">
-					<h1 className="mb-10 text-center text-3xl text-brown-dark dark:text-brown-light">Update Reservation</h1>
-					<form onSubmit={handleSubmit(onSubmit)} className="w-full">
-						<Select control={control} label="Party Size" name="partySize" options={people} />
-						<Controller
-							control={control}
-							name="reservationDate"
-							// @ts-ignore:next-line
-							render={({ field: { onChange, value, name } }) => (
-								<div className="mb-5">
-									<DatePicker
-										label="Select Date"
-										placeholder="MM/DD/YYYY"
-										styles={() => ({
-											day: {
-												backgroundColor: colorScheme === "dark" ? "#253443" : "",
-											},
-											label: {
-												color: colorScheme === "dark" ? "#cfcfcf" : "#737373",
-												fontSize: "1rem",
-											},
-											input: {
-												color: colorScheme === "dark" ? "#cfcfcf" : "#737373",
-											},
-										})}
-										variant="unstyled"
-										name={name}
-										value={value}
-										onChange={onChange}
-										required={true}
-									/>
-								</div>
-							)}
-						/>
-						<LabeledInput control={control} type="time" name="reservationTime" label="Select Time" required={true} />
-						<div className="mt-10 flex flex-row items-end justify-center gap-6">
-							<SubmitButton text="Update" variant="primary" isSubmitting={isSubmitting} className="w-auto shadow-lg" />
-							<Button
-								variant="secondary"
-								className="bg-zinc-500 text-white hover:bg-zinc-600 hover:text-white"
-								disabled={isSubmitting}
-								onClick={() => setIsOpen(false)}
-							>
-								Cancel
-							</Button>
-						</div>
-					</form>
-				</div>
-			</ModalWrapper>
+			<Modal open={openModal} setOpen={setOpenModal} title="Update Reservation">
+				<form onSubmit={handleSubmit(onSubmit)} className="w-full">
+					<Select control={control} label="Party Size" name="partySize" options={people} />
+					<Controller
+						control={control}
+						name="reservationDate"
+						// @ts-ignore:next-line
+						render={({ field: { onChange, value, name } }) => (
+							<div className="mb-5">
+								<DatePicker
+									label="Select Date"
+									placeholder="MM/DD/YYYY"
+									styles={() => ({
+										day: {
+											backgroundColor: colorScheme === "dark" ? "#253443" : "",
+										},
+										label: {
+											color: colorScheme === "dark" ? "#cfcfcf" : "#737373",
+											fontSize: "1rem",
+										},
+										input: {
+											color: colorScheme === "dark" ? "#cfcfcf" : "#737373",
+										},
+									})}
+									variant="unstyled"
+									name={name}
+									value={value}
+									onChange={onChange}
+									required={true}
+								/>
+							</div>
+						)}
+					/>
+					<LabeledInput control={control} type="time" name="reservationTime" label="Select Time" required={true} />
+					<div className="mt-10 flex flex-row items-end justify-center gap-6">
+						<SubmitButton text="Update" variant="primary" isSubmitting={isSubmitting} className="w-auto shadow-lg" />
+						<Button
+							variant="secondary"
+							className="bg-zinc-500 text-white hover:bg-zinc-600 hover:text-white"
+							disabled={isSubmitting}
+							onClick={() => setOpenModal(false)}
+						>
+							Cancel
+						</Button>
+					</div>
+				</form>
+			</Modal>
 		</>
 	);
 };
-
-export default UpdateReservationModal;

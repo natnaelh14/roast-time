@@ -1,13 +1,13 @@
 import { Reservation } from "types";
 import { Button } from "components/Button";
 import { deleteReservation } from "components/api/api";
-import UpdateReservationModal from "components/Modal/UpdateReservationModal";
 import { useColorScheme } from "contexts/ColorSchemeContext";
 import dayjs from "dayjs";
 import Image from "next/legacy/image";
 import Link from "next/link";
 import Swal from "sweetalert2";
 import { useUser } from "components/useUser";
+import { UpdateReservationModal } from "components/Modal/UpdateReservationModal";
 
 const ReservationCard = ({
 	reservation,
