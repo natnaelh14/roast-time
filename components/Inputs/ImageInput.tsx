@@ -2,8 +2,9 @@ import { Dispatch, SetStateAction } from "react";
 
 interface ImageInputProps {
 	setImage: Dispatch<SetStateAction<Blob | undefined>>;
+	type: "GUEST" | "RESTAURANT";
 }
-export const ImageInput = ({ setImage }: ImageInputProps) => {
+export const ImageInput = ({ setImage, type }: ImageInputProps) => {
 	return (
 		<div className="relative space-y-1 pt-7">
 			<input
@@ -20,7 +21,7 @@ export const ImageInput = ({ setImage }: ImageInputProps) => {
 				}
 				htmlFor="restaurant_image"
 			>
-				Restaurant Image
+				{type === "RESTAURANT" ? "Restaurant Image" : type === "GUEST" ? "Guest Image" : "Image"}
 			</label>
 		</div>
 	);

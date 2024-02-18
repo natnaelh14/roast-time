@@ -36,17 +36,17 @@ export const GuestSignUpForm = ({ setLoading }: { setLoading: (val: boolean) => 
 	const onSubmit = async (data: IGuestSignUpForm) => {
 		try {
 			await validateEmailAndPhoneNumber(data.email, data.phoneNumber, setError);
-			const resumeData = new FormData();
-			resumeData.append("upload_preset", "resume");
-			resumeData.append("file", image as Blob);
-			const resumeRes = await axios.post(`${process.env.NEXT_PUBLIC_CLOUDINARY_URL}`, resumeData);
-			const imageUrl = resumeRes.data.secure_url;
+			// const resumeData = new FormData();
+			// resumeData.append("upload_preset", "resume");
+			// resumeData.append("file", image as Blob);
+			// const resumeRes = await axios.post(`${process.env.NEXT_PUBLIC_CLOUDINARY_URL}`, resumeData);
+			// const imageUrl = resumeRes.data.secure_url;
 			await axios.post<UserSession>("/api/auth/signup", {
 				...data,
 				address,
 				latitude: lat,
 				longitude: long,
-				imageUrl,
+				// imageUrl,
 			});
 			await Swal.fire({
 				position: "top-end",
@@ -100,7 +100,6 @@ export const GuestSignUpForm = ({ setLoading }: { setLoading: (val: boolean) => 
 				setLat={setLat}
 				setLong={setLong}
 			/>
-			<ImageInput setImage={setImage} />
 			<LabeledInput type="email" control={control} name="email" label="Email" required={true} />
 			<LabeledInput type="password" control={control} name="password" label="Password" required={true} />
 			{errors.serverError && <span className="mt-5 text-center text-red-500">{errors.serverError?.message}</span>}

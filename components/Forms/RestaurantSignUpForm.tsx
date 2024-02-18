@@ -62,7 +62,6 @@ export const RestaurantSignUpForm = ({ setLoading }: { setLoading: Dispatch<SetS
 			await router.push("/restaurant/orders");
 			await userMutate();
 		} catch (e) {
-			console.log("🚀 ~ file: RestaurantSignUpForm.tsx:66 ~ onSubmit ~ e:", e);
 			return setError("serverError", {
 				type: "custom",
 				message: "Unable to sign up. Please try again.",
@@ -101,7 +100,7 @@ export const RestaurantSignUpForm = ({ setLoading }: { setLoading: Dispatch<SetS
 				setLat={setLat}
 				setLong={setLong}
 			/>
-			<ImageInput setImage={setImage} />
+			<ImageInput setImage={setImage} type="RESTAURANT" />
 			{errors.serverError && <div className="mt-5 text-center text-red-500">{errors.serverError?.message}</div>}
 			<div className="mt-6 flex justify-center">
 				<SubmitButton text="Sign Up" variant="primary" isSubmitting={isSubmitting} className="w-auto shadow-lg" />
