@@ -40,7 +40,7 @@ const Footer = () => {
 			</div>
 			<hr className="my-2 sm:mx-auto lg:my-6" />
 			<span className="block text-center text-sm dark:text-gray-300 lg:text-base">
-				© 2023 RoastTime. All Rights Reserved.
+				© {new Date().getFullYear()} RoastTime. All Rights Reserved.
 			</span>
 			<span className="block text-center text-sm dark:text-gray-300 lg:text-base">v{packageInfo?.version}</span>
 		</footer>

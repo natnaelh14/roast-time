@@ -21,7 +21,9 @@ export const LocationSearchInput = ({ ...props }: LocationSearchInputProps) => {
 	const handleSelect = (updatedAddress: string) => {
 		setAddress(updatedAddress);
 		geocodeByAddress(updatedAddress)
-			.then((results) => results[0] && getLatLng(results[0]))
+			.then((results) => {
+				return results[0] && getLatLng(results[0]);
+			})
 			.then((latLng) => {
 				if (latLng === undefined) return;
 				setLat(latLng.lat);
