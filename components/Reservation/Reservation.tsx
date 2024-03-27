@@ -5,9 +5,9 @@ import { Input, Select } from "components/Inputs";
 import { useColorScheme } from "contexts/ColorSchemeContext";
 import { useRouter } from "next/router";
 import { Controller, useForm } from "react-hook-form";
-import Swal from "sweetalert2";
 import { ReservationFormData, SelectOptionProps } from "types";
 import { useUser } from "components/useUser";
+import toast from "react-hot-toast";
 
 const Reservation = () => {
 	const router = useRouter();
@@ -41,16 +41,7 @@ const Reservation = () => {
 			// @ts-ignore:next-line
 			const { hasError } = await handleReservation(reservationPayload);
 			if (!hasError) {
-				await Swal.fire({
-					title: "Congrats",
-					text: "Your reservation has been confirmed.",
-					icon: "success",
-					color: `${colorScheme === "dark" ? "#cfcfcf" : ""}`,
-					background: `${colorScheme === "dark" ? "#253443" : ""}`,
-					confirmButtonText: "Ok",
-					confirmButtonColor: "#F78888",
-					iconColor: `${colorScheme === "dark" ? "#facea8" : "#c69977"}`,
-				});
+				toast.success("Your reservation has been confirmed.");
 				await router.push("/restaurant/upcoming-reservations");
 			}
 			return;

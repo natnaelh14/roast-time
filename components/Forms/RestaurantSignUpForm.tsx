@@ -4,12 +4,12 @@ import { ImageInput, Input, LocationSearchInput } from "components/Inputs";
 import { useRouter } from "next/router";
 import { Dispatch, SetStateAction, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import Swal from "sweetalert2";
 import { IRestaurantSignUpForm, UserSession } from "types";
 import { formatPhoneNumber, validateEmailAndPhoneNumber } from "utils/helpers";
 import { z, ZodType } from "zod";
 import { SubmitButton } from "../Button/SubmitButton";
 import { useUser } from "components/useUser";
+import toast from "react-hot-toast";
 
 const schema: ZodType = z.object({
 	firstName: z.string().min(1, { message: "First name is required" }).default(""),
@@ -56,15 +56,7 @@ export const RestaurantSignUpForm = ({ setLoading }: { setLoading: Dispatch<SetS
 				longitude: long,
 				imageData: [imageUrl],
 			});
-			await Swal.fire({
-				position: "top-end",
-				icon: "success",
-				title: "Congrats! Your account has been created.",
-				color: "#F78888",
-				iconColor: "#F78888",
-				showConfirmButton: false,
-				timer: 1500,
-			});
+			toast.success("Congrats! Your account has been created.");
 			setLoading(true);
 			await router.push("/restaurant/orders");
 			await userMutate();

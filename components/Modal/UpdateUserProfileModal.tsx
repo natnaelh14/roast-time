@@ -3,10 +3,9 @@ import { Modal } from "components/Modal/Modal";
 import { Button, SubmitButton } from "components/Button";
 import { Input } from "components/Inputs";
 import { updateAccount } from "components/api/api";
-import { useColorScheme } from "contexts/ColorSchemeContext";
 import { useForm } from "react-hook-form";
-import Swal from "sweetalert2";
 import { useUser } from "components/useUser";
+import toast from "react-hot-toast";
 
 interface AccountFormValues {
 	firstName: string;
@@ -16,7 +15,6 @@ interface AccountFormValues {
 
 export const UpdateUserProfileModal = () => {
 	const { user, userMutate } = useUser();
-	const { colorScheme } = useColorScheme();
 	const [openModal, setOpenModal] = useState(false);
 	const firstName = user?.account?.firstName;
 	const lastName = user?.account?.lastName;
@@ -45,20 +43,7 @@ export const UpdateUserProfileModal = () => {
 		}
 		await userMutate();
 		setOpenModal(false);
-		const Toast = Swal.mixin({
-			toast: true,
-			position: "top-end",
-			showConfirmButton: false,
-			timer: 1000,
-			color: `${colorScheme === "dark" ? "#cfcfcf" : ""}`,
-			timerProgressBar: true,
-			iconColor: `${colorScheme === "dark" ? "#facea8" : "#c69977"}`,
-			background: `${colorScheme === "dark" ? "#4B5563" : ""}`,
-		});
-		await Toast.fire({
-			icon: "success",
-			title: "Updated account successfully",
-		});
+		toast.success("Updated account successfully");
 	};
 
 	return (

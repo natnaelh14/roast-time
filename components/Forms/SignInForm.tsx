@@ -9,6 +9,7 @@ import { UserSession } from "types";
 import { z, ZodType } from "zod";
 import { SubmitButton } from "../Button/SubmitButton";
 import { useUser } from "components/useUser";
+import toast from "react-hot-toast";
 
 interface SignInFormData {
 	email: string;
@@ -50,6 +51,7 @@ export const SignInForm = () => {
 					email: data.email,
 				},
 			});
+			toast.success("Login successful");
 			if (restaurantId) {
 				await router.push(`/restaurant/${restaurantId}`);
 			} else {

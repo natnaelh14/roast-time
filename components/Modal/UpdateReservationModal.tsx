@@ -7,8 +7,8 @@ import { useColorScheme } from "contexts/ColorSchemeContext";
 import { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { DatePicker } from "@mantine/dates";
-import Swal from "sweetalert2";
 import { useUser } from "components/useUser";
+import toast from "react-hot-toast";
 
 export const UpdateReservationModal = ({
 	reservation,
@@ -56,20 +56,7 @@ export const UpdateReservationModal = ({
 		if (!hasError && mutate) {
 			mutate();
 			setOpenModal(false);
-			const Toast = Swal.mixin({
-				toast: true,
-				position: "top-end",
-				showConfirmButton: false,
-				timer: 3000,
-				color: `${colorScheme === "dark" ? "#cfcfcf" : ""}`,
-				timerProgressBar: true,
-				iconColor: `${colorScheme === "dark" ? "#facea8" : "#c69977"}`,
-				background: `${colorScheme === "dark" ? "#4B5563" : ""}`,
-			});
-			await Toast.fire({
-				icon: "success",
-				title: "Updated reservation successfully",
-			});
+			toast.success("Updated reservation successfully");
 		} else {
 			console.error("reservation update error");
 		}

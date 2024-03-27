@@ -5,11 +5,11 @@ import { Input, LocationSearchInput } from "components/Inputs";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import Swal from "sweetalert2";
 import { IGuestSignUpForm, UserSession } from "types";
 import { formatPhoneNumber, validateEmailAndPhoneNumber } from "utils/helpers";
 import { z, ZodType } from "zod";
 import { useUser } from "components/useUser";
+import toast from "react-hot-toast";
 
 const schema: ZodType = z.object({
 	firstName: z.string().min(1, { message: "First name is required" }).default(""),
@@ -49,15 +49,7 @@ export const GuestSignUpForm = ({ setLoading }: { setLoading: (val: boolean) => 
 				latitude: lat,
 				longitude: long,
 			});
-			await Swal.fire({
-				position: "top-end",
-				icon: "success",
-				title: "Congrats! Your account has been created.",
-				color: "#F78888",
-				iconColor: "#F78888",
-				showConfirmButton: false,
-				timer: 1500,
-			});
+			toast.success("Congrats! Your account has been created.");
 			setLoading(true);
 			if (restaurantId) {
 				await router.push(`/restaurant/${restaurantId}`);
