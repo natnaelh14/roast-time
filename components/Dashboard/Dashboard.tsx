@@ -14,19 +14,18 @@ const Dashboard = () => {
 
 	return (
 		<div className="mt-5 flex flex-row overflow-x-scroll md:flex-wrap md:justify-center md:overflow-auto">
-			{restaurants &&
-				restaurants.map((item: Restaurant) => {
-					return (
-						<Item
-							key={item.id}
-							id={item.id}
-							name={item.name}
-							imageData={item.imageData}
-							address={item.address}
-							category={item.category}
-						/>
-					);
-				})}
+			{restaurants?.map((item: Restaurant) => {
+				return (
+					<Item
+						key={item.id}
+						id={item.id}
+						name={item.name}
+						imageData={item.imageData}
+						address={item.address}
+						category={item.category}
+					/>
+				);
+			})}
 		</div>
 	);
 };

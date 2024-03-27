@@ -17,6 +17,7 @@ export const Navbar = () => {
 	const [mobileNavShown, setMobileNavShown] = useState(false);
 	const { reservations } = UseReservationsContext();
 	const { restaurantsData, error } = useRestaurantContext();
+	if (!user) return null;
 
 	const handleLogout = async () => {
 		await axios.post("/api/auth/logout");

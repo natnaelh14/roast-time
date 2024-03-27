@@ -9,7 +9,6 @@ export const ImageInput = ({ setImage, type }: ImageInputProps) => {
 		<div className="relative space-y-1 pt-7">
 			<input
 				id='"restaurant_image"'
-				required={true}
 				className="mb-5 block w-full cursor-pointer rounded-lg border border-slate-300 bg-gray-50 text-xs text-gray-900 focus:outline-none dark:border-gray-secondary  dark:bg-gray-700 dark:text-gray-400 dark:placeholder-gray-400"
 				type="file"
 				// @ts-ignore:next-line

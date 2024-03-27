@@ -1,4 +1,4 @@
-export { LabeledInput } from "./LabeledInput";
+export { Input } from "./Input";
 export { ImageInput } from "./ImageInput";
 export { Select } from "./Select";
 export { SelectOption } from "./SelectOption";

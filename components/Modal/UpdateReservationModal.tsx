@@ -1,14 +1,14 @@
 import { Modal } from "components/Modal/Modal";
 import { Button, SubmitButton } from "components/Button";
-import { Select, LabeledInput } from "components/Inputs";
+import { Select, Input } from "components/Inputs";
 import { SelectOptionProps, ReservationFormData, Reservation } from "types";
 import { updateReservation, updateReservationByRestaurant } from "components/api/api";
 import { useColorScheme } from "contexts/ColorSchemeContext";
 import { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { DatePicker } from "@mantine/dates";
-import Swal from "sweetalert2";
 import { useUser } from "components/useUser";
+import toast from "react-hot-toast";
 
 export const UpdateReservationModal = ({
 	reservation,
@@ -37,8 +37,8 @@ export const UpdateReservationModal = ({
 		let hasError;
 		if (reservationType === "GUEST") {
 			const updateReservationPayload = {
-				token: user?.token || "",
-				accountId: user?.account?.id || "",
+				token: user?.token ?? "",
+				accountId: user?.account?.id ?? "",
 				reservationId,
 				reservation: { ...data },
 			};
@@ -46,8 +46,8 @@ export const UpdateReservationModal = ({
 			hasError = !response.isSuccess;
 		} else if (reservationType === "RESTAURANT") {
 			const response = await updateReservationByRestaurant(
-				user?.token || "",
-				user?.account?.restaurant?.id || "",
+				user?.token ?? "",
+				user?.account?.restaurant?.id ?? "",
 				reservationId,
 				{ ...data },
 			);
@@ -56,20 +56,7 @@ export const UpdateReservationModal = ({
 		if (!hasError && mutate) {
 			mutate();
 			setOpenModal(false);
-			const Toast = Swal.mixin({
-				toast: true,
-				position: "top-end",
-				showConfirmButton: false,
-				timer: 3000,
-				color: `${colorScheme === "dark" ? "#cfcfcf" : ""}`,
-				timerProgressBar: true,
-				iconColor: `${colorScheme === "dark" ? "#facea8" : "#c69977"}`,
-				background: `${colorScheme === "dark" ? "#4B5563" : ""}`,
-			});
-			await Toast.fire({
-				icon: "success",
-				title: "Updated reservation successfully",
-			});
+			toast.success("Updated reservation successfully");
 		} else {
 			console.error("reservation update error");
 		}
@@ -125,7 +112,7 @@ export const UpdateReservationModal = ({
 							</div>
 						)}
 					/>
-					<LabeledInput control={control} type="time" name="reservationTime" label="Select Time" required={true} />
+					<Input control={control} type="time" name="reservationTime" label="Select Time" required={true} />
 					<div className="mt-10 flex flex-row items-end justify-center gap-6">
 						<SubmitButton text="Update" variant="primary" isSubmitting={isSubmitting} className="w-auto shadow-lg" />
 						<Button

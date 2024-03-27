@@ -8,6 +8,7 @@ import Link from "next/link";
 import Swal from "sweetalert2";
 import { useUser } from "components/useUser";
 import { UpdateReservationModal } from "components/Modal/UpdateReservationModal";
+import toast from "react-hot-toast";
 
 const ReservationCard = ({
 	reservation,
@@ -44,27 +45,9 @@ const ReservationCard = ({
 				);
 				if (isSuccess && mutate) {
 					mutate();
-					await Swal.fire({
-						title: "Deleted!",
-						text: "Your reservation has been deleted.",
-						icon: "success",
-						color: `${colorScheme === "dark" ? "#cfcfcf" : ""}`,
-						background: `${colorScheme === "dark" ? "#253443" : ""}`,
-						confirmButtonText: "Ok",
-						confirmButtonColor: "#F78888",
-						iconColor: `${colorScheme === "dark" ? "#facea8" : "#c69977"}`,
-					});
+					toast.success("Your reservation has been cancelled.");
 				} else {
-					await Swal.fire({
-						title: "Error!",
-						text: "Something went wrong. Please try again.",
-						icon: "error",
-						color: `${colorScheme === "dark" ? "#cfcfcf" : ""}`,
-						background: `${colorScheme === "dark" ? "#253443" : ""}`,
-						confirmButtonText: "Ok",
-						confirmButtonColor: "#F78888",
-						iconColor: `${colorScheme === "dark" ? "#facea8" : "#c69977"}`,
-					});
+					toast.error("Something went wrong. Please try again.");
 				}
 			}
 		});
