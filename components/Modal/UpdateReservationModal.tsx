@@ -1,6 +1,6 @@
 import { Modal } from "components/Modal/Modal";
 import { Button, SubmitButton } from "components/Button";
-import { Select, LabeledInput } from "components/Inputs";
+import { Select, Input } from "components/Inputs";
 import { SelectOptionProps, ReservationFormData, Reservation } from "types";
 import { updateReservation, updateReservationByRestaurant } from "components/api/api";
 import { useColorScheme } from "contexts/ColorSchemeContext";
@@ -37,8 +37,8 @@ export const UpdateReservationModal = ({
 		let hasError;
 		if (reservationType === "GUEST") {
 			const updateReservationPayload = {
-				token: user?.token || "",
-				accountId: user?.account?.id || "",
+				token: user?.token ?? "",
+				accountId: user?.account?.id ?? "",
 				reservationId,
 				reservation: { ...data },
 			};
@@ -46,8 +46,8 @@ export const UpdateReservationModal = ({
 			hasError = !response.isSuccess;
 		} else if (reservationType === "RESTAURANT") {
 			const response = await updateReservationByRestaurant(
-				user?.token || "",
-				user?.account?.restaurant?.id || "",
+				user?.token ?? "",
+				user?.account?.restaurant?.id ?? "",
 				reservationId,
 				{ ...data },
 			);
@@ -125,7 +125,7 @@ export const UpdateReservationModal = ({
 							</div>
 						)}
 					/>
-					<LabeledInput control={control} type="time" name="reservationTime" label="Select Time" required={true} />
+					<Input control={control} type="time" name="reservationTime" label="Select Time" required={true} />
 					<div className="mt-10 flex flex-row items-end justify-center gap-6">
 						<SubmitButton text="Update" variant="primary" isSubmitting={isSubmitting} className="w-auto shadow-lg" />
 						<Button

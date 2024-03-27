@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Modal } from "components/Modal/Modal";
 import { Button, SubmitButton } from "components/Button";
-import { LabeledInput } from "components/Inputs";
+import { Input } from "components/Inputs";
 import { updateAccount } from "components/api/api";
 import { useColorScheme } from "contexts/ColorSchemeContext";
 import { useForm } from "react-hook-form";
@@ -68,16 +68,9 @@ export const UpdateUserProfileModal = () => {
 			</Button>
 			<Modal open={openModal} setOpen={setOpenModal} title="Update Profile">
 				<form onSubmit={handleSubmit(onSubmit)} className="w-full">
-					<LabeledInput control={control} name="firstName" label="First Name" required={true} />
-					<LabeledInput control={control} name="lastName" label="Last Name" required={true} />
-					<LabeledInput
-						type="tel"
-						control={control}
-						name="phoneNumber"
-						label="Phone Number"
-						maxLength={10}
-						required={true}
-					/>
+					<Input control={control} name="firstName" label="First Name" required={true} />
+					<Input control={control} name="lastName" label="Last Name" required={true} />
+					<Input type="tel" control={control} name="phoneNumber" label="Phone Number" maxLength={10} required={true} />
 					<div className="mt-10 flex flex-row items-end justify-center gap-6">
 						<SubmitButton text="Update" variant="primary" isSubmitting={isSubmitting} className="w-auto shadow-lg" />
 						<Button

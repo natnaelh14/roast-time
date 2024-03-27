@@ -1,6 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
-import { ImageInput, LabeledInput, LocationSearchInput } from "components/Inputs";
+import { ImageInput, Input, LocationSearchInput } from "components/Inputs";
 import { useRouter } from "next/router";
 import { Dispatch, SetStateAction, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
@@ -12,13 +12,20 @@ import { SubmitButton } from "../Button/SubmitButton";
 import { useUser } from "components/useUser";
 
 const schema: ZodType = z.object({
-	firstName: z.string(),
-	lastName: z.string(),
-	phoneNumber: z.string(),
-	email: z.string().email({ message: "Invalid email address" }),
-	password: z.string().min(10, { message: "Must be 10 or more characters long" }),
-	name: z.string(),
-	category: z.string(),
+	firstName: z.string().min(1, { message: "First name is required" }).default(""),
+	lastName: z.string().min(1, { message: "Last name is required" }).default(""),
+	phoneNumber: z
+		.string()
+		.regex(/^\(\d{3}\) \d{3}-\d{4}$/, { message: "Please enter a valid 10 digit phone number." })
+		.default(""),
+	email: z
+		.string()
+		.min(1, { message: "Email address is required" })
+		.email({ message: "Invalid email address" })
+		.default(""),
+	password: z.string().min(10, { message: "Must be 10 or more characters long" }).default(""),
+	name: z.string().min(1, { message: "Restaurant name is required" }).default(""),
+	category: z.string().min(1, { message: "Restaurant category is required" }).default(""),
 	serverError: z.void(),
 });
 
@@ -70,17 +77,16 @@ export const RestaurantSignUpForm = ({ setLoading }: { setLoading: Dispatch<SetS
 	};
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className="w-full">
-			<LabeledInput control={control} name="firstName" label="First Name" required={true} />
-			<LabeledInput control={control} name="lastName" label="Last Name" required={true} />
+			<Input control={control} name="firstName" label="First Name" />
+			<Input control={control} name="lastName" label="Last Name" />
 			<Controller
 				name="phoneNumber"
 				render={({ field }) => (
-					<LabeledInput
+					<Input
 						type="tel"
 						control={control}
 						name="phoneNumber"
 						label="Phone Number"
-						required={true}
 						onChange={(e) => {
 							field.onChange(formatPhoneNumber(e.target.value));
 						}}
@@ -88,14 +94,14 @@ export const RestaurantSignUpForm = ({ setLoading }: { setLoading: Dispatch<SetS
 				)}
 				control={control}
 			/>
-			<LabeledInput type="email" control={control} name="email" label="Email" required={true} />
-			<LabeledInput type="password" control={control} name="password" label="Password" required={true} />
-			<LabeledInput control={control} name="name" label="Restaurant Name" required={true} />
-			<LabeledInput control={control} name="category" label="Restaurant Category" required={true} />
+			<Input type="email" control={control} name="email" label="Email" />
+			<Input type="password" control={control} name="password" label="Password" />
+			<Input control={control} name="name" label="Restaurant Name" />
+			<Input control={control} name="category" label="Restaurant Category" />
 			<LocationSearchInput
 				name="address"
 				label="Restaurant Address"
-				address={address || ""}
+				address={address ?? ""}
 				setAddress={setAddress}
 				setLat={setLat}
 				setLong={setLong}

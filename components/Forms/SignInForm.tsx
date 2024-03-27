@@ -1,6 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
-import { LabeledInput } from "components/Inputs";
+import { Input } from "components/Inputs";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import TagManager from "react-gtm-module";
@@ -17,7 +17,11 @@ interface SignInFormData {
 }
 
 const schema: ZodType = z.object({
-	email: z.string().email({ message: "Invalid email address" }).default(""),
+	email: z
+		.string()
+		.min(1, { message: "Email address is required" })
+		.email({ message: "Invalid email address" })
+		.default(""),
 	password: z.string().min(10, { message: "Must be 10 or more characters long" }).default(""),
 	serverError: z.void(),
 });
@@ -33,7 +37,7 @@ export const SignInForm = () => {
 		formState: { isSubmitting, errors },
 	} = useForm<SignInFormData>({
 		resolver: zodResolver(schema),
-		mode: "onChange",
+		mode: "onSubmit",
 	});
 
 	const onSubmit = async (data: SignInFormData) => {
@@ -53,7 +57,6 @@ export const SignInForm = () => {
 			}
 			await userMutate();
 		} catch (e) {
-			console.log("🚀 ~ file: SignInForm.tsx:58 ~ onSubmit ~ e:", e);
 			return setError("serverError", {
 				type: "server",
 				message: "Unable to log in, Please try again",
@@ -62,12 +65,12 @@ export const SignInForm = () => {
 	};
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className="w-full">
-			<LabeledInput type="email" control={control} name="email" label="Email" required={true} />
-			<LabeledInput type="password" control={control} name="password" label="Password" required={true} />
-			{errors.serverError && <span className="text-center text-error">{errors.serverError?.message}</span>}
-			<div className="mt-6 flex flex-col items-center">
+			<Input type="email" control={control} name="email" label="Email" />
+			<Input type="password" control={control} name="password" label="Password" />
+			<div className="mt-6 flex flex-col items-center space-y-3">
 				<SubmitButton text="Sign In" variant="primary" isSubmitting={isSubmitting} className="w-auto shadow-lg" />
-				<div className="mt-3 block dark:text-white">
+				{errors.serverError && <span className="text-center text-error">{errors.serverError?.message}</span>}
+				<div className="block dark:text-white">
 					<span>New User?</span>
 					{"  "}
 					<Link

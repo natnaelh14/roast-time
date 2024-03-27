@@ -1,7 +1,7 @@
 import { DatePicker } from "@mantine/dates";
 import { handleReservation } from "components/api/api";
 import { SubmitButton } from "components/Button";
-import { LabeledInput, Select } from "components/Inputs";
+import { Input, Select } from "components/Inputs";
 import { useColorScheme } from "contexts/ColorSchemeContext";
 import { useRouter } from "next/router";
 import { Controller, useForm } from "react-hook-form";
@@ -23,7 +23,7 @@ const Reservation = () => {
 			reservationTime: "12:00",
 		},
 	});
-	const { isSubmitting, isValid } = formState;
+	const { isSubmitting } = formState;
 	const onSubmit = async (data: ReservationFormData) => {
 		try {
 			if (!user?.token) {
@@ -109,7 +109,7 @@ const Reservation = () => {
 						</div>
 					)}
 				/>
-				<LabeledInput control={control} type="time" name="reservationTime" label="Select Time" required={true} />
+				<Input control={control} type="time" name="reservationTime" label="Select Time" required={true} />
 				<div className="mt-6 flex flex-col items-center">
 					<SubmitButton variant="primary" text="Reserve" isSubmitting={isSubmitting} className="w-auto shadow-lg" />
 				</div>
