@@ -2,12 +2,12 @@ import { DatePicker } from "@mantine/dates";
 import { handleReservation } from "components/api/api";
 import { SubmitButton } from "components/Button";
 import { Input, Select } from "components/Inputs";
+import { useUser } from "components/useUser";
 import { useColorScheme } from "contexts/ColorSchemeContext";
 import { useRouter } from "next/router";
 import { Controller, useForm } from "react-hook-form";
-import { ReservationFormData, SelectOptionProps } from "types";
-import { useUser } from "components/useUser";
 import toast from "react-hot-toast";
+import { ReservationFormData, SelectOptionProps } from "types";
 
 const Reservation = () => {
 	const router = useRouter();
@@ -64,7 +64,7 @@ const Reservation = () => {
 	];
 
 	return (
-		<div className="m-8 flex h-fit w-fit flex-col items-center rounded-lg border-2 border-gray-200 bg-white px-16 py-8 shadow-lg dark:border-gray-secondary dark:bg-blue-dark lg:justify-between">
+		<div className="m-8 flex size-fit flex-col items-center rounded-lg border-2 border-gray-200 bg-white px-16 py-8 shadow-lg dark:border-gray-secondary dark:bg-blue-dark lg:justify-between">
 			<div className="mb-6 text-center">
 				<h1 className="text-center text-xl text-pink-primary lg:text-3xl">Make a reservation</h1>
 			</div>

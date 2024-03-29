@@ -1,8 +1,8 @@
+import EmptyState from "components/EmptyState/EmptyState";
 import Item from "components/Item/Item";
-import { ThreeDotsLoading, DashboardLoading } from "components/Loaders";
+import { DashboardLoading, ThreeDotsLoading } from "components/Loaders";
 import { useRestaurantContext } from "contexts/RestaurantsContext";
 import { Restaurant } from "types";
-import EmptyState from "components/EmptyState/EmptyState";
 
 const Dashboard = () => {
 	const { restaurantsData, error, restaurantSearch } = useRestaurantContext();

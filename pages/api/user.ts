@@ -1,13 +1,13 @@
-import { UserSession } from "types";
-import { sessionOptions } from "utils/config";
+import { getAccount } from "components/api/api";
 import { withIronSessionApiRoute } from "iron-session/next";
 import { NextApiRequest, NextApiResponse } from "next";
-import { getAccount } from "components/api/api";
+import { UserSession } from "types";
+import { sessionOptions } from "utils/config";
 
 const userRouter = async (req: NextApiRequest, res: NextApiResponse<UserSession>) => {
 	const { user } = req.session;
 	if (user?.account != undefined) {
-		const response = await getAccount(user?.token || "", user?.account.id || "");
+		const response = await getAccount(user?.token ?? "", user?.account.id ?? "");
 		if (response.isSuccess) {
 			return res.status(200).json({ ...user, account: response.data.account });
 		} else {

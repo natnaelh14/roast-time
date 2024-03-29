@@ -1,15 +1,15 @@
-import { HamburgerIcon, CloseIcon, UpcomingReservationsIcon } from "components/Icons";
-import ColorToggle from "components/ColorToggle/ColorToggle";
-import { UseReservationsContext } from "contexts/UpcomingReservationsContext";
-import { useRestaurantContext } from "contexts/RestaurantsContext";
+import { Dialog, Transition } from "@headlessui/react";
 import axios from "axios";
-import { useState, Fragment } from "react";
+import ColorToggle from "components/ColorToggle/ColorToggle";
+import { CloseIcon, HamburgerIcon, UpcomingReservationsIcon } from "components/Icons";
+import { useUser } from "components/useUser";
+import { useRestaurantContext } from "contexts/RestaurantsContext";
+import { UseReservationsContext } from "contexts/UpcomingReservationsContext";
 import Image from "next/legacy/image";
 import Link from "next/link";
-import { Dialog, Transition } from "@headlessui/react";
 import { useRouter } from "next/router";
+import { Fragment, useState } from "react";
 import { MenuDropdown } from "./MenuDropdown";
-import { useUser } from "components/useUser";
 
 export const Navbar = () => {
 	const router = useRouter();
@@ -101,7 +101,7 @@ export const Navbar = () => {
 								<nav className="pointer-events-auto fixed inset-y-0 left-0 h-screen w-64 bg-white text-2xl dark:bg-blue-dark">
 									<button
 										aria-label="close navigation"
-										className="mt-6 ml-6 h-[40px] w-[40px]"
+										className="ml-6 mt-6 size-[40px]"
 										onClick={() => setMobileNavShown(false)}
 									>
 										<CloseIcon />
@@ -152,7 +152,7 @@ export const Navbar = () => {
 															<span className="text-base decoration-pink-primary decoration-4 underline-offset-8 hover:text-pink-primary hover:underline dark:text-white">
 																Upcoming reservations
 															</span>
-															<span className="ml-3 inline-flex h-3 w-3 items-center justify-center rounded-full bg-orange-light p-3 text-sm font-medium text-black dark:bg-orange-primary dark:text-white">
+															<span className="ml-3 inline-flex size-3 items-center justify-center rounded-full bg-orange-light p-3 text-sm font-medium text-black dark:bg-orange-primary dark:text-white">
 																{reservations?.length || 0}
 															</span>
 														</Link>

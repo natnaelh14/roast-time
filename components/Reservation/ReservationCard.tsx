@@ -1,14 +1,14 @@
-import { Reservation } from "types";
-import { Button } from "components/Button";
 import { deleteReservation } from "components/api/api";
+import { Button } from "components/Button";
+import { UpdateReservationModal } from "components/Modal/UpdateReservationModal";
+import { useUser } from "components/useUser";
 import { useColorScheme } from "contexts/ColorSchemeContext";
 import dayjs from "dayjs";
 import Image from "next/legacy/image";
 import Link from "next/link";
-import Swal from "sweetalert2";
-import { useUser } from "components/useUser";
-import { UpdateReservationModal } from "components/Modal/UpdateReservationModal";
 import toast from "react-hot-toast";
+import Swal from "sweetalert2";
+import { Reservation } from "types";
 
 const ReservationCard = ({
 	reservation,
@@ -54,7 +54,7 @@ const ReservationCard = ({
 	};
 
 	return (
-		<div className="w-lg flex min-w-80 flex-col overflow-hidden rounded border p-2 shadow-lg dark:border-gray-secondary md:flex-row">
+		<div className="flex min-w-80 flex-col overflow-hidden rounded border p-2 shadow-lg dark:border-gray-secondary md:flex-row">
 			<Link href={`restaurant/${restaurant?.id}`} className="hover:cursor-pointer" passHref>
 				<Image
 					className=""

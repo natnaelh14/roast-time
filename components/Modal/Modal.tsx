@@ -1,6 +1,6 @@
-import { Fragment, useRef, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { CheckIcon, ExclamationTriangleIcon } from "@heroicons/react/24/outline";
+import { Fragment, useRef } from "react";
 
 interface Props {
 	open: boolean;
@@ -38,16 +38,16 @@ export function Modal({ open, setOpen, variant, title, children }: Props) {
 							leaveFrom="opacity-100 translate-y-0 sm:scale-100"
 							leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
 						>
-							<Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white px-24 py-16 pb-4 pt-5 text-left shadow-xl transition-all dark:bg-blue-dark sm:my-8 sm:w-full sm:max-w-lg">
+							<Dialog.Panel className="relative overflow-hidden rounded-lg bg-white px-24 py-16 pb-4 pt-5 text-left shadow-xl transition-all dark:bg-blue-dark sm:my-8 sm:w-full sm:max-w-lg">
 								<div>
 									{variant === "success" ? (
-										<div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-green-100">
-											<CheckIcon className="h-6 w-6 text-green-600" aria-hidden="true" />
+										<div className="mx-auto flex size-12 items-center justify-center rounded-full bg-green-100">
+											<CheckIcon className="size-6 text-green-600" aria-hidden="true" />
 										</div>
 									) : (
 										variant === "error" && (
-											<div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100">
-												<ExclamationTriangleIcon className="h-6 w-6 text-red-600" aria-hidden="true" />
+											<div className="mx-auto flex size-12 shrink-0 items-center justify-center rounded-full bg-red-100">
+												<ExclamationTriangleIcon className="size-6 text-red-600" aria-hidden="true" />
 											</div>
 										)
 									)}

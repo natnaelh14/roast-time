@@ -13,6 +13,7 @@ module.exports = {
 		"next/core-web-vitals",
 		"plugin:promise/recommended",
 		"plugin:prettier/recommended",
+		"plugin:tailwindcss/recommended",
 	],
 	parser: "@typescript-eslint/parser",
 	parserOptions: {

@@ -1,10 +1,10 @@
+import { Menu, Transition } from "@headlessui/react";
 import axios from "axios";
+import { useUser } from "components/useUser";
 import Image from "next/legacy/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { Menu, Transition } from "@headlessui/react";
 import { Fragment } from "react";
-import { useUser } from "components/useUser";
 
 export const MenuDropdown = () => {
 	const router = useRouter();
@@ -38,20 +38,20 @@ export const MenuDropdown = () => {
 				leaveTo="transform opacity-0 scale-95"
 			>
 				<Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-200 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:divide-gray-500 dark:bg-blue-light dark:text-white">
-					<div className="py-3 px-4">
+					<div className="px-4 py-3">
 						<span className="block text-sm text-gray-900 dark:text-white">Hello, {user?.account?.firstName}</span>
 						<span className="block truncate text-sm font-medium text-gray-500 dark:text-gray-400">
 							{user?.account?.email}
 						</span>
 					</div>
-					<div className="px-1 py-1 ">
+					<div className="p-1 ">
 						<Menu.Item>
 							{({ active }) => (
 								<Link
 									href="/profile"
 									className={`${
 										active && "bg-gray-200 dark:bg-blue-primary"
-									} group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+									} group flex w-full items-center rounded-md p-2 text-sm`}
 								>
 									My Profile
 								</Link>
@@ -65,7 +65,7 @@ export const MenuDropdown = () => {
 											href="/restaurant/dining-history"
 											className={`${
 												active && "bg-gray-200 dark:bg-blue-primary"
-											} group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+											} group flex w-full items-center rounded-md p-2 text-sm`}
 										>
 											My Dining History
 										</Link>
@@ -77,7 +77,7 @@ export const MenuDropdown = () => {
 											href="/restaurant/saved-restaurants"
 											className={`${
 												active && "bg-gray-200 dark:bg-blue-primary"
-											} group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+											} group flex w-full items-center rounded-md p-2 text-sm`}
 										>
 											My Saved Restaurants
 										</Link>
@@ -92,7 +92,7 @@ export const MenuDropdown = () => {
 											href="/restaurant/orders"
 											className={`${
 												active && "bg-gray-200 dark:bg-blue-primary"
-											} group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+											} group flex w-full items-center rounded-md p-2 text-sm`}
 										>
 											Orders
 										</Link>
@@ -105,7 +105,7 @@ export const MenuDropdown = () => {
 								<button
 									className={`${
 										active && "bg-gray-200 dark:bg-blue-primary"
-									} group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+									} group flex w-full items-center rounded-md p-2 text-sm`}
 									onClick={async () => {
 										await handleLogout();
 									}}

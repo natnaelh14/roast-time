@@ -1,7 +1,7 @@
 import { OverviewLoading } from "components/Loaders";
 import ImageModal from "components/Modal/ImageModal";
-import useSWR from "swr";
 import { useRouter } from "next/router";
+import useSWR from "swr";
 import { Restaurant } from "types";
 
 export const Photos = () => {

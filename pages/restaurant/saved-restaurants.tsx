@@ -1,11 +1,11 @@
-import { sessionOptions } from "utils/config";
-import { Restaurant } from "types";
-import { ThreeDotsLoading } from "components/Loaders";
-import Item from "components/Item/Item";
 import EmptyState from "components/EmptyState/EmptyState";
-import { GetServerSideProps } from "next";
+import Item from "components/Item/Item";
+import { ThreeDotsLoading } from "components/Loaders";
 import { withIronSessionSsr } from "iron-session/next";
+import { GetServerSideProps } from "next";
 import useSWR from "swr";
+import { Restaurant } from "types";
+import { sessionOptions } from "utils/config";
 
 export const getServerSideProps: GetServerSideProps = withIronSessionSsr(({ req, res }) => {
 	const { user } = req.session;

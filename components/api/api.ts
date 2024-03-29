@@ -1,12 +1,12 @@
-import axios, { AxiosRequestHeaders, AxiosError } from "axios";
+import axios, { AxiosError, AxiosRequestHeaders } from "axios";
 import {
-	UserSession,
-	SignupPayload,
 	Account,
-	RestaurantSignupPayload,
-	SessionAccount,
-	SavedRestaurant,
 	IReservationUpdateResponse,
+	RestaurantSignupPayload,
+	SavedRestaurant,
+	SessionAccount,
+	SignupPayload,
+	UserSession,
 } from "types";
 
 type IRequestResponse<T> =

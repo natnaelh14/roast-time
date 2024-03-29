@@ -1,4 +1,4 @@
-import Document, { Html, Head, Main, NextScript } from "next/document";
+import Document, { Head, Html, Main, NextScript } from "next/document";
 /* eslint class-methods-use-this: "off" */
 class MyDocument extends Document {
 	render() {

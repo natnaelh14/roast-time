@@ -1,16 +1,16 @@
-import { sessionOptions } from "utils/config";
-import OrderItem from "components/Order/OrderItem";
-import { Reservation, Restaurant } from "types";
-import { ThreeDotsLoading } from "components/Loaders";
-import { useColorScheme } from "contexts/ColorSchemeContext";
-import EmptyState from "components/EmptyState/EmptyState";
-import { GetServerSideProps } from "next";
-import { withIronSessionSsr } from "iron-session/next";
-import useSWR from "swr";
 import { DatePicker } from "@mantine/dates";
-import { useState } from "react";
+import EmptyState from "components/EmptyState/EmptyState";
+import { ThreeDotsLoading } from "components/Loaders";
+import OrderItem from "components/Order/OrderItem";
+import { useColorScheme } from "contexts/ColorSchemeContext";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
+import { withIronSessionSsr } from "iron-session/next";
+import { GetServerSideProps } from "next";
+import { useState } from "react";
+import useSWR from "swr";
+import { Reservation, Restaurant } from "types";
+import { sessionOptions } from "utils/config";
 
 dayjs.extend(utc);
 
@@ -95,7 +95,7 @@ const Orders = ({ token, accountId, restaurant }: { token: string; accountId: st
 				</div>
 				{reservations?.length ? (
 					<div>
-						<div className="-mx-4 overflow-x-auto px-4 py-4 sm:-mx-8 sm:px-8">
+						<div className="-mx-4 overflow-x-auto p-4 sm:-mx-8 sm:px-8">
 							<div className="inline-block min-w-full overflow-hidden rounded-lg shadow">
 								<table className="min-w-full leading-normal">
 									<thead className="bg-gray-300 dark:bg-blue-primary">

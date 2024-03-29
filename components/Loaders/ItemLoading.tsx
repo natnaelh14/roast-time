@@ -4,7 +4,7 @@ export const ItemLoading = () => {
 			<div className="m-8 w-[250px] rounded border border-gray-200 shadow-lg dark:border-gray-secondary">
 				<div className="mb-4 flex h-48 items-center justify-center rounded bg-gray-300  dark:bg-gray-700">
 					<svg
-						className="h-12 w-12 animate-pulse text-gray-200 dark:text-gray-600"
+						className="size-12 animate-pulse text-gray-200 dark:text-gray-600"
 						xmlns="http://www.w3.org/2000/svg"
 						aria-hidden="true"
 						fill="currentColor"

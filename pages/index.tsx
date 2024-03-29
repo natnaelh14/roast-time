@@ -1,12 +1,12 @@
-import Dashboard from "components/Dashboard/Dashboard";
-import Banner from "components/Banner/Banner";
 import Adjustment from "components/Adjustment/Adjustment";
+import Banner from "components/Banner/Banner";
+import Dashboard from "components/Dashboard/Dashboard";
 import Pagination from "components/Pagination/Pagination";
 import SearchBar from "components/SearchBar/SearchBar";
-import { sessionOptions } from "utils/config";
-import { GetServerSideProps } from "next";
 import { withIronSessionSsr } from "iron-session/next";
 import type { NextPage } from "next";
+import { GetServerSideProps } from "next";
+import { sessionOptions } from "utils/config";
 
 export const getServerSideProps: GetServerSideProps = withIronSessionSsr(({ req, res }) => {
 	const { user } = req.session;

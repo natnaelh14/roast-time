@@ -1,7 +1,7 @@
-import { Rating } from "components/Rating";
 import { OverviewLoading } from "components/Loaders";
-import useSWR from "swr";
+import { Rating } from "components/Rating";
 import { useRouter } from "next/router";
+import useSWR from "swr";
 
 export const Overview = () => {
 	const router = useRouter();

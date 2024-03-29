@@ -1,5 +1,5 @@
-import { UserSession } from "types";
 import { IronSessionOptions } from "iron-session";
+import { UserSession } from "types";
 
 export const sessionOptions: IronSessionOptions = {
 	cookieName: "roastTime",

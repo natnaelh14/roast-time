@@ -1,8 +1,8 @@
-import { useColorScheme } from "contexts/ColorSchemeContext";
-import { SavedRestaurant } from "types";
-import { saveRestaurant, removeSavedRestaurant } from "components/api/api";
-import { useState } from "react";
+import { removeSavedRestaurant, saveRestaurant } from "components/api/api";
 import { useUser } from "components/useUser";
+import { useColorScheme } from "contexts/ColorSchemeContext";
+import { useState } from "react";
+import { SavedRestaurant } from "types";
 
 export const SaveIcon = ({
 	restaurantId,
@@ -36,11 +36,10 @@ export const SaveIcon = ({
 	};
 
 	return (
-		<div
+		<button
 			className="hover:cursor-pointer"
 			onClick={handleSaveRestaurantToggle}
 			onKeyDown={handleSaveRestaurantToggle}
-			role="button"
 			tabIndex={0}
 		>
 			<svg
@@ -60,6 +59,6 @@ export const SaveIcon = ({
 					d="M6 5a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v13.131a1 1 0 0 1-1.555.832l-3.89-2.593a1 1 0 0 0-1.11 0l-3.89 2.593A1 1 0 0 1 6 18.131V5Z"
 				/>
 			</svg>
-		</div>
+		</button>
 	);
 };

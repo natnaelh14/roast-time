@@ -1,13 +1,13 @@
-import { Button } from "components/Button";
-import { Reservation } from "types";
 import { deleteReservationByRestaurant } from "components/api/api";
-import { useColorScheme } from "contexts/ColorSchemeContext";
+import { Button } from "components/Button";
 import { UpdateReservationModal } from "components/Modal/UpdateReservationModal";
-import Image from "next/legacy/image";
-import dayjs from "dayjs";
-import Swal from "sweetalert2";
 import { useUser } from "components/useUser";
+import { useColorScheme } from "contexts/ColorSchemeContext";
+import dayjs from "dayjs";
+import Image from "next/legacy/image";
 import toast from "react-hot-toast";
+import Swal from "sweetalert2";
+import { Reservation } from "types";
 
 const OrderItem = ({ reservation, mutate }: { reservation: Reservation; mutate: () => void }) => {
 	const { colorScheme } = useColorScheme();
@@ -44,11 +44,11 @@ const OrderItem = ({ reservation, mutate }: { reservation: Reservation; mutate: 
 
 	return (
 		<tr>
-			<td className="border-b border-gray-200 px-5 py-5 text-sm dark:border-gray-secondary">
+			<td className="border-b border-gray-200 p-5 text-sm dark:border-gray-secondary">
 				<div className="flex items-center">
-					<div className="h-10 w-10 flex-shrink-0">
+					<div className="size-10 shrink-0">
 						<Image
-							className="h-full w-full rounded-full"
+							className="size-full rounded-full"
 							src={reservation?.user?.imageUrl ?? ""}
 							height={75}
 							width={75}
@@ -56,24 +56,24 @@ const OrderItem = ({ reservation, mutate }: { reservation: Reservation; mutate: 
 						/>
 					</div>
 					<div className="ml-3">
-						<p className="whitespace-no-wrap text-gray-900 dark:text-gray-200">
+						<p className="text-gray-900 dark:text-gray-200">
 							{reservation?.user?.firstName} {reservation?.user?.firstName}
 						</p>
 					</div>
 				</div>
 			</td>
-			<td className="border-b border-gray-200 px-5 py-5 text-sm dark:border-gray-secondary">
-				<p className="whitespace-no-wrap text-gray-900 dark:text-gray-200">{reservation?.user?.phoneNumber}</p>
+			<td className="border-b border-gray-200 p-5 text-sm dark:border-gray-secondary">
+				<p className="text-gray-900 dark:text-gray-200">{reservation?.user?.phoneNumber}</p>
 			</td>
-			<td className="border-b border-gray-200 px-5 py-5 text-sm dark:border-gray-secondary">
-				<p className="whitespace-no-wrap text-gray-900 dark:text-gray-200">
+			<td className="border-b border-gray-200 p-5 text-sm dark:border-gray-secondary">
+				<p className="text-gray-900 dark:text-gray-200">
 					{dayjs(reservation.reservationDate).format("MM/DD/YYYY")} {reservation?.reservationTime}
 				</p>
 			</td>
-			<td className="border-b border-gray-200 px-5 py-5 text-sm dark:border-gray-secondary">
-				<p className="whitespace-no-wrap text-gray-900 dark:text-gray-200">{reservation?.partySize}</p>
+			<td className="border-b border-gray-200 p-5 text-sm dark:border-gray-secondary">
+				<p className="text-gray-900 dark:text-gray-200">{reservation?.partySize}</p>
 			</td>
-			<td className="flex flex-row items-start gap-2 border-b border-gray-200 px-5 py-5 text-sm dark:border-gray-secondary">
+			<td className="flex flex-row items-start gap-2 border-b border-gray-200 p-5 text-sm dark:border-gray-secondary">
 				<UpdateReservationModal reservation={reservation} reservationType="RESTAURANT" mutate={mutate} />
 				<Button variant="secondary" className="my-2" onClick={handleDeleteReservation}>
 					Cancel

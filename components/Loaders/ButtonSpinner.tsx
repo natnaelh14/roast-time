@@ -1,5 +1,5 @@
-import { classNames } from "utils/helpers";
 import { ComponentPropsWithoutRef } from "react";
+import { classNames } from "utils/helpers";
 
 interface ButtonSpinnerProps extends ComponentPropsWithoutRef<"div"> {
 	color?: string;

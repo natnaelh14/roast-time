@@ -1,5 +1,5 @@
-import { FieldValues, UseControllerProps } from "react-hook-form";
 import { ComponentPropsWithoutRef } from "react";
+import { FieldValues, UseControllerProps } from "react-hook-form";
 
 export interface InputProps<T extends FieldValues>
 	extends UseControllerProps<T>,
@@ -62,7 +62,7 @@ export interface SessionAccount {
 	longitude?: number;
 	accountType: "GUEST" | "RESTAURANT";
 	restaurant?: Restaurant;
-	savedRestaurant?: SavedRestaurant;
+	savedRestaurant?: SavedRestaurant[];
 }
 export interface UserSession {
 	isLoggedIn: boolean;

@@ -1,5 +1,5 @@
 import { useRestaurantContext } from "contexts/RestaurantsContext";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const Pagination = () => {
 	const { restaurantsData, setPageCount, pageCount } = useRestaurantContext();
@@ -25,11 +25,11 @@ const Pagination = () => {
 			<button
 				onClick={() => setPageCount((prevCount: number) => prevCount - 1)}
 				disabled={isPrevButtonDisabled}
-				className="mr-3 inline-flex items-center rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-500 hover:cursor-pointer hover:bg-gray-100 hover:text-gray-700 disabled:bg-gray-200 disabled:hover:bg-gray-200 disabled:hover:text-gray-500 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white disabled:dark:text-gray-500 disabled:dark:hover:bg-gray-800 disabled:dark:hover:text-gray-500"
+				className="mr-3 inline-flex items-center rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-500 hover:cursor-pointer hover:bg-gray-100 hover:text-gray-700 disabled:bg-gray-200 disabled:hover:bg-gray-200 disabled:hover:text-gray-500 dark:border-gray-700 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 disabled:dark:text-gray-500 disabled:dark:hover:bg-gray-800 disabled:dark:hover:text-gray-500"
 			>
 				<svg
 					aria-hidden="true"
-					className="mr-2 h-5 w-5"
+					className="mr-2 size-5"
 					fill="currentColor"
 					viewBox="0 0 20 20"
 					xmlns="http://www.w3.org/2000/svg"
@@ -45,12 +45,12 @@ const Pagination = () => {
 			<button
 				onClick={() => setPageCount((prevCount: number) => prevCount + 1)}
 				disabled={isNextButtonDisabled}
-				className="mr-3 inline-flex items-center rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-500 hover:cursor-pointer hover:bg-gray-100 hover:text-gray-700 disabled:bg-gray-200 disabled:hover:bg-gray-200 disabled:hover:text-gray-500 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white disabled:dark:text-gray-500 disabled:dark:hover:bg-gray-800 disabled:dark:hover:text-gray-500"
+				className="mr-3 inline-flex items-center rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-500 hover:cursor-pointer hover:bg-gray-100 hover:text-gray-700 disabled:bg-gray-200 disabled:hover:bg-gray-200 disabled:hover:text-gray-500 dark:border-gray-700 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 disabled:dark:text-gray-500 disabled:dark:hover:bg-gray-800 disabled:dark:hover:text-gray-500"
 			>
 				Next
 				<svg
 					aria-hidden="true"
-					className="ml-2 h-5 w-5"
+					className="ml-2 size-5"
 					fill="currentColor"
 					viewBox="0 0 20 20"
 					xmlns="http://www.w3.org/2000/svg"

@@ -1,11 +1,11 @@
-import { ErrorMessage } from "./ErrorMessage";
-import { FieldDescription } from "./FieldDescription";
-import { SelectOption } from "components/Inputs";
-import { SelectProps } from "types";
-import { classNames } from "utils/helpers";
 import { Listbox, Transition } from "@headlessui/react";
+import { SelectOption } from "components/Inputs";
 import { Fragment, useEffect, useState } from "react";
 import { FieldValues, useController } from "react-hook-form";
+import { SelectProps } from "types";
+import { classNames } from "utils/helpers";
+import { ErrorMessage } from "./ErrorMessage";
+import { FieldDescription } from "./FieldDescription";
 
 export const Select = <T extends FieldValues>({ label, description, options, ...props }: SelectProps<T>) => {
 	const {
@@ -67,7 +67,7 @@ export const Select = <T extends FieldValues>({ label, description, options, ...
 					</Transition>
 
 					{/* Description and error visibility logic */}
-					<div className="mt-1 ml-[1px] min-h-[1.25rem] text-xs">
+					<div className="ml-px mt-1 min-h-5 text-xs">
 						{description && (isDisabled || !error) && (
 							<FieldDescription name={name} description={description} isDisabled={isDisabled} />
 						)}

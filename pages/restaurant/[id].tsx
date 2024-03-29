@@ -1,6 +1,6 @@
+import Banner from "components/Banner/Banner";
 import Reservation from "components/Reservation/Reservation";
 import RestaurantTabs from "components/RestaurantTabs/RestaurantTabs";
-import Banner from "components/Banner/Banner";
 
 const Restaurants = () => {
 	return (
