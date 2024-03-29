@@ -1,6 +1,6 @@
-import React, { Fragment, useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/24/outline";
+import { Fragment, useState } from "react";
 
 const people = ["RELEVANCE", "RATING", "DISTANCE", "POPULARITY"];
 
@@ -10,10 +10,10 @@ const FilterCoffeeShops = () => {
 		<div className="absolute right-6 z-10 mt-4 w-60">
 			<Listbox value={selected} onChange={setSelected}>
 				<div className="relative mt-1">
-					<Listbox.Button className="relative w-full cursor-default rounded-lg py-2  pl-3 pr-10 text-left shadow-md hover:cursor-pointer focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 dark:bg-blue-dark dark:text-gray-200 sm:text-sm">
+					<Listbox.Button className="relative w-full cursor-default rounded-lg py-2  pl-3 pr-10 text-left shadow-md hover:cursor-pointer focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white  focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 dark:bg-blue-dark dark:text-gray-200 sm:text-sm">
 						<span className="block truncate">{selected}</span>
 						<span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-							<ChevronUpDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+							<ChevronUpDownIcon className="size-5 text-gray-400" aria-hidden="true" />
 						</span>
 					</Listbox.Button>
 					<Transition as={Fragment} leave="transition ease-in duration-100" leaveFrom="opacity-100" leaveTo="opacity-0">
@@ -34,7 +34,7 @@ const FilterCoffeeShops = () => {
 											<span className={`block truncate ${selected ? "font-medium" : "font-normal"}`}>{person}</span>
 											{selected ? (
 												<span className="absolute inset-y-0 left-0 flex items-center pl-3 text-black sm:text-sm">
-													<CheckIcon className="h-5 w-5" aria-hidden="true" />
+													<CheckIcon className="size-5" aria-hidden="true" />
 												</span>
 											) : null}
 										</>

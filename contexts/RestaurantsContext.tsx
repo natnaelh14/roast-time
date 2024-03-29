@@ -1,6 +1,6 @@
-import { Restaurant } from "types";
-import { createContext, ReactNode, useState, useContext, Dispatch, SetStateAction, useMemo } from "react";
+import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useMemo, useState } from "react";
 import useSWR from "swr";
+import { Restaurant } from "types";
 
 interface RestaurantSessionContextState {
 	restaurantsData?: { restaurants: Restaurant[]; totalCount: number };

@@ -1,8 +1,8 @@
 import { SaveIcon } from "components/Icons";
 import { Rating } from "components/Rating";
+import { useUser } from "components/useUser";
 import Image from "next/legacy/image";
 import Link from "next/link";
-import { useUser } from "components/useUser";
 
 interface ItemProps {
 	id: string;
@@ -33,7 +33,7 @@ const Item = ({ id, name, imageData, address, category, refreshSavedRestaurants 
 						<Link href={`/restaurant/${id}`} className="hover:cursor-pointer">
 							<button
 								type="submit"
-								className="right-0-0 relative bottom-0 mt-3 w-full rounded bg-pink-primary py-2 px-4 text-base text-white hover:bg-orange-primary dark:text-black"
+								className="right-0-0 relative bottom-0 mt-3 w-full rounded bg-pink-primary px-4 py-2 text-base text-white hover:bg-orange-primary dark:text-black"
 							>
 								Reserve
 							</button>

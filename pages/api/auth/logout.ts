@@ -1,7 +1,7 @@
-import { UserSession } from "types";
-import { sessionOptions } from "utils/config";
 import { withIronSessionApiRoute } from "iron-session/next";
 import { NextApiRequest, NextApiResponse } from "next";
+import { UserSession } from "types";
+import { sessionOptions } from "utils/config";
 
 const logoutRouter = (req: NextApiRequest, res: NextApiResponse<UserSession>) => {
 	try {

@@ -2,14 +2,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import { SubmitButton } from "components/Button";
 import { Input, LocationSearchInput } from "components/Inputs";
+import { useUser } from "components/useUser";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { IGuestSignUpForm, UserSession } from "types";
 import { formatPhoneNumber, validateEmailAndPhoneNumber } from "utils/helpers";
 import { z, ZodType } from "zod";
-import { useUser } from "components/useUser";
-import toast from "react-hot-toast";
 
 const schema: ZodType = z.object({
 	firstName: z.string().min(1, { message: "First name is required" }).default(""),

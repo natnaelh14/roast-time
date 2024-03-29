@@ -1,8 +1,8 @@
-import { ErrorMessage } from "./ErrorMessage";
-import { FieldDescription } from "./FieldDescription";
+import { FieldValues, useController } from "react-hook-form";
 import { InputProps } from "types";
 import { classNames } from "utils/helpers";
-import { FieldValues, useController } from "react-hook-form";
+import { ErrorMessage } from "./ErrorMessage";
+import { FieldDescription } from "./FieldDescription";
 
 export const Input = <T extends FieldValues>({ type, description, label, ...props }: InputProps<T>) => {
 	const {
@@ -38,7 +38,7 @@ export const Input = <T extends FieldValues>({ type, description, label, ...prop
 			>
 				{label}
 			</label>
-			<div className="mt-1 ml-[1px] min-h-[1.25rem] text-xs">
+			<div className="ml-px mt-1 min-h-5 text-xs">
 				{description && (isDisabled || !error) && (
 					<FieldDescription name={name} description={description} isDisabled={isDisabled} />
 				)}

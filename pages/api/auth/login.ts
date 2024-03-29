@@ -1,7 +1,7 @@
-import { sessionOptions } from "utils/config";
+import { login } from "components/api/api";
 import { withIronSessionApiRoute } from "iron-session/next";
 import { NextApiRequest, NextApiResponse } from "next";
-import { login } from "components/api/api";
+import { sessionOptions } from "utils/config";
 
 interface AuthPayload {
 	email: string;

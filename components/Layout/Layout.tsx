@@ -1,9 +1,9 @@
-import { Navbar } from "../Navbar";
-import Footer from "../Footer/Footer";
-import React, { ReactNode } from "react";
-import Head from "next/head";
-import { ToastBar, Toaster } from "react-hot-toast";
+import Footer from "components/Footer/Footer";
+import { Navbar } from "components/Navbar";
 import { useColorScheme } from "contexts/ColorSchemeContext";
+import Head from "next/head";
+import { ReactNode } from "react";
+import { ToastBar, Toaster } from "react-hot-toast";
 
 interface LayoutProps {
 	children: ReactNode;

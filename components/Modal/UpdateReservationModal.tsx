@@ -1,14 +1,14 @@
-import { Modal } from "components/Modal/Modal";
-import { Button, SubmitButton } from "components/Button";
-import { Select, Input } from "components/Inputs";
-import { SelectOptionProps, ReservationFormData, Reservation } from "types";
+import { DatePicker } from "@mantine/dates";
 import { updateReservation, updateReservationByRestaurant } from "components/api/api";
+import { Button, SubmitButton } from "components/Button";
+import { Input, Select } from "components/Inputs";
+import { Modal } from "components/Modal/Modal";
+import { useUser } from "components/useUser";
 import { useColorScheme } from "contexts/ColorSchemeContext";
 import { useState } from "react";
-import { useForm, Controller } from "react-hook-form";
-import { DatePicker } from "@mantine/dates";
-import { useUser } from "components/useUser";
+import { Controller, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import { Reservation, ReservationFormData, SelectOptionProps } from "types";
 
 export const UpdateReservationModal = ({
 	reservation,

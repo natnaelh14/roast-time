@@ -1,15 +1,15 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
+import { SubmitButton } from "components/Button/SubmitButton";
 import { Input } from "components/Inputs";
+import { useUser } from "components/useUser";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import TagManager from "react-gtm-module";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { UserSession } from "types";
 import { z, ZodType } from "zod";
-import { SubmitButton } from "../Button/SubmitButton";
-import { useUser } from "components/useUser";
-import toast from "react-hot-toast";
 
 interface SignInFormData {
 	email: string;
@@ -77,7 +77,7 @@ export const SignInForm = () => {
 					{"  "}
 					<Link
 						href={`/signup${restaurantId?.length ? `?restaurantId=${restaurantId}` : ""}`}
-						className="text-md text-center underline decoration-pink-primary decoration-4 underline-offset-8 hover:text-pink-primary"
+						className="text-center underline decoration-pink-primary decoration-4 underline-offset-8 hover:text-pink-primary"
 					>
 						Signup
 					</Link>

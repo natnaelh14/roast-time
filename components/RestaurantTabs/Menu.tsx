@@ -1,5 +1,5 @@
-import MenuItem from "./MenuItem/MenuItem";
 import { beverageItems, breakfastItems, sideItems } from "data";
+import MenuItem from "./MenuItem/MenuItem";
 
 export const Menu = () => {
 	return (

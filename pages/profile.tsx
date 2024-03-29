@@ -1,12 +1,12 @@
-import { sessionOptions } from "utils/config";
-import { UseReservationsContext } from "contexts/UpcomingReservationsContext";
 import { ThreeDotsLoading } from "components/Loaders";
-import { GetServerSideProps } from "next";
+import { UpdateUserProfileModal } from "components/Modal/UpdateUserProfileModal";
+import { useUser } from "components/useUser";
+import { UseReservationsContext } from "contexts/UpcomingReservationsContext";
 import { withIronSessionSsr } from "iron-session/next";
+import { GetServerSideProps } from "next";
 import Image from "next/legacy/image";
 import Link from "next/link";
-import { useUser } from "components/useUser";
-import { UpdateUserProfileModal } from "components/Modal/UpdateUserProfileModal";
+import { sessionOptions } from "utils/config";
 
 export const getServerSideProps: GetServerSideProps = withIronSessionSsr(({ req, res }) => {
 	const { user } = req.session;
@@ -27,7 +27,6 @@ const Profile = () => {
 	const { user } = useUser();
 	const { reservations } = UseReservationsContext();
 	const account = user?.account;
-
 	if (!account) return <ThreeDotsLoading />;
 
 	return (
@@ -47,31 +46,25 @@ const Profile = () => {
 								<UpdateUserProfileModal />
 							</div>
 						</div>
-						<div className="mt-10 w-full px-4 text-center">
-							<div className="flex justify-center py-4 lg:pt-4">
+						<div className="mt-16 flex w-full justify-center p-4 text-center text-gray-500 dark:text-gray-200 lg:pt-4">
+							<div>
+								<span className="block text-xl font-bold uppercase tracking-wide">{reservations?.length ?? 0}</span>
 								<Link
 									href="/restaurant/upcoming-reservations"
-									className="mr-4 p-3 text-center underline-offset-8 hover:underline dark:text-gray-200"
+									className="text-center underline-offset-8 hover:underline "
 								>
-									<span className="block text-xl font-bold uppercase tracking-wide">
-										{
-											// @ts-ignore:next-line
-											reservations?.length || 0
-										}
-									</span>
-									<span className="text-sm text-gray-500 dark:text-blue-200">Upcoming Reservations</span>
+									<span className="text-sm">Upcoming Reservations</span>
 								</Link>
+							</div>
+							<div>
+								<span className="block text-xl font-bold uppercase tracking-wide">
+									{account?.savedRestaurant?.length ?? 0}
+								</span>
 								<Link
 									href="/restaurant/saved-restaurants"
-									className="mr-4 p-3 text-center underline-offset-8 hover:underline dark:text-gray-200"
+									className="p-3 text-center underline-offset-8 hover:underline"
 								>
-									<span className="block text-xl font-bold uppercase tracking-wide">
-										{
-											// @ts-ignore:next-line
-											account?.savedRestaurant?.length || 0
-										}
-									</span>
-									<span className="text-sm text-gray-500 dark:text-blue-200">Saved Restaurants</span>
+									<span className="text-sm">Saved Restaurants</span>
 								</Link>
 							</div>
 						</div>
@@ -80,13 +73,13 @@ const Profile = () => {
 						<h3 className="mb-2 text-xl font-semibold leading-normal dark:text-gray-200">
 							{`${account.firstName} ${account.lastName}`}
 						</h3>
-						<div className="mt-0 mb-2 text-sm font-bold leading-normal text-gray-500 dark:text-blue-200">
+						<div className="mb-2 mt-0 text-sm font-bold leading-normal text-gray-500 dark:text-blue-200">
 							{account.email}
 						</div>
-						<div className="mt-0 mb-2 text-sm font-bold uppercase leading-normal text-gray-500 dark:text-blue-200">
+						<div className="mb-2 mt-0 text-sm font-bold uppercase leading-normal text-gray-500 dark:text-blue-200">
 							{account.phoneNumber}
 						</div>
-						<div className="mt-0 mb-2 text-sm font-bold uppercase leading-normal text-gray-500 dark:text-blue-200">
+						<div className="mb-2 mt-0 text-sm font-bold uppercase leading-normal text-gray-500 dark:text-blue-200">
 							{account.address}
 						</div>
 					</div>

@@ -1,14 +1,14 @@
-import "../styles/globals.css";
+import { Analytics } from "@vercel/analytics/react";
 import Layout from "components/Layout/Layout";
-import fetchJson from "utils/fetchJson";
 import { ColorSchemeContextProvider } from "contexts/ColorSchemeContext";
-import { ReservationsContextProvider } from "contexts/UpcomingReservationsContext";
 import { RestaurantContextProvider } from "contexts/RestaurantsContext";
+import { ReservationsContextProvider } from "contexts/UpcomingReservationsContext";
+import type { AppProps } from "next/app";
 import Script from "next/script";
 import TagManager from "react-gtm-module";
+import "styles/globals.css";
 import { SWRConfig } from "swr";
-import { Analytics } from "@vercel/analytics/react";
-import type { AppProps } from "next/app";
+import fetchJson from "utils/fetchJson";
 
 function MyApp({ Component, pageProps }: AppProps) {
 	if (process.browser) {

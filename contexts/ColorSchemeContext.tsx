@@ -1,6 +1,6 @@
-import { getLocalStorage, setLocalStorage } from "utils/storage";
+import { createContext, ReactNode, useContext, useMemo, useState } from "react";
 import { getSystemDarkTheme } from "utils/helpers";
-import { createContext, ReactNode, useState, useContext, useMemo } from "react";
+import { getLocalStorage, setLocalStorage } from "utils/storage";
 
 interface ColorSchemeContextState {
 	colorScheme: "dark" | "light";

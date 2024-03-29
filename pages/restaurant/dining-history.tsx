@@ -1,11 +1,11 @@
-import { sessionOptions } from "utils/config";
-import ReservationCard from "components/Reservation/ReservationCard";
-import { Reservation } from "types";
-import { ThreeDotsLoading } from "components/Loaders";
 import EmptyState from "components/EmptyState/EmptyState";
-import { GetServerSideProps } from "next";
+import { ThreeDotsLoading } from "components/Loaders";
+import ReservationCard from "components/Reservation/ReservationCard";
 import { withIronSessionSsr } from "iron-session/next";
+import { GetServerSideProps } from "next";
 import useSWR from "swr";
+import { Reservation } from "types";
+import { sessionOptions } from "utils/config";
 
 export const getServerSideProps: GetServerSideProps = withIronSessionSsr(({ req, res }) => {
 	const { user } = req.session;

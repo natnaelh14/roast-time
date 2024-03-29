@@ -1,7 +1,7 @@
-import { Reservation } from "types";
+import { useUser } from "components/useUser";
 import { createContext, ReactNode, useContext } from "react";
 import useSWR from "swr";
-import { useUser } from "components/useUser";
+import { Reservation } from "types";
 
 interface ReservationsContextState {
 	reservations: Reservation[];

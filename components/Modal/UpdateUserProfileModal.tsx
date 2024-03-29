@@ -1,10 +1,10 @@
-import { useState } from "react";
-import { Modal } from "components/Modal/Modal";
+import { updateAccount } from "components/api/api";
 import { Button, SubmitButton } from "components/Button";
 import { Input } from "components/Inputs";
-import { updateAccount } from "components/api/api";
-import { useForm } from "react-hook-form";
+import { Modal } from "components/Modal/Modal";
 import { useUser } from "components/useUser";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 
 interface AccountFormValues {

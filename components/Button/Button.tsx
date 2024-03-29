@@ -1,5 +1,5 @@
-import { classNames } from "utils/helpers";
 import { ComponentPropsWithoutRef } from "react";
+import { classNames } from "utils/helpers";
 
 export interface ButtonProps extends ComponentPropsWithoutRef<"button"> {
 	variant: "primary" | "secondary" | "tertiary";

@@ -1,7 +1,7 @@
-import { SelectOptionProps } from "types";
-import { classNames } from "utils/helpers";
 import { Listbox } from "@headlessui/react";
 import { CheckIcon } from "@heroicons/react/24/outline";
+import { SelectOptionProps } from "types";
+import { classNames } from "utils/helpers";
 
 export const SelectOption = ({ value, label }: SelectOptionProps) => {
 	return (
@@ -30,7 +30,7 @@ export const SelectOption = ({ value, label }: SelectOptionProps) => {
 					</span>
 					{selected && (
 						<span className="absolute inset-y-0 left-0 flex items-center pl-3 text-pink-primary">
-							<CheckIcon className="h-4 w-4" aria-hidden="true" />
+							<CheckIcon className="size-4" aria-hidden="true" />
 						</span>
 					)}
 				</>

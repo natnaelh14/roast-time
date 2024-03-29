@@ -1,6 +1,6 @@
+import { ButtonSpinner } from "components/Loaders/ButtonSpinner";
 import { ComponentPropsWithoutRef } from "react";
 import { classNames } from "utils/helpers";
-import { ButtonSpinner } from "../Loaders";
 
 export interface SubmitButtonProps extends Omit<ComponentPropsWithoutRef<"button">, "type" | "disabled"> {
 	text: string;

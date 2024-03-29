@@ -11,7 +11,7 @@ const SearchBar = () => {
 				<div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
 					<svg
 						aria-hidden="true"
-						className="h-5 w-5 text-gray-500 dark:text-gray-400"
+						className="size-5 text-gray-500 dark:text-gray-400"
 						fill="none"
 						stroke="currentColor"
 						viewBox="0 0 24 24"
@@ -28,7 +28,7 @@ const SearchBar = () => {
 				<input
 					type="search"
 					id="default-search"
-					className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-4 pl-10 text-sm placeholder-gray-300 focus:outline-none dark:border-gray-secondary dark:bg-blue-light dark:text-gray-300"
+					className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-4 pl-10 text-sm placeholder:text-gray-300 focus:outline-none dark:border-gray-secondary dark:bg-blue-light dark:text-gray-300"
 					placeholder="Search Coffee Shops..."
 					required
 					onKeyUp={(event) => {
