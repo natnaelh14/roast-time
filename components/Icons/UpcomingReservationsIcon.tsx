@@ -5,7 +5,7 @@ export const UpcomingReservationsIcon = ({ reservationCount }: { reservationCoun
 	const { colorScheme } = useColorScheme();
 
 	return (
-		<Link href="restaurant/upcoming-reservations" className="hover:cursor-pointer">
+		<Link href="/restaurant/upcoming-reservations" className="hover:cursor-pointer">
 			{colorScheme === "dark" ? (
 				<div className="flex flex-row p-2 hover:rounded-full hover:bg-blue-light">
 					<svg
