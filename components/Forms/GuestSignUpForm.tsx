@@ -1,7 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import { SubmitButton } from "components/Button";
-import { Input, LocationSearchInput } from "components/Inputs";
+import { Input, LocationSearchInput } from "components/inputs";
 import { useUser } from "components/useUser";
 import { useRouter } from "next/router";
 import { useState } from "react";

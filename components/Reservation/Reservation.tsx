@@ -1,7 +1,7 @@
 import { DatePicker } from "@mantine/dates";
 import { handleReservation } from "components/api/api";
 import { SubmitButton } from "components/Button";
-import { Input, Select } from "components/Inputs";
+import { Input, Select } from "components/inputs";
 import { useUser } from "components/useUser";
 import { useColorScheme } from "contexts/ColorSchemeContext";
 import { useRouter } from "next/router";
@@ -9,7 +9,7 @@ import { Controller, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { ReservationFormData, SelectOptionProps } from "types";
 
-const Reservation = () => {
+export const Reservation = () => {
 	const router = useRouter();
 	const { id: restaurantId } = router.query;
 	const { user } = useUser();
@@ -63,6 +63,8 @@ const Reservation = () => {
 		{ value: 10, label: "10 people" },
 	];
 
+	if (!user?.isLoggedIn) return null;
+
 	return (
 		<div className="m-8 flex size-fit flex-col items-center rounded-lg border-2 border-gray-200 bg-white px-16 py-8 shadow-lg dark:border-gray-secondary dark:bg-blue-dark lg:justify-between">
 			<div className="mb-6 text-center">
@@ -108,5 +110,3 @@ const Reservation = () => {
 		</div>
 	);
 };
-
-export default Reservation;

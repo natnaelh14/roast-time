@@ -1,4 +1,4 @@
-import { OverviewLoading } from "components/Loaders";
+import { OverviewLoading } from "components/loaders";
 import ImageModal from "components/Modal/ImageModal";
 import { useRouter } from "next/router";
 import useSWR from "swr";

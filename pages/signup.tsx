@@ -1,5 +1,5 @@
-import { GuestSignUpForm } from "components/Forms/GuestSignUpForm";
-import { ThreeDotsLoading } from "components/Loaders";
+import { GuestSignUpForm } from "components/forms/GuestSignUpForm";
+import { ThreeDotsLoading } from "components/loaders";
 import { withIronSessionSsr } from "iron-session/next";
 import { GetServerSideProps } from "next";
 import { useState } from "react";

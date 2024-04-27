@@ -1,4 +1,4 @@
-import { OverviewLoading } from "components/Loaders";
+import { OverviewLoading } from "components/loaders";
 import { Rating } from "components/Rating";
 import { useRouter } from "next/router";
 import useSWR from "swr";

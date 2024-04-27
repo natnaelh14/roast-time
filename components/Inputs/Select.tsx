@@ -1,5 +1,5 @@
 import { Listbox, Transition } from "@headlessui/react";
-import { SelectOption } from "components/Inputs";
+import { SelectOption } from "components/inputs";
 import { Fragment, useEffect, useState } from "react";
 import { FieldValues, useController } from "react-hook-form";
 import { SelectProps } from "types";

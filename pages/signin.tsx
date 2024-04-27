@@ -1,4 +1,4 @@
-import { SignInForm } from "components/Forms";
+import { SignInForm } from "components/forms";
 import { withIronSessionSsr } from "iron-session/next";
 import { GetServerSideProps } from "next";
 import { sessionOptions } from "utils/config";

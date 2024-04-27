@@ -1,5 +1,5 @@
 import Banner from "components/Banner/Banner";
-import Reservation from "components/Reservation/Reservation";
+import { Reservation } from "components/Reservation/Reservation";
 import RestaurantTabs from "components/RestaurantTabs/RestaurantTabs";
 
 const Restaurants = () => {

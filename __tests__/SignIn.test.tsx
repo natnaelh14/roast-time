@@ -1,6 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { SignInForm } from "components/Forms";
-import userEvent from "@testing-library/user-event";
+import { SignInForm } from "components/forms";
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-return
 jest.mock("next/router", () => require("next-router-mock"));
