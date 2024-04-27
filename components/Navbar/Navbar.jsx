@@ -1,7 +1,7 @@
 import { Dialog, Transition } from "@headlessui/react";
 import axios from "axios";
 import ColorToggle from "components/ColorToggle/ColorToggle";
-import { CloseIcon, HamburgerIcon, UpcomingReservationsIcon } from "components/Icons";
+import { CloseIcon, HamburgerIcon, UpcomingReservationsIcon } from "components/icons";
 import { useUser } from "components/useUser";
 import { useRestaurantContext } from "contexts/RestaurantsContext";
 import { UseReservationsContext } from "contexts/UpcomingReservationsContext";
@@ -9,6 +9,7 @@ import Image from "next/legacy/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { Fragment, useState } from "react";
+import toast from "react-hot-toast";
 import { MenuDropdown } from "./MenuDropdown";
 
 export const Navbar = () => {
@@ -188,6 +189,7 @@ export const Navbar = () => {
 													onClick={() => {
 														setMobileNavShown(false);
 														handleLogout();
+														toast.success("Logout successful");
 													}}
 												>
 													Sign Out

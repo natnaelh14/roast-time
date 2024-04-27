@@ -1,5 +1,5 @@
-import { RestaurantSignUpForm } from "components/Forms";
-import { ThreeDotsLoading } from "components/Loaders";
+import { RestaurantSignUpForm } from "components/forms";
+import { ThreeDotsLoading } from "components/loaders";
 import { useState } from "react";
 
 const GetStarted = () => {

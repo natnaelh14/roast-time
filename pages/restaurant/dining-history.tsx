@@ -1,5 +1,5 @@
 import EmptyState from "components/EmptyState/EmptyState";
-import { ThreeDotsLoading } from "components/Loaders";
+import { ThreeDotsLoading } from "components/loaders";
 import ReservationCard from "components/Reservation/ReservationCard";
 import { withIronSessionSsr } from "iron-session/next";
 import { GetServerSideProps } from "next";

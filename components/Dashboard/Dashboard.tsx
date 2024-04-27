@@ -1,6 +1,6 @@
 import EmptyState from "components/EmptyState/EmptyState";
-import Item from "components/Item/Item";
-import { DashboardLoading, ThreeDotsLoading } from "components/Loaders";
+import { RestaurantCard } from "components/home/RestaurantCard";
+import { DashboardLoading, ThreeDotsLoading } from "components/loaders";
 import { useRestaurantContext } from "contexts/RestaurantsContext";
 import { Restaurant } from "types";
 
@@ -16,7 +16,7 @@ const Dashboard = () => {
 		<div className="mt-5 flex flex-row overflow-x-scroll md:flex-wrap md:justify-center md:overflow-auto">
 			{restaurants?.map((item: Restaurant) => {
 				return (
-					<Item
+					<RestaurantCard
 						key={item.id}
 						id={item.id}
 						name={item.name}

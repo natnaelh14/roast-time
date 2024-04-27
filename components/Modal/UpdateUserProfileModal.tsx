@@ -1,6 +1,6 @@
 import { updateAccount } from "components/api/api";
 import { Button, SubmitButton } from "components/Button";
-import { Input } from "components/Inputs";
+import { Input } from "components/inputs";
 import { Modal } from "components/Modal/Modal";
 import { useUser } from "components/useUser";
 import { useState } from "react";

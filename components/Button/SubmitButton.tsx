@@ -1,4 +1,4 @@
-import { ButtonSpinner } from "components/Loaders/ButtonSpinner";
+import { ButtonSpinner } from "components/loaders/ButtonSpinner";
 import { ComponentPropsWithoutRef } from "react";
 import { classNames } from "utils/helpers";
 

@@ -1,7 +1,7 @@
 import { DatePicker } from "@mantine/dates";
 import { updateReservation, updateReservationByRestaurant } from "components/api/api";
 import { Button, SubmitButton } from "components/Button";
-import { Input, Select } from "components/Inputs";
+import { Input, Select } from "components/inputs";
 import { Modal } from "components/Modal/Modal";
 import { useUser } from "components/useUser";
 import { useColorScheme } from "contexts/ColorSchemeContext";

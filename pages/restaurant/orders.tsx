@@ -1,7 +1,7 @@
 import { DatePicker } from "@mantine/dates";
 import EmptyState from "components/EmptyState/EmptyState";
-import { ThreeDotsLoading } from "components/Loaders";
-import OrderItem from "components/Order/OrderItem";
+import { ThreeDotsLoading } from "components/loaders";
+import OrderItem from "components/order/OrderItem";
 import { useColorScheme } from "contexts/ColorSchemeContext";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";

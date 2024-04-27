@@ -1,4 +1,4 @@
-import { ThreeDotsLoading } from "components/Loaders";
+import { ThreeDotsLoading } from "components/loaders";
 import { UpdateUserProfileModal } from "components/Modal/UpdateUserProfileModal";
 import { useUser } from "components/useUser";
 import { UseReservationsContext } from "contexts/UpcomingReservationsContext";

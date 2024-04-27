@@ -5,6 +5,7 @@ import Image from "next/legacy/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { Fragment } from "react";
+import toast from "react-hot-toast";
 
 export const MenuDropdown = () => {
 	const router = useRouter();
@@ -108,6 +109,7 @@ export const MenuDropdown = () => {
 									} group flex w-full items-center rounded-md p-2 text-sm`}
 									onClick={async () => {
 										await handleLogout();
+										toast.success("Logout successful");
 									}}
 								>
 									Logout

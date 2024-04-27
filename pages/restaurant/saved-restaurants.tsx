@@ -1,6 +1,6 @@
 import EmptyState from "components/EmptyState/EmptyState";
-import Item from "components/Item/Item";
-import { ThreeDotsLoading } from "components/Loaders";
+import { RestaurantCard } from "components/home/RestaurantCard";
+import { ThreeDotsLoading } from "components/loaders";
 import { withIronSessionSsr } from "iron-session/next";
 import { GetServerSideProps } from "next";
 import useSWR from "swr";
@@ -62,7 +62,7 @@ const SavedRestaurants = ({ accountId, token }: { accountId: string; token: stri
 			<div className="flex flex-row overflow-x-scroll md:flex-wrap md:justify-center md:overflow-auto">
 				{savedRestaurants.map((savedRestaurant) => {
 					return (
-						<Item
+						<RestaurantCard
 							key={savedRestaurant.id}
 							id={savedRestaurant.restaurant.id}
 							name={savedRestaurant.restaurant.name}
