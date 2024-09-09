@@ -1,5 +1,5 @@
 import { Tab } from "@headlessui/react";
-import { Menu, Overview, Photos, Reviews } from "components/RestaurantTabs";
+import { Maps, Menu, Overview, Photos, Reviews } from "components/RestaurantTabs";
 import { useRouter } from "next/router";
 
 const RestaurantTabs = () => {
@@ -58,6 +58,15 @@ const RestaurantTabs = () => {
 						>
 							Reviews
 						</Tab>
+						<Tab
+							className={({ selected }) =>
+								selected
+									? "focus:outline-hidden m-3 border-b-2 border-pink-primary p-4 text-pink-primary hover:cursor-pointer"
+									: "focus:outline-hidden m-3 border-b-2 border-transparent p-4 text-gray-600 hover:cursor-pointer hover:border-gray-secondary dark:text-gray-300"
+							}
+						>
+							Map
+						</Tab>
 					</Tab.List>
 					<Tab.Panels className="min-h-[450px] w-full">
 						<Tab.Panel>
@@ -71,6 +80,9 @@ const RestaurantTabs = () => {
 						</Tab.Panel>
 						<Tab.Panel>
 							<Reviews />
+						</Tab.Panel>
+						<Tab.Panel>
+							<Maps />
 						</Tab.Panel>
 					</Tab.Panels>
 				</div>
