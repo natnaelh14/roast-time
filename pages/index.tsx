@@ -1,4 +1,3 @@
-import Adjustment from "components/Adjustment/Adjustment";
 import Banner from "components/Banner/Banner";
 import Dashboard from "components/Dashboard/Dashboard";
 import Pagination from "components/Pagination/Pagination";
@@ -31,7 +30,6 @@ const Home: NextPage = () => {
 			<Banner title="Lets find you the best coffee shop">
 				<SearchBar />
 			</Banner>
-			<Adjustment />
 			<Dashboard />
 			<Pagination />
 		</div>
