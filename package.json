@@ -97,6 +97,9 @@
 		"*.{js, jsx, ts, tsx}": "eslint --cache --fix"
 	},
 	"volta": {
-		"node": "18.12.1"
+		"node": "20.17.0"
+	},
+	"engines": {
+		"node": "20.x"
 	}
 }
