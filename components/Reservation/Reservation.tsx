@@ -4,6 +4,7 @@ import { SubmitButton } from "components/Button";
 import { Input, Select } from "components/inputs";
 import { useUser } from "components/useUser";
 import { useColorScheme } from "contexts/ColorSchemeContext";
+import { UseReservationsContext } from "contexts/UpcomingReservationsContext";
 import { useRouter } from "next/router";
 import { Controller, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -14,6 +15,7 @@ export const Reservation = () => {
 	const { id: restaurantId } = router.query;
 	const { user } = useUser();
 	const { colorScheme } = useColorScheme();
+	const { mutate: mutateReservations } = UseReservationsContext();
 
 	const { control, handleSubmit, formState } = useForm<ReservationFormData>({
 		mode: "onTouched",
@@ -44,6 +46,7 @@ export const Reservation = () => {
 				toast.success("Your reservation has been confirmed.");
 				await router.push("/restaurant/upcoming-reservations");
 			}
+			mutateReservations();
 			return;
 		} catch (e) {
 			console.error(e);
