@@ -32,15 +32,6 @@ export const Navbar = () => {
 			<Link href="/" className="mt-3" aria-label="Link to Homepage">
 				<Image alt="roastTime logo" src="/logo.png" height={200} width={200} />
 			</Link>
-			<div>
-				{error ? (
-					<h2 className="text-red-600">• API Not Connected</h2>
-				) : !restaurantsData?.restaurants?.length && !error ? (
-					<h2 className="text-yellow-400">• API Loading</h2>
-				) : (
-					<h2 className="text-green-400">• API Connected</h2>
-				)}
-			</div>
 			<div className="absolute right-2 hidden flex-row items-center md:flex">
 				{!user?.isLoggedIn && (
 					<>
@@ -87,7 +78,7 @@ export const Navbar = () => {
 							leaveFrom="opacity-100"
 							leaveTo="opacity-0"
 						>
-							<Dialog.Overlay className="absolute inset-0 bg-gray-900 bg-opacity-75 transition-opacity" />
+							<Dialog.Overlay className="absolute inset-0 bg-gray-900 transition-opacity" />
 						</Transition.Child>
 						<div className="pointer-events-none fixed inset-y-0">
 							<Transition.Child

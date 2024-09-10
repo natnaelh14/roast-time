@@ -75,7 +75,7 @@ const ReservationCard = ({
 					{dayjs(reservation.reservationDate).format("MM/DD/YYYY")} {reservation.reservationTime}
 				</p>
 				<p className="my-2 inline-block rounded-full bg-gray-200 px-3 py-1 text-sm font-semibold text-gray-700 dark:bg-blue-dark dark:text-gray-300">
-					#{restaurant?.category}
+					{restaurant?.category}
 				</p>
 				{!isHistory && (
 					<>

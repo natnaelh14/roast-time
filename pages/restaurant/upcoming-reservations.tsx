@@ -36,10 +36,10 @@ const UpcomingReservations = () => {
 	const { reservations, error, mutate } = UseReservationsContext();
 
 	if (!reservations && !error) return <ThreeDotsLoading />;
-	if (error || !reservations.length) return <EmptyState message="No upcoming reservations found" />;
+	if (error) return <EmptyState message="No upcoming reservations found" />;
 
 	return (
-		<div className="my-10 min-h-160 text-3xl dark:text-white">
+		<div className="my-20 mt-28 min-h-160 text-3xl dark:text-white">
 			<h1 className="m-4 text-center text-4xl text-brown-dark dark:text-brown-light">Upcoming Reservations</h1>
 			<div className="flex flex-row overflow-x-scroll md:flex-wrap md:justify-center md:overflow-auto">
 				{reservations.map((reservation: Reservation) => {
