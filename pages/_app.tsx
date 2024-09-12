@@ -2,7 +2,6 @@ import { Analytics } from "@vercel/analytics/react";
 import Layout from "components/Layout/Layout";
 import { ColorSchemeContextProvider } from "contexts/ColorSchemeContext";
 import { RestaurantContextProvider } from "contexts/RestaurantsContext";
-import { ReservationsContextProvider } from "contexts/UpcomingReservationsContext";
 import type { AppProps } from "next/app";
 import Script from "next/script";
 import TagManager from "react-gtm-module";
@@ -29,14 +28,12 @@ function MyApp({ Component, pageProps }: AppProps) {
 				}}
 			>
 				<RestaurantContextProvider>
-					<ReservationsContextProvider>
-						<ColorSchemeContextProvider>
-							<Layout>
-								<Component {...pageProps} />
-								<Analytics />
-							</Layout>
-						</ColorSchemeContextProvider>
-					</ReservationsContextProvider>
+					<ColorSchemeContextProvider>
+						<Layout>
+							<Component {...pageProps} />
+							<Analytics />
+						</Layout>
+					</ColorSchemeContextProvider>
 				</RestaurantContextProvider>
 			</SWRConfig>
 			{/* Google Tag Manager */}

@@ -1,7 +1,7 @@
 import EmptyState from "components/EmptyState/EmptyState";
 import { ThreeDotsLoading } from "components/loaders";
 import ReservationCard from "components/Reservation/ReservationCard";
-import { UseReservationsContext } from "contexts/UpcomingReservationsContext";
+import { useUpcomingReservations } from "hooks/useUpcomingReservations";
 import { withIronSessionSsr } from "iron-session/next";
 import { GetServerSideProps } from "next";
 import { Reservation } from "types";
@@ -33,10 +33,11 @@ export const getServerSideProps: GetServerSideProps = withIronSessionSsr(({ req,
 }, sessionOptions);
 
 const UpcomingReservations = () => {
-	const { reservations, error, mutate } = UseReservationsContext();
+	const { mutate, isLoading, error, data: reservations } = useUpcomingReservations();
 
-	if (!reservations && !error) return <ThreeDotsLoading />;
-	if (error) return <EmptyState message="No upcoming reservations found" />;
+	if (isLoading) return <ThreeDotsLoading />;
+	if (error || (reservations && reservations?.length === 0))
+		return <EmptyState message="No upcoming reservations found" />;
 
 	return (
 		<div className="my-20 mt-28 min-h-160 text-3xl dark:text-white">

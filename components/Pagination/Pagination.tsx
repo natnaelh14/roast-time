@@ -20,6 +20,8 @@ const Pagination = () => {
 		}
 	}, [pageCount, totalCount]);
 
+	if (!restaurantsData?.restaurants) return null;
+
 	return (
 		<div className="mt-10 flex justify-center">
 			<button

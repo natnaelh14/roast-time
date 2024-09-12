@@ -3,8 +3,7 @@ import axios from "axios";
 import ColorToggle from "components/ColorToggle/ColorToggle";
 import { CloseIcon, HamburgerIcon, UpcomingReservationsIcon } from "components/icons";
 import { useUser } from "components/useUser";
-import { useRestaurantContext } from "contexts/RestaurantsContext";
-import { UseReservationsContext } from "contexts/UpcomingReservationsContext";
+import { useUpcomingReservations } from "hooks/useUpcomingReservations";
 import Image from "next/legacy/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -16,8 +15,7 @@ export const Navbar = () => {
 	const router = useRouter();
 	const { user, userMutate } = useUser();
 	const [mobileNavShown, setMobileNavShown] = useState(false);
-	const { reservations } = UseReservationsContext();
-	const { restaurantsData, error } = useRestaurantContext();
+	const { reservations } = useUpcomingReservations();
 	if (!user) return null;
 
 	const handleLogout = async () => {

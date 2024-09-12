@@ -17,7 +17,7 @@ const RestaurantTabs = () => {
 					})
 				}
 			>
-				Reserve a table
+				Complete reservation
 			</button>
 			<Tab.Group defaultIndex={0} as="div">
 				<div className="flex flex-col lg:max-w-4xl">
