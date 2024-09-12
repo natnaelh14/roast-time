@@ -1,7 +1,7 @@
 import { ThreeDotsLoading } from "components/loaders";
 import { UpdateUserProfileModal } from "components/Modal/UpdateUserProfileModal";
 import { useUser } from "components/useUser";
-import { UseReservationsContext } from "contexts/UpcomingReservationsContext";
+import { useUpcomingReservations } from "hooks/useUpcomingReservations";
 import { withIronSessionSsr } from "iron-session/next";
 import { GetServerSideProps } from "next";
 import Image from "next/legacy/image";
@@ -25,7 +25,7 @@ export const getServerSideProps: GetServerSideProps = withIronSessionSsr(({ req,
 
 const Profile = () => {
 	const { user } = useUser();
-	const { reservations } = UseReservationsContext();
+	const { data: reservations } = useUpcomingReservations();
 	const account = user?.account;
 	if (!account) return <ThreeDotsLoading />;
 

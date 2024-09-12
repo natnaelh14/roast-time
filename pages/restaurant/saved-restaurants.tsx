@@ -1,9 +1,9 @@
 import EmptyState from "components/EmptyState/EmptyState";
 import { RestaurantCard } from "components/home/RestaurantCard";
 import { ThreeDotsLoading } from "components/loaders";
+import { useSavedRestaurants } from "hooks/useSavedRestaurants";
 import { withIronSessionSsr } from "iron-session/next";
 import { GetServerSideProps } from "next";
-import useSWR from "swr";
 import { Restaurant } from "types";
 import { sessionOptions } from "utils/config";
 
@@ -43,16 +43,8 @@ interface ISavedRestaurant {
 	restaurant: Restaurant;
 }
 
-const SavedRestaurants = ({ accountId, token }: { accountId: string; token: string }) => {
-	const {
-		data,
-		error,
-		mutate: refreshSavedRestaurants,
-	} = useSWR<{ savedRestaurants: ISavedRestaurant[] }>([
-		`${process.env.NEXT_PUBLIC_BASE_URL}/saved-restaurants/${accountId}`,
-		token,
-	]);
-	const savedRestaurants = data?.savedRestaurants;
+const SavedRestaurants = () => {
+	const { data: savedRestaurants, error, mutate: refreshSavedRestaurants } = useSavedRestaurants();
 	if (!savedRestaurants && !error) return <ThreeDotsLoading />;
 	if (error || savedRestaurants == undefined) return <EmptyState message="No saved restaurants found" />;
 
